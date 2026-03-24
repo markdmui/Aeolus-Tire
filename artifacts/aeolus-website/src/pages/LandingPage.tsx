@@ -1,11 +1,18 @@
 export default function LandingPage() {
   return (
-    <div className="font-sans antialiased bg-black text-white">
-      <Navbar />
+    <div
+      className="antialiased text-white"
+      style={{ backgroundColor: "var(--bg-dark)", fontFamily: "var(--font-body)" }}
+    >
+      <div className="container">
+        <Navbar />
+      </div>
       <Hero />
-      <FeaturePillars />
-      <ProductGrid />
-      <EngineeringCapabilities />
+      <div className="container">
+        <FeaturePillars />
+        <ProductGrid />
+        <EngineeringCapabilities />
+      </div>
       <EngineeringApproach />
       <Footer />
     </div>
@@ -14,17 +21,19 @@ export default function LandingPage() {
 
 function Navbar() {
   return (
-    <nav className="bg-black border-b border-zinc-800 sticky top-0 z-50">
-      <div className="max-w-[1400px] mx-auto px-8 h-14 flex items-center justify-between">
-        <a href="#" className="flex items-center" aria-label="Aeolus">
-          <AeolusLogo />
-        </a>
-        <div className="flex items-center gap-8">
-          <NavLinks />
-          <button className="bg-[#E8C200] text-black text-xs font-bold tracking-widest uppercase px-5 py-2 hover:bg-[#ffd700] transition-colors">
-            SEARCH
-          </button>
-        </div>
+    <nav
+      className="flex justify-between items-center py-8 sticky top-0 z-50"
+      style={{
+        backgroundColor: "var(--bg-dark)",
+        borderBottom: "1px solid var(--border-color)",
+      }}
+    >
+      <a href="#" aria-label="Aeolus" className="flex items-center">
+        <AeolusLogo />
+      </a>
+      <div className="flex items-center gap-12">
+        <NavLinks />
+        <button className="btn-primary">SEARCH</button>
       </div>
     </nav>
   );
@@ -42,24 +51,24 @@ function AeolusLogo() {
       <text
         x="0"
         y="22"
-        fontFamily="'Arial Black', 'Arial', sans-serif"
-        fontWeight="900"
+        fontFamily="'Helvetica Neue', Helvetica, Arial, sans-serif"
+        fontWeight="700"
         fontSize="22"
-        fill="#E8C200"
-        letterSpacing="3"
+        fill="var(--accent-yellow)"
+        letterSpacing="-1"
       >
         AE
       </text>
-      <circle cx="50" cy="14" r="8" stroke="#E8C200" strokeWidth="2" fill="none" />
-      <circle cx="50" cy="14" r="3" fill="#E8C200" />
+      <circle cx="50" cy="14" r="8" stroke="var(--accent-yellow)" strokeWidth="2" fill="none" />
+      <circle cx="50" cy="14" r="3" fill="var(--accent-yellow)" />
       <text
         x="63"
         y="22"
-        fontFamily="'Arial Black', 'Arial', sans-serif"
-        fontWeight="900"
+        fontFamily="'Helvetica Neue', Helvetica, Arial, sans-serif"
+        fontWeight="700"
         fontSize="22"
-        fill="#E8C200"
-        letterSpacing="3"
+        fill="var(--accent-yellow)"
+        letterSpacing="-1"
       >
         LUS
       </text>
@@ -70,13 +79,10 @@ function AeolusLogo() {
 function NavLinks() {
   const links = ["HOME", "TIRES", "ABOUT", "MEDIA", "CONTACT"];
   return (
-    <ul className="flex items-center gap-7">
+    <ul className="flex items-center gap-10">
       {links.map((link) => (
         <li key={link}>
-          <a
-            href="#"
-            className="text-xs font-semibold tracking-widest text-white/80 hover:text-white transition-colors"
-          >
+          <a href="#" className="nav-link">
             {link}
           </a>
         </li>
@@ -87,25 +93,36 @@ function NavLinks() {
 
 function Hero() {
   return (
-    <section className="bg-black min-h-screen flex flex-col justify-end px-8 pb-24 pt-16">
-      <div className="max-w-[1400px] mx-auto w-full">
-        <h1 className="text-[clamp(3.5rem,8vw,8rem)] font-black leading-[0.9] tracking-tight uppercase mb-8">
+    <section className="hero-section min-h-screen flex flex-col justify-end pb-24 pt-16">
+      <div className="container w-full">
+        <h1
+          className="uppercase mb-8"
+          style={{
+            fontSize: "clamp(3rem, 8vw, 10rem)",
+            fontWeight: 700,
+            lineHeight: 0.85,
+            letterSpacing: "-0.04em",
+          }}
+        >
           <span className="block text-white">DRIVING</span>
-          <span className="block text-[#E8C200]">THE WORLD</span>
+          <span className="block" style={{ color: "var(--accent-yellow)" }}>THE WORLD</span>
           <span className="block text-white">TOGETHER</span>
         </h1>
-        <p className="text-zinc-300 text-base leading-relaxed max-w-md mb-3">
+        <p
+          className="mb-2"
+          style={{ color: "var(--text-muted)", fontSize: "1.1rem", maxWidth: "32rem" }}
+        >
           Uncompromising radial truck tires for the modern global fleet.
         </p>
-        <p className="text-zinc-300 text-base leading-relaxed max-w-md mb-12">
+        <p
+          className="mb-12"
+          style={{ color: "var(--text-muted)", fontSize: "1.1rem", maxWidth: "32rem" }}
+        >
           Built for durability. Engineered for the long haul.
         </p>
-        <a
-          href="#"
-          className="inline-flex items-center gap-3 text-white text-xs font-bold tracking-widest uppercase border-b border-white/40 pb-1 hover:border-white transition-colors group"
-        >
+        <a href="#" className="link-accent group">
           EXPLORE OUR TIRE LINE UP
-          <span className="group-hover:translate-x-1 transition-transform">→</span>
+          <span className="ml-3 inline-block transition-transform group-hover:translate-x-1">→</span>
         </a>
       </div>
     </section>
@@ -129,52 +146,71 @@ function FeaturePillars() {
   ];
 
   return (
-    <section className="bg-white py-20 px-8">
-      <div className="max-w-[1400px] mx-auto">
-        <div className="grid grid-cols-3 gap-0 divide-x divide-zinc-200">
-          {features.map((f) => (
-            <div key={f.title} className="px-12 first:pl-0 last:pr-0">
-              <h3 className="text-black text-sm font-black tracking-widest uppercase mb-3">
-                {f.title}
-              </h3>
-              <div className="w-8 h-0.5 bg-[#E8C200] mb-5" />
-              <p className="text-zinc-600 text-sm leading-relaxed">{f.body}</p>
-            </div>
-          ))}
+    <section
+      className="py-20 grid grid-cols-3 gap-16"
+      style={{ borderTop: "1px solid var(--border-color)" }}
+    >
+      {features.map((f) => (
+        <div key={f.title} className="prop-card">
+          <h3
+            className="uppercase mb-4"
+            style={{ fontSize: "1rem", fontWeight: 700, letterSpacing: "0.02em" }}
+          >
+            {f.title}
+          </h3>
+          <p style={{ color: "var(--text-muted)", fontSize: "0.95rem", lineHeight: 1.6 }}>
+            {f.body}
+          </p>
         </div>
-      </div>
+      ))}
     </section>
   );
 }
 
-const PRODUCT_FEATURES = [
-  "3D Sipe & Block Pattern Design",
-  "Wider Tread Profile",
-  "Low Rolling Resistance Compound",
-  "Optimized for Efficiency",
-];
+interface ProductCardProps {
+  badge: string;
+  name: string;
+  description: string;
+  specs: { label: string; value: string }[];
+}
 
-function ProductCard() {
+function ProductCard({ badge, name, description, specs }: ProductCardProps) {
   return (
-    <div className="bg-zinc-900 flex flex-col">
-      <div className="w-full bg-zinc-800 aspect-[4/3]" />
-      <div className="p-6 flex flex-col flex-1">
-        <div className="flex justify-end mb-3">
-          <span className="text-[#E8C200] text-[10px] font-black tracking-widest uppercase">
-            BEST SELLER
-          </span>
+    <div className="product-card flex flex-col">
+      <div
+        className="w-full aspect-[4/3]"
+        style={{ backgroundColor: "#1a1a1b" }}
+      />
+      <div className="p-8 flex flex-col flex-1 relative">
+        <div
+          className="absolute top-8 right-8"
+          style={{ color: "var(--accent-yellow)", fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase" }}
+        >
+          {badge}
         </div>
-        <h3 className="text-white text-xl font-black uppercase tracking-wide mb-2">
-          NEO FUEL D3
+        <h3
+          className="uppercase mb-2"
+          style={{ fontSize: "1.4rem", fontWeight: 700, letterSpacing: "0.02em" }}
+        >
+          {name}
         </h3>
-        <p className="text-zinc-400 text-sm mb-6">
-          Long-haul efficiency with dependable traction.
+        <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", marginTop: "0.25rem" }}>
+          {description}
         </p>
-        <ul className="flex flex-col gap-0 mt-auto">
-          {PRODUCT_FEATURES.map((feat, i) => (
-            <li key={feat}>
-              {i > 0 && <div className="border-t border-zinc-700 my-3" />}
-              <span className="text-zinc-300 text-xs tracking-wide">{feat}</span>
+        <ul className="mt-6" style={{ borderTop: "1px solid var(--border-color)" }}>
+          {specs.map((s) => (
+            <li
+              key={s.label}
+              className="flex justify-between items-center py-3 uppercase"
+              style={{
+                borderBottom: "1px solid var(--border-color)",
+                fontSize: "0.8rem",
+                color: "var(--text-muted)",
+                letterSpacing: "0.05em",
+              }}
+            >
+              <span>{s.label}</span>
+              <span className="font-semibold text-white">{s.value}</span>
             </li>
           ))}
         </ul>
@@ -184,14 +220,48 @@ function ProductCard() {
 }
 
 function ProductGrid() {
+  const products: ProductCardProps[] = [
+    {
+      badge: "BEST SELLER",
+      name: "NEO FUEL D3",
+      description: "Long-haul efficiency with dependable traction.",
+      specs: [
+        { label: "Pattern", value: "3D Sipe & Block" },
+        { label: "Tread Profile", value: "Wide" },
+        { label: "Compound", value: "Low RRC" },
+        { label: "Application", value: "Long Haul" },
+      ],
+    },
+    {
+      badge: "BEST SELLER",
+      name: "NEO FUEL D3",
+      description: "Long-haul efficiency with dependable traction.",
+      specs: [
+        { label: "Pattern", value: "3D Sipe & Block" },
+        { label: "Tread Profile", value: "Wide" },
+        { label: "Compound", value: "Low RRC" },
+        { label: "Application", value: "Long Haul" },
+      ],
+    },
+    {
+      badge: "BEST SELLER",
+      name: "NEO FUEL D3",
+      description: "Long-haul efficiency with dependable traction.",
+      specs: [
+        { label: "Pattern", value: "3D Sipe & Block" },
+        { label: "Tread Profile", value: "Wide" },
+        { label: "Compound", value: "Low RRC" },
+        { label: "Application", value: "Long Haul" },
+      ],
+    },
+  ];
+
   return (
-    <section className="bg-black py-20 px-8">
-      <div className="max-w-[1400px] mx-auto">
-        <div className="grid grid-cols-3 gap-6">
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-        </div>
+    <section className="py-20" style={{ borderTop: "1px solid var(--border-color)" }}>
+      <div className="grid grid-cols-3 gap-6">
+        {products.map((p, i) => (
+          <ProductCard key={i} {...p} />
+        ))}
       </div>
     </section>
   );
@@ -205,27 +275,37 @@ function EngineeringCapabilities() {
     },
     {
       title: "RAW MATERIAL SOURCING",
-      body: "Long-term supplier partnerships/relationships allow for stable processes, controlled materials, and repeatable quality over time.",
+      body: "Long-term supplier partnerships allow for stable processes, controlled materials, and repeatable quality over time.",
     },
   ];
 
   return (
-    <section className="bg-black py-0 px-8">
-      <div className="max-w-[1400px] mx-auto">
-        <div className="grid grid-cols-2 gap-6">
-          {panels.map((p) => (
-            <div key={p.title} className="bg-zinc-900 flex flex-col">
-              <div className="p-10 flex-1">
-                <h3 className="text-white text-sm font-black tracking-widest uppercase mb-4">
-                  {p.title}
-                </h3>
-                <div className="w-8 h-0.5 bg-[#E8C200] mb-5" />
-                <p className="text-zinc-400 text-sm leading-relaxed">{p.body}</p>
-              </div>
-              <div className="w-full bg-zinc-800 h-48" />
+    <section className="pb-20" style={{ borderTop: "1px solid var(--border-color)" }}>
+      <div className="pt-20 grid grid-cols-2 gap-6">
+        {panels.map((p) => (
+          <div
+            key={p.title}
+            className="flex flex-col"
+            style={{ backgroundColor: "#111112", border: "1px solid var(--border-color)" }}
+          >
+            <div className="p-10 flex-1">
+              <h3
+                className="uppercase mb-4"
+                style={{ fontSize: "0.95rem", fontWeight: 700, letterSpacing: "0.02em" }}
+              >
+                {p.title}
+              </h3>
+              <div
+                className="mb-5"
+                style={{ width: "2rem", height: "2px", backgroundColor: "var(--accent-yellow)" }}
+              />
+              <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", lineHeight: 1.6 }}>
+                {p.body}
+              </p>
             </div>
-          ))}
-        </div>
+            <div className="w-full" style={{ backgroundColor: "#1a1a1b", height: "12rem" }} />
+          </div>
+        ))}
       </div>
     </section>
   );
@@ -233,23 +313,28 @@ function EngineeringCapabilities() {
 
 function EngineeringApproach() {
   return (
-    <section className="mt-20">
-      <div className="bg-[#E8C200] py-12 px-8">
-        <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-4xl font-black uppercase tracking-tight leading-tight">
+    <section className="mt-4">
+      <div className="py-14 px-[4vw]" style={{ backgroundColor: "var(--accent-yellow)" }}>
+        <div className="max-w-[1600px] mx-auto">
+          <h2
+            className="uppercase"
+            style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", fontWeight: 700, lineHeight: 1, letterSpacing: "-0.02em" }}
+          >
             <span className="block text-white">DISCOVER OUR</span>
-            <span className="block text-black">ENGINEERING APPROACH</span>
+            <span className="block" style={{ color: "var(--bg-dark)" }}>ENGINEERING APPROACH</span>
           </h2>
         </div>
       </div>
-      <div className="bg-black px-8 pb-0">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="w-full bg-zinc-900 h-72" />
+      <div style={{ backgroundColor: "var(--bg-dark)" }} className="px-[4vw]">
+        <div className="max-w-[1600px] mx-auto">
+          <div className="w-full" style={{ backgroundColor: "#111112", height: "20rem", border: "1px solid var(--border-color)" }} />
         </div>
       </div>
-      <div className="bg-black px-8 pb-20 pt-10">
-        <div className="max-w-[1400px] mx-auto">
-          <p className="text-zinc-400 text-sm leading-relaxed max-w-xs">
+      <div style={{ backgroundColor: "var(--bg-dark)" }} className="px-[4vw] pb-24 pt-10">
+        <div className="max-w-[1600px] mx-auto">
+          <p
+            style={{ color: "var(--text-muted)", fontSize: "0.95rem", lineHeight: 1.6, maxWidth: "24rem" }}
+          >
             Each tire model undergoes structured testing to verify durability, load handling, and
             consistency under real-world conditions.
           </p>
@@ -261,62 +346,69 @@ function EngineeringApproach() {
 
 function Footer() {
   return (
-    <footer className="bg-black border-t border-zinc-800 py-16 px-8">
-      <div className="max-w-[1400px] mx-auto">
-        <div className="grid grid-cols-4 gap-12">
-          <div>
-            <div className="text-[#E8C200] font-black text-lg tracking-widest uppercase mb-4">
-              AEOLUS
-            </div>
-            <p className="text-zinc-500 text-xs leading-relaxed">
-              Engineered for the long haul. Premium radial truck tires delivering uncompromising
-              quality and retreadability.
-            </p>
+    <footer
+      className="py-16 px-[4vw]"
+      style={{ backgroundColor: "var(--bg-dark)", borderTop: "1px solid var(--border-color)" }}
+    >
+      <div className="max-w-[1600px] mx-auto grid grid-cols-4 gap-12">
+        <div>
+          <div
+            className="uppercase mb-4"
+            style={{ color: "var(--accent-yellow)", fontWeight: 700, fontSize: "1.2rem", letterSpacing: "-0.03em" }}
+          >
+            AEOLUS
           </div>
-          <div>
-            <h4 className="text-white text-xs font-bold tracking-widest uppercase mb-5">
-              Tire Categories
-            </h4>
-            <ul className="space-y-3">
-              {["Premium TBR", "Standard TBR", "OTR", "Catalog"].map((item) => (
-                <li key={item}>
-                  <a href="#" className="text-zinc-500 text-xs hover:text-zinc-300 transition-colors">
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-white text-xs font-bold tracking-widest uppercase mb-5">
-              Company
-            </h4>
-            <ul className="space-y-3">
-              {["Tires", "About", "Media", "Contact", "Search"].map((item) => (
-                <li key={item}>
-                  <a href="#" className="text-zinc-500 text-xs hover:text-zinc-300 transition-colors">
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-white text-xs font-bold tracking-widest uppercase mb-5">
-              Connect with Us
-            </h4>
-            <ul className="space-y-3">
-              {["X", "LinkedIn", "Facebook"].map((item) => (
-                <li key={item}>
-                  <a href="#" className="text-zinc-500 text-xs hover:text-zinc-300 transition-colors">
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <p style={{ color: "var(--text-muted)", fontSize: "0.85rem", lineHeight: 1.6 }}>
+            Engineered for the long haul. Premium radial truck tires delivering uncompromising
+            quality and retreadability.
+          </p>
+        </div>
+        <div>
+          <h4
+            className="uppercase mb-5"
+            style={{ fontWeight: 700, fontSize: "0.8rem", letterSpacing: "0.05em" }}
+          >
+            Tire Categories
+          </h4>
+          <FooterLinks items={["Premium TBR", "Standard TBR", "OTR", "Catalog"]} />
+        </div>
+        <div>
+          <h4
+            className="uppercase mb-5"
+            style={{ fontWeight: 700, fontSize: "0.8rem", letterSpacing: "0.05em" }}
+          >
+            Company
+          </h4>
+          <FooterLinks items={["Tires", "About", "Media", "Contact", "Search"]} />
+        </div>
+        <div>
+          <h4
+            className="uppercase mb-5"
+            style={{ fontWeight: 700, fontSize: "0.8rem", letterSpacing: "0.05em" }}
+          >
+            Connect with Us
+          </h4>
+          <FooterLinks items={["X", "LinkedIn", "Facebook"]} />
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterLinks({ items }: { items: string[] }) {
+  return (
+    <ul className="space-y-3">
+      {items.map((item) => (
+        <li key={item}>
+          <a
+            href="#"
+            className="footer-link"
+            style={{ color: "var(--text-muted)", fontSize: "0.85rem" }}
+          >
+            {item}
+          </a>
+        </li>
+      ))}
+    </ul>
   );
 }

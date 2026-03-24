@@ -286,7 +286,11 @@ function EngineeringCapabilities() {
           <div
             key={p.title}
             className="flex flex-col"
-            style={{ backgroundColor: "#111112", border: "1px solid var(--border-color)" }}
+            style={{
+              backgroundColor: "#111112",
+              border: "1px solid var(--border-color)",
+              borderTop: "2px solid var(--accent-yellow)",
+            }}
           >
             <div className="p-10 flex-1">
               <h3

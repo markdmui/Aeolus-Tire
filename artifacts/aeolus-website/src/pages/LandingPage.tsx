@@ -313,32 +313,40 @@ function EngineeringCapabilities() {
 
 function EngineeringApproach() {
   return (
-    <section className="mt-4">
-      <div className="py-14 px-[4vw]" style={{ backgroundColor: "var(--accent-yellow)" }}>
-        <div className="max-w-[1600px] mx-auto">
-          <h2
-            className="uppercase"
-            style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", fontWeight: 700, lineHeight: 1, letterSpacing: "-0.02em" }}
-          >
-            <span className="block text-white">DISCOVER OUR</span>
-            <span className="block" style={{ color: "var(--bg-dark)" }}>ENGINEERING APPROACH</span>
-          </h2>
-        </div>
-      </div>
-      <div style={{ backgroundColor: "var(--bg-dark)" }} className="px-[4vw]">
-        <div className="max-w-[1600px] mx-auto">
-          <div className="w-full" style={{ backgroundColor: "#111112", height: "20rem", border: "1px solid var(--border-color)" }} />
-        </div>
-      </div>
-      <div style={{ backgroundColor: "var(--bg-dark)" }} className="px-[4vw] pb-24 pt-10">
-        <div className="max-w-[1600px] mx-auto">
-          <p
-            style={{ color: "var(--text-muted)", fontSize: "0.95rem", lineHeight: 1.6, maxWidth: "24rem" }}
-          >
-            Each tire model undergoes structured testing to verify durability, load handling, and
-            consistency under real-world conditions.
-          </p>
-        </div>
+    <section className="px-[4vw] pb-24 mt-4" style={{ backgroundColor: "var(--bg-dark)" }}>
+      <div
+        className="max-w-[1600px] mx-auto relative flex flex-col justify-between"
+        style={{
+          backgroundColor: "#0d0d0e",
+          border: "1px solid var(--border-color)",
+          minHeight: "36rem",
+          padding: "3.5rem 4rem",
+        }}
+      >
+        <h2
+          className="uppercase"
+          style={{
+            fontSize: "clamp(2rem, 3.5vw, 3rem)",
+            fontWeight: 700,
+            lineHeight: 1.05,
+            letterSpacing: "-0.02em",
+          }}
+        >
+          <span className="block text-white">DISCOVER OUR</span>
+          <span className="block" style={{ color: "var(--accent-yellow)" }}>ENGINEERING APPROACH</span>
+        </h2>
+        <p
+          style={{
+            color: "var(--text-muted)",
+            fontSize: "0.9rem",
+            lineHeight: 1.65,
+            maxWidth: "20rem",
+          }}
+        >
+          Each tire model undergoes structured testing
+          <br />to verify durability, load handling, and
+          <br />consistency under real-world conditions.
+        </p>
       </div>
     </section>
   );

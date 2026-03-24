@@ -93,7 +93,7 @@ function NavLinks() {
 
 function Hero() {
   return (
-    <section className="hero-section flex flex-col justify-end pb-24 pt-16" style={{ height: "900px" }}>
+    <section className="hero-section flex flex-col justify-center pb-24 pt-16" style={{ height: "900px" }}>
       <div className="container w-full">
         <h1
           className="uppercase mb-8"

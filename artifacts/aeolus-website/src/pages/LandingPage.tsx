@@ -87,7 +87,7 @@ function NavLinks() {
 
 function Hero() {
   return (
-    <section className="bg-black px-8 py-24">
+    <section className="bg-black min-h-screen flex flex-col justify-end px-8 pb-24 pt-16">
       <div className="max-w-[1400px] mx-auto w-full">
         <h1 className="text-[clamp(3.5rem,8vw,8rem)] font-black leading-[0.9] tracking-tight uppercase mb-8">
           <span className="block text-white">DRIVING</span>
@@ -237,9 +237,8 @@ function EngineeringApproach() {
       <div className="bg-[#E8C200] py-12 px-8">
         <div className="max-w-[1400px] mx-auto">
           <h2 className="text-4xl font-black uppercase tracking-tight leading-tight">
-            <span className="text-black">DISCOVER OUR</span>
-            <br />
-            <span className="text-black">ENGINEERING APPROACH</span>
+            <span className="block text-white">DISCOVER OUR</span>
+            <span className="block text-black">ENGINEERING APPROACH</span>
           </h2>
         </div>
       </div>

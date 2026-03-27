@@ -73,7 +73,7 @@ function Hero() {
           style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "clamp(3rem, 8vw, 10rem)",
-            fontWeight: 700,
+            fontWeight: 600,
             lineHeight: 0.85,
             letterSpacing: "-0.04em",
           }}

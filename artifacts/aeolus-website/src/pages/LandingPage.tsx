@@ -317,9 +317,10 @@ function EngineeringCapabilities() {
 
 function EngineeringApproach() {
   return (
-    <section className="px-[4vw] pb-24 mt-4" style={{ backgroundColor: "var(--bg-dark)" }}>
+    <section className="pb-24 mt-4" style={{ backgroundColor: "var(--bg-dark)" }}>
+      <div className="container">
       <div
-        className="max-w-[1600px] mx-auto relative flex flex-col justify-between"
+        className="relative flex flex-col justify-between"
         style={{
           backgroundColor: "#0d0d0e",
           border: "1px solid var(--border-color)",
@@ -352,6 +353,7 @@ function EngineeringApproach() {
           <br />consistency under real-world conditions.
         </p>
       </div>
+      </div>
     </section>
   );
 }
@@ -359,10 +361,11 @@ function EngineeringApproach() {
 function Footer() {
   return (
     <footer
-      className="py-16 px-[4vw]"
+      className="py-16"
       style={{ backgroundColor: "var(--bg-dark)", borderTop: "1px solid var(--border-color)" }}
     >
-      <div className="max-w-[1600px] mx-auto grid grid-cols-4 gap-12">
+      <div className="container">
+      <div className="grid grid-cols-4 gap-12">
         <div>
           <div
             className="uppercase mb-4"
@@ -402,6 +405,7 @@ function Footer() {
           </h4>
           <FooterLinks items={["X", "LinkedIn", "Facebook"]} />
         </div>
+      </div>
       </div>
     </footer>
   );

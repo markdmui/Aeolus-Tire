@@ -41,38 +41,11 @@ function Navbar() {
 
 function AeolusLogo() {
   return (
-    <svg
-      viewBox="0 0 110 28"
-      className="h-6 w-auto"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-label="AEOLUS"
-    >
-      <text
-        x="0"
-        y="22"
-        fontFamily="'Helvetica Neue', Helvetica, Arial, sans-serif"
-        fontWeight="700"
-        fontSize="22"
-        fill="var(--accent-yellow)"
-        letterSpacing="-1"
-      >
-        AE
-      </text>
-      <circle cx="50" cy="14" r="8" stroke="var(--accent-yellow)" strokeWidth="2" fill="none" />
-      <circle cx="50" cy="14" r="3" fill="var(--accent-yellow)" />
-      <text
-        x="63"
-        y="22"
-        fontFamily="'Helvetica Neue', Helvetica, Arial, sans-serif"
-        fontWeight="700"
-        fontSize="22"
-        fill="var(--accent-yellow)"
-        letterSpacing="-1"
-      >
-        LUS
-      </text>
-    </svg>
+    <img
+      src="/aeolus-logo.png"
+      alt="Aeolus"
+      className="h-8 w-auto"
+    />
   );
 }
 
@@ -367,11 +340,8 @@ function Footer() {
       <div className="container">
       <div className="grid grid-cols-4 gap-12">
         <div>
-          <div
-            className="uppercase mb-4"
-            style={{ color: "var(--accent-yellow)", fontWeight: 700, fontSize: "1.2rem", letterSpacing: "-0.03em" }}
-          >
-            AEOLUS
+          <div className="mb-4">
+            <img src="/aeolus-logo.png" alt="Aeolus" className="h-7 w-auto" />
           </div>
           <p style={{ color: "var(--text-muted)", fontSize: "0.85rem", lineHeight: 1.6 }}>
             Engineered for the long haul. Premium radial truck tires delivering uncompromising

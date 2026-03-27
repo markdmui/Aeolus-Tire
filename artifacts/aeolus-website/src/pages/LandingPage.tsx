@@ -164,7 +164,7 @@ function ProductCard({ badge, name, description, specs }: ProductCardProps) {
         </div>
         <h3
           className="uppercase mb-2"
-          style={{ fontSize: "1.4rem", fontWeight: 700, letterSpacing: "0.02em" }}
+          style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.4rem", fontWeight: 600, letterSpacing: "0.02em" }}
         >
           {name}
         </h3>

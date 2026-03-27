@@ -128,7 +128,7 @@ function FeaturePillars() {
         <div key={f.title} className="prop-card">
           <h3
             className="uppercase mb-4"
-            style={{ fontSize: "1rem", fontWeight: 700, letterSpacing: "0.02em" }}
+            style={{ fontSize: "1rem", fontWeight: 600, letterSpacing: "0.02em" }}
           >
             {f.title}
           </h3>
@@ -269,7 +269,7 @@ function EngineeringCapabilities() {
             <div className="p-10 flex-1">
               <h3
                 className="uppercase mb-4"
-                style={{ fontSize: "0.95rem", fontWeight: 700, letterSpacing: "0.02em" }}
+                style={{ fontSize: "0.95rem", fontWeight: 600, letterSpacing: "0.02em" }}
               >
                 {p.title}
               </h3>
@@ -306,7 +306,7 @@ function EngineeringApproach() {
           className="uppercase"
           style={{
             fontSize: "clamp(2rem, 3.5vw, 3rem)",
-            fontWeight: 700,
+            fontWeight: 600,
             lineHeight: 1.05,
             letterSpacing: "-0.02em",
           }}
@@ -352,7 +352,7 @@ function Footer() {
         <div>
           <h4
             className="uppercase mb-5"
-            style={{ fontWeight: 700, fontSize: "0.8rem", letterSpacing: "0.05em" }}
+            style={{ fontWeight: 600, fontSize: "0.8rem", letterSpacing: "0.05em" }}
           >
             Tire Categories
           </h4>
@@ -361,7 +361,7 @@ function Footer() {
         <div>
           <h4
             className="uppercase mb-5"
-            style={{ fontWeight: 700, fontSize: "0.8rem", letterSpacing: "0.05em" }}
+            style={{ fontWeight: 600, fontSize: "0.8rem", letterSpacing: "0.05em" }}
           >
             Company
           </h4>
@@ -370,7 +370,7 @@ function Footer() {
         <div>
           <h4
             className="uppercase mb-5"
-            style={{ fontWeight: 700, fontSize: "0.8rem", letterSpacing: "0.05em" }}
+            style={{ fontWeight: 600, fontSize: "0.8rem", letterSpacing: "0.05em" }}
           >
             Connect with Us
           </h4>

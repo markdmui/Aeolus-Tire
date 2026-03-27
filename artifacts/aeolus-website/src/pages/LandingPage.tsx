@@ -71,6 +71,7 @@ function Hero() {
         <h1
           className="uppercase mb-8"
           style={{
+            fontFamily: "'Inter', sans-serif",
             fontSize: "clamp(3rem, 8vw, 10rem)",
             fontWeight: 700,
             lineHeight: 0.85,

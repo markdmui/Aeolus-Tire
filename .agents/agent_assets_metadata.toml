@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "BD-4Rr4vUw5xQop08kS9Y"
+uri = "file://aeolus-website-backup.tar.gz"
+type = "unspecified"
+title = "Aeolus Website — Base Template Before Design"

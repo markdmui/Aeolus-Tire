@@ -14,6 +14,7 @@ export default function LandingPage() {
         <ProductGrid />
         <EngineeringCapabilities />
       </div>
+      <AboutAeolus />
       <EngineeringApproach />
       <Footer />
     </div>
@@ -296,6 +297,96 @@ function EngineeringCapabilities() {
             <div className="w-full" style={{ backgroundColor: "#1a1a1b", height: "12rem" }} />
           </div>
         ))}
+      </div>
+    </section>
+  );
+}
+
+function AboutAeolus() {
+  const stats = [
+    { value: "1000+", label: "Specifications and varieties of tires" },
+    { value: "500",   label: "China's top 500 companies 15 consecutive years" },
+    { value: "800K",  label: "Annual production of OTR tires" },
+    { value: "7M",    label: "Annual production of Truck & Bus tires" },
+    { value: "140+",  label: "Best selling in global regions and countries" },
+    { value: "233",   label: "Patents" },
+  ];
+
+  return (
+    <section
+      style={{
+        backgroundImage: "url('/about-bg.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "left center",
+        backgroundRepeat: "no-repeat",
+        minHeight: "480px",
+      }}
+    >
+      {/* Flex row: left half empty (shows truck), right half holds stats */}
+      <div className="container" style={{ display: "flex", alignItems: "stretch", minHeight: "480px" }}>
+        {/* Left spacer — lets the truck photo show through */}
+        <div style={{ flex: "0 0 45%" }} />
+
+        {/* Right: stats panel */}
+        <div
+          style={{
+            flex: "1 1 55%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            padding: "64px 0 64px 48px",
+          }}
+        >
+          {/* Grid: 3 columns × 2 rows */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: "40px 32px",
+            }}
+          >
+            {stats.map(({ value, label }) => (
+              <div key={value}>
+                {/* Yellow chevron */}
+                <div
+                  style={{
+                    color: "var(--accent-yellow)",
+                    fontSize: "1.1rem",
+                    fontWeight: 700,
+                    marginBottom: "10px",
+                    lineHeight: 1,
+                  }}
+                >
+                  ›
+                </div>
+                {/* Stat number */}
+                <div
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 600,
+                    fontSize: "clamp(1.8rem, 3vw, 2.8rem)",
+                    color: "#ffffff",
+                    lineHeight: 1,
+                    marginBottom: "8px",
+                  }}
+                >
+                  {value}
+                </div>
+                {/* Label */}
+                <div
+                  style={{
+                    color: "var(--text-muted)",
+                    fontSize: "0.82rem",
+                    lineHeight: 1.45,
+                    maxWidth: "160px",
+                  }}
+                >
+                  {label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -45,7 +45,7 @@ function AeolusLogo() {
     <img
       src="/aeolus-logo.png"
       alt="Aeolus"
-      className="h-8 w-auto"
+      className="h-[26px] w-auto"
     />
   );
 }
@@ -343,7 +343,7 @@ function Footer() {
       <div className="grid grid-cols-4 gap-12">
         <div>
           <div className="mb-4">
-            <img src="/aeolus-logo.png" alt="Aeolus" className="h-7 w-auto" />
+            <img src="/aeolus-logo.png" alt="Aeolus" className="h-[22px] w-auto" />
           </div>
           <p style={{ color: "var(--text-muted)", fontSize: "0.85rem", lineHeight: 1.6 }}>
             Engineered for the long haul. Premium radial truck tires delivering uncompromising

@@ -26,7 +26,7 @@ function Navbar() {
       style={{
         backgroundColor: "var(--bg-dark)",
         borderBottom: "1px solid var(--border-color)",
-        padding: "2px 0",
+        padding: "10px 0",
       }}
     >
       <a href="#" aria-label="Aeolus" className="flex items-center">

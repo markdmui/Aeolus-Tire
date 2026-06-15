@@ -181,6 +181,15 @@
   background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-gradient) 100%);
 }
 
+/* Tablet: push the hero background image 200px further right so the truck
+   clears the text on the left. calc(100% + 200px) moves the image's
+   right anchor 200px beyond the container edge. */
+@media (max-width: 1023px) {
+  .hero-section {
+    background-position: calc(100% + 200px) center !important;
+  }
+}
+
 /* ============================================================
    NAVIGATION
    ============================================================ */

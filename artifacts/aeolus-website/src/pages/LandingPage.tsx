@@ -1,3 +1,4 @@
+// SAVE POINT: 1. Base Template Before Design
 export default function LandingPage() {
   return (
     <div

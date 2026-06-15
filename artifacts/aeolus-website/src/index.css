@@ -188,7 +188,7 @@
   .hero-section {
     background-position: calc(100% + 200px) center !important;
     justify-content: flex-start !important;
-    padding-top: 70px !important;
+    padding-top: 90px !important;
   }
 }
 

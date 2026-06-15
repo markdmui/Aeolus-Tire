@@ -72,7 +72,7 @@ function Hero() {
           className="uppercase mb-8"
           style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "clamp(3rem, 8vw, 10rem)",
+            fontSize: "clamp(2.5rem, 6.5vw, 8rem)",
             fontWeight: 600,
             lineHeight: 0.85,
             letterSpacing: "-0.04em",

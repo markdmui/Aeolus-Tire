@@ -69,7 +69,7 @@ function Hero() {
     <section className="hero-section flex flex-col justify-center pb-24 pt-16" style={{ height: "900px" }}>
       <div className="container w-full">
         <h1
-          className="uppercase mb-8"
+          className="uppercase mb-4"
           style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "clamp(2.5rem, 6.5vw, 8rem)",
@@ -89,7 +89,7 @@ function Hero() {
           Uncompromising radial truck tires for the modern global fleet.
         </p>
         <p
-          className="mb-12"
+          className="mb-5"
           style={{ color: "var(--text-muted)", fontSize: "1.1rem", maxWidth: "32rem" }}
         >
           Built for durability. Engineered for the long haul.

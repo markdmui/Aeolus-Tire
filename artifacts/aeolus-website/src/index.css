@@ -186,7 +186,7 @@
    right anchor 200px beyond the container edge. */
 @media (max-width: 1023px) {
   .hero-section {
-    background-position: calc(100% + 200px) center !important;
+    background-position: calc(100% + 280px) center !important;
   }
 }
 

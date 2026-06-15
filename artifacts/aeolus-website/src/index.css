@@ -187,6 +187,8 @@
 @media (max-width: 1023px) {
   .hero-section {
     background-position: calc(100% + 280px) center !important;
+    justify-content: flex-start !important;
+    padding-top: 30px !important;
   }
 }
 

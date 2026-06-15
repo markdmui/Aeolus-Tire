@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "Diq3poxeLWdWsbu3rkCLj"
+uri = "file://aeolus-base-template.zip"
+type = "unspecified"
+title = "Aeolus Base Template — 1. Base Template Before Design"

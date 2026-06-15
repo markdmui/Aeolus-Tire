@@ -93,22 +93,41 @@ function Hero() {
           <span className="block" style={{ color: "var(--accent-yellow)" }}>THE WORLD</span>
           <span className="block text-white">TOGETHER</span>
         </h1>
-        <p
-          className="mb-2"
-          style={{ color: "var(--text-muted)", fontSize: "1.1rem", maxWidth: "32rem" }}
+
+        {/* Subtitle + CTA: dark backdrop on tablet/mobile, transparent on desktop */}
+        <div
+          className="inline-block lg:bg-transparent lg:p-0"
+          style={{ position: "relative", borderRadius: "4px" }}
         >
-          Uncompromising radial truck tires for the modern global fleet.
-        </p>
-        <p
-          className="mb-5"
-          style={{ color: "var(--text-muted)", fontSize: "1.1rem", maxWidth: "32rem" }}
-        >
-          Built for durability. Engineered for the long haul.
-        </p>
-        <a href="#" className="link-accent group">
-          EXPLORE OUR TIRE LINE UP
-          <span className="ml-3 inline-block transition-transform group-hover:translate-x-1">→</span>
-        </a>
+          <div
+            className="lg:hidden"
+            style={{
+              position: "absolute",
+              inset: "-12px -16px",
+              backgroundColor: "rgba(10,10,10,0.70)",
+              borderRadius: "4px",
+              pointerEvents: "none",
+            }}
+          />
+          <div className="relative">
+            <p
+              className="mb-2"
+              style={{ color: "var(--text-muted)", fontSize: "1.1rem", maxWidth: "32rem" }}
+            >
+              Uncompromising radial truck tires for the modern global fleet.
+            </p>
+            <p
+              className="mb-5"
+              style={{ color: "var(--text-muted)", fontSize: "1.1rem", maxWidth: "32rem" }}
+            >
+              Built for durability. Engineered for the long haul.
+            </p>
+            <a href="#" className="link-accent group">
+              EXPLORE OUR TIRE LINE UP
+              <span className="ml-3 inline-block transition-transform group-hover:translate-x-1">→</span>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );

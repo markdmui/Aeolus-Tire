@@ -68,7 +68,16 @@ function NavLinks() {
 
 function Hero() {
   return (
-    <section className="hero-section flex flex-col justify-center pb-24 pt-16" style={{ height: "720px" }}>
+    <section
+      className="hero-section flex flex-col justify-center pb-24 pt-16"
+      style={{
+        height: "720px",
+        backgroundImage: "url('/hero-bg.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center right",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <div className="container w-full">
         <h1
           className="uppercase mb-4"

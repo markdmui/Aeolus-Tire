@@ -22,10 +22,11 @@ export default function LandingPage() {
 function Navbar() {
   return (
     <nav
-      className="flex justify-between items-center py-8 sticky top-0 z-50"
+      className="flex justify-between items-center sticky top-0 z-50"
       style={{
         backgroundColor: "var(--bg-dark)",
         borderBottom: "1px solid var(--border-color)",
+        padding: "2px 0",
       }}
     >
       <a href="#" aria-label="Aeolus" className="flex items-center">

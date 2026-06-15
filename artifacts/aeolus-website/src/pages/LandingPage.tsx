@@ -96,13 +96,13 @@ function Hero() {
 
         <p
           className="mb-2"
-          style={{ color: "var(--text-muted)", fontSize: "1.1rem", maxWidth: "32rem" }}
+          style={{ color: "rgba(255,255,255,0.72)", fontSize: "1.1rem", maxWidth: "32rem" }}
         >
           Uncompromising radial truck tires for the modern global fleet.
         </p>
         <p
           className="mb-5"
-          style={{ color: "var(--text-muted)", fontSize: "1.1rem", maxWidth: "32rem" }}
+          style={{ color: "rgba(255,255,255,0.72)", fontSize: "1.1rem", maxWidth: "32rem" }}
         >
           Built for durability. Engineered for the long haul.
         </p>

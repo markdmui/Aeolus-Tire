@@ -1,3 +1,5 @@
+import { ArrowCircleRight } from "@phosphor-icons/react";
+
 // SAVE POINT: 1. Base Template Before Design
 export default function LandingPage() {
   return (
@@ -347,17 +349,9 @@ function AboutAeolus() {
           >
             {stats.map(({ value, label }) => (
               <div key={value}>
-                {/* Yellow chevron */}
-                <div
-                  style={{
-                    color: "var(--accent-yellow)",
-                    fontSize: "1.1rem",
-                    fontWeight: 700,
-                    marginBottom: "10px",
-                    lineHeight: 1,
-                  }}
-                >
-                  ›
+                {/* Filled circle arrow icon */}
+                <div style={{ marginBottom: "10px", lineHeight: 1 }}>
+                  <ArrowCircleRight size={32} weight="fill" color="#a18a00" />
                 </div>
                 {/* Stat number */}
                 <div

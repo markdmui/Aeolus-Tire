@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "wouter";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -11,11 +12,12 @@ interface Tire {
   position: string;
   description: string;
   specs: { label: string; value: string }[];
+  slug?: string;
 }
 
 const TIRES: Tire[] = [
   {
-    model: "NEO FUEL D3",
+    model: "NEO FUEL G3",
     badge: "BEST SELLER",
     category: "LONG HAUL",
     position: "STEER",
@@ -26,6 +28,7 @@ const TIRES: Tire[] = [
       { label: "Compound", value: "Low RRC" },
       { label: "Load Index", value: "148/145L" },
     ],
+    slug: "neo-fuel-g3",
   },
   {
     model: "NEO FUEL S3",
@@ -405,12 +408,23 @@ function TireCard({ tire }: { tire: Tire }) {
           ))}
         </ul>
 
-        <button
-          className="btn-primary mt-6"
-          style={{ width: "100%", textAlign: "center" }}
-        >
-          View Specs
-        </button>
+        {tire.slug ? (
+          <Link
+            href={`/tires/${tire.slug}`}
+            className="btn-primary mt-6"
+            style={{ width: "100%", textAlign: "center", display: "block" }}
+          >
+            View Specs
+          </Link>
+        ) : (
+          <button
+            className="btn-primary mt-6"
+            style={{ width: "100%", textAlign: "center" }}
+            disabled
+          >
+            Coming Soon
+          </button>
+        )}
       </div>
     </div>
   );

@@ -223,7 +223,7 @@ function FeatureSection() {
           <div
             key={f.title}
             style={{
-              borderTop: "1px solid #ffffff",
+              borderTop: "1px solid #cccccc",
               display: "flex",
               flexDirection: "column",
             }}

@@ -1,6 +1,7 @@
 import { CaretCircleRight } from "@phosphor-icons/react";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
-// SAVE POINT: 1. Base Template Before Design
 export default function LandingPage() {
   return (
     <div
@@ -20,52 +21,6 @@ export default function LandingPage() {
       <EngineeringApproach />
       <Footer />
     </div>
-  );
-}
-
-function Navbar() {
-  return (
-    <nav
-      className="flex justify-between items-center sticky top-0 z-50"
-      style={{
-        backgroundColor: "var(--bg-dark)",
-        borderBottom: "1px solid var(--border-color)",
-        padding: "10px 0",
-      }}
-    >
-      <a href="#" aria-label="Aeolus" className="flex items-center">
-        <AeolusLogo />
-      </a>
-      <div className="flex items-center gap-12">
-        <NavLinks />
-        <button className="btn-primary">SEARCH</button>
-      </div>
-    </nav>
-  );
-}
-
-function AeolusLogo() {
-  return (
-    <img
-      src="/aeolus-logo.png"
-      alt="Aeolus"
-      className="h-[26px] w-auto"
-    />
-  );
-}
-
-function NavLinks() {
-  const links = ["HOME", "TIRES", "ABOUT", "MEDIA", "CONTACT"];
-  return (
-    <ul className="flex items-center gap-10">
-      {links.map((link) => (
-        <li key={link}>
-          <a href="#" className="nav-link">
-            {link}
-          </a>
-        </li>
-      ))}
-    </ul>
   );
 }
 
@@ -429,70 +384,3 @@ function EngineeringApproach() {
   );
 }
 
-function Footer() {
-  return (
-    <footer
-      className="py-16"
-      style={{ backgroundColor: "var(--bg-dark)", borderTop: "1px solid var(--border-color)" }}
-    >
-      <div className="container">
-      <div className="grid grid-cols-4 gap-12">
-        <div>
-          <div className="mb-4">
-            <img src="/aeolus-logo.png" alt="Aeolus" className="h-[22px] w-auto" />
-          </div>
-          <p style={{ color: "var(--text-muted)", fontSize: "0.85rem", lineHeight: 1.6 }}>
-            Engineered for the long haul. Premium radial truck tires delivering uncompromising
-            quality and retreadability.
-          </p>
-        </div>
-        <div>
-          <h4
-            className="uppercase mb-5"
-            style={{ fontWeight: 600, fontSize: "0.8rem", letterSpacing: "0.05em" }}
-          >
-            Tire Categories
-          </h4>
-          <FooterLinks items={["Premium TBR", "Standard TBR", "OTR", "Catalog"]} />
-        </div>
-        <div>
-          <h4
-            className="uppercase mb-5"
-            style={{ fontWeight: 600, fontSize: "0.8rem", letterSpacing: "0.05em" }}
-          >
-            Company
-          </h4>
-          <FooterLinks items={["Tires", "About", "Media", "Contact", "Search"]} />
-        </div>
-        <div>
-          <h4
-            className="uppercase mb-5"
-            style={{ fontWeight: 600, fontSize: "0.8rem", letterSpacing: "0.05em" }}
-          >
-            Connect with Us
-          </h4>
-          <FooterLinks items={["X", "LinkedIn", "Facebook"]} />
-        </div>
-      </div>
-      </div>
-    </footer>
-  );
-}
-
-function FooterLinks({ items }: { items: string[] }) {
-  return (
-    <ul className="space-y-3">
-      {items.map((item) => (
-        <li key={item}>
-          <a
-            href="#"
-            className="footer-link"
-            style={{ color: "var(--text-muted)", fontSize: "0.85rem" }}
-          >
-            {item}
-          </a>
-        </li>
-      ))}
-    </ul>
-  );
-}

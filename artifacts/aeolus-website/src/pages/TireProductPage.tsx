@@ -229,7 +229,7 @@ function FeatureSection() {
             }}
           >
             {/* Text content */}
-            <div style={{ padding: "2.5rem 2rem 2rem" }}>
+            <div style={{ padding: "2.5rem 0 2rem" }}>
               <h3
                 className="uppercase"
                 style={{

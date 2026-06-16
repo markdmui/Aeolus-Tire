@@ -320,6 +320,8 @@ function SpecsSection() {
       <div
         style={{
           backgroundColor: "#0a0a0a",
+          position: "relative",
+          zIndex: 1,
         }}
       >
         <div className="container" style={{ overflowX: "auto", paddingTop: "0", paddingBottom: "0" }}>

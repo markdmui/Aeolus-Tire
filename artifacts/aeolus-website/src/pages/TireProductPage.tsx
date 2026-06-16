@@ -32,23 +32,24 @@ const FEATURES = [
   },
 ];
 
-const SPEC_COLUMNS = [
-  "Size", "Ply", "Rim\nWidth", "Section\nWidth", "Overall\nDiameter", "Tread\nDepth",
-  "Max. Load\n(Single)", "Max. Load\n(Dual)", "LI/SS", "Second\nLI/SS", "Smartway", "M+S",
-];
-
 const SPEC_ROWS = [
   {
-    size: "11R22.5", ply: "16", rimW: "8.25", secW: "11.1", od: "41.4", tread: "1051.0",
-    mlS: "6008", mlD: "6614", liss: "146/143M", liss2: "148/145K", smartway: true, ms: false,
+    size: "11R22.5",    ply: "16", rimW: "8.25", secW: "11.1",
+    odIn: "41.4",  odMm: "1051.0", tdMm: "18.9", td32: "15",
+    mlSlbs: "6614", mlSpsi: "120", mlDlbs: "6008", mlDpsi: "120",
+    liss: "146/143M", liss2: "148/145K", smartway: true, ms: true,
   },
   {
-    size: "11R24.5", ply: "16", rimW: "8.25", secW: "11.4", od: "43.0", tread: "1092.7",
-    mlS: "7165", mlD: "6614", liss: "146/146M", liss2: "—", smartway: true, ms: false,
+    size: "11R24.5",    ply: "16", rimW: "8.25", secW: "11.4",
+    odIn: "43.0",  odMm: "1092.7", tdMm: "18.9", td32: "15",
+    mlSlbs: "7165", mlSpsi: "120", mlDlbs: "6614", mlDpsi: "120",
+    liss: "149/146M", liss2: "—", smartway: true, ms: true,
   },
   {
-    size: "295/75R22.5", ply: "16", rimW: "9.00", secW: "11.7", od: "39.9", tread: "1014.6",
-    mlS: "6008", mlD: "6614", liss: "146/143M", liss2: "148/145K", smartway: false, ms: true,
+    size: "295/75R22.5", ply: "16", rimW: "9.00", secW: "11.7",
+    odIn: "39.9",  odMm: "1014.6", tdMm: "18.9", td32: "15",
+    mlSlbs: "6614", mlSpsi: "120", mlDlbs: "6008", mlDpsi: "120",
+    liss: "146/143M", liss2: "—", smartway: true, ms: true,
   },
 ];
 
@@ -322,33 +323,35 @@ function SpecsSection() {
         }}
       >
         <div className="container" style={{ overflowX: "auto", paddingTop: "0", paddingBottom: "0" }}>
-          <table
-            style={{
-              width: "100%",
-              borderCollapse: "collapse",
-              fontSize: "0.8rem",
-            }}
-          >
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.78rem" }}>
             <thead>
+              {/* Row 1 – main column labels */}
+              <tr>
+                <th rowSpan={2} style={thStyle}>Size</th>
+                <th rowSpan={2} style={thStyle}>Ply</th>
+                <th style={thStyle}>Rim<br/>Width</th>
+                <th style={thStyle}>Section<br/>Width</th>
+                <th colSpan={2} style={{ ...thStyle, textAlign: "left" }}>Overall<br/>Diameter</th>
+                <th colSpan={2} style={{ ...thStyle, textAlign: "left" }}>Tread<br/>Depth</th>
+                <th colSpan={2} style={{ ...thStyle, textAlign: "left" }}>Max. Load<br/>(Single)</th>
+                <th colSpan={2} style={{ ...thStyle, textAlign: "left" }}>Max. Load<br/>(Dual)</th>
+                <th rowSpan={2} style={thStyle}>LI/SS</th>
+                <th rowSpan={2} style={thStyle}>Second<br/>LI/SS</th>
+                <th rowSpan={2} style={thStyle}>Smartway</th>
+                <th rowSpan={2} style={thStyle}>M+S</th>
+              </tr>
+              {/* Row 2 – unit sub-labels */}
               <tr style={{ borderBottom: "1px solid var(--border-color)" }}>
-                {SPEC_COLUMNS.map((col) => (
-                  <th
-                    key={col}
-                    style={{
-                      padding: "1.25rem 1rem",
-                      textAlign: "left",
-                      color: "var(--text-muted)",
-                      fontWeight: 600,
-                      fontSize: "0.72rem",
-                      letterSpacing: "0.06em",
-                      textTransform: "uppercase",
-                      whiteSpace: "pre-line",
-                      verticalAlign: "bottom",
-                    }}
-                  >
-                    {col}
-                  </th>
-                ))}
+                <th style={subThStyle}>in</th>
+                <th style={subThStyle}>in</th>
+                <th style={subThStyle}>in</th>
+                <th style={subThStyle}>mm</th>
+                <th style={subThStyle}>mm</th>
+                <th style={subThStyle}>32nds</th>
+                <th style={subThStyle}>lbs</th>
+                <th style={subThStyle}>psi</th>
+                <th style={subThStyle}>lbs</th>
+                <th style={subThStyle}>psi</th>
               </tr>
             </thead>
             <tbody>
@@ -359,38 +362,28 @@ function SpecsSection() {
                     borderBottom: i < SPEC_ROWS.length - 1 ? "1px solid var(--border-color)" : "none",
                     transition: "background-color 0.15s ease",
                   }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLTableRowElement).style.backgroundColor = "#111112";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLTableRowElement).style.backgroundColor = "transparent";
-                  }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLTableRowElement).style.backgroundColor = "#111112"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLTableRowElement).style.backgroundColor = "transparent"; }}
                 >
-                  <td style={tdStyle}>
-                    <span style={{ color: "#fff", fontWeight: 600 }}>{row.size}</span>
-                  </td>
+                  <td style={tdStyle}><span style={{ color: "#fff", fontWeight: 600 }}>{row.size}</span></td>
                   <td style={tdStyle}>{row.ply}</td>
                   <td style={tdStyle}>{row.rimW}</td>
                   <td style={tdStyle}>{row.secW}</td>
-                  <td style={tdStyle}>{row.od}</td>
-                  <td style={tdStyle}>{row.tread}</td>
-                  <td style={tdStyle}>{row.mlS}</td>
-                  <td style={tdStyle}>{row.mlD}</td>
+                  <td style={tdStyle}>{row.odIn}</td>
+                  <td style={tdStyle}>{row.odMm}</td>
+                  <td style={tdStyle}>{row.td32}</td>
+                  <td style={tdStyle}>{row.tdMm}</td>
+                  <td style={tdStyle}>{row.mlSlbs}</td>
+                  <td style={tdStyle}>{row.mlSpsi}</td>
+                  <td style={tdStyle}>{row.mlDlbs}</td>
+                  <td style={tdStyle}>{row.mlDpsi}</td>
                   <td style={tdStyle}>{row.liss}</td>
                   <td style={tdStyle}>{row.liss2}</td>
                   <td style={tdStyle}>
-                    {row.smartway ? (
-                      <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span>
-                    ) : (
-                      <span style={{ color: "var(--border-color)" }}>—</span>
-                    )}
+                    {row.smartway ? <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span> : <span style={{ color: "var(--border-color)" }}>—</span>}
                   </td>
                   <td style={tdStyle}>
-                    {row.ms ? (
-                      <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span>
-                    ) : (
-                      <span style={{ color: "var(--border-color)" }}>—</span>
-                    )}
+                    {row.ms ? <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span> : <span style={{ color: "var(--border-color)" }}>—</span>}
                   </td>
                 </tr>
               ))}
@@ -402,9 +395,33 @@ function SpecsSection() {
   );
 }
 
+const thStyle: React.CSSProperties = {
+  padding: "0.9rem 0.55rem",
+  textAlign: "left",
+  color: "var(--text-muted)",
+  fontWeight: 600,
+  fontSize: "0.7rem",
+  letterSpacing: "0.05em",
+  textTransform: "uppercase",
+  verticalAlign: "bottom",
+  whiteSpace: "nowrap",
+};
+
+const subThStyle: React.CSSProperties = {
+  padding: "0.3rem 0.55rem 0.7rem",
+  textAlign: "left",
+  color: "#555",
+  fontWeight: 500,
+  fontSize: "0.68rem",
+  letterSpacing: "0.04em",
+  verticalAlign: "bottom",
+  whiteSpace: "nowrap",
+};
+
 const tdStyle: React.CSSProperties = {
-  padding: "1.25rem 1rem",
+  padding: "0.85rem 0.55rem",
   color: "var(--text-muted)",
   letterSpacing: "0.02em",
   verticalAlign: "middle",
+  whiteSpace: "nowrap",
 };

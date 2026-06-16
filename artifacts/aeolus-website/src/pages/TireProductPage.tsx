@@ -398,7 +398,7 @@ function SpecsSection() {
 const thStyle: React.CSSProperties = {
   padding: "0.9rem 0.55rem",
   textAlign: "left",
-  color: "var(--text-muted)",
+  color: "#cccccc",
   fontWeight: 600,
   fontSize: "0.7rem",
   letterSpacing: "0.05em",
@@ -410,7 +410,7 @@ const thStyle: React.CSSProperties = {
 const subThStyle: React.CSSProperties = {
   padding: "0rem 0.55rem 0.7rem",
   textAlign: "left",
-  color: "#555",
+  color: "#888888",
   fontWeight: 500,
   fontSize: "0.68rem",
   letterSpacing: "0.04em",
@@ -420,7 +420,7 @@ const subThStyle: React.CSSProperties = {
 
 const tdStyle: React.CSSProperties = {
   padding: "0.85rem 0.55rem",
-  color: "var(--text-muted)",
+  color: "#cccccc",
   letterSpacing: "0.02em",
   verticalAlign: "middle",
   whiteSpace: "nowrap",

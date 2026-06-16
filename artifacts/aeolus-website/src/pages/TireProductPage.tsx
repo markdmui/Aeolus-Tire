@@ -284,18 +284,18 @@ function SpecsSection() {
           position: "relative",
           backgroundImage: `url(${bgTruck})`,
           backgroundSize: "cover",
-          backgroundPosition: "center center",
-          minHeight: "340px",
+          backgroundPosition: "center 60%",
+          minHeight: "480px",
           display: "flex",
           alignItems: "flex-end",
         }}
       >
-        {/* Dark gradient overlay — heavier at bottom */}
+        {/* Subtle fade to dark only at very bottom for text legibility */}
         <div
           style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(to bottom, rgba(10,10,10,0.45) 0%, rgba(10,10,10,0.82) 100%)",
+            background: "linear-gradient(to bottom, rgba(10,10,10,0.05) 0%, rgba(10,10,10,0.55) 100%)",
           }}
         />
         <div className="container" style={{ position: "relative", zIndex: 1, paddingBottom: "3.5rem" }}>

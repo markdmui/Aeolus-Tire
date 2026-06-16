@@ -403,7 +403,7 @@ const thStyle: React.CSSProperties = {
   fontSize: "0.7rem",
   letterSpacing: "0.05em",
   textTransform: "uppercase",
-  verticalAlign: "bottom",
+  verticalAlign: "top",
   whiteSpace: "nowrap",
 };
 

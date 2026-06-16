@@ -73,7 +73,7 @@ export default function TireProductPage() {
 
 function HeroSection() {
   return (
-    <section style={{ backgroundColor: "#0d0d0e", borderBottom: "1px solid var(--border-color)" }}>
+    <section style={{ backgroundColor: "#0d0d0e" }}>
       <div
         className="container"
         style={{

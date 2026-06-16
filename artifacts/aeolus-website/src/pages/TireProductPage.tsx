@@ -245,9 +245,9 @@ function FeatureSection() {
               </h3>
               <p
                 style={{
-                  color: "var(--text-muted)",
+                  color: "#cccccc",
                   fontSize: "0.86rem",
-                  lineHeight: 1.65,
+                  lineHeight: 1.45,
                 }}
               >
                 {f.body}

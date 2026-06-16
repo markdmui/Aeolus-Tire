@@ -178,17 +178,25 @@ function HeroSection() {
             padding: "2rem 0",
           }}
         >
-          <img
-            src={tireImg}
-            alt="Aeolus Neo Fuel G3"
+          <div
             style={{
               width: "100%",
               maxWidth: "520px",
-              height: "auto",
-              objectFit: "contain",
-              filter: "drop-shadow(0 20px 60px rgba(0,0,0,0.7))",
+              overflow: "hidden",
+              aspectRatio: "1 / 0.78",
             }}
-          />
+          >
+            <img
+              src={tireImg}
+              alt="Aeolus Neo Fuel G3"
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "block",
+                filter: "drop-shadow(0 20px 60px rgba(0,0,0,0.7))",
+              }}
+            />
+          </div>
         </div>
       </div>
     </section>

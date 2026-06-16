@@ -216,7 +216,7 @@ function FeatureSection() {
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "3rem",
+          gap: "calc(3rem - 10px)",
         }}
       >
         {FEATURES.map((f, i) => (

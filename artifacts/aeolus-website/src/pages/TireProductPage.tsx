@@ -216,13 +216,13 @@ function FeatureSection() {
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "3rem",
         }}
       >
         {FEATURES.map((f, i) => (
           <div
             key={f.title}
             style={{
-              borderRight: i < 2 ? "1px solid var(--border-color)" : "none",
               borderTop: "1px solid var(--border-color)",
               display: "flex",
               flexDirection: "column",

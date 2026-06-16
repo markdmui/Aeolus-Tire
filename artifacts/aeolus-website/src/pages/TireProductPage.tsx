@@ -303,7 +303,7 @@ function SpecsSection() {
             className="uppercase"
             style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "clamp(2rem, 5vw, 4rem)",
+              fontSize: "clamp(1.4rem, 2.5vw, 2.2rem)",
               fontWeight: 600,
               letterSpacing: "-0.02em",
               lineHeight: 1,

@@ -408,7 +408,7 @@ const thStyle: React.CSSProperties = {
 };
 
 const subThStyle: React.CSSProperties = {
-  padding: "0.3rem 0.55rem 0.7rem",
+  padding: "0rem 0.55rem 0.7rem",
   textAlign: "left",
   color: "#555",
   fontWeight: 500,

@@ -284,7 +284,7 @@ function SpecsSection() {
           position: "relative",
           backgroundImage: `url(${bgTruck})`,
           backgroundSize: "cover",
-          backgroundPosition: "center 60%",
+          backgroundPosition: "center calc(60% + 30px)",
           minHeight: "480px",
           display: "flex",
           alignItems: "flex-end",

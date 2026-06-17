@@ -92,7 +92,7 @@ function FeaturePillars() {
 
   return (
     <section
-      className="py-16 md:py-20 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16"
+      className="pt-6 pb-16 md:py-20 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16"
       style={{ borderTop: "1px solid var(--border-color)" }}
     >
       {features.map((f) => (

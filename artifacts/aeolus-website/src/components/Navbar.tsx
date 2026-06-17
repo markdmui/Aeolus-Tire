@@ -2,24 +2,27 @@ import { Link, useRoute } from "wouter";
 
 export default function Navbar() {
   return (
-    <nav
-      className="flex justify-between items-center sticky top-0 z-50"
-      style={{
-        backgroundColor: "var(--bg-dark)",
-        borderBottom: "1px solid var(--border-color)",
-        padding: "10px 0",
-      }}
-    >
-      <Link href="/" aria-label="Aeolus" className="flex items-center">
-        <img src="/aeolus-logo.png" alt="Aeolus" className="h-[26px] w-auto" />
-      </Link>
-      <div className="flex items-center gap-12">
-        <NavLinks />
-        <Link href="/tires" className="btn-primary" style={{ display: "inline-block" }}>
-          SEARCH
+    <div className="sticky top-0 z-50">
+      <div style={{ height: "4px", backgroundColor: "#FFD700", width: "100%" }} />
+      <nav
+        className="flex justify-between items-center"
+        style={{
+          backgroundColor: "var(--bg-dark)",
+          borderBottom: "1px solid var(--border-color)",
+          padding: "10px 0",
+        }}
+      >
+        <Link href="/" aria-label="Aeolus" className="flex items-center">
+          <img src="/aeolus-logo.png" alt="Aeolus" className="h-[26px] w-auto" />
         </Link>
-      </div>
-    </nav>
+        <div className="flex items-center gap-12">
+          <NavLinks />
+          <Link href="/tires" className="btn-primary" style={{ display: "inline-block" }}>
+            SEARCH
+          </Link>
+        </div>
+      </nav>
+    </div>
   );
 }
 

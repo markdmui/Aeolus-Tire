@@ -25,8 +25,9 @@ export default function LandingPage() {
 function Hero() {
   return (
     <section
-      className="hero-section flex flex-col justify-center pb-24"
+      className="hero-section flex flex-col justify-center pb-16 md:pb-24"
       style={{
+        minHeight: "520px",
         height: "720px",
         marginTop: "-46px",
         paddingTop: "110px",
@@ -54,13 +55,13 @@ function Hero() {
 
         <p
           className="mb-2"
-          style={{ color: "rgba(255,255,255,0.72)", fontSize: "1.1rem", maxWidth: "32rem" }}
+          style={{ color: "rgba(255,255,255,0.72)", fontSize: "clamp(0.95rem, 2.5vw, 1.1rem)", maxWidth: "32rem" }}
         >
           Uncompromising radial truck tires for the modern global fleet.
         </p>
         <p
           className="mb-5"
-          style={{ color: "rgba(255,255,255,0.72)", fontSize: "1.1rem", maxWidth: "32rem" }}
+          style={{ color: "rgba(255,255,255,0.72)", fontSize: "clamp(0.95rem, 2.5vw, 1.1rem)", maxWidth: "32rem" }}
         >
           Built for durability. Engineered for the long haul.
         </p>
@@ -91,7 +92,7 @@ function FeaturePillars() {
 
   return (
     <section
-      className="py-20 grid grid-cols-3 gap-16"
+      className="py-16 md:py-20 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16"
       style={{ borderTop: "1px solid var(--border-color)" }}
     >
       {features.map((f) => (
@@ -125,9 +126,9 @@ function ProductCard({ badge, name, description, specs }: ProductCardProps) {
         className="w-full aspect-[4/3]"
         style={{ backgroundColor: "#1a1a1b" }}
       />
-      <div className="p-8 flex flex-col flex-1 relative">
+      <div className="p-6 md:p-8 flex flex-col flex-1 relative">
         <div
-          className="absolute top-8 right-8"
+          className="absolute top-6 right-6 md:top-8 md:right-8"
           style={{ color: "var(--accent-yellow)", fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase" }}
         >
           {badge}
@@ -201,8 +202,8 @@ function ProductGrid() {
   ];
 
   return (
-    <section className="py-20" style={{ borderTop: "1px solid var(--border-color)" }}>
-      <div className="grid grid-cols-3 gap-6">
+    <section className="py-16 md:py-20" style={{ borderTop: "1px solid var(--border-color)" }}>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {products.map((p, i) => (
           <ProductCard key={i} {...p} />
         ))}
@@ -224,8 +225,8 @@ function EngineeringCapabilities() {
   ];
 
   return (
-    <section className="pb-20" style={{ borderTop: "1px solid var(--border-color)" }}>
-      <div className="pt-20 grid grid-cols-2 gap-6">
+    <section className="pb-16 md:pb-20" style={{ borderTop: "1px solid var(--border-color)" }}>
+      <div className="pt-16 md:pt-20 grid grid-cols-1 md:grid-cols-2 gap-6">
         {panels.map((p) => (
           <div
             key={p.title}
@@ -236,7 +237,7 @@ function EngineeringCapabilities() {
               borderTop: "2px solid var(--accent-yellow)",
             }}
           >
-            <div className="p-10 flex-1">
+            <div className="p-8 md:p-10 flex-1">
               <h3
                 className="uppercase mb-4"
                 style={{ fontSize: "0.95rem", fontWeight: 600, letterSpacing: "0.02em" }}
@@ -276,64 +277,71 @@ function AboutAeolus() {
         backgroundSize: "cover",
         backgroundPosition: "left center",
         backgroundRepeat: "no-repeat",
-        minHeight: "480px",
       }}
     >
-      {/* Flex row: left half empty (shows truck), right half holds stats */}
-      <div className="container" style={{ display: "flex", alignItems: "stretch", minHeight: "480px" }}>
-        {/* Left spacer — lets the truck photo show through */}
-        <div style={{ flex: "0 0 45%" }} />
+      {/* Mobile: full-width stats panel with dark overlay */}
+      {/* Desktop: left half empty (shows truck), right half holds stats */}
+      <div
+        className="container"
+        style={{ display: "flex", alignItems: "stretch", minHeight: "480px" }}
+      >
+        {/* Left spacer — desktop only, lets the truck photo show through */}
+        <div className="hidden md:block" style={{ flex: "0 0 45%" }} />
 
-        {/* Right: stats panel */}
+        {/* Stats panel */}
         <div
           style={{
             flex: "1 1 55%",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            padding: "64px 0 64px 48px",
+            padding: "48px 0 48px 0",
           }}
         >
-          {/* Grid: 3 columns × 2 rows */}
+          {/* On mobile add a semi-transparent backdrop so text is readable over the image */}
           <div
+            className="md:bg-transparent rounded-sm"
             style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: "40px 32px",
+              backgroundColor: "rgba(0,0,0,0.65)",
+              padding: "2rem 1.5rem",
             }}
           >
-            {stats.map(({ value, label }) => (
-              <div key={value}>
-                {/* Filled circle arrow icon */}
-                <div style={{ marginBottom: "10px", lineHeight: 1 }}>
-                  <CaretCircleRight size={32} color="#a18a00" />
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(3, 1fr)",
+                gap: "32px 24px",
+              }}
+            >
+              {stats.map(({ value, label }) => (
+                <div key={value}>
+                  <div style={{ marginBottom: "8px", lineHeight: 1 }}>
+                    <CaretCircleRight size={28} color="#a18a00" />
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontWeight: 600,
+                      fontSize: "clamp(1.4rem, 3vw, 2.8rem)",
+                      color: "#ffffff",
+                      lineHeight: 1,
+                      marginBottom: "6px",
+                    }}
+                  >
+                    {value}
+                  </div>
+                  <div
+                    style={{
+                      color: "var(--text-muted)",
+                      fontSize: "0.78rem",
+                      lineHeight: 1.45,
+                    }}
+                  >
+                    {label}
+                  </div>
                 </div>
-                {/* Stat number */}
-                <div
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontWeight: 600,
-                    fontSize: "clamp(1.8rem, 3vw, 2.8rem)",
-                    color: "#ffffff",
-                    lineHeight: 1,
-                    marginBottom: "8px",
-                  }}
-                >
-                  {value}
-                </div>
-                {/* Label */}
-                <div
-                  style={{
-                    color: "var(--text-muted)",
-                    fontSize: "0.82rem",
-                    lineHeight: 1.45,
-                    maxWidth: "160px",
-                  }}
-                >
-                  {label}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -343,44 +351,44 @@ function AboutAeolus() {
 
 function EngineeringApproach() {
   return (
-    <section className="pb-24 mt-4" style={{ backgroundColor: "var(--bg-dark)" }}>
+    <section className="pb-16 md:pb-24 mt-4" style={{ backgroundColor: "var(--bg-dark)" }}>
       <div className="container">
-      <div
-        className="relative flex flex-col justify-between"
-        style={{
-          backgroundColor: "#0d0d0e",
-          border: "1px solid var(--border-color)",
-          minHeight: "36rem",
-          padding: "3.5rem 4rem",
-        }}
-      >
-        <h2
-          className="uppercase"
+        <div
+          className="relative flex flex-col justify-between"
           style={{
-            fontSize: "clamp(2rem, 3.5vw, 3rem)",
-            fontWeight: 600,
-            lineHeight: 1.05,
-            letterSpacing: "-0.02em",
+            backgroundColor: "#0d0d0e",
+            border: "1px solid var(--border-color)",
+            minHeight: "24rem",
+            padding: "clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 5vw, 4rem)",
           }}
         >
-          <span className="block text-white">DISCOVER OUR</span>
-          <span className="block" style={{ color: "var(--accent-yellow)" }}>ENGINEERING APPROACH</span>
-        </h2>
-        <p
-          style={{
-            color: "var(--text-muted)",
-            fontSize: "0.9rem",
-            lineHeight: 1.65,
-            maxWidth: "20rem",
-          }}
-        >
-          Each tire model undergoes structured testing
-          <br />to verify durability, load handling, and
-          <br />consistency under real-world conditions.
-        </p>
-      </div>
+          <h2
+            className="uppercase"
+            style={{
+              fontSize: "clamp(1.6rem, 3.5vw, 3rem)",
+              fontWeight: 600,
+              lineHeight: 1.05,
+              letterSpacing: "-0.02em",
+            }}
+          >
+            <span className="block text-white">DISCOVER OUR</span>
+            <span className="block" style={{ color: "var(--accent-yellow)" }}>ENGINEERING APPROACH</span>
+          </h2>
+          <p
+            style={{
+              color: "var(--text-muted)",
+              fontSize: "0.9rem",
+              lineHeight: 1.65,
+              maxWidth: "20rem",
+              marginTop: "1.5rem",
+            }}
+          >
+            Each tire model undergoes structured testing
+            <br />to verify durability, load handling, and
+            <br />consistency under real-world conditions.
+          </p>
+        </div>
       </div>
     </section>
   );
 }
-

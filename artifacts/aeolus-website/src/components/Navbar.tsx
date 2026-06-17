@@ -31,7 +31,9 @@ export default function Navbar() {
           </Link>
         </div>
       </nav>
-      <div style={{ margin: "0 calc(4vw + 20px)", height: "1px", backgroundColor: "#666666" }} />
+      <div style={{ maxWidth: "1600px", margin: "0 auto", padding: "0 calc(4vw + 20px)" }}>
+        <div style={{ height: "1px", backgroundColor: "#666666" }} />
+      </div>
     </div>
   );
 }

@@ -3,7 +3,6 @@ import { Link, useRoute } from "wouter";
 export default function Navbar() {
   return (
     <div className="sticky top-0 z-50">
-      <div style={{ height: "4px", backgroundColor: "#FFD700", width: "100%" }} />
       <nav
         className="flex justify-between items-center"
         style={{

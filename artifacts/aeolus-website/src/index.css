@@ -294,3 +294,9 @@ html {
   transform: translateY(-5px);
   background-color: #161618;
 }
+
+@media (max-width: 767px) {
+  .hero-section {
+    background-position: calc(100% + 40px) calc(50% + 60px) !important;
+  }
+}

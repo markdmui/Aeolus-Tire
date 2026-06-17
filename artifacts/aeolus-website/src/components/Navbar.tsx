@@ -16,7 +16,7 @@ export default function Navbar() {
         className="flex justify-between items-center"
         style={{
           backgroundColor: "transparent",
-          borderBottom: scrolled ? "1px solid var(--border-color)" : "1px solid transparent",
+          borderBottom: "1px solid #CCCCCC",
           padding: "10px calc(4vw + 20px)",
           maxWidth: "1600px",
           margin: "0 auto",

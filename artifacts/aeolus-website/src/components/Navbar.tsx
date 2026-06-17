@@ -1,16 +1,26 @@
+import { useEffect, useState } from "react";
 import { Link, useRoute } from "wouter";
 
 export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 0);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <div className="sticky top-0 z-50">
+    <div className="sticky top-0 z-50" style={{ transition: "background-color 0.3s ease", backgroundColor: scrolled ? "rgba(0,0,0,0.6)" : "transparent" }}>
       <nav
         className="flex justify-between items-center"
         style={{
           backgroundColor: "transparent",
-          borderBottom: "1px solid var(--border-color)",
+          borderBottom: scrolled ? "1px solid var(--border-color)" : "1px solid transparent",
           padding: "10px calc(4vw + 20px)",
           maxWidth: "1600px",
           margin: "0 auto",
+          transition: "border-color 0.3s ease",
         }}
       >
         <Link href="/" aria-label="Aeolus" className="flex items-center">

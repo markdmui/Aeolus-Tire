@@ -200,7 +200,7 @@ function FeatureSection() {
     >
       <div
         className="container grid grid-cols-1 md:grid-cols-3"
-        style={{ gap: "calc(3rem - 10px)" }}
+        style={{ gap: "var(--col-gap)" }}
       >
         {FEATURES.map((f) => (
           <div

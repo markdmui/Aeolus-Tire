@@ -68,6 +68,9 @@ html {
    Sourced from the reference HTML design file
    ============================================================ */
 :root {
+  /* Layout */
+  --col-gap: 1.5rem;
+
   /* Brand palette */
   --bg-dark: #0A0A0A;
   --bg-gradient: #141415;

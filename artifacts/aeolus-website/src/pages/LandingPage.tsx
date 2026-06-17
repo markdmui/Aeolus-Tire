@@ -92,8 +92,8 @@ function FeaturePillars() {
 
   return (
     <section
-      className="py-8 md:py-20 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6"
-      style={{ borderTop: "1px solid var(--border-color)" }}
+      className="py-8 md:py-20 grid grid-cols-1 md:grid-cols-3 gap-5"
+      style={{ columnGap: "var(--col-gap)", borderTop: "1px solid var(--border-color)" }}
     >
       {features.map((f) => (
         <div key={f.title} className="prop-card">
@@ -202,7 +202,7 @@ function ProductGrid() {
 
   return (
     <section className="py-16 md:py-20" style={{ borderTop: "1px solid var(--border-color)" }}>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5" style={{ columnGap: "var(--col-gap)" }}>
         {products.map((p, i) => (
           <ProductCard key={i} {...p} />
         ))}

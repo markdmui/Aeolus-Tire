@@ -192,6 +192,7 @@ function HeroSection() {
 function FeatureSection() {
   return (
     <section
+      className="md:pt-[100px]"
       style={{
         backgroundColor: "#0d0d0e",
         borderBottom: "1px solid var(--border-color)",

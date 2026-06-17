@@ -299,13 +299,7 @@ function AboutAeolus() {
           }}
         >
           {/* On mobile add a semi-transparent backdrop so text is readable over the image */}
-          <div
-            className="md:bg-transparent rounded-sm"
-            style={{
-              backgroundColor: "rgba(0,0,0,0.65)",
-              padding: "2rem 1.5rem",
-            }}
-          >
+          <div>
             <div
               style={{
                 display: "grid",

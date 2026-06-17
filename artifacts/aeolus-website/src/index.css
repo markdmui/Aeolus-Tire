@@ -299,4 +299,27 @@ html {
   .hero-section {
     background-position: calc(100% + 300px) calc(50% + 60px) !important;
   }
+
+  html {
+    font-size: 13.5px;
+  }
+
+  /* Exempt: hero headline — restore to original pixel-anchored sizes */
+  .hero-section h1 {
+    font-size: clamp(40px, 6.5vw, 128px) !important;
+    line-height: 0.85 !important;
+    letter-spacing: -0.04em !important;
+  }
+
+  /* Exempt: engineering approach h2 */
+  .engineering-approach h2 {
+    font-size: clamp(25.6px, 3.5vw, 48px) !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  /* Tighten line-height site-wide on mobile */
+  body {
+    line-height: 1.45;
+  }
 }

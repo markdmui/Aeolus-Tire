@@ -344,7 +344,7 @@ function AboutAeolus() {
 
 function EngineeringApproach() {
   return (
-    <section className="pb-16 md:pb-24 mt-4" style={{ backgroundColor: "var(--bg-dark)" }}>
+    <section className="engineering-approach pb-16 md:pb-24 mt-4" style={{ backgroundColor: "var(--bg-dark)" }}>
       <div className="container">
         <div
           className="relative flex flex-col justify-between"

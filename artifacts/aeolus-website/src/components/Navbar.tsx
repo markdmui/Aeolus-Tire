@@ -6,7 +6,7 @@ export default function Navbar() {
       <nav
         className="flex justify-between items-center"
         style={{
-          backgroundColor: "var(--bg-dark)",
+          backgroundColor: "transparent",
           borderBottom: "1px solid var(--border-color)",
           padding: "10px 0",
         }}

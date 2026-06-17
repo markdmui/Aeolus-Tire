@@ -126,10 +126,9 @@ function ProductCard({ badge, name, description, specs }: ProductCardProps) {
         className="w-full aspect-[4/3]"
         style={{ backgroundColor: "#1a1a1b" }}
       />
-      <div className="p-6 md:p-8 flex flex-col flex-1 relative">
+      <div className="p-6 md:p-8 flex flex-col flex-1">
         <div
-          className="absolute top-6 right-6 md:top-8 md:right-8"
-          style={{ color: "var(--accent-yellow)", fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase" }}
+          style={{ color: "var(--accent-yellow)", fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.5rem" }}
         >
           {badge}
         </div>

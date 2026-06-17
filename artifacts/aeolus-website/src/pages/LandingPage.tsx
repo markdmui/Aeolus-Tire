@@ -8,9 +8,7 @@ export default function LandingPage() {
       className="antialiased text-white"
       style={{ backgroundColor: "var(--bg-dark)", fontFamily: "var(--font-body)" }}
     >
-      <div className="container">
-        <Navbar />
-      </div>
+      <Navbar />
       <Hero />
       <div className="container">
         <FeaturePillars />
@@ -27,9 +25,11 @@ export default function LandingPage() {
 function Hero() {
   return (
     <section
-      className="hero-section flex flex-col justify-center pb-24 pt-16"
+      className="hero-section flex flex-col justify-center pb-24"
       style={{
         height: "720px",
+        marginTop: "-46px",
+        paddingTop: "110px",
         backgroundImage: "url('/hero-bg.png')",
         backgroundSize: "cover",
         backgroundPosition: "center right",

@@ -163,15 +163,14 @@ export default function TirePage() {
       className="antialiased text-white"
       style={{ backgroundColor: "var(--bg-dark)", fontFamily: "var(--font-body)" }}
     >
-      <div className="container">
-        <Navbar />
-      </div>
+      <Navbar />
 
       {/* Page Header */}
       <section
         style={{
           borderBottom: "1px solid var(--border-color)",
-          paddingTop: "72px",
+          marginTop: "-46px",
+          paddingTop: "118px",
           paddingBottom: "56px",
           backgroundColor: "#0d0d0e",
         }}

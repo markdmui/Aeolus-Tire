@@ -59,9 +59,7 @@ export default function TireProductPage() {
       className="antialiased text-white"
       style={{ backgroundColor: "var(--bg-dark)", fontFamily: "var(--font-body)" }}
     >
-      <div className="container">
-        <Navbar />
-      </div>
+      <Navbar />
 
       <HeroSection />
       <FeatureSection />
@@ -74,7 +72,7 @@ export default function TireProductPage() {
 
 function HeroSection() {
   return (
-    <section style={{ backgroundColor: "#0d0d0e" }}>
+    <section style={{ backgroundColor: "#0d0d0e", marginTop: "-46px" }}>
       <div
         className="container"
         style={{
@@ -86,7 +84,7 @@ function HeroSection() {
         }}
       >
         {/* Left — text content */}
-        <div style={{ padding: "72px 0 64px" }}>
+        <div style={{ padding: "118px 0 64px" }}>
           {/* Badge */}
           <div
             style={{

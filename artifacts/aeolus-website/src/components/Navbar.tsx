@@ -8,7 +8,9 @@ export default function Navbar() {
         style={{
           backgroundColor: "transparent",
           borderBottom: "1px solid var(--border-color)",
-          padding: "10px 0",
+          padding: "10px calc(4vw + 20px)",
+          maxWidth: "1600px",
+          margin: "0 auto",
         }}
       >
         <Link href="/" aria-label="Aeolus" className="flex items-center">

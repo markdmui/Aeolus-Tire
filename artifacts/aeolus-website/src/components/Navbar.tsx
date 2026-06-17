@@ -16,11 +16,9 @@ export default function Navbar() {
         className="flex justify-between items-center"
         style={{
           backgroundColor: "transparent",
-          borderBottom: "1px solid #CCCCCC",
           padding: "10px calc(4vw + 20px)",
           maxWidth: "1600px",
           margin: "0 auto",
-          transition: "border-color 0.3s ease",
         }}
       >
         <Link href="/" aria-label="Aeolus" className="flex items-center">
@@ -33,6 +31,7 @@ export default function Navbar() {
           </Link>
         </div>
       </nav>
+      <div style={{ margin: "0 calc(4vw + 20px)", height: "1px", backgroundColor: "#CCCCCC" }} />
     </div>
   );
 }

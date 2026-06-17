@@ -297,6 +297,6 @@ html {
 
 @media (max-width: 767px) {
   .hero-section {
-    background-position: calc(100% + 140px) calc(50% + 60px) !important;
+    background-position: calc(100% + 240px) calc(50% + 60px) !important;
   }
 }

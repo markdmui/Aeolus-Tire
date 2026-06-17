@@ -113,7 +113,7 @@ function HeroSection() {
           {/* Subtitle */}
           <p
             style={{
-              color: "rgba(255,255,255,0.55)",
+              color: "rgba(255,255,255,0.75)",
               fontSize: "0.95rem",
               lineHeight: 1.65,
               maxWidth: "32rem",

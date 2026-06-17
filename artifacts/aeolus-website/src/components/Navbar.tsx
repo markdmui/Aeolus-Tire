@@ -11,7 +11,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <div className="sticky top-0 z-50" style={{ transition: "background-color 0.3s ease", backgroundColor: scrolled ? "rgba(0,0,0,0.6)" : "transparent" }}>
+    <div className="sticky top-0 z-50" style={{ transition: "background-color 0.3s ease", backgroundColor: scrolled ? "rgba(0,0,0,0.7)" : "transparent" }}>
       <nav
         className="flex justify-between items-center"
         style={{

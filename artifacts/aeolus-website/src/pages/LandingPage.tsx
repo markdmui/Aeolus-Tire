@@ -25,7 +25,7 @@ export default function LandingPage() {
 function Hero() {
   return (
     <section
-      className="hero-section flex flex-col justify-center pb-6 md:pb-24"
+      className="hero-section flex flex-col justify-center pb-16 md:pb-24"
       style={{
         minHeight: "520px",
         height: "720px",
@@ -92,7 +92,7 @@ function FeaturePillars() {
 
   return (
     <section
-      className="pt-[104px] pb-16 md:py-20 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16"
+      className="py-16 md:py-20 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16"
       style={{ borderTop: "1px solid var(--border-color)" }}
     >
       {features.map((f) => (

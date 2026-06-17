@@ -299,6 +299,6 @@ html {
   .hero-section {
     height: auto !important;
     min-height: 0 !important;
-    background-position: calc(100% + 300px) calc(50% + 60px) !important;
+    background-position: center right !important;
   }
 }

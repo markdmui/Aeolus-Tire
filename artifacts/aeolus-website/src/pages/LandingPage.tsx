@@ -145,7 +145,7 @@ function ProductCard({ badge, name, description, specs }: ProductCardProps) {
           {specs.map((s) => (
             <li
               key={s.label}
-              className="flex justify-between items-center py-3 uppercase"
+              className="flex justify-between items-center py-2 md:py-3 uppercase"
               style={{
                 borderBottom: "1px solid var(--border-color)",
                 fontSize: "0.8rem",

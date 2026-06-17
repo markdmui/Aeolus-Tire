@@ -268,7 +268,7 @@ html {
    Design: 3px top border (white), turns yellow on hover
    ============================================================ */
 .prop-card {
-  border-top: 3px solid var(--text-main);
+  border-top: 1px solid var(--text-main);
   padding-top: 1.5rem;
   transition: border-color 0.3s ease;
 }

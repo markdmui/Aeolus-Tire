@@ -25,7 +25,7 @@ export default function LandingPage() {
 function Hero() {
   return (
     <section
-      className="hero-section flex flex-col justify-center pb-16 md:pb-24"
+      className="hero-section flex flex-col justify-center pb-6 md:pb-24"
       style={{
         minHeight: "520px",
         height: "720px",

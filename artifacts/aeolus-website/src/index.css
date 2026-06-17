@@ -311,6 +311,13 @@ html {
     letter-spacing: -0.04em !important;
   }
 
+  /* Exempt: tire product page h1 */
+  .tire-product-h1 {
+    font-size: clamp(38px, 4.5vw, 64px) !important;
+    line-height: 1 !important;
+    letter-spacing: -0.02em !important;
+  }
+
   /* Exempt: engineering approach h2 */
   .engineering-approach h2 {
     font-size: clamp(25.6px, 3.5vw, 48px) !important;

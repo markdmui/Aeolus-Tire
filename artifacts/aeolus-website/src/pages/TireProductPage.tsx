@@ -60,11 +60,9 @@ export default function TireProductPage() {
       style={{ backgroundColor: "var(--bg-dark)", fontFamily: "var(--font-body)" }}
     >
       <Navbar />
-
       <HeroSection />
       <FeatureSection />
       <SpecsSection />
-
       <Footer />
     </div>
   );
@@ -72,19 +70,13 @@ export default function TireProductPage() {
 
 function HeroSection() {
   return (
-    <section style={{ backgroundColor: "#0d0d0e", marginTop: "-46px" }}>
+    <section className="tire-product-hero" style={{ backgroundColor: "#0d0d0e", marginTop: "-46px" }}>
       <div
-        className="container"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          alignItems: "center",
-          minHeight: "520px",
-          gap: "3rem",
-        }}
+        className="container grid grid-cols-1 md:grid-cols-2 items-center gap-0 md:gap-12"
+        style={{ minHeight: "520px" }}
       >
-        {/* Left — text content */}
-        <div style={{ padding: "118px 0 64px" }}>
+        {/* Text content */}
+        <div style={{ paddingTop: "118px", paddingBottom: "2rem" }} className="md:pb-16">
           {/* Badge */}
           <div
             style={{
@@ -104,7 +96,7 @@ function HeroSection() {
 
           {/* Title */}
           <h1
-            className="uppercase"
+            className="tire-product-h1 uppercase"
             style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "clamp(2.4rem, 4.5vw, 4rem)",
@@ -168,14 +160,9 @@ function HeroSection() {
           </ul>
         </div>
 
-        {/* Right — tire image */}
+        {/* Tire image — below text on mobile, right column on desktop */}
         <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "2rem 0",
-          }}
+          className="flex items-center justify-center pb-10 md:py-8"
         >
           <div
             style={{
@@ -211,14 +198,10 @@ function FeatureSection() {
       }}
     >
       <div
-        className="container"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "calc(3rem - 10px)",
-        }}
+        className="container grid grid-cols-1 md:grid-cols-3"
+        style={{ gap: "calc(3rem - 10px)" }}
       >
-        {FEATURES.map((f, i) => (
+        {FEATURES.map((f) => (
           <div
             key={f.title}
             style={{
@@ -228,7 +211,7 @@ function FeatureSection() {
             }}
           >
             {/* Text content */}
-            <div style={{ padding: "2.5rem 0 2rem" }}>
+            <div style={{ padding: "1.75rem 0 1.5rem" }} className="md:pt-10 md:pb-8">
               <h3
                 className="uppercase"
                 style={{
@@ -289,7 +272,6 @@ function SpecsSection() {
           alignItems: "flex-end",
         }}
       >
-        {/* Subtle fade to dark only at very bottom for text legibility */}
         <div
           style={{
             position: "absolute",
@@ -325,7 +307,6 @@ function SpecsSection() {
         <div className="container" style={{ overflowX: "auto", paddingTop: "0", paddingBottom: "0" }}>
           <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.78rem" }}>
             <thead>
-              {/* Row 1 – main column labels */}
               <tr>
                 <th rowSpan={2} style={thStyle}>Size</th>
                 <th rowSpan={2} style={thStyle}>Ply</th>
@@ -340,7 +321,6 @@ function SpecsSection() {
                 <th rowSpan={2} style={thStyle}>Smartway</th>
                 <th rowSpan={2} style={thStyle}>M+S</th>
               </tr>
-              {/* Row 2 – unit sub-labels */}
               <tr style={{ borderBottom: "1px solid var(--border-color)" }}>
                 <th style={subThStyle}>in</th>
                 <th style={subThStyle}>in</th>

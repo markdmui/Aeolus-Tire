@@ -7,7 +7,7 @@ export default function Footer() {
       style={{ backgroundColor: "var(--bg-dark)" }}
     >
       <div className="container">
-        <div className="grid grid-cols-4 gap-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
           <div>
             <div className="mb-4">
               <Link href="/">

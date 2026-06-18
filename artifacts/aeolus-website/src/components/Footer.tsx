@@ -11,7 +11,7 @@ export default function Footer() {
           <div>
             <div className="mb-4">
               <Link href="/">
-                <img src="/aeolus-logo.png" alt="Aeolus" className="h-[22px] w-auto" />
+                <img src="/aeolus-logo.png" alt="Aeolus" className="w-auto" style={{ height: "22px", maxWidth: "none" }} />
               </Link>
             </div>
             <p style={{ color: "var(--text-muted)", fontSize: "0.85rem", lineHeight: 1.6 }}>

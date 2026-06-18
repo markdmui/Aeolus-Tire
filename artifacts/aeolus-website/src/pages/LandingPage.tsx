@@ -1,4 +1,4 @@
-import { CaretCircleRight } from "@phosphor-icons/react";
+import { CaretCircleRight, ArrowSquareRight } from "@phosphor-icons/react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -67,7 +67,7 @@ function Hero() {
         </p>
         <a href="/tires/neo-fuel-g3" className="link-accent group">
           EXPLORE OUR TIRE LINE UP
-          <span className="ml-3 inline-block transition-transform group-hover:translate-x-1">→</span>
+          <ArrowSquareRight size={20} className="ml-3 inline-block transition-transform group-hover:translate-x-1" />
         </a>
       </div>
     </section>

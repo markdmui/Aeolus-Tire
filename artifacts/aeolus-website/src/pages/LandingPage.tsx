@@ -271,6 +271,7 @@ function AboutAeolus() {
 
   return (
     <section
+      className="about-stats-section"
       style={{
         backgroundImage: "url('/about-bg.jpg')",
         backgroundSize: "cover",
@@ -289,6 +290,7 @@ function AboutAeolus() {
 
         {/* Stats panel */}
         <div
+          className="stats-panel"
           style={{
             flex: "1 1 55%",
             display: "flex",

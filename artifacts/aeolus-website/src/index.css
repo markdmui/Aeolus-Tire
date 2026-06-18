@@ -309,6 +309,16 @@ html {
     background-position: calc(100% + 300px) calc(50% + 60px) !important;
   }
 
+  /* Stats section: shift truck to bottom, stats to top so they don't overlap */
+  .about-stats-section {
+    background-position: left bottom !important;
+    min-height: 560px !important;
+  }
+  .about-stats-section .stats-panel {
+    justify-content: flex-start !important;
+    padding-top: 36px !important;
+  }
+
   /* Pin hero content left edge to exactly match the navbar logo position */
   .hero-section .container {
     width: 100% !important;

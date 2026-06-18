@@ -217,7 +217,7 @@ function FeatureSection() {
                 className="uppercase"
                 style={{
                   color: "var(--accent-yellow)",
-                  fontSize: "0.85rem",
+                  fontSize: "1.05rem",
                   fontWeight: 700,
                   letterSpacing: "0.1em",
                   marginBottom: "1rem",

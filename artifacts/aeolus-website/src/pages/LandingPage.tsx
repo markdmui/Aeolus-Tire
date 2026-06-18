@@ -328,7 +328,7 @@ function AboutAeolus() {
                   <div
                     style={{
                       color: "var(--text-muted)",
-                      fontSize: "0.78rem",
+                      fontSize: "0.88rem",
                       lineHeight: 1.45,
                     }}
                   >

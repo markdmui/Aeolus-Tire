@@ -309,6 +309,14 @@ html {
     background-position: calc(100% + 300px) calc(50% + 60px) !important;
   }
 
+  /* Pin hero content left edge to exactly match the navbar logo position */
+  .hero-section .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    padding-left: calc(4vw + 20px) !important;
+  }
+
   html {
     font-size: 13.5px;
   }

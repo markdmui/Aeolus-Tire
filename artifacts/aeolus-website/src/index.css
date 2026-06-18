@@ -298,6 +298,12 @@ html {
   background-color: #161618;
 }
 
+@media (max-width: 1023px) {
+  .hero-subtitle {
+    line-height: 1.25;
+  }
+}
+
 @media (max-width: 767px) {
   .hero-section {
     background-position: calc(100% + 300px) calc(50% + 60px) !important;

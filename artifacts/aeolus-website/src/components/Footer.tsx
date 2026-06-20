@@ -69,7 +69,7 @@ export default function Footer() {
 
 function FooterLinks({ items }: { items: { label: string; href: string }[] }) {
   return (
-    <ul className="space-y-3">
+    <ul className="space-y-1">
       {items.map(({ label, href }) => (
         <li key={label}>
           {href === "#" ? (

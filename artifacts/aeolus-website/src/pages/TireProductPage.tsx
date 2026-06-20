@@ -448,14 +448,20 @@ function Lightbox({ src, onClose }: { src: string; onClose: () => void }) {
           background: "none",
           border: "none",
           color: "#fff",
-          fontSize: "2rem",
-          lineHeight: 1,
           cursor: "pointer",
           opacity: 0.7,
+          display: "flex",
+          alignItems: "center",
+          gap: "0.4rem",
+          fontSize: "0.8rem",
+          letterSpacing: "0.05em",
+          textTransform: "uppercase",
+          fontFamily: "var(--font-body)",
         }}
-        aria-label="Close"
+        aria-label="Close image"
       >
-        ×
+        <span style={{ fontSize: "1.6rem", lineHeight: 1 }}>×</span>
+        Close Image
       </button>
       <img
         src={src}

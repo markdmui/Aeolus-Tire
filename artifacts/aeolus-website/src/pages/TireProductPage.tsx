@@ -201,7 +201,6 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
                 width: "100%",
                 height: "auto",
                 display: "block",
-                filter: "drop-shadow(0 20px 60px rgba(0,0,0,0.8))",
                 cursor: "zoom-in",
               }}
             />

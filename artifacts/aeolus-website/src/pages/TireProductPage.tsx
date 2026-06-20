@@ -1,3 +1,4 @@
+import { useState, useEffect, useCallback } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -54,21 +55,32 @@ const SPEC_ROWS = [
 ];
 
 export default function TireProductPage() {
+  const [activeImg, setActiveImg] = useState<string | null>(null);
+  const close = useCallback(() => setActiveImg(null), []);
+
+  useEffect(() => {
+    if (!activeImg) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") close(); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [activeImg, close]);
+
   return (
     <div
       className="antialiased text-white"
       style={{ backgroundColor: "var(--bg-dark)", fontFamily: "var(--font-body)" }}
     >
       <Navbar />
-      <HeroSection />
-      <FeatureSection />
+      <HeroSection onOpen={setActiveImg} />
+      <FeatureSection onOpen={setActiveImg} />
       <SpecsSection />
       <Footer />
+      {activeImg && <Lightbox src={activeImg} onClose={close} />}
     </div>
   );
 }
 
-function HeroSection() {
+function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
   return (
     <section className="tire-product-hero" style={{ backgroundColor: "#0d0d0e", marginTop: "-46px" }}>
       <div
@@ -175,11 +187,13 @@ function HeroSection() {
             <img
               src={tireImg}
               alt="Aeolus Neo Fuel G3"
+              onClick={() => onOpen(tireImg)}
               style={{
                 width: "100%",
                 height: "auto",
                 display: "block",
                 filter: "drop-shadow(0 20px 60px rgba(0,0,0,0.7))",
+                cursor: "zoom-in",
               }}
             />
           </div>
@@ -189,7 +203,7 @@ function HeroSection() {
   );
 }
 
-function FeatureSection() {
+function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
   return (
     <section
       className="md:pt-[100px]"
@@ -242,11 +256,13 @@ function FeatureSection() {
               <img
                 src={f.image}
                 alt={f.title}
+                onClick={() => onOpen(f.image)}
                 style={{
                   width: "100%",
                   display: "block",
                   aspectRatio: "16 / 9",
                   objectFit: "cover",
+                  cursor: "zoom-in",
                 }}
               />
             </div>
@@ -406,3 +422,52 @@ const tdStyle: React.CSSProperties = {
   verticalAlign: "middle",
   whiteSpace: "nowrap",
 };
+
+function Lightbox({ src, onClose }: { src: string; onClose: () => void }) {
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 9999,
+        backgroundColor: "rgba(0,0,0,0.92)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "1.5rem",
+        cursor: "zoom-out",
+      }}
+    >
+      <button
+        onClick={onClose}
+        style={{
+          position: "absolute",
+          top: "1.25rem",
+          right: "1.5rem",
+          background: "none",
+          border: "none",
+          color: "#fff",
+          fontSize: "2rem",
+          lineHeight: 1,
+          cursor: "pointer",
+          opacity: 0.7,
+        }}
+        aria-label="Close"
+      >
+        ×
+      </button>
+      <img
+        src={src}
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          maxWidth: "100%",
+          maxHeight: "90vh",
+          objectFit: "contain",
+          cursor: "default",
+          boxShadow: "0 0 80px rgba(0,0,0,0.8)",
+        }}
+      />
+    </div>
+  );
+}

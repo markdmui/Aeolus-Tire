@@ -324,7 +324,7 @@ html {
     width: 100% !important;
     max-width: 100% !important;
     margin-left: 0 !important;
-    padding-left: calc(4vw + 20px) !important;
+    padding-left: calc(4vw + 5px) !important;
   }
 
   html {

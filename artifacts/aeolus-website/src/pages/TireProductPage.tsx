@@ -417,7 +417,7 @@ const subThStyle: React.CSSProperties = {
   textAlign: "left",
   color: "#888888",
   fontWeight: 500,
-  fontSize: "0.68rem",
+  fontSize: "0.78rem",
   letterSpacing: "0.04em",
   verticalAlign: "bottom",
   whiteSpace: "nowrap",

@@ -259,11 +259,16 @@ html {
 
 .footer-link {
   text-decoration: none;
-  transition: color 0.2s ease;
+  display: inline-block;
+  padding: 2px 6px;
+  margin: -2px -6px;
+  border-radius: 2px;
+  transition: color 0.18s ease, background-color 0.18s ease;
 }
 
 .footer-link:hover {
-  color: var(--text-main) !important;
+  color: #FFD700 !important;
+  background-color: #343434;
 }
 
 /* ============================================================

@@ -324,9 +324,10 @@ html {
     padding-top: 16px !important;
   }
 
-  /* Shift product page hero background right on mobile */
+  /* Shift product page hero background right on mobile, shrink to 80% */
   .tire-product-hero {
-    background-position: calc(100% + 360px) center !important;
+    background-size: 80% auto !important;
+    background-position: top right !important;
   }
 
   /* Tighten footer link spacing on mobile */

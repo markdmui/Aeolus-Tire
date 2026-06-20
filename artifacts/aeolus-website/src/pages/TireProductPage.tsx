@@ -363,12 +363,11 @@ function SpecsSection() {
               {SPEC_ROWS.map((row, i) => (
                 <tr
                   key={row.size}
+                  className="spec-row"
                   style={{
                     borderBottom: i < SPEC_ROWS.length - 1 ? "1px solid var(--border-color)" : "none",
                     transition: "background-color 0.15s ease",
                   }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLTableRowElement).style.backgroundColor = "#333333"; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLTableRowElement).style.backgroundColor = "transparent"; }}
                 >
                   <td style={tdStyle}><span style={{ color: "#fff", fontWeight: 600 }}>{row.size}</span></td>
                   <td style={tdStyle}>{row.ply}</td>

@@ -257,6 +257,20 @@ html {
   color: var(--accent-yellow);
 }
 
+/* Spec table row hover */
+.spec-row {
+  transition: background-color 0.15s ease;
+}
+.spec-row:hover {
+  background-color: #333333;
+}
+.spec-row:hover td {
+  color: #ffffff;
+}
+.spec-row:hover td:first-child span {
+  color: var(--accent-yellow) !important;
+}
+
 .footer-link {
   text-decoration: none;
   display: block;

@@ -326,7 +326,7 @@ html {
 
   /* Shift product page hero background right on mobile, shrink to 80% */
   .tire-product-hero {
-    background-size: 160% auto !important;
+    background-size: 224% auto !important;
     background-position: top right !important;
   }
 

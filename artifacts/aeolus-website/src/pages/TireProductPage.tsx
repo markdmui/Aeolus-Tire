@@ -199,13 +199,15 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
               pointerEvents: "none",
             }}
           />
-          {/* Tire image on top */}
+          {/* Tire image on top — preserve original crop via overflow:hidden + aspectRatio */}
           <div
             style={{
               position: "relative",
               zIndex: 1,
               width: "100%",
               maxWidth: "520px",
+              overflow: "hidden",
+              aspectRatio: "1 / 0.78",
             }}
           >
             <img

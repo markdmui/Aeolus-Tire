@@ -263,7 +263,7 @@ html {
 }
 .spec-row:hover td {
   background-color: #333333;
-  color: #ffffff;
+  color: #ffffff !important;
 }
 .spec-row:hover td:first-child span {
   color: var(--accent-yellow) !important;

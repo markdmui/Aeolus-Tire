@@ -324,6 +324,11 @@ html {
     padding-top: 16px !important;
   }
 
+  /* Shift product page hero background right on mobile */
+  .tire-product-hero {
+    background-position: calc(100% + 300px) center !important;
+  }
+
   /* Tighten footer link spacing on mobile */
   .footer-links-list > li + li {
     margin-top: 0 !important;

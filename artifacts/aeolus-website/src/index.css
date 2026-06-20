@@ -261,10 +261,8 @@ html {
 .spec-row {
   transition: background-color 0.15s ease;
 }
-.spec-row:hover {
-  background-color: #333333;
-}
 .spec-row:hover td {
+  background-color: #333333;
   color: #ffffff;
 }
 .spec-row:hover td:first-child span {

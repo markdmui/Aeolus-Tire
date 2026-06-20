@@ -7,7 +7,7 @@ import feature1 from "@assets/neo-fuel-g3-f1_1781632744768.jpg";
 import feature2 from "@assets/neo-fuel-g3-f2_1781632744768.jpg";
 import feature3 from "@assets/neo-fuel-g3-f3_1781632744768.jpg";
 import bgTruck from "@assets/bg-long-haul-1_1781632744768.jpg";
-import heroBg from "@assets/hero-bg-1_1781992393504.jpg";
+import heroBg from "@assets/hero-bg-1_1781992713488.jpg";
 
 const BULLET_POINTS = [
   "4 longitudinal grooves on the tread providing excellent guiding performance.",
@@ -83,7 +83,17 @@ export default function TireProductPage() {
 
 function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
   return (
-    <section className="tire-product-hero" style={{ backgroundColor: "#0d0d0e", marginTop: "-46px" }}>
+    <section
+      className="tire-product-hero"
+      style={{
+        marginTop: "-46px",
+        backgroundImage: `url(${heroBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "right center",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "#0d0d0e",
+      }}
+    >
       <div
         className="container grid grid-cols-1 md:grid-cols-2 items-center gap-0 md:gap-12"
         style={{ minHeight: "520px" }}
@@ -173,37 +183,10 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
           </ul>
         </div>
 
-        {/* Tire image with truck background behind it */}
-        <div
-          className="relative flex items-center justify-center pb-10 md:pb-0"
-          style={{ minHeight: "520px" }}
-        >
-          {/* Truck background — covers the right column, fades left into the dark bg */}
+        {/* Tire image — cropped via overflow:hidden + aspectRatio */}
+        <div className="flex items-center justify-center pb-10 md:py-8">
           <div
             style={{
-              position: "absolute",
-              inset: 0,
-              backgroundImage: `url(${heroBg})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center center",
-              backgroundRepeat: "no-repeat",
-              opacity: 0.55,
-            }}
-          />
-          {/* Left-edge gradient fade so it blends seamlessly with the text column */}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background: "linear-gradient(to right, #0d0d0e 0%, transparent 40%)",
-              pointerEvents: "none",
-            }}
-          />
-          {/* Tire image on top — preserve original crop via overflow:hidden + aspectRatio */}
-          <div
-            style={{
-              position: "relative",
-              zIndex: 1,
               width: "100%",
               maxWidth: "520px",
               overflow: "hidden",

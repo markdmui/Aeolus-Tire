@@ -7,6 +7,7 @@ import feature1 from "@assets/neo-fuel-g3-f1_1781632744768.jpg";
 import feature2 from "@assets/neo-fuel-g3-f2_1781632744768.jpg";
 import feature3 from "@assets/neo-fuel-g3-f3_1781632744768.jpg";
 import bgTruck from "@assets/bg-long-haul-1_1781632744768.jpg";
+import heroBg from "@assets/hero-bg-1_1781992393504.jpg";
 
 const BULLET_POINTS = [
   "4 longitudinal grooves on the tread providing excellent guiding performance.",
@@ -172,16 +173,39 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
           </ul>
         </div>
 
-        {/* Tire image — below text on mobile, right column on desktop */}
+        {/* Tire image with truck background behind it */}
         <div
-          className="flex items-center justify-center pb-10 md:py-8"
+          className="relative flex items-center justify-center pb-10 md:pb-0"
+          style={{ minHeight: "520px" }}
         >
+          {/* Truck background — covers the right column, fades left into the dark bg */}
           <div
             style={{
+              position: "absolute",
+              inset: 0,
+              backgroundImage: `url(${heroBg})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center center",
+              backgroundRepeat: "no-repeat",
+              opacity: 0.55,
+            }}
+          />
+          {/* Left-edge gradient fade so it blends seamlessly with the text column */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "linear-gradient(to right, #0d0d0e 0%, transparent 40%)",
+              pointerEvents: "none",
+            }}
+          />
+          {/* Tire image on top */}
+          <div
+            style={{
+              position: "relative",
+              zIndex: 1,
               width: "100%",
               maxWidth: "520px",
-              overflow: "hidden",
-              aspectRatio: "1 / 0.78",
             }}
           >
             <img
@@ -192,7 +216,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
                 width: "100%",
                 height: "auto",
                 display: "block",
-                filter: "drop-shadow(0 20px 60px rgba(0,0,0,0.7))",
+                filter: "drop-shadow(0 20px 60px rgba(0,0,0,0.8))",
                 cursor: "zoom-in",
               }}
             />

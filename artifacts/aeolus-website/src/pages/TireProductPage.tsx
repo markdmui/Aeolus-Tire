@@ -330,7 +330,7 @@ function SpecsSection() {
         }}
       >
         <div className="container" style={{ overflowX: "auto", paddingTop: "0", paddingBottom: "0" }}>
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.78rem" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.86rem" }}>
             <thead>
               <tr>
                 <th rowSpan={2} style={thStyle}>Size</th>

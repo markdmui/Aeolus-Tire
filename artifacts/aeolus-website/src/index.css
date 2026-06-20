@@ -326,8 +326,24 @@ html {
 
   /* Shift product page hero background right on mobile, shrink to 80% */
   .tire-product-hero {
+    position: relative;
     background-size: 224% auto !important;
     background-position: right -180px top 100px !important;
+  }
+
+  /* 15% opacity reduction on mobile via dark overlay */
+  .tire-product-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .tire-product-hero > * {
+    position: relative;
+    z-index: 1;
   }
 
   /* Tighten footer link spacing on mobile */

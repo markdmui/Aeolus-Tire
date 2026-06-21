@@ -99,6 +99,21 @@ const TIRE_DROPDOWN = {
   ],
 };
 
+function CategoryHeader({ text }: { text: string }) {
+  const parts = text.split(/(NEO)/);
+  return (
+    <>
+      {parts.map((part, i) =>
+        part === "NEO" ? (
+          <span key={i} style={{ color: "var(--accent-yellow)" }}>{part}</span>
+        ) : (
+          part
+        )
+      )}
+    </>
+  );
+}
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -183,7 +198,7 @@ export default function Navbar() {
                 {TIRE_DROPDOWN.left.map((section) => (
                   <div key={section.category} style={{ marginBottom: "0.9rem" }}>
                     <div style={{ color: "#ffffff", fontWeight: 700, fontSize: "0.7rem", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.3rem", fontFamily: "var(--font-body)" }}>
-                      {section.category}
+                      <CategoryHeader text={section.category} />
                     </div>
                     {section.tires.map((tire) =>
                       tire.href === "#" ? (
@@ -192,6 +207,7 @@ export default function Navbar() {
                         <Link key={tire.label} href={tire.href} className="dropdown-tire-link">{tire.label}</Link>
                       )
                     )}
+
                   </div>
                 ))}
               </div>
@@ -199,7 +215,7 @@ export default function Navbar() {
                 {TIRE_DROPDOWN.right.map((section) => (
                   <div key={section.category} style={{ marginBottom: "0.9rem" }}>
                     <div style={{ color: "#ffffff", fontWeight: 700, fontSize: "0.7rem", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.3rem", fontFamily: "var(--font-body)" }}>
-                      {section.category}
+                      <CategoryHeader text={section.category} />
                     </div>
                     {section.tires.map((tire) => (
                       <a key={tire.label} href={tire.href} className="dropdown-tire-link">{tire.label}</a>

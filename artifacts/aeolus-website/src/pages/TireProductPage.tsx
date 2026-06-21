@@ -186,15 +186,24 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
 
         {/* Tire image — cropped via overflow:hidden + aspectRatio */}
         <div className="flex items-center justify-center pb-10 md:py-8">
-          <div style={{ width: "100%", maxWidth: "520px" }}>
+          <div
+            style={{
+              width: "100%",
+              maxWidth: "520px",
+              overflow: "hidden",
+              aspectRatio: "1 / 1",
+            }}
+          >
             <img
               src={tireImg}
               alt="Aeolus Neo Fuel G3"
               onClick={() => onOpen(tireImg)}
               style={{
                 width: "100%",
-                height: "auto",
+                height: "100%",
                 display: "block",
+                objectFit: "cover",
+                objectPosition: "center top",
                 cursor: "zoom-in",
               }}
             />

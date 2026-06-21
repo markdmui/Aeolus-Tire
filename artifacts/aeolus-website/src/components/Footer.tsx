@@ -27,10 +27,10 @@ export default function Footer() {
               Tire Categories
             </h4>
             <FooterLinks items={[
-              { label: "Premium TBR", href: "/tires" },
-              { label: "Standard TBR", href: "/tires" },
-              { label: "OTR", href: "/tires" },
-              { label: "Catalog", href: "/tires" },
+              { label: "Premium TBR", href: "#" },
+              { label: "Standard TBR", href: "#" },
+              { label: "OTR", href: "#" },
+              { label: "Catalog", href: "#" },
             ]} />
           </div>
           <div>
@@ -41,11 +41,11 @@ export default function Footer() {
               Company
             </h4>
             <FooterLinks items={[
-              { label: "Tires", href: "/tires" },
+              { label: "Tires", href: "#" },
               { label: "About", href: "#" },
               { label: "Media", href: "#" },
               { label: "Contact", href: "#" },
-              { label: "Search", href: "/tires" },
+              { label: "Search", href: "#" },
             ]} />
           </div>
           <div>

@@ -45,7 +45,7 @@ export default function Navbar() {
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-12">
           <NavLinks />
-          <Link href="/tires" className="btn-primary" style={{ display: "inline-block" }}>
+          <Link href="#" className="btn-primary" style={{ display: "inline-block" }}>
             SEARCH
           </Link>
         </div>
@@ -77,7 +77,7 @@ export default function Navbar() {
         >
           <MobileNavLinks onClose={() => setMenuOpen(false)} />
           <Link
-            href="/tires"
+            href="#"
             className="btn-primary"
             style={{ display: "inline-block", marginTop: "1.5rem" }}
             onClick={() => setMenuOpen(false)}
@@ -93,7 +93,7 @@ export default function Navbar() {
 function NavLinks() {
   const links = [
     { label: "HOME", href: "/" },
-    { label: "TIRES", href: "/tires" },
+    { label: "TIRES", href: "#" },
     { label: "ABOUT", href: "#" },
     { label: "MEDIA", href: "#" },
     { label: "CONTACT", href: "#" },
@@ -113,7 +113,7 @@ function NavLinks() {
 function MobileNavLinks({ onClose }: { onClose: () => void }) {
   const links = [
     { label: "HOME", href: "/" },
-    { label: "TIRES", href: "/tires" },
+    { label: "TIRES", href: "#" },
     { label: "ABOUT", href: "#" },
     { label: "MEDIA", href: "#" },
     { label: "CONTACT", href: "#" },

@@ -223,58 +223,62 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
     >
       <div
         className="container grid grid-cols-1 md:grid-cols-3"
-        style={{ gap: "var(--col-gap)" }}
+        style={{ gap: "var(--col-gap)", gridTemplateRows: "auto auto auto" }}
       >
         {FEATURES.map((f) => (
           <div
             key={f.title}
             style={{
               borderTop: "1px solid #cccccc",
-              display: "flex",
-              flexDirection: "column",
+              display: "grid",
+              gridTemplateRows: "subgrid",
+              gridRow: "span 3",
+              alignContent: "start",
             }}
           >
-            {/* Text content */}
-            <div style={{ padding: "1.75rem 0 1.5rem" }} className="md:pt-10 md:pb-8">
-              <h3
-                className="uppercase"
-                style={{
-                  color: "var(--accent-yellow)",
-                  fontSize: "1.05rem",
-                  fontWeight: 700,
-                  letterSpacing: "0.1em",
-                  marginBottom: "1rem",
-                  lineHeight: 1.4,
-                }}
-              >
-                {f.title}
-              </h3>
-              <p
-                style={{
-                  color: "#cccccc",
-                  fontSize: "0.86rem",
-                  lineHeight: 1.45,
-                }}
-              >
-                {f.body}
-              </p>
-            </div>
+            {/* Title */}
+            <h3
+              className="uppercase md:pt-10"
+              style={{
+                color: "var(--accent-yellow)",
+                fontSize: "1.05rem",
+                fontWeight: 700,
+                letterSpacing: "0.1em",
+                lineHeight: 1.4,
+                paddingTop: "1.75rem",
+                marginBottom: 0,
+              }}
+            >
+              {f.title}
+            </h3>
+
+            {/* Body */}
+            <p
+              style={{
+                color: "#cccccc",
+                fontSize: "0.86rem",
+                lineHeight: 1.45,
+                paddingTop: "1rem",
+                paddingBottom: "1.5rem",
+              }}
+              className="md:pb-8"
+            >
+              {f.body}
+            </p>
 
             {/* Feature image */}
-            <div style={{ marginTop: "auto" }}>
-              <img
-                src={f.image}
-                alt={f.title}
-                onClick={() => onOpen(f.image)}
-                style={{
-                  width: "100%",
-                  display: "block",
-                  aspectRatio: "16 / 9",
-                  objectFit: "cover",
-                  cursor: "zoom-in",
-                }}
-              />
-            </div>
+            <img
+              src={f.image}
+              alt={f.title}
+              onClick={() => onOpen(f.image)}
+              style={{
+                width: "100%",
+                display: "block",
+                aspectRatio: "16 / 9",
+                objectFit: "cover",
+                cursor: "zoom-in",
+              }}
+            />
           </div>
         ))}
       </div>

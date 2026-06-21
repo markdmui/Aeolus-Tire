@@ -256,7 +256,7 @@ export default function Navbar() {
           <Link
             href="#"
             className="btn-primary"
-            style={{ display: "inline-block", marginTop: "1.5rem" }}
+            style={{ display: "inline-block", marginTop: "1.5rem", paddingLeft: "10px" }}
             onClick={() => setMenuOpen(false)}
           >
             SEARCH

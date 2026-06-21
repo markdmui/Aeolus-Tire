@@ -326,7 +326,7 @@ function SpecsSection() {
                   borderTop: "1px solid rgba(255,255,255,0.2)",
                   borderRight: "1px solid rgba(255,255,255,0.2)",
                   borderBottom: "1px solid rgba(255,255,255,0.2)",
-                  borderLeft: "3px solid var(--accent-yellow)",
+                  borderLeft: "5px solid var(--accent-yellow)",
                   color: "#fff",
                   fontSize: "0.8rem",
                   fontFamily: "var(--font-body)",

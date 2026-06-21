@@ -327,7 +327,7 @@ function SpecsSection() {
                   borderRight: "1px solid rgba(255,255,255,0.2)",
                   borderBottom: "1px solid rgba(255,255,255,0.2)",
                   borderLeft: "5px solid var(--accent-yellow)",
-                  color: "#fff",
+                  color: "#cccccc",
                   fontSize: "0.8rem",
                   fontFamily: "var(--font-body)",
                   letterSpacing: "0.08em",
@@ -341,10 +341,11 @@ function SpecsSection() {
                 }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLButtonElement).style.background = "rgba(242,201,76,0.12)";
-                  (e.currentTarget as HTMLButtonElement).style.borderLeftColor = "var(--accent-yellow)";
+                  (e.currentTarget as HTMLButtonElement).style.color = "#ffffff";
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLButtonElement).style.background = "rgba(10,10,10,0.5)";
+                  (e.currentTarget as HTMLButtonElement).style.color = "#cccccc";
                 }}
               >
                 <span style={{ color: "var(--accent-yellow)", display: "flex", alignItems: "center" }}>{icon}</span>

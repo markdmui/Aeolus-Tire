@@ -191,7 +191,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
               width: "100%",
               maxWidth: "520px",
               overflow: "hidden",
-              aspectRatio: "1 / 1",
+              aspectRatio: "1 / 0.78",
             }}
           >
             <img
@@ -200,10 +200,8 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
               onClick={() => onOpen(tireImg)}
               style={{
                 width: "100%",
-                height: "100%",
+                height: "auto",
                 display: "block",
-                objectFit: "cover",
-                objectPosition: "center top",
                 cursor: "zoom-in",
               }}
             />

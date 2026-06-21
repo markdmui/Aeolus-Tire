@@ -3,10 +3,10 @@ import { Notebook, FilePdf, ShieldCheck, Image } from "@phosphor-icons/react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-import tireImg from "@assets/neo-fuel-g3-tire-lg_1781632744767.png";
-import feature1 from "@assets/neo-fuel-g3-f1_1781632744768.jpg";
-import feature2 from "@assets/neo-fuel-g3-f2_1781632744768.jpg";
-import feature3 from "@assets/neo-fuel-g3-f3_1781632744768.jpg";
+import tireImg from "@assets/TireImg-neo-fuel-g3_1782049028026.png";
+import feature1 from "@assets/TH-neo-fuel-g3-f1_1782049028025.jpg";
+import feature2 from "@assets/TH-neo-fuel-g3-f2_1782049028026.jpg";
+import feature3 from "@assets/TH-neo-fuel-g3-f3_1782049028026.jpg";
 import bgTruck from "@assets/bg-long-haul-1_1781632744768.jpg";
 import heroBg from "@assets/hero-bg-1_1781992713488.jpg";
 

@@ -340,12 +340,18 @@ function SpecsSection() {
                   transition: "background 0.15s ease, border-color 0.15s ease",
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLButtonElement).style.background = "rgba(242,201,76,0.12)";
-                  (e.currentTarget as HTMLButtonElement).style.color = "#ffffff";
+                  const btn = e.currentTarget as HTMLButtonElement;
+                  btn.style.background = "rgba(242,201,76,0.12)";
+                  btn.style.color = "#ffffff";
+                  const icon = btn.querySelector("span") as HTMLElement | null;
+                  if (icon) icon.style.color = "#ffffff";
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLButtonElement).style.background = "rgba(10,10,10,0.5)";
-                  (e.currentTarget as HTMLButtonElement).style.color = "#cccccc";
+                  const btn = e.currentTarget as HTMLButtonElement;
+                  btn.style.background = "rgba(10,10,10,0.5)";
+                  btn.style.color = "#cccccc";
+                  const icon = btn.querySelector("span") as HTMLElement | null;
+                  if (icon) icon.style.color = "var(--accent-yellow)";
                 }}
               >
                 <span style={{ color: "var(--accent-yellow)", display: "flex", alignItems: "center" }}>{icon}</span>

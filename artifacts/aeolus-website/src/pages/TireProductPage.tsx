@@ -203,8 +203,6 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
                 height: "auto",
                 display: "block",
                 cursor: "zoom-in",
-                transform: "scale(1.15)",
-                transformOrigin: "center center",
               }}
             />
           </div>

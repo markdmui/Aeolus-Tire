@@ -329,7 +329,7 @@ function SpecsSection() {
                   borderRight: "1px solid rgba(255,255,255,0.2)",
                   borderBottom: "1px solid rgba(255,255,255,0.2)",
                   borderLeft: "5px solid var(--accent-yellow)",
-                  color: "#cccccc",
+                  color: "#888888",
                   fontSize: "0.8rem",
                   fontFamily: "var(--font-body)",
                   letterSpacing: "0.08em",
@@ -351,7 +351,7 @@ function SpecsSection() {
                 onMouseLeave={(e) => {
                   const btn = e.currentTarget as HTMLButtonElement;
                   btn.style.background = "rgba(10,10,10,0.5)";
-                  btn.style.color = "#cccccc";
+                  btn.style.color = "#888888";
                   const icon = btn.querySelector("span") as HTMLElement | null;
                   if (icon) icon.style.color = "var(--accent-yellow)";
                 }}

@@ -100,7 +100,7 @@ function NavLinks() {
   ];
 
   return (
-    <ul className="flex items-center gap-6">
+    <ul className="flex items-center gap-10">
       {links.map(({ label, href }) => (
         <li key={label}>
           <NavLink label={label} href={href} />

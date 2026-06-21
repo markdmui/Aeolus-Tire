@@ -270,13 +270,11 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
             <img
               src={f.image}
               alt={f.title}
-              onClick={() => onOpen(f.image)}
               style={{
                 width: "100%",
                 display: "block",
                 aspectRatio: "16 / 9",
                 objectFit: "cover",
-                cursor: "zoom-in",
               }}
             />
           </div>

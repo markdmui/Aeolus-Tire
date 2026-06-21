@@ -295,7 +295,7 @@ function MobileNavLinks({ onClose }: { onClose: () => void }) {
             background: tiresOpen ? "#1e1e1e" : "none",
             border: "none",
             cursor: "pointer",
-            padding: "0.85rem 0 0.85rem 10px",
+            padding: "0.6rem 0 0.6rem 10px",
             margin: 0,
             fontSize: "1rem",
             fontFamily: "var(--font-body)",
@@ -379,7 +379,7 @@ function NavLink({
   const [isActive] = useRoute(href === "/" ? "/" : href + "*");
   const mobileStyle: React.CSSProperties = {
     display: "block",
-    padding: "0.85rem 0 0.85rem 10px",
+    padding: "0.6rem 0 0.6rem 10px",
     margin: "0",
     fontSize: "1rem",
     letterSpacing: "0.08em",

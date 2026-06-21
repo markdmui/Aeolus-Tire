@@ -387,7 +387,7 @@ function SpecsSection() {
           zIndex: 1,
         }}
       >
-        <div className="container" style={{ overflowX: "auto", paddingTop: "10px", paddingBottom: "0" }}>
+        <div className="container" style={{ overflowX: "auto", paddingTop: "20px", paddingBottom: "0" }}>
           <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.86rem" }}>
             <thead>
               <tr>

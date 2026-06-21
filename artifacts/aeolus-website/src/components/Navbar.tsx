@@ -256,7 +256,7 @@ export default function Navbar() {
           <Link
             href="#"
             className="btn-primary"
-            style={{ display: "inline-block", marginTop: "1.5rem", paddingLeft: "10px" }}
+            style={{ display: "inline-block", marginTop: "1.5rem" }}
             onClick={() => setMenuOpen(false)}
           >
             SEARCH
@@ -315,7 +315,7 @@ function NavLink({
   const [isActive] = useRoute(href === "/" ? "/" : href + "*");
   const mobileStyle: React.CSSProperties = {
     display: "block",
-    padding: "0.85rem 0",
+    padding: "0.85rem 0 0.85rem 10px",
     margin: "0",
     fontSize: "1rem",
     letterSpacing: "0.08em",

@@ -345,6 +345,7 @@ function SpecsSection() {
                   const btn = e.currentTarget as HTMLButtonElement;
                   btn.style.background = "rgba(242,201,76,0.12)";
                   btn.style.color = "#ffffff";
+                  btn.style.borderLeft = "5px solid #ffffff";
                   const icon = btn.querySelector("span") as HTMLElement | null;
                   if (icon) icon.style.color = "#ffffff";
                 }}
@@ -352,6 +353,7 @@ function SpecsSection() {
                   const btn = e.currentTarget as HTMLButtonElement;
                   btn.style.background = "rgba(10,10,10,0.5)";
                   btn.style.color = "#888888";
+                  btn.style.borderLeft = "5px solid var(--accent-yellow)";
                   const icon = btn.querySelector("span") as HTMLElement | null;
                   if (icon) icon.style.color = "var(--accent-yellow)";
                 }}

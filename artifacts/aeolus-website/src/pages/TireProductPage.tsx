@@ -199,11 +199,12 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
               alt="Aeolus Neo Fuel G3"
               onClick={() => onOpen(tireImg)}
               style={{
-                width: "115%",
+                width: "100%",
                 height: "auto",
                 display: "block",
                 cursor: "zoom-in",
-                marginLeft: "-7.5%",
+                transform: "scale(1.15)",
+                transformOrigin: "center center",
               }}
             />
           </div>

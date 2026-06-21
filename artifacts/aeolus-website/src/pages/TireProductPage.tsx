@@ -311,10 +311,10 @@ function SpecsSection() {
         <div className="container" style={{ position: "relative", zIndex: 1, paddingTop: "3rem" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", width: "fit-content" }}>
             {[
-              { icon: <Books size={18} weight="light" />, label: "Product Catalog" },
-              { icon: <FilePdf size={18} weight="light" />, label: "Product Sheet" },
-              { icon: <ShieldCheck size={18} weight="light" />, label: "Warranty" },
-              { icon: <Image size={18} weight="light" />, label: "Tire Photo" },
+              { icon: <Books size={22} weight="light" />, label: "Product Catalog" },
+              { icon: <FilePdf size={22} weight="light" />, label: "Product Sheet" },
+              { icon: <ShieldCheck size={22} weight="light" />, label: "Warranty" },
+              { icon: <Image size={22} weight="light" />, label: "Tire Photo" },
             ].map(({ icon, label }) => (
               <button
                 key={label}

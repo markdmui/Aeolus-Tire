@@ -7,7 +7,7 @@ import tireImg from "@assets/TireImg-neo-fuel-g3_1782049028026.png";
 import feature1 from "@assets/TH-neo-fuel-g3-f1_1782049028025.jpg";
 import feature2 from "@assets/TH-neo-fuel-g3-f2_1782049028026.jpg";
 import feature3 from "@assets/TH-neo-fuel-g3-f3_1782049028026.jpg";
-import bgTruck from "@assets/bg-long-haul-2_1782049885789.jpg";
+import bgTruck from "@assets/bg-long-haul-1_1782050028374.jpg";
 import heroBg from "@assets/hero-bg-1_1782049426533.jpg";
 
 const BULLET_POINTS = [

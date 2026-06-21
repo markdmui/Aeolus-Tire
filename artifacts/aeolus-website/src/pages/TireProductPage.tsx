@@ -323,7 +323,7 @@ function SpecsSection() {
                   alignItems: "center",
                   gap: "0.65rem",
                   background: "rgba(10,10,10,0.55)",
-                  border: "1px solid rgba(255,255,255,0.12)",
+                  border: "1.5px solid rgba(255,255,255,0.3)",
                   borderLeft: "3px solid var(--accent-yellow)",
                   color: "#fff",
                   fontSize: "0.8rem",

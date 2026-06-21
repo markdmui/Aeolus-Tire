@@ -191,7 +191,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
               width: "100%",
               maxWidth: "520px",
               overflow: "hidden",
-              aspectRatio: "1 / 0.88",
+              aspectRatio: "1 / 0.83",
             }}
           >
             <img

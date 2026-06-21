@@ -1,6 +1,103 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useRoute } from "wouter";
 import { List, X } from "@phosphor-icons/react";
+
+const TIRE_DROPDOWN = {
+  left: [
+    {
+      category: "NEO SERIES LONG HAUL",
+      tires: [
+        { label: "Neo Fuel S", href: "#" },
+        { label: "NEO FUEL D", href: "#" },
+        { label: "NEO FUEL D2", href: "#" },
+        { label: "NEO FUEL D3", href: "#" },
+        { label: "Neo Fuel T+", href: "#" },
+        { label: "Neo Fuel T2", href: "#" },
+        { label: "Neo Fuel T3", href: "#" },
+        { label: "Neo Fuel G3", href: "/tires/neo-fuel-g3" },
+      ],
+    },
+    {
+      category: "NEO/SAILOR SERIES REGIONAL",
+      tires: [
+        { label: "Neo Allroads S", href: "#" },
+        { label: "Neo Allroads S+", href: "#" },
+        { label: "Neo Allroads D", href: "#" },
+        { label: "Neo Allroads D+", href: "#" },
+        { label: "Neo Allroads T2", href: "#" },
+        { label: "Sailor ASR79", href: "#" },
+        { label: "Sailor ASR79II", href: "#" },
+        { label: "Sailor ADR78/ADR78 ii", href: "#" },
+      ],
+    },
+    {
+      category: "NEO SERIES ON/OFF ROAD",
+      tires: [
+        { label: "Neo Construct D", href: "#" },
+        { label: "Neo Construct G", href: "#" },
+      ],
+    },
+    {
+      category: "NEO SERIES WINTER",
+      tires: [
+        { label: "Neo Winter S", href: "#" },
+        { label: "Neo Allseason D", href: "#" },
+      ],
+    },
+    {
+      category: "NEO SERIES URBAN",
+      tires: [
+        { label: "Sailor AGB23", href: "#" },
+        { label: "Neo Urban G", href: "#" },
+      ],
+    },
+  ],
+  right: [
+    {
+      category: "STANDARD SERIES LONG HAUL",
+      tires: [
+        { label: "ASL06", href: "#" },
+        { label: "ADL58", href: "#" },
+        { label: "ATL08", href: "#" },
+      ],
+    },
+    {
+      category: "STANDARD SERIES REGIONAL",
+      tires: [
+        { label: "ASR30", href: "#" },
+        { label: "ASR35", href: "#" },
+        { label: "ASR69", href: "#" },
+        { label: "ADR24", href: "#" },
+        { label: "ADR26", href: "#" },
+        { label: "ADR35", href: "#" },
+        { label: "ADR55", href: "#" },
+        { label: "ADR69", href: "#" },
+        { label: "ADR57", href: "#" },
+        { label: "AGR26", href: "#" },
+      ],
+    },
+    {
+      category: "STANDARD SERIES ON/OFF ROAD",
+      tires: [
+        { label: "ADC52", href: "#" },
+        { label: "ADC53", href: "#" },
+        { label: "ADC54", href: "#" },
+        { label: "AGC08", href: "#" },
+        { label: "AGC53", href: "#" },
+        { label: "AGM10", href: "#" },
+        { label: "AGM84", href: "#" },
+      ],
+    },
+    {
+      category: "STANDARD SERIES WINTER",
+      tires: [
+        { label: "ADW80", href: "#" },
+        { label: "ADW81", href: "#" },
+        { label: "ADW82", href: "#" },
+      ],
+    },
+  ],
+};
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -90,22 +187,113 @@ export default function Navbar() {
   );
 }
 
-function NavLinks() {
-  const links = [
-    { label: "HOME", href: "/" },
-    { label: "TIRES", href: "#" },
-    { label: "ABOUT", href: "#" },
-    { label: "MEDIA", href: "#" },
-    { label: "CONTACT", href: "#" },
-  ];
+function TiresDropdown() {
+  const [open, setOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleEnter = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setOpen(true);
+  };
+
+  const handleLeave = () => {
+    closeTimer.current = setTimeout(() => setOpen(false), 120);
+  };
 
   return (
+    <li style={{ position: "relative" }} onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
+      <a href="#" className="nav-link" style={{ cursor: "default" }}>
+        TIRES
+      </a>
+
+      {open && (
+        <div
+          style={{
+            position: "absolute",
+            top: "calc(100% + 10px)",
+            right: 0,
+            backgroundColor: "#000000",
+            border: "1px solid #2c2c2e",
+            padding: "1.5rem 1.75rem",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "0 2.5rem",
+            minWidth: "540px",
+            zIndex: 200,
+            boxShadow: "0 8px 32px rgba(0,0,0,0.6)",
+          }}
+        >
+          {/* Left column */}
+          <div>
+            {TIRE_DROPDOWN.left.map((section) => (
+              <div key={section.category} style={{ marginBottom: "1.1rem" }}>
+                <div
+                  style={{
+                    color: "#ffffff",
+                    fontWeight: 700,
+                    fontSize: "0.7rem",
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    marginBottom: "0.3rem",
+                    fontFamily: "var(--font-body)",
+                  }}
+                >
+                  {section.category}
+                </div>
+                {section.tires.map((tire) =>
+                  tire.href === "#" ? (
+                    <a key={tire.label} href="#" className="dropdown-tire-link">
+                      {tire.label}
+                    </a>
+                  ) : (
+                    <Link key={tire.label} href={tire.href} className="dropdown-tire-link">
+                      {tire.label}
+                    </Link>
+                  )
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Right column */}
+          <div>
+            {TIRE_DROPDOWN.right.map((section) => (
+              <div key={section.category} style={{ marginBottom: "1.1rem" }}>
+                <div
+                  style={{
+                    color: "#ffffff",
+                    fontWeight: 700,
+                    fontSize: "0.7rem",
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    marginBottom: "0.3rem",
+                    fontFamily: "var(--font-body)",
+                  }}
+                >
+                  {section.category}
+                </div>
+                {section.tires.map((tire) => (
+                  <a key={tire.label} href={tire.href} className="dropdown-tire-link">
+                    {tire.label}
+                  </a>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </li>
+  );
+}
+
+function NavLinks() {
+  return (
     <ul className="flex items-center gap-10">
-      {links.map(({ label, href }) => (
-        <li key={label}>
-          <NavLink label={label} href={href} />
-        </li>
-      ))}
+      <li><NavLink label="HOME" href="/" /></li>
+      <TiresDropdown />
+      <li><NavLink label="ABOUT" href="#" /></li>
+      <li><NavLink label="MEDIA" href="#" /></li>
+      <li><NavLink label="CONTACT" href="#" /></li>
     </ul>
   );
 }

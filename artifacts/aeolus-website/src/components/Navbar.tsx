@@ -100,11 +100,11 @@ const TIRE_DROPDOWN = {
 };
 
 function CategoryHeader({ text }: { text: string }) {
-  const parts = text.split(/(NEO)/);
+  const parts = text.split(/(NEO SERIES|NEO)/);
   return (
     <>
       {parts.map((part, i) =>
-        part === "NEO" ? (
+        part === "NEO SERIES" || part === "NEO" ? (
           <span key={i} style={{ color: "var(--accent-yellow)" }}>{part}</span>
         ) : (
           part

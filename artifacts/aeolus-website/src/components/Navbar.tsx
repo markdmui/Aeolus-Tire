@@ -282,21 +282,93 @@ function NavLinks({ onTiresEnter }: { onTiresEnter: () => void }) {
 }
 
 function MobileNavLinks({ onClose }: { onClose: () => void }) {
-  const links = [
-    { label: "HOME", href: "/" },
-    { label: "TIRES", href: "#" },
-    { label: "ABOUT", href: "#" },
-    { label: "MEDIA", href: "#" },
-    { label: "CONTACT", href: "#" },
-  ];
+  const [tiresOpen, setTiresOpen] = useState(false);
+
+  const rowStyle: React.CSSProperties = { borderBottom: "1px solid #222" };
 
   return (
     <ul className="flex flex-col gap-0">
-      {links.map(({ label, href }) => (
-        <li key={label} style={{ borderBottom: "1px solid #222" }}>
-          <NavLink label={label} href={href} mobile onClose={onClose} />
-        </li>
-      ))}
+      <li style={rowStyle}>
+        <NavLink label="HOME" href="/" mobile onClose={onClose} />
+      </li>
+
+      {/* TIRES accordion row */}
+      <li style={rowStyle}>
+        <button
+          onClick={() => setTiresOpen((o) => !o)}
+          style={{
+            display: "block",
+            width: "100%",
+            textAlign: "left",
+            background: tiresOpen ? "#1e1e1e" : "none",
+            border: "none",
+            cursor: "pointer",
+            padding: "0.85rem 0 0.85rem 10px",
+            margin: 0,
+            fontSize: "1rem",
+            fontFamily: "var(--font-body)",
+            fontWeight: 600,
+            letterSpacing: "0.08em",
+            color: tiresOpen ? "#FFD700" : "#ffffff",
+          }}
+        >
+          TIRES
+        </button>
+
+        {tiresOpen && (
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: "0 1.25rem",
+              padding: "1rem 10px 1.5rem",
+              backgroundColor: "#111",
+            }}
+          >
+            {/* Left column */}
+            <div>
+              {TIRE_DROPDOWN.left.map((section) => (
+                <div key={section.category} style={{ marginBottom: "0.9rem" }}>
+                  <div style={{ color: "#ffffff", fontWeight: 700, fontSize: "0.62rem", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.3rem", fontFamily: "var(--font-body)" }}>
+                    <CategoryHeader text={section.category} />
+                  </div>
+                  {section.tires.map((tire) =>
+                    tire.href === "#" ? (
+                      <a key={tire.label} href="#" className="dropdown-tire-link">{tire.label}</a>
+                    ) : (
+                      <Link key={tire.label} href={tire.href} className="dropdown-tire-link" onClick={onClose}>{tire.label}</Link>
+                    )
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Right column */}
+            <div>
+              {TIRE_DROPDOWN.right.map((section) => (
+                <div key={section.category} style={{ marginBottom: "0.9rem" }}>
+                  <div style={{ color: "#ffffff", fontWeight: 700, fontSize: "0.62rem", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.3rem", fontFamily: "var(--font-body)" }}>
+                    <CategoryHeader text={section.category} />
+                  </div>
+                  {section.tires.map((tire) => (
+                    <a key={tire.label} href={tire.href} className="dropdown-tire-link">{tire.label}</a>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </li>
+
+      <li style={rowStyle}>
+        <NavLink label="ABOUT" href="#" mobile onClose={onClose} />
+      </li>
+      <li style={rowStyle}>
+        <NavLink label="MEDIA" href="#" mobile onClose={onClose} />
+      </li>
+      <li style={rowStyle}>
+        <NavLink label="CONTACT" href="#" mobile onClose={onClose} />
+      </li>
     </ul>
   );
 }

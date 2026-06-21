@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { Books, FilePdf, ShieldCheck, Image } from "@phosphor-icons/react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -284,7 +285,7 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
 function SpecsSection() {
   return (
     <section style={{ backgroundColor: "var(--bg-dark)" }}>
-      {/* Truck background with heading */}
+      {/* Truck background with download buttons + heading */}
       <div
         style={{
           position: "relative",
@@ -294,7 +295,8 @@ function SpecsSection() {
           minHeight: "480px",
           marginBottom: "-40px",
           display: "flex",
-          alignItems: "flex-end",
+          flexDirection: "column",
+          justifyContent: "space-between",
         }}
       >
         <div
@@ -304,6 +306,52 @@ function SpecsSection() {
             background: "linear-gradient(to bottom, rgba(10,10,10,0.05) 0%, rgba(10,10,10,0.55) 100%)",
           }}
         />
+
+        {/* Download buttons */}
+        <div className="container" style={{ position: "relative", zIndex: 1, paddingTop: "3rem" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", width: "fit-content" }}>
+            {[
+              { icon: <Books size={18} weight="light" />, label: "Product Catalog" },
+              { icon: <FilePdf size={18} weight="light" />, label: "Product Sheet" },
+              { icon: <ShieldCheck size={18} weight="light" />, label: "Warranty" },
+              { icon: <Image size={18} weight="light" />, label: "Tire Photo" },
+            ].map(({ icon, label }) => (
+              <button
+                key={label}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.65rem",
+                  background: "rgba(10,10,10,0.55)",
+                  border: "1px solid rgba(255,255,255,0.12)",
+                  borderLeft: "3px solid var(--accent-yellow)",
+                  color: "#fff",
+                  fontSize: "0.8rem",
+                  fontFamily: "var(--font-body)",
+                  letterSpacing: "0.03em",
+                  padding: "0.55rem 1rem 0.55rem 0.75rem",
+                  cursor: "pointer",
+                  minWidth: "180px",
+                  textAlign: "left",
+                  backdropFilter: "blur(4px)",
+                  transition: "background 0.15s ease, border-color 0.15s ease",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLButtonElement).style.background = "rgba(242,201,76,0.12)";
+                  (e.currentTarget as HTMLButtonElement).style.borderLeftColor = "var(--accent-yellow)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLButtonElement).style.background = "rgba(10,10,10,0.55)";
+                }}
+              >
+                <span style={{ color: "var(--accent-yellow)", display: "flex", alignItems: "center" }}>{icon}</span>
+                {label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Heading at bottom */}
         <div className="container" style={{ position: "relative", zIndex: 1, paddingBottom: "3.5rem" }}>
           <h2
             className="uppercase"

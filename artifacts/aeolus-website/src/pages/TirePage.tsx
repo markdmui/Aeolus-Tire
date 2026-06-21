@@ -172,7 +172,7 @@ export default function TirePage() {
           marginTop: "-46px",
           paddingTop: "118px",
           paddingBottom: "56px",
-          backgroundColor: "#0d0d0e",
+          backgroundColor: "#000000",
         }}
       >
         <div className="container">

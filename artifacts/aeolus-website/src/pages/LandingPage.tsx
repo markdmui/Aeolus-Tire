@@ -351,7 +351,7 @@ function EngineeringApproach() {
         <div
           className="relative flex flex-col justify-between"
           style={{
-            backgroundColor: "#0d0d0e",
+            backgroundColor: "#000000",
             border: "1px solid var(--border-color)",
             minHeight: "24rem",
             padding: "clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 5vw, 4rem)",

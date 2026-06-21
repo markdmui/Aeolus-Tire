@@ -72,8 +72,8 @@ html {
   --col-gap: 1.5rem;
 
   /* Brand palette */
-  --bg-dark: #0A0A0A;
-  --bg-gradient: #141415;
+  --bg-dark: #000000;
+  --bg-gradient: #000000;
   --text-main: #FFFFFF;
   --text-muted: #b1b1b1;
   --accent-yellow: #F2C94C;
@@ -89,7 +89,7 @@ html {
   --elevate-1: rgba(255,255,255, .04);
   --elevate-2: rgba(255,255,255, .09);
 
-  --background: 0 0% 4%;       /* ~#0A0A0A */
+  --background: 0 0% 0%;       /* #000000 */
   --foreground: 0 0% 100%;
   --border: 0 0% 17%;          /* ~#2C2C2E */
   --input: 0 0% 17%;

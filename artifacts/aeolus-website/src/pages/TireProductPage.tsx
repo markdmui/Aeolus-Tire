@@ -92,7 +92,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
         backgroundSize: "cover",
         backgroundPosition: "right center",
         backgroundRepeat: "no-repeat",
-        backgroundColor: "#0d0d0e",
+        backgroundColor: "#000000",
       }}
     >
       <div
@@ -217,7 +217,7 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
     <section
       className="md:pt-[100px]"
       style={{
-        backgroundColor: "#0d0d0e",
+        backgroundColor: "#000000",
         borderBottom: "1px solid var(--border-color)",
       }}
     >
@@ -386,7 +386,7 @@ function SpecsSection() {
       {/* Specs table */}
       <div
         style={{
-          backgroundColor: "#0a0a0a",
+          backgroundColor: "#000000",
           position: "relative",
           zIndex: 1,
         }}

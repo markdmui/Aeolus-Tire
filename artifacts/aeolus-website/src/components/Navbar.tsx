@@ -316,6 +316,7 @@ function NavLink({
   const mobileStyle: React.CSSProperties = {
     display: "block",
     padding: "0.85rem 0",
+    margin: "0",
     fontSize: "1rem",
     letterSpacing: "0.08em",
   };

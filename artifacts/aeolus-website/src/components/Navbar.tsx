@@ -181,7 +181,7 @@ export default function Navbar() {
             >
               <div>
                 {TIRE_DROPDOWN.left.map((section) => (
-                  <div key={section.category} style={{ marginBottom: "1.1rem" }}>
+                  <div key={section.category} style={{ marginBottom: "0.9rem" }}>
                     <div style={{ color: "#ffffff", fontWeight: 700, fontSize: "0.7rem", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.3rem", fontFamily: "var(--font-body)" }}>
                       {section.category}
                     </div>
@@ -197,7 +197,7 @@ export default function Navbar() {
               </div>
               <div>
                 {TIRE_DROPDOWN.right.map((section) => (
-                  <div key={section.category} style={{ marginBottom: "1.1rem" }}>
+                  <div key={section.category} style={{ marginBottom: "0.9rem" }}>
                     <div style={{ color: "#ffffff", fontWeight: 700, fontSize: "0.7rem", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.3rem", fontFamily: "var(--font-body)" }}>
                       {section.category}
                     </div>

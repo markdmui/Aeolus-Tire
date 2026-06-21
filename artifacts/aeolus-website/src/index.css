@@ -203,6 +203,7 @@ html {
    NAVIGATION
    ============================================================ */
 .nav-link {
+  display: inline-block;
   color: var(--text-main);
   text-decoration: none;
   font-size: 0.85rem;

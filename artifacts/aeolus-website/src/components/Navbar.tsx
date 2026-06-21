@@ -102,6 +102,16 @@ const TIRE_DROPDOWN = {
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [tiresOpen, setTiresOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openTires = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setTiresOpen(true);
+  };
+  const closeTires = () => {
+    closeTimer.current = setTimeout(() => setTiresOpen(false), 120);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 0);
@@ -139,12 +149,66 @@ export default function Navbar() {
           <img src="/aeolus-logo.png" alt="Aeolus" className="h-[26px] w-auto" />
         </Link>
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-12">
-          <NavLinks />
+        {/* Desktop nav — position:relative so dropdown anchors to this container's right edge */}
+        <div
+          className="hidden md:flex items-center gap-12"
+          style={{ position: "relative" }}
+          onMouseLeave={closeTires}
+        >
+          <NavLinks onTiresEnter={openTires} />
           <Link href="#" className="btn-primary" style={{ display: "inline-block" }}>
             SEARCH
           </Link>
+
+          {/* Dropdown panel — right:0 aligns with SEARCH button's right edge */}
+          {tiresOpen && (
+            <div
+              onMouseEnter={openTires}
+              style={{
+                position: "absolute",
+                top: "calc(100% + 10px)",
+                right: 0,
+                backgroundColor: "#000000",
+                border: "1px solid #2c2c2e",
+                padding: "1.5rem 1.75rem",
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "0 2.5rem",
+                minWidth: "540px",
+                zIndex: 200,
+                boxShadow: "0 8px 32px rgba(0,0,0,0.6)",
+              }}
+            >
+              <div>
+                {TIRE_DROPDOWN.left.map((section) => (
+                  <div key={section.category} style={{ marginBottom: "1.1rem" }}>
+                    <div style={{ color: "#ffffff", fontWeight: 700, fontSize: "0.7rem", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.3rem", fontFamily: "var(--font-body)" }}>
+                      {section.category}
+                    </div>
+                    {section.tires.map((tire) =>
+                      tire.href === "#" ? (
+                        <a key={tire.label} href="#" className="dropdown-tire-link">{tire.label}</a>
+                      ) : (
+                        <Link key={tire.label} href={tire.href} className="dropdown-tire-link">{tire.label}</Link>
+                      )
+                    )}
+                  </div>
+                ))}
+              </div>
+              <div>
+                {TIRE_DROPDOWN.right.map((section) => (
+                  <div key={section.category} style={{ marginBottom: "1.1rem" }}>
+                    <div style={{ color: "#ffffff", fontWeight: 700, fontSize: "0.7rem", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.3rem", fontFamily: "var(--font-body)" }}>
+                      {section.category}
+                    </div>
+                    {section.tires.map((tire) => (
+                      <a key={tire.label} href={tire.href} className="dropdown-tire-link">{tire.label}</a>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Mobile hamburger */}
@@ -187,110 +251,13 @@ export default function Navbar() {
   );
 }
 
-function TiresDropdown() {
-  const [open, setOpen] = useState(false);
-  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const handleEnter = () => {
-    if (closeTimer.current) clearTimeout(closeTimer.current);
-    setOpen(true);
-  };
-
-  const handleLeave = () => {
-    closeTimer.current = setTimeout(() => setOpen(false), 120);
-  };
-
-  return (
-    <li style={{ position: "relative" }} onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
-      <a href="#" className="nav-link" style={{ cursor: "default" }}>
-        TIRES
-      </a>
-
-      {open && (
-        <div
-          style={{
-            position: "absolute",
-            top: "calc(100% + 10px)",
-            right: 0,
-            backgroundColor: "#000000",
-            border: "1px solid #2c2c2e",
-            padding: "1.5rem 1.75rem",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "0 2.5rem",
-            minWidth: "540px",
-            zIndex: 200,
-            boxShadow: "0 8px 32px rgba(0,0,0,0.6)",
-          }}
-        >
-          {/* Left column */}
-          <div>
-            {TIRE_DROPDOWN.left.map((section) => (
-              <div key={section.category} style={{ marginBottom: "1.1rem" }}>
-                <div
-                  style={{
-                    color: "#ffffff",
-                    fontWeight: 700,
-                    fontSize: "0.7rem",
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                    marginBottom: "0.3rem",
-                    fontFamily: "var(--font-body)",
-                  }}
-                >
-                  {section.category}
-                </div>
-                {section.tires.map((tire) =>
-                  tire.href === "#" ? (
-                    <a key={tire.label} href="#" className="dropdown-tire-link">
-                      {tire.label}
-                    </a>
-                  ) : (
-                    <Link key={tire.label} href={tire.href} className="dropdown-tire-link">
-                      {tire.label}
-                    </Link>
-                  )
-                )}
-              </div>
-            ))}
-          </div>
-
-          {/* Right column */}
-          <div>
-            {TIRE_DROPDOWN.right.map((section) => (
-              <div key={section.category} style={{ marginBottom: "1.1rem" }}>
-                <div
-                  style={{
-                    color: "#ffffff",
-                    fontWeight: 700,
-                    fontSize: "0.7rem",
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                    marginBottom: "0.3rem",
-                    fontFamily: "var(--font-body)",
-                  }}
-                >
-                  {section.category}
-                </div>
-                {section.tires.map((tire) => (
-                  <a key={tire.label} href={tire.href} className="dropdown-tire-link">
-                    {tire.label}
-                  </a>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-    </li>
-  );
-}
-
-function NavLinks() {
+function NavLinks({ onTiresEnter }: { onTiresEnter: () => void }) {
   return (
     <ul className="flex items-center gap-10">
       <li><NavLink label="HOME" href="/" /></li>
-      <TiresDropdown />
+      <li onMouseEnter={onTiresEnter}>
+        <a href="#" className="nav-link">TIRES</a>
+      </li>
       <li><NavLink label="ABOUT" href="#" /></li>
       <li><NavLink label="MEDIA" href="#" /></li>
       <li><NavLink label="CONTACT" href="#" /></li>

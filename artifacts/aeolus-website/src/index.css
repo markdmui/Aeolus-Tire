@@ -310,7 +310,7 @@ html {
   .tire-hero-title    { margin-bottom: 0.55rem; }
   .tire-hero-subtitle { margin-bottom: 0.875rem; }
   .tire-hero-divider  { margin-bottom: 0.875rem; }
-  .tire-hero-truck    { margin-top: 0.875rem; }
+  .tire-hero-truck    { margin-top: 0.875rem; width: 112px; }
 }
 
 .footer-link {

@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 import tireImg from "@assets/Neo-Fuel-G3_1782150885408.png";
+import posDriveTire from "@assets/pos-drive-tire.svg";
 import feature1 from "@assets/Neo-Fuel-G3-f1_1782151740029.jpg";
 import feature2 from "@assets/Neo-Fuel-G3-f2_1782151740029.jpg";
 import feature3 from "@assets/Neo-Fuel-G3-f3_1782151740030.jpg";
@@ -188,6 +189,13 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
               </li>
             ))}
           </ul>
+
+          {/* Position / application icon */}
+          <img
+            src={posDriveTire}
+            alt="Drive tire position"
+            style={{ marginTop: "2rem", width: "140px", height: "auto", display: "block", opacity: 0.75 }}
+          />
         </div>
 
         {/* Tire image — cropped via overflow:hidden + aspectRatio */}

@@ -161,7 +161,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
           />
 
           {/* Bullet points */}
-          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.45rem" }}>
+          <ul className="tire-hero-bullets" style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column" }}>
             {BULLET_POINTS.map((point) => (
               <li
                 key={point}

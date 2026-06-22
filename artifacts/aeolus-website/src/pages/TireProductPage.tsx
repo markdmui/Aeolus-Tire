@@ -70,10 +70,6 @@ export default function TireProductPage() {
     return () => window.removeEventListener("keydown", onKey);
   }, [activeImg, close]);
 
-  const showSmartway = SPEC_ROWS.some((r) => r.smartway);
-  const showMs       = SPEC_ROWS.some((r) => r.ms);
-  const showPmsf     = SPEC_ROWS.some((r) => r.pmsf);
-
   return (
     <div
       className="antialiased text-white"
@@ -292,6 +288,10 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
 }
 
 function SpecsSection() {
+  const showSmartway = SPEC_ROWS.some((r) => r.smartway);
+  const showMs       = SPEC_ROWS.some((r) => r.ms);
+  const showPmsf     = SPEC_ROWS.some((r) => r.pmsf);
+
   return (
     <section style={{ backgroundColor: "var(--bg-dark)" }}>
       {/* Truck background with download buttons + heading */}

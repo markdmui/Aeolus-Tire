@@ -41,21 +41,21 @@ const SPEC_ROWS = [
     odIn: "39.9",  odMm: "1014",  td32: "15", tdMm: "18.9",
     mlSlbs: "6600",  mlSpsi: "120", mlSkg: "3000", mlSkpa: "830",
     mlDlbs: "5995",  mlDpsi: "120", mlDkg: "2725", mlDkpa: "830",
-    liss: "146/143M", smartway: false, ms: true, "3pmsf": false,
+    liss: "146/143M", smartway: false, ms: true, "3PMS": false,
   },
   {
     size: "11R22.5",    ply: "16", rimW: "8.25", secW: "11.1",
     odIn: "41.4",  odMm: "1051",  td32: "15", tdMm: "18.9",
     mlSlbs: "6614",  mlSpsi: "120", mlSkg: "3000", mlSkpa: "830",
     mlDlbs: "6008",  mlDpsi: "120", mlDkg: "2725", mlDkpa: "830",
-    liss: "146/143M", smartway: true, ms: true, "3pmsf": false,
+    liss: "146/143M", smartway: true, ms: true, "3PMS": false,
   },
   {
     size: "11R24.5",    ply: "16", rimW: "8.25", secW: "11.4",
     odIn: "43.0",  odMm: "1093",  td32: "15", tdMm: "18.9",
     mlSlbs: "7165",  mlSpsi: "120", mlSkg: "3250", mlSkpa: "830",
     mlDlbs: "6614",  mlDpsi: "120", mlDkg: "3000", mlDkpa: "830",
-    liss: "149/146M", smartway: true, ms: true, "3pmsf": false,
+    liss: "149/146M", smartway: true, ms: true, "3PMS": false,
   },
 ];
 
@@ -290,7 +290,7 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
 function SpecsSection() {
   const showSmartway = SPEC_ROWS.some((r) => r.smartway);
   const showMs       = SPEC_ROWS.some((r) => r.ms);
-  const showPmsf     = SPEC_ROWS.some((r) => r["3pmsf"]);
+  const showPmsf     = SPEC_ROWS.some((r) => r["3PMS"]);
 
   return (
     <section style={{ backgroundColor: "var(--bg-dark)" }}>
@@ -466,7 +466,7 @@ function SpecsSection() {
                     {row.ms ? <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span> : <span style={{ color: "var(--border-color)" }}>—</span>}
                   </td>}
                   {showPmsf && <td style={tdStyle}>
-                    {row["3pmsf"] ? <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span> : <span style={{ color: "var(--border-color)" }}>—</span>}
+                    {row["3PMS"] ? <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span> : <span style={{ color: "var(--border-color)" }}>—</span>}
                   </td>}
                 </tr>
               ))}

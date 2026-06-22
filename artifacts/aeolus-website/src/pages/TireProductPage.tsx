@@ -411,9 +411,9 @@ function SpecsSection() {
                 <th colSpan={4} style={{ ...thStyle, textAlign: "left" }}>Max. Load<br/>(Single)</th>
                 <th colSpan={4} style={{ ...thStyle, textAlign: "left" }}>Max. Load<br/>(Dual)</th>
                 <th rowSpan={2} style={thStyle}>LI/SS</th>
-                {showSmartway && <th rowSpan={2} style={thStyle}>Smartway</th>}
-                {showMs       && <th rowSpan={2} style={thStyle}>M+S</th>}
-                {showPmsf     && <th rowSpan={2} style={thStyle}>3PMSF</th>}
+                {showSmartway && <th rowSpan={2} style={{ ...thStyle, textAlign: "center" }}>Smartway</th>}
+                {showMs       && <th rowSpan={2} style={{ ...thStyle, textAlign: "center" }}>M+S</th>}
+                {showPmsf     && <th rowSpan={2} style={{ ...thStyle, textAlign: "center" }}>3PMS</th>}
               </tr>
               <tr style={{ borderBottom: "1px solid var(--border-color)" }}>
                 <th style={subThStyle}>in</th>
@@ -459,13 +459,13 @@ function SpecsSection() {
                   <td style={tdStyle}>{row.mlDkg}</td>
                   <td style={tdStyle}>{row.mlDkpa}</td>
                   <td style={tdStyle}>{row.liss}</td>
-                  {showSmartway && <td style={tdStyle}>
+                  {showSmartway && <td style={{ ...tdStyle, textAlign: "center" }}>
                     {row.smartway ? <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span> : <span style={{ color: "var(--border-color)" }}>—</span>}
                   </td>}
-                  {showMs && <td style={tdStyle}>
+                  {showMs && <td style={{ ...tdStyle, textAlign: "center" }}>
                     {row.ms ? <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span> : <span style={{ color: "var(--border-color)" }}>—</span>}
                   </td>}
-                  {showPmsf && <td style={tdStyle}>
+                  {showPmsf && <td style={{ ...tdStyle, textAlign: "center" }}>
                     {row["3PMS"] ? <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span> : <span style={{ color: "var(--border-color)" }}>—</span>}
                   </td>}
                 </tr>

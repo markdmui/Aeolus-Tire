@@ -10,6 +10,9 @@ import feature3 from "@assets/TH-neo-fuel-g3-f3_1782049028026.jpg";
 import bgTruck from "@assets/bg-long-haul-1_1782050028374.jpg";
 import heroBg from "@assets/hero-bg-1_1782050148933.jpg";
 
+const TIRE_NAME = "Neo Fuel G3";
+const TIRE_SLUG = TIRE_NAME.replace(/\s+/g, "-"); // → "Neo-Fuel-G3"
+
 const BULLET_POINTS = [
   "4 longitudinal grooves on the tread providing excellent guiding performance.",
   "Optimized ground pressure distribution to ensure product life.",
@@ -41,21 +44,21 @@ const SPEC_ROWS = [
     odIn: "39.9",  odMm: "1014",  td32: "15", tdMm: "18.9",
     mlSlbs: "6600",  mlSpsi: "120", mlSkg: "3000", mlSkpa: "830",
     mlDlbs: "5995",  mlDpsi: "120", mlDkg: "2725", mlDkpa: "830",
-    liss: "146/143M", smartway: false, ms: true, "3PMS": false,
+    liss: "146/143M", smartway: false, ms: true, "3PMSF": false,
   },
   {
     size: "11R22.5",    ply: "16", rimW: "8.25", secW: "11.1",
     odIn: "41.4",  odMm: "1051",  td32: "15", tdMm: "18.9",
     mlSlbs: "6614",  mlSpsi: "120", mlSkg: "3000", mlSkpa: "830",
     mlDlbs: "6008",  mlDpsi: "120", mlDkg: "2725", mlDkpa: "830",
-    liss: "146/143M", smartway: true, ms: true, "3PMS": false,
+    liss: "146/143M", smartway: true, ms: true, "3PMSF": false,
   },
   {
     size: "11R24.5",    ply: "16", rimW: "8.25", secW: "11.4",
     odIn: "43.0",  odMm: "1093",  td32: "15", tdMm: "18.9",
     mlSlbs: "7165",  mlSpsi: "120", mlSkg: "3250", mlSkpa: "830",
     mlDlbs: "6614",  mlDpsi: "120", mlDkg: "3000", mlDkpa: "830",
-    liss: "149/146M", smartway: true, ms: true, "3PMS": false,
+    liss: "149/146M", smartway: true, ms: true, "3PMSF": false,
   },
 ];
 
@@ -290,7 +293,7 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
 function SpecsSection() {
   const showSmartway = SPEC_ROWS.some((r) => r.smartway);
   const showMs       = SPEC_ROWS.some((r) => r.ms);
-  const showPmsf     = SPEC_ROWS.some((r) => r["3PMS"]);
+  const showPmsf     = SPEC_ROWS.some((r) => r["3PMSF"]);
   const [hoveredCol, setHoveredCol] = useState<number | null>(null);
   // Sub-header row covers col indices 2–15; sub-header index = col - 2
   const subHdrColor = (col: number) =>
@@ -326,54 +329,62 @@ function SpecsSection() {
           <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", width: "fit-content" }}>
             {[
               { icon: <Notebook size={22} weight="light" />, label: "Product Catalog" },
-              { icon: <FilePdf size={22} weight="light" />, label: "Product Sheet" },
+              { icon: <FilePdf size={22} weight="light" />, label: "Product Sheet", href: `/${TIRE_SLUG}.pdf` },
               { icon: <ShieldCheck size={22} weight="light" />, label: "Warranty" },
               { icon: <Image size={22} weight="light" />, label: "Tire Photo" },
-            ].map(({ icon, label }) => (
-              <button
-                key={label}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.9rem",
-                  background: "rgba(10,10,10,0.5)",
-                  borderTop: "1px solid rgba(255,255,255,0.2)",
-                  borderRight: "1px solid rgba(255,255,255,0.2)",
-                  borderBottom: "1px solid rgba(255,255,255,0.2)",
-                  borderLeft: "5px solid var(--accent-yellow)",
-                  color: "#888888",
-                  fontSize: "0.8rem",
-                  fontFamily: "var(--font-body)",
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase",
-                  padding: "0.6rem 1.4rem 0.6rem 1rem",
-                  cursor: "pointer",
-                  minWidth: "220px",
-                  textAlign: "left",
-                  backdropFilter: "blur(4px)",
-                  transition: "background 0.15s ease, border-color 0.15s ease",
-                }}
-                onMouseEnter={(e) => {
-                  const btn = e.currentTarget as HTMLButtonElement;
-                  btn.style.background = "rgba(242,201,76,0.12)";
-                  btn.style.color = "#ffffff";
-                  btn.style.borderLeft = "5px solid #ffffff";
-                  const icon = btn.querySelector("span") as HTMLElement | null;
-                  if (icon) icon.style.color = "#ffffff";
-                }}
-                onMouseLeave={(e) => {
-                  const btn = e.currentTarget as HTMLButtonElement;
-                  btn.style.background = "rgba(10,10,10,0.5)";
-                  btn.style.color = "#888888";
-                  btn.style.borderLeft = "5px solid var(--accent-yellow)";
-                  const icon = btn.querySelector("span") as HTMLElement | null;
-                  if (icon) icon.style.color = "var(--accent-yellow)";
-                }}
-              >
+            ].map(({ icon, label, href }) => {
+              const sharedStyle: React.CSSProperties = {
+                display: "flex",
+                alignItems: "center",
+                gap: "0.9rem",
+                background: "rgba(10,10,10,0.5)",
+                borderTop: "1px solid rgba(255,255,255,0.2)",
+                borderRight: "1px solid rgba(255,255,255,0.2)",
+                borderBottom: "1px solid rgba(255,255,255,0.2)",
+                borderLeft: "5px solid var(--accent-yellow)",
+                color: "#888888",
+                fontSize: "0.8rem",
+                fontFamily: "var(--font-body)",
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                padding: "0.6rem 1.4rem 0.6rem 1rem",
+                cursor: "pointer",
+                minWidth: "220px",
+                textAlign: "left",
+                backdropFilter: "blur(4px)",
+                transition: "background 0.15s ease, border-color 0.15s ease",
+                textDecoration: "none",
+              };
+              const onEnter = (e: React.MouseEvent<HTMLElement>) => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.background = "rgba(242,201,76,0.12)";
+                el.style.color = "#ffffff";
+                el.style.borderLeft = "5px solid #ffffff";
+                const sp = el.querySelector("span") as HTMLElement | null;
+                if (sp) sp.style.color = "#ffffff";
+              };
+              const onLeave = (e: React.MouseEvent<HTMLElement>) => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.background = "rgba(10,10,10,0.5)";
+                el.style.color = "#888888";
+                el.style.borderLeft = "5px solid var(--accent-yellow)";
+                const sp = el.querySelector("span") as HTMLElement | null;
+                if (sp) sp.style.color = "var(--accent-yellow)";
+              };
+              const inner = (
                 <span style={{ color: "var(--accent-yellow)", display: "flex", alignItems: "center" }}>{icon}</span>
-                {label}
-              </button>
-            ))}
+              );
+              return href ? (
+                <a key={label} href={href} target="_blank" rel="noopener noreferrer"
+                  style={sharedStyle} onMouseEnter={onEnter} onMouseLeave={onLeave}>
+                  {inner}{label}
+                </a>
+              ) : (
+                <button key={label} style={sharedStyle} onMouseEnter={onEnter} onMouseLeave={onLeave}>
+                  {inner}{label}
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -418,7 +429,7 @@ function SpecsSection() {
                 <th rowSpan={2} style={thStyle}>LI/SS</th>
                 {showSmartway && <th rowSpan={2} style={{ ...thStyle, textAlign: "center" }}>Smartway</th>}
                 {showMs       && <th rowSpan={2} style={{ ...thStyle, textAlign: "center" }}>M+S</th>}
-                {showPmsf     && <th rowSpan={2} style={{ ...thStyle, textAlign: "center" }}>3PMS</th>}
+                {showPmsf     && <th rowSpan={2} style={{ ...thStyle, textAlign: "center" }}>3PMSF</th>}
               </tr>
               <tr style={{ borderBottom: "1px solid var(--border-color)" }}>
                 <th style={{ ...subThStyle, color: subHdrColor(2),  transition: "color 0.15s ease" }}>in</th>
@@ -471,7 +482,7 @@ function SpecsSection() {
                     {row.ms ? <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span> : <span style={{ color: "var(--border-color)" }}>—</span>}
                   </td>}
                   {showPmsf && <td style={{ ...tdStyle, textAlign: "center" }} onMouseEnter={() => setHoveredCol(null)}>
-                    {row["3PMS"] ? <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span> : <span style={{ color: "var(--border-color)" }}>—</span>}
+                    {row["3PMSF"] ? <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span> : <span style={{ color: "var(--border-color)" }}>—</span>}
                   </td>}
                 </tr>
               ))}

@@ -4,9 +4,9 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 import tireImg from "@assets/Neo-Fuel-G3_1782150885408.png";
-import feature1 from "@assets/TH-neo-fuel-g3-f1_1782049028025.jpg";
-import feature2 from "@assets/TH-neo-fuel-g3-f2_1782049028026.jpg";
-import feature3 from "@assets/TH-neo-fuel-g3-f3_1782049028026.jpg";
+import feature1 from "@assets/Neo-Fuel-G3-f1_1782151740029.jpg";
+import feature2 from "@assets/Neo-Fuel-G3-f2_1782151740029.jpg";
+import feature3 from "@assets/Neo-Fuel-G3-f3_1782151740030.jpg";
 import bgTruck from "@assets/bg-long-haul-1_1782050028374.jpg";
 import heroBg from "@assets/hero-bg-1_1782050148933.jpg";
 

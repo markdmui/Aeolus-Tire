@@ -37,22 +37,25 @@ const FEATURES = [
 
 const SPEC_ROWS = [
   {
+    size: "295/75R22.5", ply: "16", rimW: "9.00", secW: "11.7",
+    odIn: "39.9",  odMm: "1014",  td32: "15", tdMm: "18.9",
+    mlSlbs: "6600",  mlSpsi: "120", mlSkg: "3000", mlSkpa: "830",
+    mlDlbs: "5995",  mlDpsi: "120", mlDkg: "2725", mlDkpa: "830",
+    liss: "146/143M", smartway: false, ms: true, pmsf: false,
+  },
+  {
     size: "11R22.5",    ply: "16", rimW: "8.25", secW: "11.1",
-    odIn: "41.4",  odMm: "1051", tdMm: "18.9", td32: "15",
-    mlSlbs: "6614", mlSpsi: "120", mlDlbs: "6008", mlDpsi: "120",
-    liss: "146/143M", liss2: "148/145K", smartway: true, ms: true,
+    odIn: "41.4",  odMm: "1051",  td32: "15", tdMm: "18.9",
+    mlSlbs: "6614",  mlSpsi: "120", mlSkg: "3000", mlSkpa: "830",
+    mlDlbs: "6008",  mlDpsi: "120", mlDkg: "2725", mlDkpa: "830",
+    liss: "146/143M", smartway: true, ms: true, pmsf: false,
   },
   {
     size: "11R24.5",    ply: "16", rimW: "8.25", secW: "11.4",
-    odIn: "43.0",  odMm: "1093", tdMm: "18.9", td32: "15",
-    mlSlbs: "7165", mlSpsi: "120", mlDlbs: "6614", mlDpsi: "120",
-    liss: "149/146M", liss2: "—", smartway: true, ms: true,
-  },
-  {
-    size: "295/75R22.5", ply: "16", rimW: "9.00", secW: "11.7",
-    odIn: "39.9",  odMm: "1014", tdMm: "18.9", td32: "15",
-    mlSlbs: "6600", mlSpsi: "120", mlDlbs: "5995", mlDpsi: "120",
-    liss: "146/143M", liss2: "—", smartway: false, ms: true,
+    odIn: "43.0",  odMm: "1093",  td32: "15", tdMm: "18.9",
+    mlSlbs: "7165",  mlSpsi: "120", mlSkg: "3250", mlSkpa: "830",
+    mlDlbs: "6614",  mlDpsi: "120", mlDkg: "3000", mlDkpa: "830",
+    liss: "149/146M", smartway: true, ms: true, pmsf: false,
   },
 ];
 
@@ -401,12 +404,12 @@ function SpecsSection() {
                 <th style={thStyle}>Section<br/>Width</th>
                 <th colSpan={2} style={{ ...thStyle, textAlign: "left" }}>Overall<br/>Diameter</th>
                 <th colSpan={2} style={{ ...thStyle, textAlign: "left" }}>Tread<br/>Depth</th>
-                <th colSpan={2} style={{ ...thStyle, textAlign: "left" }}>Max. Load<br/>(Single)</th>
-                <th colSpan={2} style={{ ...thStyle, textAlign: "left" }}>Max. Load<br/>(Dual)</th>
+                <th colSpan={4} style={{ ...thStyle, textAlign: "left" }}>Max. Load<br/>(Single)</th>
+                <th colSpan={4} style={{ ...thStyle, textAlign: "left" }}>Max. Load<br/>(Dual)</th>
                 <th rowSpan={2} style={thStyle}>LI/SS</th>
-                <th rowSpan={2} style={thStyle}>Second<br/>LI/SS</th>
                 <th rowSpan={2} style={thStyle}>Smartway</th>
                 <th rowSpan={2} style={thStyle}>M+S</th>
+                <th rowSpan={2} style={thStyle}>3PMSF</th>
               </tr>
               <tr style={{ borderBottom: "1px solid var(--border-color)" }}>
                 <th style={subThStyle}>in</th>
@@ -417,8 +420,12 @@ function SpecsSection() {
                 <th style={subThStyle}>32nds</th>
                 <th style={subThStyle}>lbs</th>
                 <th style={subThStyle}>psi</th>
+                <th style={subThStyle}>kg</th>
+                <th style={subThStyle}>kPa</th>
                 <th style={subThStyle}>lbs</th>
                 <th style={subThStyle}>psi</th>
+                <th style={subThStyle}>kg</th>
+                <th style={subThStyle}>kPa</th>
               </tr>
             </thead>
             <tbody>
@@ -441,15 +448,21 @@ function SpecsSection() {
                   <td style={tdStyle}>{row.tdMm}</td>
                   <td style={tdStyle}>{row.mlSlbs}</td>
                   <td style={tdStyle}>{row.mlSpsi}</td>
+                  <td style={tdStyle}>{row.mlSkg}</td>
+                  <td style={tdStyle}>{row.mlSkpa}</td>
                   <td style={tdStyle}>{row.mlDlbs}</td>
                   <td style={tdStyle}>{row.mlDpsi}</td>
+                  <td style={tdStyle}>{row.mlDkg}</td>
+                  <td style={tdStyle}>{row.mlDkpa}</td>
                   <td style={tdStyle}>{row.liss}</td>
-                  <td style={tdStyle}>{row.liss2}</td>
                   <td style={tdStyle}>
                     {row.smartway ? <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span> : <span style={{ color: "var(--border-color)" }}>—</span>}
                   </td>
                   <td style={tdStyle}>
                     {row.ms ? <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span> : <span style={{ color: "var(--border-color)" }}>—</span>}
+                  </td>
+                  <td style={tdStyle}>
+                    {row.pmsf ? <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span> : <span style={{ color: "var(--border-color)" }}>—</span>}
                   </td>
                 </tr>
               ))}

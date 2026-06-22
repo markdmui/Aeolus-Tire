@@ -3,13 +3,15 @@ import { Notebook, FilePdf, ShieldCheck, Image } from "@phosphor-icons/react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-import tireImg from "@assets/Neo-Fuel-G3_1782150885408.png";
 import posDriveTire from "@assets/pos-drive-tire.svg";
 import feature1 from "@assets/Neo-Fuel-G3-f1_1782151740029.jpg";
 import feature2 from "@assets/Neo-Fuel-G3-f2_1782151740029.jpg";
 import feature3 from "@assets/Neo-Fuel-G3-f3_1782151740030.jpg";
+
 import bgTruck from "@assets/bg-long-haul-1_1782050028374.jpg";
 import heroBg from "@assets/hero-bg-1_1782050148933.jpg";
+
+const tireImg = "/neo-fuel-g3.png";
 
 const TIRE_NAME = "Neo Fuel G3";
 const TIRE_SLUG = TIRE_NAME.replace(/\s+/g, "-").toLowerCase(); // → "neo-fuel-g3"
@@ -343,7 +345,7 @@ function SpecsSection() {
               { icon: <Notebook size={22} weight="light" />, label: "Product Catalog", href: "/Aeolus-TBR-catalog.pdf" },
               { icon: <FilePdf size={22} weight="light" />, label: "Product Sheet", href: `/${TIRE_SLUG}.pdf` },
               { icon: <ShieldCheck size={22} weight="light" />, label: "Warranty", href: "/Aeolus-TBR-Warranty.pdf" },
-              { icon: <Image size={22} weight="light" />, label: "Tire Photo", href: tireImg, download: `${TIRE_SLUG}.png` },
+              { icon: <Image size={22} weight="light" />, label: "Tire Photo", href: `/${TIRE_SLUG}-print.png`, download: `${TIRE_SLUG}-print.png` },
             ].map(({ icon, label, href, download }) => {
               const sharedStyle: React.CSSProperties = {
                 display: "flex",

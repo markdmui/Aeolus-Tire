@@ -291,20 +291,6 @@ html {
   color: var(--accent-yellow) !important;
 }
 
-/* Truck position icon sway on hover */
-@keyframes truck-sway {
-  0%   { transform: rotate(0deg); }
-  20%  { transform: rotate(4deg); }
-  60%  { transform: rotate(-4deg); }
-  100% { transform: rotate(0deg); }
-}
-.pos-drive-icon {
-  transform-origin: bottom center;
-  transition: opacity 0.2s ease;
-}
-.pos-drive-icon:hover {
-  animation: truck-sway 0.55s ease-in-out infinite;
-}
 
 .footer-link {
   text-decoration: none;

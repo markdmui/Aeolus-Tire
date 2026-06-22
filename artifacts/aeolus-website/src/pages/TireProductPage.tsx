@@ -195,7 +195,9 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
             src={posDriveTire}
             alt="Drive tire position"
             title="Drive Tire"
-            style={{ marginTop: "2rem", width: "140px", height: "auto", display: "block", opacity: 0.75 }}
+            style={{ marginTop: "2rem", width: "140px", height: "auto", display: "block", opacity: 0.75, transition: "filter 0.2s ease" }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLImageElement).style.filter = "brightness(1.6)"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLImageElement).style.filter = ""; }}
           />
         </div>
 

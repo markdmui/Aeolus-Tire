@@ -107,9 +107,10 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
         style={{ minHeight: "520px" }}
       >
         {/* Text content */}
-        <div style={{ paddingTop: "118px", paddingBottom: "2rem" }} className="md:pb-16">
+        <div className="tire-hero-text md:pb-16">
           {/* Badge */}
           <div
+            className="tire-hero-badge"
             style={{
               display: "inline-block",
               border: "1px solid var(--accent-yellow)",
@@ -119,7 +120,6 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
               letterSpacing: "0.14em",
               textTransform: "uppercase",
               padding: "4px 10px",
-              marginBottom: "1.5rem",
             }}
           >
             Premium Long Haul
@@ -127,14 +127,13 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
 
           {/* Title */}
           <h1
-            className="tire-product-h1 uppercase"
+            className="tire-product-h1 tire-hero-title uppercase"
             style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "clamp(2.4rem, 4.5vw, 4rem)",
               fontWeight: 600,
               lineHeight: 1,
               letterSpacing: "-0.02em",
-              marginBottom: "1.25rem",
             }}
           >
             <span style={{ color: "#fff" }}>NEO FUEL </span>
@@ -143,12 +142,12 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
 
           {/* Subtitle */}
           <p
+            className="tire-hero-subtitle"
             style={{
               color: "rgba(255,255,255,0.75)",
               fontSize: "0.95rem",
               lineHeight: 1.65,
               maxWidth: "32rem",
-              marginBottom: "2rem",
             }}
           >
             Engineered for long-distance journeys ensuring high-speed stability,
@@ -157,7 +156,8 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
 
           {/* Divider */}
           <div
-            style={{ width: "2.5rem", height: "2px", backgroundColor: "var(--accent-yellow)", marginBottom: "1.75rem" }}
+            className="tire-hero-divider"
+            style={{ width: "2.5rem", height: "2px", backgroundColor: "var(--accent-yellow)" }}
           />
 
           {/* Bullet points */}
@@ -195,7 +195,8 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
             src={posDriveTire}
             alt="Drive tire position"
             title="Drive Tire"
-            style={{ marginTop: "2rem", width: "140px", height: "auto", display: "block", opacity: 0.7, transition: "opacity 0.2s ease" }}
+            style={{ width: "140px", height: "auto", display: "block", opacity: 0.7, transition: "opacity 0.2s ease" }}
+            className="tire-hero-truck"
             onMouseEnter={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = "1"; }}
             onMouseLeave={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = "0.7"; }}
           />

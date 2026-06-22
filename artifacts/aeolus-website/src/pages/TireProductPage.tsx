@@ -442,7 +442,7 @@ function SpecsSection() {
                     transition: "background-color 0.15s ease",
                   }}
                 >
-                  <td style={tdStyle}><span style={{ color: "#fff", fontWeight: 600 }}>{row.size}</span></td>
+                  <td style={tdStyle}>{row.size}</td>
                   <td style={tdStyle}>{row.ply}</td>
                   <td style={tdStyle}>{row.rimW}</td>
                   <td style={tdStyle}>{row.secW}</td>

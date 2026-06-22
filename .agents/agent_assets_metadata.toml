@@ -6,3 +6,9 @@ id = "BD-4Rr4vUw5xQop08kS9Y"
 uri = "file://aeolus-website-backup.tar.gz"
 type = "unspecified"
 title = "Aeolus Website — Base Template Before Design"
+
+[[outputs]]
+id = "-IzlhkkCdms6gJQWvvqGi"
+uri = "file://attached_assets/Tech_Specs_test_output.xlsx"
+type = "table"
+title = "Tech_Specs_test_output.xlsx — first 3 tires filled"

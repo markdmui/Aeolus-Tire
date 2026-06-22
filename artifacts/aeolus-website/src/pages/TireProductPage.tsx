@@ -447,8 +447,8 @@ function SpecsSection() {
                     transition: "background-color 0.15s ease",
                   }}
                 >
-                  <td style={tdStyle}>{row.size}</td>
-                  <td style={tdStyle}>{row.ply}</td>
+                  <td style={tdStyle} onMouseEnter={() => setHoveredCol(null)}>{row.size}</td>
+                  <td style={tdStyle} onMouseEnter={() => setHoveredCol(null)}>{row.ply}</td>
                   <td style={tdStyle} {...col(2)}>{row.rimW}</td>
                   <td style={tdStyle} {...col(3)}>{row.secW}</td>
                   <td style={tdStyle} {...col(4)}>{row.odIn}</td>
@@ -463,14 +463,14 @@ function SpecsSection() {
                   <td style={tdStyle} {...col(13)}>{row.mlDpsi}</td>
                   <td style={tdStyle} {...col(14)}>{row.mlDkg}</td>
                   <td style={tdStyle} {...col(15)}>{row.mlDkpa}</td>
-                  <td style={tdStyle}>{row.liss}</td>
-                  {showSmartway && <td style={{ ...tdStyle, textAlign: "center" }}>
+                  <td style={tdStyle} onMouseEnter={() => setHoveredCol(null)}>{row.liss}</td>
+                  {showSmartway && <td style={{ ...tdStyle, textAlign: "center" }} onMouseEnter={() => setHoveredCol(null)}>
                     {row.smartway ? <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span> : <span style={{ color: "var(--border-color)" }}>—</span>}
                   </td>}
-                  {showMs && <td style={{ ...tdStyle, textAlign: "center" }}>
+                  {showMs && <td style={{ ...tdStyle, textAlign: "center" }} onMouseEnter={() => setHoveredCol(null)}>
                     {row.ms ? <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span> : <span style={{ color: "var(--border-color)" }}>—</span>}
                   </td>}
-                  {showPmsf && <td style={{ ...tdStyle, textAlign: "center" }}>
+                  {showPmsf && <td style={{ ...tdStyle, textAlign: "center" }} onMouseEnter={() => setHoveredCol(null)}>
                     {row["3PMS"] ? <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span> : <span style={{ color: "var(--border-color)" }}>—</span>}
                   </td>}
                 </tr>

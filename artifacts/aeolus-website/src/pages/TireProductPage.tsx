@@ -291,6 +291,11 @@ function SpecsSection() {
   const showSmartway = SPEC_ROWS.some((r) => r.smartway);
   const showMs       = SPEC_ROWS.some((r) => r.ms);
   const showPmsf     = SPEC_ROWS.some((r) => r["3PMS"]);
+  const [hoveredCol, setHoveredCol] = useState<number | null>(null);
+  // Sub-header row covers col indices 2–15; sub-header index = col - 2
+  const subHdrColor = (col: number) =>
+    hoveredCol === col ? "var(--accent-yellow)" : "var(--text-muted)";
+  const col = (n: number) => ({ onMouseEnter: () => setHoveredCol(n) });
 
   return (
     <section style={{ backgroundColor: "var(--bg-dark)" }}>
@@ -416,23 +421,23 @@ function SpecsSection() {
                 {showPmsf     && <th rowSpan={2} style={{ ...thStyle, textAlign: "center" }}>3PMS</th>}
               </tr>
               <tr style={{ borderBottom: "1px solid var(--border-color)" }}>
-                <th style={subThStyle}>in</th>
-                <th style={subThStyle}>in</th>
-                <th style={subThStyle}>in</th>
-                <th style={subThStyle}>mm</th>
-                <th style={subThStyle}>mm</th>
-                <th style={subThStyle}>32nds</th>
-                <th style={subThStyle}>lbs</th>
-                <th style={subThStyle}>psi</th>
-                <th style={subThStyle}>kg</th>
-                <th style={subThStyle}>kPa</th>
-                <th style={subThStyle}>lbs</th>
-                <th style={subThStyle}>psi</th>
-                <th style={subThStyle}>kg</th>
-                <th style={subThStyle}>kPa</th>
+                <th style={{ ...subThStyle, color: subHdrColor(2),  transition: "color 0.15s ease" }}>in</th>
+                <th style={{ ...subThStyle, color: subHdrColor(3),  transition: "color 0.15s ease" }}>in</th>
+                <th style={{ ...subThStyle, color: subHdrColor(4),  transition: "color 0.15s ease" }}>in</th>
+                <th style={{ ...subThStyle, color: subHdrColor(5),  transition: "color 0.15s ease" }}>mm</th>
+                <th style={{ ...subThStyle, color: subHdrColor(6),  transition: "color 0.15s ease" }}>mm</th>
+                <th style={{ ...subThStyle, color: subHdrColor(7),  transition: "color 0.15s ease" }}>32nds</th>
+                <th style={{ ...subThStyle, color: subHdrColor(8),  transition: "color 0.15s ease" }}>lbs</th>
+                <th style={{ ...subThStyle, color: subHdrColor(9),  transition: "color 0.15s ease" }}>psi</th>
+                <th style={{ ...subThStyle, color: subHdrColor(10), transition: "color 0.15s ease" }}>kg</th>
+                <th style={{ ...subThStyle, color: subHdrColor(11), transition: "color 0.15s ease" }}>kPa</th>
+                <th style={{ ...subThStyle, color: subHdrColor(12), transition: "color 0.15s ease" }}>lbs</th>
+                <th style={{ ...subThStyle, color: subHdrColor(13), transition: "color 0.15s ease" }}>psi</th>
+                <th style={{ ...subThStyle, color: subHdrColor(14), transition: "color 0.15s ease" }}>kg</th>
+                <th style={{ ...subThStyle, color: subHdrColor(15), transition: "color 0.15s ease" }}>kPa</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody onMouseLeave={() => setHoveredCol(null)}>
               {SPEC_ROWS.map((row, i) => (
                 <tr
                   key={row.size}
@@ -444,20 +449,20 @@ function SpecsSection() {
                 >
                   <td style={tdStyle}>{row.size}</td>
                   <td style={tdStyle}>{row.ply}</td>
-                  <td style={tdStyle}>{row.rimW}</td>
-                  <td style={tdStyle}>{row.secW}</td>
-                  <td style={tdStyle}>{row.odIn}</td>
-                  <td style={tdStyle}>{row.odMm}</td>
-                  <td style={tdStyle}>{row.td32}</td>
-                  <td style={tdStyle}>{row.tdMm}</td>
-                  <td style={tdStyle}>{row.mlSlbs}</td>
-                  <td style={tdStyle}>{row.mlSpsi}</td>
-                  <td style={tdStyle}>{row.mlSkg}</td>
-                  <td style={tdStyle}>{row.mlSkpa}</td>
-                  <td style={tdStyle}>{row.mlDlbs}</td>
-                  <td style={tdStyle}>{row.mlDpsi}</td>
-                  <td style={tdStyle}>{row.mlDkg}</td>
-                  <td style={tdStyle}>{row.mlDkpa}</td>
+                  <td style={tdStyle} {...col(2)}>{row.rimW}</td>
+                  <td style={tdStyle} {...col(3)}>{row.secW}</td>
+                  <td style={tdStyle} {...col(4)}>{row.odIn}</td>
+                  <td style={tdStyle} {...col(5)}>{row.odMm}</td>
+                  <td style={tdStyle} {...col(6)}>{row.td32}</td>
+                  <td style={tdStyle} {...col(7)}>{row.tdMm}</td>
+                  <td style={tdStyle} {...col(8)}>{row.mlSlbs}</td>
+                  <td style={tdStyle} {...col(9)}>{row.mlSpsi}</td>
+                  <td style={tdStyle} {...col(10)}>{row.mlSkg}</td>
+                  <td style={tdStyle} {...col(11)}>{row.mlSkpa}</td>
+                  <td style={tdStyle} {...col(12)}>{row.mlDlbs}</td>
+                  <td style={tdStyle} {...col(13)}>{row.mlDpsi}</td>
+                  <td style={tdStyle} {...col(14)}>{row.mlDkg}</td>
+                  <td style={tdStyle} {...col(15)}>{row.mlDkpa}</td>
                   <td style={tdStyle}>{row.liss}</td>
                   {showSmartway && <td style={{ ...tdStyle, textAlign: "center" }}>
                     {row.smartway ? <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span> : <span style={{ color: "var(--border-color)" }}>—</span>}

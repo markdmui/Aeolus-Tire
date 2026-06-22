@@ -291,7 +291,6 @@ function SpecsSection() {
   const showSmartway = SPEC_ROWS.some((r) => r.smartway);
   const showMs       = SPEC_ROWS.some((r) => r.ms);
   const showPmsf     = SPEC_ROWS.some((r) => r["3PMS"]);
-  const [hoveredRow, setHoveredRow] = useState<string | null>(null);
 
   return (
     <section style={{ backgroundColor: "var(--bg-dark)" }}>
@@ -442,10 +441,8 @@ function SpecsSection() {
                     borderBottom: i < SPEC_ROWS.length - 1 ? "1px solid var(--border-color)" : "none",
                     transition: "background-color 0.15s ease",
                   }}
-                  onMouseEnter={() => setHoveredRow(row.size)}
-                  onMouseLeave={() => setHoveredRow(null)}
                 >
-                  <td style={{ ...tdStyle, color: hoveredRow === row.size ? "var(--accent-yellow)" : undefined, transition: "color 0.15s ease" }}>{row.size}</td>
+                  <td style={tdStyle}><span style={{ color: "#fff", fontWeight: 600 }}>{row.size}</span></td>
                   <td style={tdStyle}>{row.ply}</td>
                   <td style={tdStyle}>{row.rimW}</td>
                   <td style={tdStyle}>{row.secW}</td>

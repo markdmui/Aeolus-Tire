@@ -194,6 +194,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
           <img
             src={posDriveTire}
             alt="Drive tire position"
+            className="pos-drive-icon"
             style={{ marginTop: "2rem", width: "140px", height: "auto", display: "block", opacity: 0.75 }}
           />
         </div>

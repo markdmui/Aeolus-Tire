@@ -38,21 +38,21 @@ const FEATURES = [
 const SPEC_ROWS = [
   {
     size: "11R22.5",    ply: "16", rimW: "8.25", secW: "11.1",
-    odIn: "41.4",  odMm: "1051.0", tdMm: "18.9", td32: "15",
+    odIn: "41.4",  odMm: "1051", tdMm: "18.9", td32: "15",
     mlSlbs: "6614", mlSpsi: "120", mlDlbs: "6008", mlDpsi: "120",
     liss: "146/143M", liss2: "148/145K", smartway: true, ms: true,
   },
   {
     size: "11R24.5",    ply: "16", rimW: "8.25", secW: "11.4",
-    odIn: "43.0",  odMm: "1092.7", tdMm: "18.9", td32: "15",
+    odIn: "43.0",  odMm: "1093", tdMm: "18.9", td32: "15",
     mlSlbs: "7165", mlSpsi: "120", mlDlbs: "6614", mlDpsi: "120",
     liss: "149/146M", liss2: "—", smartway: true, ms: true,
   },
   {
     size: "295/75R22.5", ply: "16", rimW: "9.00", secW: "11.7",
-    odIn: "39.9",  odMm: "1014.6", tdMm: "18.9", td32: "15",
-    mlSlbs: "6614", mlSpsi: "120", mlDlbs: "6008", mlDpsi: "120",
-    liss: "146/143M", liss2: "—", smartway: true, ms: true,
+    odIn: "39.9",  odMm: "1014", tdMm: "18.9", td32: "15",
+    mlSlbs: "6600", mlSpsi: "120", mlDlbs: "5995", mlDpsi: "120",
+    liss: "146/143M", liss2: "—", smartway: false, ms: true,
   },
 ];
 

@@ -328,11 +328,11 @@ function SpecsSection() {
         <div className="container" style={{ position: "relative", zIndex: 1, paddingTop: "3rem" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", width: "fit-content" }}>
             {[
-              { icon: <Notebook size={22} weight="light" />, label: "Product Catalog" },
+              { icon: <Notebook size={22} weight="light" />, label: "Product Catalog", href: "/Aeolus-TBR-catalog.pdf" },
               { icon: <FilePdf size={22} weight="light" />, label: "Product Sheet", href: `/${TIRE_SLUG}.pdf` },
-              { icon: <ShieldCheck size={22} weight="light" />, label: "Warranty" },
-              { icon: <Image size={22} weight="light" />, label: "Tire Photo" },
-            ].map(({ icon, label, href }) => {
+              { icon: <ShieldCheck size={22} weight="light" />, label: "Warranty", href: "/Aeolus-TBR-Warranty.pdf" },
+              { icon: <Image size={22} weight="light" />, label: "Tire Photo", href: tireImg, download: `${TIRE_SLUG}.png` },
+            ].map(({ icon, label, href, download }) => {
               const sharedStyle: React.CSSProperties = {
                 display: "flex",
                 alignItems: "center",
@@ -375,7 +375,8 @@ function SpecsSection() {
                 <span style={{ color: "var(--accent-yellow)", display: "flex", alignItems: "center" }}>{icon}</span>
               );
               return href ? (
-                <a key={label} href={href} target="_blank" rel="noopener noreferrer"
+                <a key={label} href={href}
+                  {...(download ? { download } : { target: "_blank", rel: "noopener noreferrer" })}
                   style={sharedStyle} onMouseEnter={onEnter} onMouseLeave={onLeave}>
                   {inner}{label}
                 </a>

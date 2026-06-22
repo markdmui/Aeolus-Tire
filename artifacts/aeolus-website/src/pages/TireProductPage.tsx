@@ -11,7 +11,7 @@ import bgTruck from "@assets/bg-long-haul-1_1782050028374.jpg";
 import heroBg from "@assets/hero-bg-1_1782050148933.jpg";
 
 const TIRE_NAME = "Neo Fuel G3";
-const TIRE_SLUG = TIRE_NAME.replace(/\s+/g, "-"); // → "Neo-Fuel-G3"
+const TIRE_SLUG = TIRE_NAME.replace(/\s+/g, "-").toLowerCase(); // → "neo-fuel-g3"
 
 const BULLET_POINTS = [
   "4 longitudinal grooves on the tread providing excellent guiding performance.",

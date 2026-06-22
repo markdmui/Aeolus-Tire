@@ -195,7 +195,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
             src={posDriveTire}
             alt="Drive tire position"
             title="Drive Tire"
-            style={{ width: "140px", height: "auto", display: "block", opacity: 0.7, transition: "opacity 0.2s ease" }}
+            style={{ height: "auto", display: "block", opacity: 0.7, transition: "opacity 0.2s ease" }}
             className="tire-hero-truck"
             onMouseEnter={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = "1"; }}
             onMouseLeave={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = "0.7"; }}

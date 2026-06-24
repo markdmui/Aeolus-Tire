@@ -21,6 +21,10 @@ const BULLET_POINTS = [
   "Optimized ground pressure distribution to ensure product life.",
   "SATT construction for better endurance, effectively securing tire life.",
   "Low rolling resistance formula in tread to maximize fuel efficiency.",
+  "4 longitudinal grooves on the tread providing excellent guiding performance.",
+  "Optimized ground pressure distribution to ensure product life.",
+  "SATT construction for better endurance, effectively securing tire life.",
+  "Low rolling resistance formula in tread to maximize fuel efficiency.",
 ];
 
 const FEATURES = [

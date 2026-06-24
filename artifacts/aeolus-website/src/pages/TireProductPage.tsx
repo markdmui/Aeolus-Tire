@@ -581,7 +581,7 @@ function Lightbox({ src, onClose, category, tireName }: { src: string; onClose: 
         </div>
         <div style={{
           fontFamily: "'Inter', sans-serif",
-          fontSize: "clamp(1.8rem, 4vw, 3rem)",
+          fontSize: "2.4rem",
           fontWeight: 600,
           lineHeight: 1,
           letterSpacing: "-0.02em",

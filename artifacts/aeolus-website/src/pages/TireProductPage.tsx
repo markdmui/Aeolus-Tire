@@ -3,7 +3,14 @@ import { Notebook, FilePdf, ShieldCheck, Image } from "@phosphor-icons/react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-import posDriveTire from "@assets/pos-drive-tire.svg";
+const POS_SVG: Record<string, string> = {
+  "Drive":        "/pos-drive-tire.svg",
+  "Steer":        "/pos-steer-tire.svg",
+  "Trailer":      "/pos-trailer-tire.svg",
+  "All Position": "/pos-allposition-tire.svg",
+  "OTR":          "/pos-otr-tire.svg",
+  "Bus":          "/pos-bus-tire.svg",
+};
 import feature1 from "@assets/Neo-Fuel-G3-f1_1782151740029.jpg";
 import feature2 from "@assets/Neo-Fuel-G3-f2_1782151740029.jpg";
 import feature3 from "@assets/Neo-Fuel-G3-f3_1782151740030.jpg";
@@ -16,6 +23,7 @@ const tireImg = "/neo-fuel-g3.png";
 const TIRE_NAME = "Neo Fuel G3";
 const TIRE_SLUG = TIRE_NAME.replace(/\s+/g, "-").toLowerCase(); // → "neo-fuel-g3"
 const SEGMENT_CATEGORY = "Premium Long Haul";
+const TIRE_POS = "Drive";
 
 const BULLET_POINTS = [
   "4 longitudinal grooves on the tread providing excellent guiding performance.",
@@ -195,9 +203,9 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
 
           {/* Position / application icon */}
           <img
-            src={posDriveTire}
-            alt="Drive tire position"
-            title="Drive Tire"
+            src={POS_SVG[TIRE_POS]}
+            alt={`${TIRE_POS} tire position`}
+            title={`${TIRE_POS} Tire`}
             style={{ height: "auto", display: "block", opacity: 0.7, transition: "opacity 0.2s ease" }}
             className="tire-hero-truck"
             onMouseEnter={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = "1"; }}

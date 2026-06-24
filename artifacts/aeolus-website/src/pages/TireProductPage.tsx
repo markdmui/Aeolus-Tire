@@ -15,6 +15,7 @@ const tireImg = "/neo-fuel-g3.png";
 
 const TIRE_NAME = "Neo Fuel G3";
 const TIRE_SLUG = TIRE_NAME.replace(/\s+/g, "-").toLowerCase(); // → "neo-fuel-g3"
+const SEGMENT_CATEGORY = "Premium Long Haul";
 
 const BULLET_POINTS = [
   "4 longitudinal grooves on the tread providing excellent guiding performance.",
@@ -86,7 +87,7 @@ export default function TireProductPage() {
       <FeatureSection onOpen={setActiveImg} />
       <SpecsSection />
       <Footer />
-      {activeImg && <Lightbox src={activeImg} onClose={close} />}
+      {activeImg && <Lightbox src={activeImg} onClose={close} category={SEGMENT_CATEGORY} tireName={TIRE_NAME} />}
     </div>
   );
 }
@@ -541,7 +542,10 @@ const tdStyle: React.CSSProperties = {
   whiteSpace: "nowrap",
 };
 
-function Lightbox({ src, onClose }: { src: string; onClose: () => void }) {
+function Lightbox({ src, onClose, category, tireName }: { src: string; onClose: () => void; category: string; tireName: string }) {
+  const [first, ...rest] = tireName.split(" ");
+  const last = rest[rest.length - 1];
+  const middle = rest.slice(0, -1).join(" ");
   return (
     <div
       onClick={onClose}
@@ -557,6 +561,37 @@ function Lightbox({ src, onClose }: { src: string; onClose: () => void }) {
         cursor: "zoom-out",
       }}
     >
+      {/* Top-left: category badge + tire name */}
+      <div
+        style={{ position: "absolute", top: "1.25rem", left: "1.5rem" }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div style={{
+          display: "inline-block",
+          border: "1px solid var(--accent-yellow)",
+          color: "var(--accent-yellow)",
+          fontSize: "0.6rem",
+          fontWeight: 700,
+          letterSpacing: "0.14em",
+          textTransform: "uppercase",
+          padding: "3px 8px",
+          marginBottom: "0.5rem",
+        }}>
+          {category}
+        </div>
+        <div style={{
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "clamp(1.4rem, 3vw, 2.2rem)",
+          fontWeight: 600,
+          lineHeight: 1,
+          letterSpacing: "-0.02em",
+          textTransform: "uppercase",
+        }}>
+          <span style={{ color: "#fff" }}>{first}{middle ? " " + middle : ""} </span>
+          <span style={{ color: "var(--accent-yellow)" }}>{last}</span>
+        </div>
+      </div>
+
       <button
         onClick={onClose}
         style={{

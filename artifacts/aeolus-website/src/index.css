@@ -312,6 +312,9 @@ html {
     transform: scale(1.2);
     transform-origin: center center;
   }
+  .tire-hero-text {
+    padding-bottom: 0 !important;
+  }
 }
 
 /* Mobile: tighten hero vertical rhythm */

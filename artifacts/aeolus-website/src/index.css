@@ -302,6 +302,7 @@ html {
 .tire-hero-subtitle { margin-bottom: 2rem; }
 .tire-hero-divider  { margin-bottom: 1.75rem; }
 .tire-hero-truck    { margin-top: 2rem; width: 140px; }
+.tire-hero-truck--otr { width: 175px; }
 .tire-hero-bullets  { gap: 0.45rem; }
 
 /* Portrait tablet: enlarge tire image to fill available space */
@@ -325,6 +326,7 @@ html {
   .tire-hero-subtitle { margin-bottom: 0.875rem; }
   .tire-hero-divider  { margin-bottom: 0.875rem; }
   .tire-hero-truck    { margin-top: 0.875rem; width: 112px; }
+  .tire-hero-truck--otr { width: 140px; }
   .tire-hero-bullets  { gap: calc(0.45rem - 2px); }
 }
 

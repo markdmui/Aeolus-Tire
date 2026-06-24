@@ -207,6 +207,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
         {/* Tire image — cropped via overflow:hidden + aspectRatio */}
         <div className="flex items-center justify-center pb-10 md:py-8">
           <div
+            className="tire-hero-img-wrap"
             style={{
               width: "100%",
               maxWidth: "520px",

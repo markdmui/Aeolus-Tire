@@ -295,7 +295,7 @@ html {
 /* Tire hero spacing — desktop defaults */
 .tire-hero-text {
   padding-top: 118px;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
 }
 .tire-hero-badge  { margin-bottom: 1.5rem; }
 .tire-hero-title  { margin-bottom: 1.25rem; }
@@ -316,7 +316,7 @@ html {
 
 /* Mobile: tighten hero vertical rhythm */
 @media (max-width: 767px) {
-  .tire-hero-text     { padding-top: 72px; padding-bottom: 1rem; }
+  .tire-hero-text     { padding-top: 72px; padding-bottom: 0.5rem; }
   .tire-hero-badge    { margin-bottom: 0.6rem; }
   .tire-hero-title    { margin-bottom: 0.55rem; }
   .tire-hero-subtitle { margin-bottom: 0.875rem; }

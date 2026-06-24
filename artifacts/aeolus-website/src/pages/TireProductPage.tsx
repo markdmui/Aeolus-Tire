@@ -109,7 +109,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
         style={{ minHeight: "520px" }}
       >
         {/* Text content */}
-        <div className="tire-hero-text md:pb-16">
+        <div className="tire-hero-text md:pb-8">
           {/* Badge */}
           <div
             className="tire-hero-badge"

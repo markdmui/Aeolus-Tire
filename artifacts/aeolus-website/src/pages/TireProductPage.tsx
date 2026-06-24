@@ -23,7 +23,7 @@ const tireImg = "/neo-fuel-g3.png";
 const TIRE_NAME = "Neo Fuel G3";
 const TIRE_SLUG = TIRE_NAME.replace(/\s+/g, "-").toLowerCase(); // → "neo-fuel-g3"
 const SEGMENT_CATEGORY = "Premium Long Haul";
-const TIRE_POS = "Bus";
+const TIRE_POS = "OTR";
 
 const BULLET_POINTS = [
   "4 longitudinal grooves on the tread providing excellent guiding performance.",

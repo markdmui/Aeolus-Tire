@@ -570,18 +570,18 @@ function Lightbox({ src, onClose, category, tireName }: { src: string; onClose: 
           display: "inline-block",
           border: "1px solid var(--accent-yellow)",
           color: "var(--accent-yellow)",
-          fontSize: "0.6rem",
+          fontSize: "0.75rem",
           fontWeight: 700,
           letterSpacing: "0.14em",
           textTransform: "uppercase",
-          padding: "3px 8px",
-          marginBottom: "0.5rem",
+          padding: "4px 10px",
+          marginBottom: "0.6rem",
         }}>
           {category}
         </div>
         <div style={{
           fontFamily: "'Inter', sans-serif",
-          fontSize: "clamp(1.4rem, 3vw, 2.2rem)",
+          fontSize: "clamp(1.8rem, 4vw, 3rem)",
           fontWeight: 600,
           lineHeight: 1,
           letterSpacing: "-0.02em",

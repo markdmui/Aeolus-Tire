@@ -111,7 +111,7 @@ export default function TireTechExplorer({
                   backgroundColor: isActive ? "#fbbf24" : "#000",
                   color: isActive ? "#000" : "#ccc",
                   border: isActive ? "none" : "1.5px solid #999",
-                  opacity: isActive ? 1 : 0.7,
+                  opacity: 0.7,
                 }}
                 className={[
                   "absolute -translate-x-1/2 -translate-y-1/2",

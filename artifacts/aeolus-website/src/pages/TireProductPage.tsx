@@ -3,6 +3,7 @@ import { Notebook, FilePdf, ShieldCheck, Image } from "@phosphor-icons/react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import TireTechExplorer from "../components/TireTechExplorer";
+import cutawayImg from "@assets/3d-cutaway_1782348127809.png";
 
 const POS_SVG: Record<string, string> = {
   "Drive":        "/pos-drive-tire.svg",
@@ -95,7 +96,7 @@ export default function TireProductPage() {
       <HeroSection onOpen={setActiveImg} />
       <FeatureSection onOpen={setActiveImg} />
       <SpecsSection />
-      <TireTechExplorer />
+      <TireTechExplorer imageSrc={cutawayImg} />
       <Footer />
       {activeImg && <Lightbox src={activeImg} onClose={close} category={SEGMENT_CATEGORY} tireName={TIRE_NAME} />}
     </div>

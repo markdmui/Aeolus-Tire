@@ -160,7 +160,7 @@ export default function TireTechExplorer({
                     style={{ gridTemplateRows: isActive ? "1fr" : "0fr" }}
                   >
                     <div className="overflow-hidden">
-                      <ul className="mt-1 ml-9 space-y-1.5">
+                      <ul className="mt-1 ml-9 space-y-0.5">
                         {point.bullets.map((bullet, i) => (
                           <li
                             key={i}

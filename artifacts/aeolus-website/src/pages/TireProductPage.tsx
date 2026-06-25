@@ -359,7 +359,7 @@ function SpecsSection() {
               { icon: <Notebook size={22} weight="light" />, label: "Product Catalog", href: "/Aeolus-TBR-catalog.pdf" },
               { icon: <FilePdf size={22} weight="light" />, label: "Product Sheet", href: "/template.pdf" },
               { icon: <ShieldCheck size={22} weight="light" />, label: "Warranty", href: "/Aeolus-TBR-Warranty.pdf" },
-              { icon: <Image size={22} weight="light" />, label: "Tire Photo", href: "/template.pdf", download: "template.pdf" },
+              { icon: <Image size={22} weight="light" />, label: "Tire Photo", href: "/template.png", download: "template.png" },
             ].map(({ icon, label, href, download }) => {
               const sharedStyle: React.CSSProperties = {
                 display: "flex",

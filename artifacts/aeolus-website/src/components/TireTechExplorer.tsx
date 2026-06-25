@@ -111,7 +111,7 @@ export default function TireTechExplorer({
                   "flex items-center justify-center",
                   "w-7 h-7 text-sm font-semibold text-black",
                   "bg-amber-400 rounded-full",
-                  "shadow-[3px_5px_8px_2px_rgba(0,0,0,0.8)]",
+                  "shadow-[1px_1px_2px_0px_rgba(0,0,0,0.8)]",
                   "transition-transform duration-200 ease-out",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black",
                   isActive ? "scale-110 ring-2 ring-amber-200" : "hover:scale-110",

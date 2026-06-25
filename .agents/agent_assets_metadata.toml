@@ -30,3 +30,9 @@ id = "QSenDWYs0GraS3qhKt21u"
 uri = "file://attached_assets/Neo-Fuel-D3-f4.png"
 type = "image"
 title = "Neo-Fuel-D3-f4.png"
+
+[[outputs]]
+id = "7tzY2hTfRLX_s6OWg7KqF"
+uri = "file://attached_assets/feature-images.zip"
+type = "unspecified"
+title = "Aeolus Feature Images (42 files, 24 MB)"

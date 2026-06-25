@@ -144,13 +144,13 @@ export default function TireTechExplorer({
                   <div className="flex items-baseline gap-4">
                     <span
                       className={[
-                        "text-lg font-semibold tabular-nums",
+                        "text-base font-semibold tabular-nums",
                         isActive ? "text-amber-400" : "text-neutral-500",
                       ].join(" ")}
                     >
                       {String(point.id).padStart(2, "0")}
                     </span>
-                    <span className="text-lg font-semibold text-neutral-100">
+                    <span className="text-base font-semibold text-neutral-100">
                       {point.title}
                     </span>
                   </div>
@@ -164,7 +164,7 @@ export default function TireTechExplorer({
                         {point.bullets.map((bullet, i) => (
                           <li
                             key={i}
-                            className="text-base text-neutral-400 leading-relaxed list-disc"
+                            className="text-sm text-neutral-400 leading-relaxed list-disc"
                           >
                             {bullet}
                           </li>

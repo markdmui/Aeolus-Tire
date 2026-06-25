@@ -150,7 +150,7 @@ export default function TireTechExplorer({
                     >
                       {String(point.id).padStart(2, "0")}
                     </span>
-                    <span className="text-base font-semibold text-neutral-100 capitalize">
+                    <span className={`text-base capitalize text-neutral-100 ${isActive ? "font-semibold" : "font-normal"}`}>
                       {point.title}
                     </span>
                   </div>

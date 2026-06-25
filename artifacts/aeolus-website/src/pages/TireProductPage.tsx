@@ -13,14 +13,15 @@ const POS_SVG: Record<string, string> = {
   "OTR":          "/pos-otr-tire.svg",
   "Bus":          "/pos-bus-tire.svg",
 };
-import feature1 from "@assets/Neo-Fuel-G3-f1_1782340655361.jpg";
-import feature2 from "@assets/Neo-Fuel-G3-f2_1782340655361.jpg";
-import feature3 from "@assets/Neo-Fuel-G3-f3_1782340655362.jpg";
+import feature1 from "@assets/Template-f1_1782411546517.jpg";
+import feature2 from "@assets/Template-f2_1782411546517.jpg";
+import feature3 from "@assets/Template-f3_1782411546518.jpg";
+import templateTireImg from "@assets/Template_1782411546518.png";
 
 import bgTruck from "@assets/bg-long-haul-1_1782050028374.jpg";
 import heroBg from "@assets/hero-bg-1_1782050148933.jpg";
 
-const tireImg = "/neo-fuel-g3.png";
+const tireImg = templateTireImg;
 
 const TIRE_NAME = "Neo Fuel G3";
 const TIRE_SLUG = TIRE_NAME.replace(/\s+/g, "-").toLowerCase(); // → "neo-fuel-g3"
@@ -356,9 +357,9 @@ function SpecsSection() {
           <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", width: "fit-content" }}>
             {[
               { icon: <Notebook size={22} weight="light" />, label: "Product Catalog", href: "/Aeolus-TBR-catalog.pdf" },
-              { icon: <FilePdf size={22} weight="light" />, label: "Product Sheet", href: `/${TIRE_SLUG}.pdf` },
+              { icon: <FilePdf size={22} weight="light" />, label: "Product Sheet", href: "/template.pdf" },
               { icon: <ShieldCheck size={22} weight="light" />, label: "Warranty", href: "/Aeolus-TBR-Warranty.pdf" },
-              { icon: <Image size={22} weight="light" />, label: "Tire Photo", href: `/${TIRE_SLUG}-print.png`, download: `${TIRE_SLUG}-print.png` },
+              { icon: <Image size={22} weight="light" />, label: "Tire Photo", href: "/template.pdf", download: "template.pdf" },
             ].map(({ icon, label, href, download }) => {
               const sharedStyle: React.CSSProperties = {
                 display: "flex",

@@ -110,7 +110,7 @@ export default function TireTechExplorer({
                   top: `${point.y}%`,
                   backgroundColor: isActive ? "#fbbf24" : "#000",
                   color: isActive ? "#000" : "#fff",
-                  border: "1.5px solid #F2C94C",
+                  border: isActive ? "1.5px solid #fbbf24" : "1.5px solid #F2C94C",
                   opacity: isActive ? 0.85 : 0.7,
                 }}
                 className={[
@@ -120,7 +120,7 @@ export default function TireTechExplorer({
                   "shadow-[2px_4px_7px_1px_rgba(0,0,0,0.8)]",
                   "transition-all duration-200 ease-out",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black",
-                  isActive ? "scale-110 ring-2 ring-amber-200" : "hover:scale-110",
+                  isActive ? "scale-110" : "hover:scale-110",
                 ].join(" ")}
               >
                 {point.id}

@@ -152,7 +152,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
             }}
           >
             <span style={{ color: "#fff" }}>NEO FUEL </span>
-            <span style={{ color: "var(--accent-yellow)" }}>G3</span>
+            <span style={{ color: "var(--accent-yellow)" }}>{TIRE_NAME.split(" ").pop()}</span>
           </h1>
 
           {/* Subtitle */}
@@ -230,7 +230,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
           >
             <img
               src={tireImg}
-              alt="Aeolus Neo Fuel G3"
+              alt={`Aeolus ${TIRE_NAME}`}
               onClick={() => onOpen(tireImg)}
               style={{
                 width: "100%",

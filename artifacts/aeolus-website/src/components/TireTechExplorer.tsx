@@ -97,51 +97,28 @@ export default function TireTechExplorer({
           {points.map((point) => {
             const isActive = point.id === activeId;
             return (
-              <div
+              <button
                 key={point.id}
+                type="button"
+                aria-label={point.title}
+                aria-expanded={isActive}
+                onClick={() => setActiveId(point.id)}
+                onMouseEnter={() => setActiveId(point.id)}
+                onFocus={() => setActiveId(point.id)}
                 style={{ left: `${point.x}%`, top: `${point.y}%` }}
-                className="absolute -translate-x-1/2 -translate-y-1/2"
+                className={[
+                  "absolute -translate-x-1/2 -translate-y-1/2",
+                  "flex items-center justify-center",
+                  "w-7 h-7 text-sm font-semibold text-black",
+                  "bg-amber-400 rounded-full",
+                  "shadow-[0_0_10px_3px_rgba(251,191,36,0.5)]",
+                  "transition-transform duration-200 ease-out",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black",
+                  isActive ? "scale-110 ring-2 ring-amber-200" : "hover:scale-110",
+                ].join(" ")}
               >
-                {/* Tooltip card */}
-                {isActive && (
-                  <div
-                    className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 z-10 pointer-events-none"
-                    style={{ minWidth: "180px" }}
-                  >
-                    <div className="bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-2 shadow-xl">
-                      <p className="text-xs font-semibold text-white capitalize mb-1">{point.title}</p>
-                      {point.bullets.length > 0 && (
-                        <ul className="space-y-0.5">
-                          {point.bullets.map((b, i) => (
-                            <li key={i} className="text-xs text-neutral-400 list-disc ml-3">{b}</li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                    {/* Arrow */}
-                    <div className="w-2 h-2 bg-neutral-900 border-r border-b border-neutral-700 rotate-45 mx-auto -mt-1" />
-                  </div>
-                )}
-
-                <button
-                  type="button"
-                  aria-label={point.title}
-                  aria-expanded={isActive}
-                  onClick={() => setActiveId(point.id)}
-                  onMouseEnter={() => setActiveId(point.id)}
-                  onFocus={() => setActiveId(point.id)}
-                  className={[
-                    "flex items-center justify-center",
-                    "w-7 h-7 text-sm font-semibold text-black",
-                    "bg-amber-400 rounded-full",
-                    "transition-transform duration-200 ease-out",
-                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black",
-                    isActive ? "scale-110 ring-2 ring-amber-200" : "hover:scale-110",
-                  ].join(" ")}
-                >
-                  {point.id}
-                </button>
-              </div>
+                {point.id}
+              </button>
             );
           })}
         </div>

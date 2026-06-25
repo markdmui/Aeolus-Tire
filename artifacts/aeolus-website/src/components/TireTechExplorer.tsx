@@ -105,14 +105,20 @@ export default function TireTechExplorer({
                 onClick={() => setActiveId(point.id)}
                 onMouseEnter={() => setActiveId(point.id)}
                 onFocus={() => setActiveId(point.id)}
-                style={{ left: `${point.x}%`, top: `${point.y}%` }}
+                style={{
+                  left: `${point.x}%`,
+                  top: `${point.y}%`,
+                  backgroundColor: isActive ? "#fbbf24" : "#000",
+                  color: isActive ? "#000" : "#ccc",
+                  border: isActive ? "none" : "1.5px solid #999",
+                  opacity: isActive ? 1 : 0.7,
+                }}
                 className={[
                   "absolute -translate-x-1/2 -translate-y-1/2",
                   "flex items-center justify-center",
-                  "w-7 h-7 text-sm font-semibold text-black",
-                  "bg-amber-400 rounded-full",
+                  "w-7 h-7 text-sm font-semibold rounded-full",
                   "shadow-[2px_4px_7px_1px_rgba(0,0,0,0.8)]",
-                  "transition-transform duration-200 ease-out",
+                  "transition-all duration-200 ease-out",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black",
                   isActive ? "scale-110 ring-2 ring-amber-200" : "hover:scale-110",
                 ].join(" ")}

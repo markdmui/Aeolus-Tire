@@ -6,3 +6,27 @@ id = "BD-4Rr4vUw5xQop08kS9Y"
 uri = "file://aeolus-website-backup.tar.gz"
 type = "unspecified"
 title = "Aeolus Website — Base Template Before Design"
+
+[[outputs]]
+id = "nQ7sUFNXMqw0fQ5CHWHOE"
+uri = "file://attached_assets/Neo-Fuel-D3-f1.jpg"
+type = "image"
+title = "Neo-Fuel-D3-f1.jpg"
+
+[[outputs]]
+id = "eNe7wEGIdB-IkqkYV_Yvl"
+uri = "file://attached_assets/Neo-Fuel-D3-f2.jpg"
+type = "image"
+title = "Neo-Fuel-D3-f2.jpg"
+
+[[outputs]]
+id = "Pt6WmlBoLk6J49zTmhmkX"
+uri = "file://attached_assets/Neo-Fuel-D3-f3.jpg"
+type = "image"
+title = "Neo-Fuel-D3-f3.jpg"
+
+[[outputs]]
+id = "QSenDWYs0GraS3qhKt21u"
+uri = "file://attached_assets/Neo-Fuel-D3-f4.png"
+type = "image"
+title = "Neo-Fuel-D3-f4.png"

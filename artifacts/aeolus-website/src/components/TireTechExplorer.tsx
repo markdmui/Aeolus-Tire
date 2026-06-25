@@ -126,7 +126,7 @@ export default function TireTechExplorer({
           {points.map((point) => {
             const isActive = point.id === activeId;
             return (
-              <li key={point.id} className="py-1">
+              <li key={point.id} className="py-0">
                 <button
                   type="button"
                   aria-expanded={isActive}

@@ -150,7 +150,7 @@ export default function TireTechExplorer({
                     >
                       {String(point.id).padStart(2, "0")}
                     </span>
-                    <span className="text-base font-semibold text-neutral-100 uppercase tracking-wide">
+                    <span className="text-base font-semibold text-neutral-100">
                       {point.title}
                     </span>
                   </div>

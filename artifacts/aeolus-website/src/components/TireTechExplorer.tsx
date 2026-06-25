@@ -109,7 +109,7 @@ export default function TireTechExplorer({
                   left: `${point.x}%`,
                   top: `${point.y}%`,
                   backgroundColor: isActive ? "#fbbf24" : "#000",
-                  color: isActive ? "#000" : "#ccc",
+                  color: isActive ? "#000" : "#fff",
                   border: isActive ? "none" : "1.5px solid #999",
                   opacity: isActive ? 0.85 : 0.7,
                 }}

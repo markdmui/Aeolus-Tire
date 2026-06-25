@@ -23,7 +23,7 @@ import heroBg from "@assets/hero-bg-1_1782050148933.jpg";
 
 const tireImg = templateTireImg;
 
-const TIRE_NAME = "Neo Fuel G3";
+const TIRE_NAME = "Neo Fuel X3";
 const TIRE_SLUG = TIRE_NAME.replace(/\s+/g, "-").toLowerCase(); // → "neo-fuel-g3"
 const SEGMENT_CATEGORY = "Premium Long Haul";
 const TIRE_POS = "Drive";

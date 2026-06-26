@@ -514,7 +514,7 @@ function SpecsSection() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
             style={{ height: "1px", backgroundColor: "rgba(242, 201, 76, 0.6)", marginBottom: "0" }}
           />
         </div>

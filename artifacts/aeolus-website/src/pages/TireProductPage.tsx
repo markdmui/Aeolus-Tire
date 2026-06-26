@@ -129,7 +129,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
             className="tire-hero-badge"
             initial={{ opacity: 0, y: 48 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.42, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 0.34, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
             style={{
               display: "inline-block",
               border: "1px solid var(--accent-yellow)",
@@ -149,7 +149,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
             className="tire-product-h1 tire-hero-title uppercase"
             initial={{ opacity: 0, y: 70 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.48, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 0.38, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "clamp(2.4rem, 4.5vw, 4rem)",
@@ -167,7 +167,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
             className="tire-hero-subtitle"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 0.36, delay: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
             style={{
               color: "rgba(255,255,255,0.75)",
               fontSize: "0.95rem",
@@ -184,7 +184,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
             className="tire-hero-divider"
             initial={{ scaleX: 0, originX: 0 }}
             animate={{ scaleX: 1 }}
-            transition={{ duration: 0.36, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 0.29, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
             style={{ width: "2.5rem", height: "2px", backgroundColor: "var(--accent-yellow)" }}
           />
 
@@ -195,7 +195,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
                 key={point}
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.39, delay: 0.58 + i * 0.14, ease: [0.25, 0.46, 0.45, 0.94] }}
+                transition={{ duration: 0.31, delay: 0.58 + i * 0.14, ease: [0.25, 0.46, 0.45, 0.94] }}
                 style={{
                   display: "flex",
                   alignItems: "flex-start",
@@ -228,7 +228,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
             title={`${TIRE_POS} Tire`}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 0.7, y: 0 }}
-            transition={{ duration: 0.48, delay: 1.0, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 0.38, delay: 1.0, ease: [0.25, 0.46, 0.45, 0.94] }}
             style={{ height: "auto", display: "block", transition: "opacity 0.2s ease" }}
             className={`tire-hero-truck${TIRE_POS === "OTR" ? " tire-hero-truck--otr" : ""}`}
             onMouseEnter={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = "1"; }}
@@ -241,7 +241,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
           className="flex items-center justify-center pb-10 md:py-8"
           initial={{ opacity: 0, scale: 0.78, y: 60 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.54, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{ duration: 0.43, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
           <div
             className="tire-hero-img-wrap"
@@ -303,7 +303,7 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.55, delay: i * 0.18, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 0.44, delay: i * 0.18, ease: [0.25, 0.46, 0.45, 0.94] }}
               style={{ position: "absolute", top: 0, left: 0, height: "1px", backgroundColor: "#cccccc", width: "100%", originX: 0 }}
             />
 
@@ -313,7 +313,7 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
               initial={{ opacity: 0, x: 60 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: i * 0.18 + 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 0.36, delay: i * 0.18 + 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
               style={{
                 color: "var(--accent-yellow)",
                 fontSize: "1.05rem",
@@ -332,7 +332,7 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
               initial={{ opacity: 0, x: 60 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: i * 0.18 + 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 0.36, delay: i * 0.18 + 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
               style={{
                 color: "#cccccc",
                 fontSize: "0.86rem",
@@ -352,7 +352,7 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.18 + 0.18, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 0.40, delay: i * 0.18 + 0.18, ease: [0.25, 0.46, 0.45, 0.94] }}
               style={{
                 width: "100%",
                 display: "block",
@@ -457,7 +457,7 @@ function SpecsSection() {
                   initial={{ opacity: 0, x: -70 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.39, delay: i * 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  transition={{ duration: 0.31, delay: i * 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
                   style={sharedStyle} onMouseEnter={onEnter} onMouseLeave={onLeave}>
                   {inner}{label}
                 </motion.a>
@@ -466,7 +466,7 @@ function SpecsSection() {
                   initial={{ opacity: 0, x: -70 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.39, delay: i * 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  transition={{ duration: 0.31, delay: i * 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
                   style={sharedStyle} onMouseEnter={onEnter} onMouseLeave={onLeave}>
                   {inner}{label}
                 </motion.button>

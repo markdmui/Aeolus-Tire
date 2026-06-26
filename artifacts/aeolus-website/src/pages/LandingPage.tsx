@@ -56,7 +56,7 @@ function Hero() {
               key={word}
               className="block"
               style={{ color: i === 1 ? "var(--accent-yellow)" : "#fff" }}
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.55, delay: 0.1 + i * 0.12, ease: "easeOut" }}
             >

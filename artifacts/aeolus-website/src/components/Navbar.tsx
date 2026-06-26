@@ -198,7 +198,7 @@ export default function Navbar() {
                   {TIRE_DROPDOWN.left.map((section, si) => (
                     <div key={section.category} style={{ marginBottom: "0.9rem" }}>
                       <motion.div
-                        initial={{ opacity: 0, x: -20 }}
+                        initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.2, delay: si * 0.06, ease: [0.25, 0.46, 0.45, 0.94] }}
                         style={{ color: "#ffffff", fontWeight: 700, fontSize: "0.7rem", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.3rem", fontFamily: "var(--font-body)" }}
@@ -231,7 +231,7 @@ export default function Navbar() {
                   {TIRE_DROPDOWN.right.map((section, si) => (
                     <div key={section.category} style={{ marginBottom: "0.9rem" }}>
                       <motion.div
-                        initial={{ opacity: 0, x: -20 }}
+                        initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.2, delay: si * 0.06 + 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
                         style={{ color: "#ffffff", fontWeight: 700, fontSize: "0.7rem", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.3rem", fontFamily: "var(--font-body)" }}

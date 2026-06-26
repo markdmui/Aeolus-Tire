@@ -550,26 +550,6 @@ function SpecsSection() {
           </div>
         </div>
 
-        {/* Heading at bottom */}
-        <div className="container" style={{ position: "relative", zIndex: 1, paddingBottom: "3.5rem" }}>
-          <motion.h2
-            className="uppercase"
-            initial={{ opacity: 0, y: -40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.38, ease: "easeOut" }}
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "clamp(1.4rem, 2.5vw, 2.2rem)",
-              fontWeight: 400,
-              letterSpacing: "-0.02em",
-              lineHeight: 1,
-              color: "#cccccc",
-            }}
-          >
-            TECHNICAL SPECS
-          </motion.h2>
-        </div>
       </div>
 
       {/* Specs table */}
@@ -585,6 +565,25 @@ function SpecsSection() {
         }}
       >
         <div className="container" style={{ paddingTop: "150px", paddingBottom: "0" }}>
+          {/* Heading */}
+          <motion.h2
+            className="uppercase"
+            initial={{ opacity: 0, y: -40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.38, ease: "easeOut" }}
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "clamp(1.4rem, 2.5vw, 2.2rem)",
+              fontWeight: 400,
+              letterSpacing: "-0.02em",
+              lineHeight: 1,
+              color: "#cccccc",
+              marginBottom: "3.5rem",
+            }}
+          >
+            TECHNICAL SPECS
+          </motion.h2>
           {/* Specs Top Line — yellow 1px fade-in line above the spec table */}
           <motion.div
             initial={{ opacity: 0 }}

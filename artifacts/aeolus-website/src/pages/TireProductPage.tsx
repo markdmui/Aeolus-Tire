@@ -230,7 +230,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
             title={`${TIRE_POS} Tire`}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 0.7, y: 0 }}
-            whileHover={{ y: -10, opacity: 1 }}
+            whileHover={{ y: -10, opacity: 1, transition: { duration: 0.22, ease: "easeOut", delay: 0 } }}
             transition={{ duration: 0.38, delay: 1.0, ease: "easeOut" }}
             style={{ height: "auto", display: "block" }}
             className={`tire-hero-truck${TIRE_POS === "OTR" ? " tire-hero-truck--otr" : ""}`}

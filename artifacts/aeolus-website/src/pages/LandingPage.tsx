@@ -393,7 +393,7 @@ function AboutAeolus() {
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={VP}
-                    transition={{ duration: 0.30, delay: i * 0.07 + 0.17, ease: "easeOut" }}
+                    transition={{ duration: 0.30, delay: i * 0.07 + 0.30, ease: "easeOut" }}
                   >
                     {label}
                   </motion.div>

@@ -250,8 +250,8 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
                   transition={{ duration: 0.18, ease: "easeOut" }}
                   style={{
                     position: "fixed",
-                    top: mousePos.y - 36,
-                    left: mousePos.x + 14,
+                    top: mousePos.y - 10,
+                    left: mousePos.x + 10,
                     background: "#000",
                     border: "1px solid #333",
                     color: "#fff",

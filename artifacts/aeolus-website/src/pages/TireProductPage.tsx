@@ -504,7 +504,7 @@ function SpecsSection() {
               };
               const onEnter = (e: React.MouseEvent<HTMLElement>) => {
                 const el = e.currentTarget as HTMLElement;
-                el.style.background = "rgba(242,201,76,0.12)";
+                el.style.background = "rgba(242,201,76,0.28)";
                 el.style.color = "#ffffff";
                 el.style.borderLeft = "5px solid #ffffff";
                 const sp = el.querySelector("span") as HTMLElement | null;

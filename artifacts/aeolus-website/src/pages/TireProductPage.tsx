@@ -479,8 +479,8 @@ function SpecsSection() {
         <div className="container" style={{ position: "relative", zIndex: 1, paddingBottom: "3.5rem" }}>
           <motion.h2
             className="uppercase"
-            initial={{ opacity: 0, x: -60 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: -40 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.38, ease: [0.25, 0.46, 0.45, 0.94] }}
             style={{

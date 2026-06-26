@@ -291,20 +291,20 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.3, delay: i * 0.18 }}
             style={{
+              position: "relative",
               display: "grid",
               gridTemplateRows: "subgrid",
               gridRow: "span 3",
               alignContent: "start",
-              overflow: "hidden",
             }}
           >
-            {/* Top rule — grows from left */}
+            {/* Top rule — grows from left, absolutely positioned so it doesn't consume a subgrid row */}
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.55, delay: i * 0.18, ease: [0.55, 0.055, 0.675, 0.19] }}
-              style={{ height: "1px", backgroundColor: "#cccccc", width: "100%", gridColumn: "1 / -1", originX: 0 }}
+              style={{ position: "absolute", top: 0, left: 0, height: "1px", backgroundColor: "#cccccc", width: "100%", originX: 0 }}
             />
 
             {/* Title — in from right */}

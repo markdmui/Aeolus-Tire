@@ -453,7 +453,7 @@ function SpecsSection() {
   const col = (n: number) => ({ onMouseEnter: () => setHoveredCol(n) });
 
   return (
-    <section style={{ backgroundColor: "var(--bg-dark)" }}>
+    <section style={{ backgroundColor: "var(--bg-dark)", paddingTop: "60px" }}>
       {/* Truck background with download buttons + heading */}
       <div
         style={{

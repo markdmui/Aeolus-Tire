@@ -584,7 +584,7 @@ function SpecsSection() {
           zIndex: 1,
         }}
       >
-        <div className="container" style={{ paddingTop: "20px", paddingBottom: "0" }}>
+        <div className="container" style={{ paddingTop: "120px", paddingBottom: "0" }}>
           {/* Specs Top Line — yellow 1px fade-in line above the spec table */}
           <motion.div
             initial={{ opacity: 0 }}

@@ -131,9 +131,8 @@ function FeaturePillars() {
           <motion.div
             className="prop-card-line"
             initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={VP}
-            transition={{ duration: 0.7, delay: i * 0.12, ease: "easeOut" }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.7, delay: 0.5 + i * 0.15, ease: "easeOut" }}
           />
           <h3
             className="uppercase mb-4"

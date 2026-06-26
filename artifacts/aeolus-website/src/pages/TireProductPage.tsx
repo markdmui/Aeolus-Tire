@@ -467,7 +467,7 @@ function SpecsSection() {
           style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(to bottom, rgba(10,10,10,0) 0%, rgba(10,10,10,0) 100%)",
+            background: "rgba(10,10,10,0.22)",
           }}
         />
 

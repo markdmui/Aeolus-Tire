@@ -46,14 +46,6 @@ function Hero() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background: "linear-gradient(to bottom, transparent 55%, #000000 100%)",
-          pointerEvents: "none",
-        }}
-      />
       <div className="container w-full" style={{ position: "relative", zIndex: 1 }}>
         <h1
           className="uppercase mb-4"

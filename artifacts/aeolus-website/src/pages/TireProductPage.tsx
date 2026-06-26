@@ -291,7 +291,6 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.3, delay: i * 0.18 }}
             style={{
-              borderTop: "1px solid #cccccc",
               display: "grid",
               gridTemplateRows: "subgrid",
               gridRow: "span 3",
@@ -299,6 +298,15 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
               overflow: "hidden",
             }}
           >
+            {/* Top rule — grows from left */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.55, delay: i * 0.18, ease: [0.55, 0.055, 0.675, 0.19] }}
+              style={{ height: "1px", backgroundColor: "#cccccc", width: "100%", gridColumn: "1 / -1", originX: 0 }}
+            />
+
             {/* Title — in from right */}
             <motion.h3
               className="uppercase md:pt-10"

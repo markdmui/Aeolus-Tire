@@ -193,7 +193,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
             {BULLET_POINTS.map((point, i) => (
               <motion.li
                 key={point}
-                initial={{ opacity: 0, x: -50 }}
+                initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.39, delay: 0.58 + i * 0.14, ease: [0.55, 0.055, 0.675, 0.19] }}
                 style={{

@@ -656,39 +656,50 @@ function Lightbox({ src, onClose, category, tireName }: { src: string; onClose: 
       }}
     >
       {/* Top-left: category badge + tire name */}
-      <motion.div
-        initial={{ opacity: 0, x: -40 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: -40 }}
-        transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
+      <div
         style={{ position: "absolute", top: "1.25rem", left: "1.5rem" }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div style={{
-          display: "inline-block",
-          border: "1px solid var(--accent-yellow)",
-          color: "var(--accent-yellow)",
-          fontSize: "0.75rem",
-          fontWeight: 700,
-          letterSpacing: "0.14em",
-          textTransform: "uppercase",
-          padding: "4px 10px",
-          marginBottom: "0.6rem",
-        }}>
-          {category}
-        </div>
-        <div style={{
-          fontFamily: "'Inter', sans-serif",
-          fontSize: "2.4rem",
-          fontWeight: 600,
-          lineHeight: 1,
-          letterSpacing: "-0.02em",
-          textTransform: "uppercase",
-        }}>
+        {/* Tire name — comes in first */}
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -40 }}
+          transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
+          style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "2.4rem",
+            fontWeight: 600,
+            lineHeight: 1,
+            letterSpacing: "-0.02em",
+            textTransform: "uppercase",
+            marginBottom: "0.6rem",
+          }}
+        >
           <span style={{ color: "#fff" }}>{first}{middle ? " " + middle : ""} </span>
           <span style={{ color: "var(--accent-yellow)" }}>{last}</span>
-        </div>
-      </motion.div>
+        </motion.div>
+
+        {/* Category badge — comes in second */}
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -40 }}
+          transition={{ duration: 0.3, delay: 0.22, ease: "easeOut" }}
+          style={{
+            display: "inline-block",
+            border: "1px solid var(--accent-yellow)",
+            color: "var(--accent-yellow)",
+            fontSize: "0.75rem",
+            fontWeight: 700,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            padding: "4px 10px",
+          }}
+        >
+          {category}
+        </motion.div>
+      </div>
 
       <motion.button
         onClick={onClose}

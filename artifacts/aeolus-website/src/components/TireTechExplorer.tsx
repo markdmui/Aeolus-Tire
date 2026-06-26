@@ -66,7 +66,7 @@ const SAMPLE_POINTS: Point[] = [
       "Improved bead wire durability",
       "Retreadability",
     ],
-    x: 50,
+    x: 46,
     y: 87,
   },
   {

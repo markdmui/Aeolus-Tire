@@ -1,5 +1,6 @@
 import { CaretCircleRight, CaretRight } from "@phosphor-icons/react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -308,6 +309,9 @@ function EngineeringCapabilities() {
 }
 
 function AboutAeolus() {
+  const sectionRef = useRef(null);
+  const bgInView = useInView(sectionRef, { once: true, margin: "0px" });
+
   const stats = [
     { value: "1000+", label: "Specifications and varieties of tires" },
     { value: "500",   label: "China's top 500 companies 15 consecutive years" },
@@ -319,16 +323,16 @@ function AboutAeolus() {
 
   return (
     <section
+      ref={sectionRef}
       className="about-stats-section"
       style={{ position: "relative", overflow: "hidden" }}
     >
       {/* Truck background — animates up from below */}
       <motion.div
         aria-hidden
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={VP}
-        transition={{ duration: 0.55, ease: "easeOut" }}
+        initial={{ opacity: 0, y: 70 }}
+        animate={bgInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 70 }}
+        transition={{ duration: 0.65, ease: "easeOut" }}
         style={{
           position: "absolute",
           inset: 0,

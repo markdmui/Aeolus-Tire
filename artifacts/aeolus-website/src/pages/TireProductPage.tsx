@@ -477,8 +477,12 @@ function SpecsSection() {
 
         {/* Heading at bottom */}
         <div className="container" style={{ position: "relative", zIndex: 1, paddingBottom: "3.5rem" }}>
-          <h2
+          <motion.h2
             className="uppercase"
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.38, ease: [0.25, 0.46, 0.45, 0.94] }}
             style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "clamp(1.4rem, 2.5vw, 2.2rem)",
@@ -489,12 +493,16 @@ function SpecsSection() {
             }}
           >
             TECHNICAL SPECS
-          </h2>
+          </motion.h2>
         </div>
       </div>
 
       {/* Specs table */}
-      <div
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.45, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
         style={{
           backgroundColor: "#000000",
           position: "relative",
@@ -576,7 +584,7 @@ function SpecsSection() {
             </tbody>
           </table>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

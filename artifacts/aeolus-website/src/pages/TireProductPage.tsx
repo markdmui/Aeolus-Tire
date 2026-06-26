@@ -561,10 +561,10 @@ function SpecsSection() {
             style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "clamp(1.4rem, 2.5vw, 2.2rem)",
-              fontWeight: 600,
+              fontWeight: 400,
               letterSpacing: "-0.02em",
               lineHeight: 1,
-              color: "#fff",
+              color: "#cccccc",
             }}
           >
             TECHNICAL SPECS

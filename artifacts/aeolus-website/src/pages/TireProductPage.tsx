@@ -127,9 +127,9 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
           {/* Badge */}
           <motion.div
             className="tire-hero-badge"
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 48 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             style={{
               display: "inline-block",
               border: "1px solid var(--accent-yellow)",
@@ -147,9 +147,9 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
           {/* Title */}
           <motion.h1
             className="tire-product-h1 tire-hero-title uppercase"
-            initial={{ opacity: 0, y: 18 }}
+            initial={{ opacity: 0, y: 70 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "clamp(2.4rem, 4.5vw, 4rem)",
@@ -165,9 +165,9 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
           {/* Subtitle */}
           <motion.p
             className="tire-hero-subtitle"
-            initial={{ opacity: 0, y: 14 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.32 }}
+            transition={{ duration: 0.75, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
             style={{
               color: "rgba(255,255,255,0.75)",
               fontSize: "0.95rem",
@@ -184,7 +184,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
             className="tire-hero-divider"
             initial={{ scaleX: 0, originX: 0 }}
             animate={{ scaleX: 1 }}
-            transition={{ duration: 0.4, delay: 0.44 }}
+            transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
             style={{ width: "2.5rem", height: "2px", backgroundColor: "var(--accent-yellow)" }}
           />
 
@@ -193,9 +193,9 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
             {BULLET_POINTS.map((point, i) => (
               <motion.li
                 key={point}
-                initial={{ opacity: 0, x: -10 }}
+                initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 0.52 + i * 0.08 }}
+                transition={{ duration: 0.65, delay: 0.58 + i * 0.14, ease: [0.22, 1, 0.36, 1] }}
                 style={{
                   display: "flex",
                   alignItems: "flex-start",
@@ -226,9 +226,9 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
             src={POS_SVG[TIRE_POS]}
             alt={`${TIRE_POS} tire position`}
             title={`${TIRE_POS} Tire`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.7 }}
-            transition={{ duration: 0.5, delay: 0.85 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 0.7, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.0, ease: [0.22, 1, 0.36, 1] }}
             style={{ height: "auto", display: "block", transition: "opacity 0.2s ease" }}
             className={`tire-hero-truck${TIRE_POS === "OTR" ? " tire-hero-truck--otr" : ""}`}
             onMouseEnter={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = "1"; }}
@@ -239,9 +239,9 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
         {/* Tire image — cropped via overflow:hidden + aspectRatio */}
         <motion.div
           className="flex items-center justify-center pb-10 md:py-8"
-          initial={{ opacity: 0, scale: 0.93 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.65, delay: 0.15, ease: "easeOut" }}
+          initial={{ opacity: 0, scale: 0.78, y: 60 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
         >
           <div
             className="tire-hero-img-wrap"
@@ -286,10 +286,10 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
         {FEATURES.map((f, i) => (
           <motion.div
             key={f.title}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 80 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.5, delay: i * 0.12 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.75, delay: i * 0.18, ease: [0.22, 1, 0.36, 1] }}
             style={{
               borderTop: "1px solid #cccccc",
               display: "grid",
@@ -433,19 +433,19 @@ function SpecsSection() {
               return href ? (
                 <motion.a key={label} href={href}
                   {...(download ? { download } : { target: "_blank", rel: "noopener noreferrer" })}
-                  initial={{ opacity: 0, x: -16 }}
+                  initial={{ opacity: 0, x: -70 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
+                  transition={{ duration: 0.65, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
                   style={sharedStyle} onMouseEnter={onEnter} onMouseLeave={onLeave}>
                   {inner}{label}
                 </motion.a>
               ) : (
                 <motion.button key={label}
-                  initial={{ opacity: 0, x: -16 }}
+                  initial={{ opacity: 0, x: -70 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
+                  transition={{ duration: 0.65, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
                   style={sharedStyle} onMouseEnter={onEnter} onMouseLeave={onLeave}>
                   {inner}{label}
                 </motion.button>

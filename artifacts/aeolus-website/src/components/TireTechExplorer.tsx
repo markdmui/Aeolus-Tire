@@ -129,7 +129,7 @@ export default function TireTechExplorer({
           })}
         </div>
 
-        <ul className="flex flex-col border-l border-neutral-800 pl-8" style={{ minHeight: "460px", justifyContent: "flex-start" }}>
+        <ul className="flex flex-col border-l border-neutral-800 pl-8" style={{ minHeight: "380px", justifyContent: "flex-start" }}>
           {points.map((point) => {
             const isActive = point.id === activeId;
             return (

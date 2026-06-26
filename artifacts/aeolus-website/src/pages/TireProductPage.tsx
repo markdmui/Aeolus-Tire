@@ -97,7 +97,7 @@ export default function TireProductPage() {
       <Navbar />
       <div style={{ position: "relative" }}>
         <HeroSection onOpen={setActiveImg} />
-        <div style={{ position: "relative", zIndex: 1, marginTop: "-190px" }}>
+        <div style={{ position: "relative", zIndex: 1, marginTop: "-90px" }}>
           <FeatureSection onOpen={setActiveImg} />
         </div>
       </div>

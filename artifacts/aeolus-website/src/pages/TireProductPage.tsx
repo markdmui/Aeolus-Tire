@@ -239,8 +239,8 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
         {/* Tire image — cropped via overflow:hidden + aspectRatio */}
         <motion.div
           className="flex items-center justify-center pb-10 md:py-8"
-          initial={{ opacity: 0, scale: 0.78, y: 60 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.43, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
           <div

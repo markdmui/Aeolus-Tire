@@ -258,7 +258,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
                     fontSize: "0.75rem",
                     fontWeight: 500,
                     letterSpacing: "0.04em",
-                    padding: "5px 10px",
+                    padding: "7px 12px",
                     whiteSpace: "nowrap",
                     pointerEvents: "none",
                     zIndex: 9999,

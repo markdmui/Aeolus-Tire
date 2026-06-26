@@ -80,7 +80,6 @@ const SPEC_ROWS = [
 
 export default function TireProductPage() {
   const [activeImg, setActiveImg] = useState<string | null>(null);
-  const [truckHovered, setTruckHovered] = useState(false);
   const close = useCallback(() => setActiveImg(null), []);
 
   useEffect(() => {
@@ -109,6 +108,7 @@ export default function TireProductPage() {
 }
 
 function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
+  const [truckHovered, setTruckHovered] = useState(false);
   return (
     <section
       className="tire-product-hero"

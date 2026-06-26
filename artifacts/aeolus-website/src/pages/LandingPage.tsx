@@ -40,9 +40,14 @@ export default function LandingPage() {
 }
 
 function Hero() {
-  const [heroBg] = useState(
-    () => HERO_IMAGES[Math.floor(Math.random() * HERO_IMAGES.length)]
-  );
+  const [heroBg] = useState(() => {
+    const stored = localStorage.getItem("heroBgIndex");
+    const next = stored === null
+      ? Math.floor(Math.random() * HERO_IMAGES.length)
+      : (parseInt(stored, 10) + 1) % HERO_IMAGES.length;
+    localStorage.setItem("heroBgIndex", String(next));
+    return HERO_IMAGES[next];
+  });
   return (
     <section
       className="hero-section flex flex-col justify-center pb-16 md:pb-24"

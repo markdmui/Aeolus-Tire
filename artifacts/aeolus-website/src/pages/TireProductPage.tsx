@@ -230,11 +230,10 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
             title={`${TIRE_POS} Tire`}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 0.7, y: 0 }}
+            whileHover={{ y: -10, opacity: 1 }}
             transition={{ duration: 0.38, delay: 1.0, ease: "easeOut" }}
-            style={{ height: "auto", display: "block", transition: "opacity 0.2s ease" }}
+            style={{ height: "auto", display: "block" }}
             className={`tire-hero-truck${TIRE_POS === "OTR" ? " tire-hero-truck--otr" : ""}`}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = "1"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = "0.7"; }}
           />
         </div>
 
@@ -243,6 +242,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
           className="flex items-center justify-center pb-10 md:py-8"
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
+          whileHover={{ y: -10 }}
           transition={{ duration: 0.43, delay: 0.1, ease: "easeOut" }}
         >
           <div

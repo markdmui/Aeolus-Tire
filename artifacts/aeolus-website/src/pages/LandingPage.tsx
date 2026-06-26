@@ -320,16 +320,27 @@ function AboutAeolus() {
   return (
     <section
       className="about-stats-section"
-      style={{
-        backgroundImage: "url('/about-bg.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "left center",
-        backgroundRepeat: "no-repeat",
-      }}
+      style={{ position: "relative", overflow: "hidden" }}
     >
+      {/* Truck background — animates up from below */}
+      <motion.div
+        aria-hidden
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={VP}
+        transition={{ duration: 0.55, ease: "easeOut" }}
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: "url('/about-bg.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "left center",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
       <div
         className="container"
-        style={{ display: "flex", alignItems: "stretch", minHeight: "480px" }}
+        style={{ position: "relative", zIndex: 1, display: "flex", alignItems: "stretch", minHeight: "480px" }}
       >
         <div className="hidden md:block" style={{ flex: "0 0 45%" }} />
 

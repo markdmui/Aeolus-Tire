@@ -118,18 +118,14 @@ export default function TireTechExplorer({
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: isActive ? 0.85 : 0.7, scale: 1 }}
                 viewport={{ once: true }}
-                whileHover={{ scale: 1.25 }}
-                whileTap={{ scale: 0.88 }}
                 animate={{
                   backgroundColor: isActive ? "#fbbf24" : "#000",
                   color: isActive ? "#000" : "#fff",
-                  scale: isActive ? 1.15 : 1,
                   opacity: isActive ? 0.95 : 0.7,
                   y: isActive ? -6 : 0,
                 }}
                 transition={{
                   opacity: { duration: 0.4, delay: 0.3 + idx * 0.07 },
-                  scale: { type: "spring", stiffness: 400, damping: 20 },
                   y: { type: "spring", stiffness: 350, damping: 22 },
                   backgroundColor: { duration: 0.2 },
                   color: { duration: 0.2 },

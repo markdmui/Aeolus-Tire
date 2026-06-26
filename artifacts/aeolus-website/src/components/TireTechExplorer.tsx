@@ -186,7 +186,7 @@ export default function TireTechExplorer({
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400",
                     isActive
                       ? "rounded-l-xl border-amber-400 bg-neutral-900 px-5 py-4 -ml-0.5"
-                      : "rounded-none border-transparent px-0 py-0",
+                      : "rounded-none border-transparent px-0 py-2",
                   ].join(" ")}
                 >
                   <div className="flex items-baseline gap-4">

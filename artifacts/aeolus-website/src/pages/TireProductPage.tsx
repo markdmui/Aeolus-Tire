@@ -100,7 +100,9 @@ export default function TireProductPage() {
       <SpecsSection />
       <TireTechExplorer imageSrc={cutawayImg} />
       <Footer />
-      {activeImg && <Lightbox src={activeImg} onClose={close} category={SEGMENT_CATEGORY} tireName={TIRE_NAME} />}
+      <AnimatePresence>
+        {activeImg && <Lightbox key="lightbox" src={activeImg} onClose={close} category={SEGMENT_CATEGORY} tireName={TIRE_NAME} />}
+      </AnimatePresence>
     </div>
   );
 }
@@ -635,8 +637,12 @@ function Lightbox({ src, onClose, category, tireName }: { src: string; onClose: 
   const last = rest[rest.length - 1];
   const middle = rest.slice(0, -1).join(" ");
   return (
-    <div
+    <motion.div
       onClick={onClose}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25, ease: "easeOut" }}
       style={{
         position: "fixed",
         inset: 0,
@@ -650,7 +656,11 @@ function Lightbox({ src, onClose, category, tireName }: { src: string; onClose: 
       }}
     >
       {/* Top-left: category badge + tire name */}
-      <div
+      <motion.div
+        initial={{ opacity: 0, x: -40 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -40 }}
+        transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
         style={{ position: "absolute", top: "1.25rem", left: "1.5rem" }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -678,10 +688,14 @@ function Lightbox({ src, onClose, category, tireName }: { src: string; onClose: 
           <span style={{ color: "#fff" }}>{first}{middle ? " " + middle : ""} </span>
           <span style={{ color: "var(--accent-yellow)" }}>{last}</span>
         </div>
-      </div>
+      </motion.div>
 
-      <button
+      <motion.button
         onClick={onClose}
+        initial={{ opacity: 0, x: 40 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: 40 }}
+        transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
         style={{
           position: "absolute",
           top: "1.25rem",
@@ -703,10 +717,15 @@ function Lightbox({ src, onClose, category, tireName }: { src: string; onClose: 
       >
         <span style={{ fontSize: "1.6rem", lineHeight: 1 }}>×</span>
         Close Image
-      </button>
-      <img
+      </motion.button>
+
+      <motion.img
         src={src}
         onClick={(e) => e.stopPropagation()}
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+        transition={{ duration: 0.35, delay: 0.05, ease: "easeOut" }}
         style={{
           maxWidth: "100%",
           maxHeight: "90vh",
@@ -715,6 +734,6 @@ function Lightbox({ src, onClose, category, tireName }: { src: string; onClose: 
           boxShadow: "0 0 80px rgba(0,0,0,0.8)",
         }}
       />
-    </div>
+    </motion.div>
   );
 }

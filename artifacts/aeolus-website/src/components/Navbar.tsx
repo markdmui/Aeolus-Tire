@@ -155,9 +155,15 @@ export default function Navbar() {
           margin: "0 auto",
         }}
       >
-        <Link href="/" aria-label="Aeolus" className="flex items-center" onClick={() => setMenuOpen(false)}>
-          <img src="/aeolus-logo.png" alt="Aeolus" className="h-[26px] w-auto" />
-        </Link>
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.38, ease: [0.25, 0.46, 0.45, 0.94] }}
+        >
+          <Link href="/" aria-label="Aeolus" className="flex items-center" onClick={() => setMenuOpen(false)}>
+            <img src="/aeolus-logo.png" alt="Aeolus" className="h-[26px] w-auto" />
+          </Link>
+        </motion.div>
 
         {/* Desktop nav — position:relative so dropdown anchors to this container's right edge */}
         <div

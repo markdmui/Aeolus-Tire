@@ -660,27 +660,7 @@ function Lightbox({ src, onClose, category, tireName }: { src: string; onClose: 
         style={{ position: "absolute", top: "1.25rem", left: "1.5rem" }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Tire name — comes in first */}
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -40 }}
-          transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
-          style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "2.4rem",
-            fontWeight: 600,
-            lineHeight: 1,
-            letterSpacing: "-0.02em",
-            textTransform: "uppercase",
-            marginBottom: "0.6rem",
-          }}
-        >
-          <span style={{ color: "#fff" }}>{first}{middle ? " " + middle : ""} </span>
-          <span style={{ color: "var(--accent-yellow)" }}>{last}</span>
-        </motion.div>
-
-        {/* Category badge — comes in second */}
+        {/* Category badge — on top visually, comes in second */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
@@ -695,9 +675,29 @@ function Lightbox({ src, onClose, category, tireName }: { src: string; onClose: 
             letterSpacing: "0.14em",
             textTransform: "uppercase",
             padding: "4px 10px",
+            marginBottom: "0.6rem",
           }}
         >
           {category}
+        </motion.div>
+
+        {/* Tire name — below the badge, comes in first */}
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -40 }}
+          transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
+          style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "2.4rem",
+            fontWeight: 600,
+            lineHeight: 1,
+            letterSpacing: "-0.02em",
+            textTransform: "uppercase",
+          }}
+        >
+          <span style={{ color: "#fff" }}>{first}{middle ? " " + middle : ""} </span>
+          <span style={{ color: "var(--accent-yellow)" }}>{last}</span>
         </motion.div>
       </div>
 

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useRoute } from "wouter";
 import { List, X } from "@phosphor-icons/react";
 
-const DEMO = "/tires/neo-fuel-g3";
+const DEMO = "/tires/neo-fuel-x3";
 
 const TIRE_DROPDOWN = {
   left: [

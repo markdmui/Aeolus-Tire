@@ -65,7 +65,7 @@ function Hero() {
         >
           Built for durability. Engineered for the long haul.
         </p>
-        <a href="/tires/neo-fuel-g3" className="link-accent group">
+        <a href="/tires/neo-fuel-x3" className="link-accent group">
           EXPLORE OUR TIRE LINE UP
           <CaretRight size={16} className="ml-2 inline-block transition-transform group-hover:translate-x-1" />
         </a>

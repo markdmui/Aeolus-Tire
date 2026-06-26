@@ -28,7 +28,7 @@ const TIRES: Tire[] = [
       { label: "Compound", value: "Low RRC" },
       { label: "Load Index", value: "148/145L" },
     ],
-    slug: "neo-fuel-g3",
+    slug: "neo-fuel-x3",
   },
   {
     model: "NEO FUEL S3",

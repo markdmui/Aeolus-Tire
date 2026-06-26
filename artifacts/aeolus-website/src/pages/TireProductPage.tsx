@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { motion } from "framer-motion";
 import { Notebook, FilePdf, ShieldCheck, Image } from "@phosphor-icons/react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -124,8 +125,11 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
         {/* Text content */}
         <div className="tire-hero-text md:pb-8">
           {/* Badge */}
-          <div
+          <motion.div
             className="tire-hero-badge"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             style={{
               display: "inline-block",
               border: "1px solid var(--accent-yellow)",
@@ -138,11 +142,14 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
             }}
           >
             Premium Long Haul
-          </div>
+          </motion.div>
 
           {/* Title */}
-          <h1
+          <motion.h1
             className="tire-product-h1 tire-hero-title uppercase"
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.2 }}
             style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "clamp(2.4rem, 4.5vw, 4rem)",
@@ -153,11 +160,14 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
           >
             <span style={{ color: "#fff" }}>NEO FUEL </span>
             <span style={{ color: "var(--accent-yellow)" }}>{TIRE_NAME.split(" ").pop()}</span>
-          </h1>
+          </motion.h1>
 
           {/* Subtitle */}
-          <p
+          <motion.p
             className="tire-hero-subtitle"
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.32 }}
             style={{
               color: "rgba(255,255,255,0.75)",
               fontSize: "0.95rem",
@@ -167,19 +177,25 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
           >
             Engineered for long-distance journeys ensuring high-speed stability,
             fuel efficiency, and endurance mile after mile.
-          </p>
+          </motion.p>
 
           {/* Divider */}
-          <div
+          <motion.div
             className="tire-hero-divider"
+            initial={{ scaleX: 0, originX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.4, delay: 0.44 }}
             style={{ width: "2.5rem", height: "2px", backgroundColor: "var(--accent-yellow)" }}
           />
 
           {/* Bullet points */}
           <ul className="tire-hero-bullets" style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column" }}>
-            {BULLET_POINTS.map((point) => (
-              <li
+            {BULLET_POINTS.map((point, i) => (
+              <motion.li
                 key={point}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: 0.52 + i * 0.08 }}
                 style={{
                   display: "flex",
                   alignItems: "flex-start",
@@ -201,16 +217,19 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
                   }}
                 />
                 {point}
-              </li>
+              </motion.li>
             ))}
           </ul>
 
           {/* Position / application icon */}
-          <img
+          <motion.img
             src={POS_SVG[TIRE_POS]}
             alt={`${TIRE_POS} tire position`}
             title={`${TIRE_POS} Tire`}
-            style={{ height: "auto", display: "block", opacity: 0.7, transition: "opacity 0.2s ease" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.7 }}
+            transition={{ duration: 0.5, delay: 0.85 }}
+            style={{ height: "auto", display: "block", transition: "opacity 0.2s ease" }}
             className={`tire-hero-truck${TIRE_POS === "OTR" ? " tire-hero-truck--otr" : ""}`}
             onMouseEnter={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = "1"; }}
             onMouseLeave={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = "0.7"; }}
@@ -218,7 +237,12 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
         </div>
 
         {/* Tire image — cropped via overflow:hidden + aspectRatio */}
-        <div className="flex items-center justify-center pb-10 md:py-8">
+        <motion.div
+          className="flex items-center justify-center pb-10 md:py-8"
+          initial={{ opacity: 0, scale: 0.93 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.65, delay: 0.15, ease: "easeOut" }}
+        >
           <div
             className="tire-hero-img-wrap"
             style={{
@@ -240,7 +264,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
               }}
             />
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -259,9 +283,13 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
         className="container grid grid-cols-1 md:grid-cols-3"
         style={{ gap: "var(--col-gap)", gridTemplateRows: "auto auto auto" }}
       >
-        {FEATURES.map((f) => (
-          <div
+        {FEATURES.map((f, i) => (
+          <motion.div
             key={f.title}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.5, delay: i * 0.12 }}
             style={{
               borderTop: "1px solid #cccccc",
               display: "grid",
@@ -311,7 +339,7 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
                 objectFit: "cover",
               }}
             />
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>
@@ -360,7 +388,7 @@ function SpecsSection() {
               { icon: <FilePdf size={22} weight="light" />, label: "Product Sheet", href: "/template.pdf" },
               { icon: <ShieldCheck size={22} weight="light" />, label: "Warranty", href: "/Aeolus-TBR-Warranty.pdf" },
               { icon: <Image size={22} weight="light" />, label: "Tire Photo", href: "/template.png", download: "template.png" },
-            ].map(({ icon, label, href, download }) => {
+            ].map(({ icon, label, href, download }, i) => {
               const sharedStyle: React.CSSProperties = {
                 display: "flex",
                 alignItems: "center",
@@ -403,15 +431,24 @@ function SpecsSection() {
                 <span style={{ color: "var(--accent-yellow)", display: "flex", alignItems: "center" }}>{icon}</span>
               );
               return href ? (
-                <a key={label} href={href}
+                <motion.a key={label} href={href}
                   {...(download ? { download } : { target: "_blank", rel: "noopener noreferrer" })}
+                  initial={{ opacity: 0, x: -16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.1 }}
                   style={sharedStyle} onMouseEnter={onEnter} onMouseLeave={onLeave}>
                   {inner}{label}
-                </a>
+                </motion.a>
               ) : (
-                <button key={label} style={sharedStyle} onMouseEnter={onEnter} onMouseLeave={onLeave}>
+                <motion.button key={label}
+                  initial={{ opacity: 0, x: -16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.1 }}
+                  style={sharedStyle} onMouseEnter={onEnter} onMouseLeave={onLeave}>
                   {inner}{label}
-                </button>
+                </motion.button>
               );
             })}
           </div>

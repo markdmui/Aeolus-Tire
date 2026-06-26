@@ -220,9 +220,9 @@ export default function TireTechExplorer({
                           {point.bullets.map((bullet, i) => (
                             <motion.li
                               key={i}
-                              initial={{ opacity: 0, x: 12 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ duration: 0.25, delay: i * 0.06 }}
+                              initial={{ opacity: 0, x: 50, y: 8 }}
+                              animate={{ opacity: 1, x: 0, y: 0 }}
+                              transition={{ duration: 0.5, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
                               className="text-sm text-neutral-400 leading-relaxed list-disc"
                             >
                               {bullet}

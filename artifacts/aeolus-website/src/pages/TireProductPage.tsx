@@ -109,6 +109,7 @@ export default function TireProductPage() {
 
 function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
   const [truckHovered, setTruckHovered] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   return (
     <section
       className="tire-product-hero"
@@ -229,6 +230,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
             style={{ position: "relative", display: "inline-block" }}
             onMouseEnter={() => setTruckHovered(true)}
             onMouseLeave={() => setTruckHovered(false)}
+            onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })}
           >
             <motion.img
               src={POS_SVG[TIRE_POS]}
@@ -247,10 +249,9 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
                   exit={{ opacity: 0, y: 4 }}
                   transition={{ duration: 0.18, ease: "easeOut" }}
                   style={{
-                    position: "absolute",
-                    bottom: "calc(100% + 8px)",
-                    left: "50%",
-                    transform: "translateX(-50%)",
+                    position: "fixed",
+                    top: mousePos.y - 36,
+                    left: mousePos.x + 14,
                     background: "#000",
                     border: "1px solid #333",
                     color: "#fff",
@@ -260,6 +261,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
                     padding: "5px 10px",
                     whiteSpace: "nowrap",
                     pointerEvents: "none",
+                    zIndex: 9999,
                   }}
                 >
                   {TIRE_POS} Tire

@@ -509,7 +509,16 @@ function SpecsSection() {
           zIndex: 1,
         }}
       >
-        <div className="container" style={{ overflowX: "auto", paddingTop: "20px", paddingBottom: "0" }}>
+        <div className="container" style={{ paddingTop: "20px", paddingBottom: "0" }}>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            style={{ height: "1px", backgroundColor: "var(--accent-yellow)", marginBottom: "0" }}
+          />
+        </div>
+        <div className="container" style={{ overflowX: "auto", paddingTop: "0", paddingBottom: "0" }}>
           <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.86rem" }}>
             <thead>
               <tr>

@@ -100,7 +100,7 @@ export default function TireProductPage() {
         <div style={{ position: "relative", zIndex: 1, marginTop: "-20px" }}>
           <FeatureSection onOpen={setActiveImg} />
         </div>
-        <div style={{ position: "relative", marginTop: "-160px" }}>
+        <div style={{ position: "relative", marginTop: "40px" }}>
           <SpecsSection />
         </div>
       </div>
@@ -478,7 +478,7 @@ function SpecsSection() {
         />
 
         {/* Download buttons */}
-        <div className="container" style={{ position: "relative", zIndex: 1, paddingTop: "calc(3rem + 160px)" }}>
+        <div className="container" style={{ position: "relative", zIndex: 1, paddingTop: "3rem" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", width: "fit-content" }}>
             {[
               { icon: <Notebook size={22} weight="light" />, label: "Product Catalog", href: "/Aeolus-TBR-catalog.pdf" },

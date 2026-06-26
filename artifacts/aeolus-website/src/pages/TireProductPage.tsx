@@ -110,6 +110,8 @@ export default function TireProductPage() {
 function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
   const [truckHovered, setTruckHovered] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [tireHovered, setTireHovered] = useState(false);
+  const [tireMouse, setTireMouse] = useState({ x: 0, y: 0 });
   return (
     <section
       className="tire-product-hero"
@@ -279,25 +281,58 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
           transition={{ duration: 0.43, delay: 0.1, ease: "easeOut" }}
         >
           <div
-            className="tire-hero-img-wrap"
-            style={{
-              width: "100%",
-              maxWidth: "520px",
-              overflow: "hidden",
-              aspectRatio: "1 / 0.83",
-            }}
+            style={{ position: "relative", display: "inline-block", width: "100%", maxWidth: "520px" }}
+            onMouseEnter={() => setTireHovered(true)}
+            onMouseLeave={() => setTireHovered(false)}
+            onMouseMove={(e) => setTireMouse({ x: e.clientX, y: e.clientY })}
           >
-            <img
-              src={tireImg}
-              alt={`Aeolus ${TIRE_NAME}`}
-              onClick={() => onOpen(tireImg)}
+            <div
+              className="tire-hero-img-wrap"
               style={{
                 width: "100%",
-                height: "auto",
-                display: "block",
-                cursor: "zoom-in",
+                overflow: "hidden",
+                aspectRatio: "1 / 0.83",
               }}
-            />
+            >
+              <img
+                src={tireImg}
+                alt={`Aeolus ${TIRE_NAME}`}
+                onClick={() => onOpen(tireImg)}
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  display: "block",
+                  cursor: "zoom-in",
+                }}
+              />
+            </div>
+            <AnimatePresence>
+              {tireHovered && (
+                <motion.div
+                  initial={{ opacity: 0, y: 4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 4 }}
+                  transition={{ duration: 0.18, ease: "easeOut" }}
+                  style={{
+                    position: "fixed",
+                    top: tireMouse.y - 10,
+                    left: tireMouse.x + 10,
+                    background: "#000",
+                    border: "1px solid #555",
+                    color: "#fff",
+                    fontSize: "0.75rem",
+                    fontWeight: 500,
+                    letterSpacing: "0.04em",
+                    padding: "7px 12px",
+                    whiteSpace: "nowrap",
+                    pointerEvents: "none",
+                    zIndex: 9999,
+                  }}
+                >
+                  View Tire
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </motion.div>
       </div>

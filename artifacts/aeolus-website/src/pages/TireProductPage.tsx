@@ -100,8 +100,10 @@ export default function TireProductPage() {
         <div style={{ position: "relative", zIndex: 1, marginTop: "-20px" }}>
           <FeatureSection onOpen={setActiveImg} />
         </div>
+        <div style={{ position: "relative", marginTop: "-160px" }}>
+          <SpecsSection />
+        </div>
       </div>
-      <SpecsSection />
       <TireTechExplorer imageSrc={cutawayImg} />
       <Footer />
       <AnimatePresence>
@@ -350,8 +352,7 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
     <section
       className="md:pt-[100px]"
       style={{
-        background: "linear-gradient(to bottom, transparent 0%, #000000 220px)",
-        borderBottom: "1px solid var(--border-color)",
+        background: "linear-gradient(to bottom, transparent 0%, #000000 220px, #000000 55%, transparent 100%)",
       }}
     >
       <div
@@ -453,7 +454,7 @@ function SpecsSection() {
   const col = (n: number) => ({ onMouseEnter: () => setHoveredCol(n) });
 
   return (
-    <section style={{ backgroundColor: "var(--bg-dark)", paddingTop: "60px" }}>
+    <section style={{ backgroundColor: "transparent", paddingTop: "0" }}>
       {/* Truck background with download buttons + heading */}
       <div
         style={{
@@ -477,7 +478,7 @@ function SpecsSection() {
         />
 
         {/* Download buttons */}
-        <div className="container" style={{ position: "relative", zIndex: 1, paddingTop: "3rem" }}>
+        <div className="container" style={{ position: "relative", zIndex: 1, paddingTop: "calc(3rem + 160px)" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", width: "fit-content" }}>
             {[
               { icon: <Notebook size={22} weight="light" />, label: "Product Catalog", href: "/Aeolus-TBR-catalog.pdf" },

@@ -12,3 +12,9 @@ id = "7tzY2hTfRLX_s6OWg7KqF"
 uri = "file://attached_assets/feature-images.zip"
 type = "unspecified"
 title = "Aeolus Feature Images (42 files, 24 MB)"
+
+[[outputs]]
+id = "2_U4Zyhvvw3wFSG1n9g7o"
+uri = "file://attached_assets/missing-feature-images.zip"
+type = "unspecified"
+title = "6 Missing Feature Images"

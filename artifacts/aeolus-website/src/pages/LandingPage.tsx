@@ -361,8 +361,8 @@ function AboutAeolus() {
                 >
                   <motion.div
                     style={{ marginBottom: "8px", lineHeight: 1 }}
-                    initial={{ opacity: 0, y: -20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     viewport={VP}
                     transition={{ duration: 0.32, delay: i * 0.07 + 0.1, ease: "easeOut" }}
                   >
@@ -377,8 +377,8 @@ function AboutAeolus() {
                       lineHeight: 1,
                       marginBottom: "6px",
                     }}
-                    initial={{ opacity: 0, x: 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={VP}
                     transition={{ duration: 0.30, delay: i * 0.07 + 0.05, ease: "easeOut" }}
                   >

@@ -95,25 +95,8 @@ export default function TireProductPage() {
     >
       <Navbar />
       <HeroSection onOpen={setActiveImg} />
-      {/* Shared truck background spanning feature cards + downloads */}
-      <div style={{ position: "relative" }}>
-        <img src={bgTruck} alt="" style={{
-          position: "absolute",
-          top: 0,
-          right: 0,
-          width: "auto",
-          height: "100%",
-          maxWidth: "100%",
-          objectFit: "contain",
-          objectPosition: "top right",
-          zIndex: 0,
-          pointerEvents: "none",
-        }} />
-        <div style={{ position: "relative", zIndex: 1 }}>
-          <FeatureSection onOpen={setActiveImg} />
-          <SpecsSection />
-        </div>
-      </div>
+      <FeatureSection onOpen={setActiveImg} />
+      <SpecsSection />
       <TireTechExplorer imageSrc={cutawayImg} />
       <Footer />
       {activeImg && <Lightbox src={activeImg} onClose={close} category={SEGMENT_CATEGORY} tireName={TIRE_NAME} />}
@@ -268,6 +251,7 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
     <section
       className="md:pt-[100px]"
       style={{
+        backgroundColor: "#000000",
         borderBottom: "1px solid var(--border-color)",
       }}
     >
@@ -345,11 +329,14 @@ function SpecsSection() {
   const col = (n: number) => ({ onMouseEnter: () => setHoveredCol(n) });
 
   return (
-    <section style={{ backgroundColor: "transparent" }}>
-      {/* Download buttons + heading (truck bg now comes from parent wrapper) */}
+    <section style={{ backgroundColor: "var(--bg-dark)" }}>
+      {/* Truck background with download buttons + heading */}
       <div
         style={{
           position: "relative",
+          backgroundImage: `url(${bgTruck})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center calc(60% + 60px)",
           minHeight: "480px",
           marginBottom: "-40px",
           display: "flex",
@@ -357,6 +344,13 @@ function SpecsSection() {
           justifyContent: "space-between",
         }}
       >
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(to bottom, rgba(10,10,10,0) 0%, rgba(10,10,10,0) 100%)",
+          }}
+        />
 
         {/* Download buttons */}
         <div className="container" style={{ position: "relative", zIndex: 1, paddingTop: "3rem" }}>

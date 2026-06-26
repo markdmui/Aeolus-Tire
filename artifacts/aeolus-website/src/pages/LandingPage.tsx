@@ -354,8 +354,8 @@ function AboutAeolus() {
               {stats.map(({ value, label }, i) => (
                 <motion.div
                   key={value}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ y: 30 }}
+                  whileInView={{ y: 0 }}
                   viewport={VP}
                   transition={{ duration: 0.32, delay: i * 0.07, ease: "easeOut" }}
                 >
@@ -368,7 +368,7 @@ function AboutAeolus() {
                   >
                     <CaretCircleRight size={28} color="#a18a00" />
                   </motion.div>
-                  <div
+                  <motion.div
                     style={{
                       fontFamily: "'Inter', sans-serif",
                       fontWeight: 600,
@@ -377,18 +377,26 @@ function AboutAeolus() {
                       lineHeight: 1,
                       marginBottom: "6px",
                     }}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={VP}
+                    transition={{ duration: 0.30, delay: i * 0.07 + 0.05, ease: "easeOut" }}
                   >
                     {value}
-                  </div>
-                  <div
+                  </motion.div>
+                  <motion.div
                     style={{
                       color: "var(--text-muted)",
                       fontSize: "0.88rem",
                       lineHeight: 1.45,
                     }}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={VP}
+                    transition={{ duration: 0.30, delay: i * 0.07 + 0.17, ease: "easeOut" }}
                   >
                     {label}
-                  </div>
+                  </motion.div>
                 </motion.div>
               ))}
             </div>

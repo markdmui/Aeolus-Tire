@@ -86,7 +86,8 @@ export default function TireTechExplorer({
   const [activeId, setActiveId] = useState<number | null>(points[0]?.id ?? null);
 
   return (
-    <section className="w-full bg-black p-6 sm:p-10 lg:p-14">
+    <section className="w-full bg-black py-6 sm:py-10 lg:py-14">
+      <div style={{ maxWidth: "1600px", margin: "0 auto", padding: "0 calc(4vw + 20px)" }}>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
 
         {/* Cutaway image + dot buttons */}
@@ -237,6 +238,7 @@ export default function TireTechExplorer({
             );
           })}
         </motion.ul>
+      </div>
       </div>
     </section>
   );

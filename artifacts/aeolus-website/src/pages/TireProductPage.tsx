@@ -510,6 +510,7 @@ function SpecsSection() {
         }}
       >
         <div className="container" style={{ paddingTop: "20px", paddingBottom: "0" }}>
+          {/* spec-chart-rule — yellow 1px fade-in line above the spec table */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}

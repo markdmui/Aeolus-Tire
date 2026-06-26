@@ -253,7 +253,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
                     top: mousePos.y - 10,
                     left: mousePos.x + 10,
                     background: "#000",
-                    border: "1px solid #333",
+                    border: "1px solid #555",
                     color: "#fff",
                     fontSize: "0.75rem",
                     fontWeight: 500,

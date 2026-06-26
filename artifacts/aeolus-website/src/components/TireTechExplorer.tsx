@@ -86,8 +86,8 @@ export default function TireTechExplorer({
 
   return (
     <section className="w-full bg-black p-6 sm:p-10 lg:p-14">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-        <div className="relative w-full" style={{ aspectRatio: "16 / 11" }}>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+        <div className="relative w-full self-start" style={{ aspectRatio: "16 / 11" }}>
           <img
             src={imageSrc}
             alt={imageAlt}
@@ -129,7 +129,7 @@ export default function TireTechExplorer({
           })}
         </div>
 
-        <ul className="flex flex-col border-l border-neutral-800 pl-8">
+        <ul className="flex flex-col border-l border-neutral-800 pl-8" style={{ minHeight: "460px", justifyContent: "flex-start" }}>
           {points.map((point) => {
             const isActive = point.id === activeId;
             return (

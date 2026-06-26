@@ -467,7 +467,7 @@ function SpecsSection() {
           style={{
             position: "absolute",
             inset: 0,
-            background: "rgba(10,10,10,0.22)",
+            background: "rgba(10,10,10,0.33)",
           }}
         />
 

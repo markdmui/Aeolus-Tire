@@ -102,7 +102,7 @@ export default function TireProductPage() {
           inset: 0,
           backgroundImage: `url(${bgTruck})`,
           backgroundSize: "cover",
-          backgroundPosition: "center 40%",
+          backgroundPosition: "center 68%",
           zIndex: 0,
         }} />
         <div style={{

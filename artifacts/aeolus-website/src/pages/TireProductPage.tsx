@@ -123,7 +123,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
         position: "relative",
         marginTop: "-46px",
         backgroundImage: `url(${heroBg})`,
-        backgroundSize: "cover",
+        backgroundSize: "auto 100%",
         backgroundPosition: "right center",
         backgroundRepeat: "no-repeat",
         backgroundColor: "#000000",

@@ -373,14 +373,13 @@ function AboutAeolus() {
                       fontFamily: "'Inter', sans-serif",
                       fontWeight: 600,
                       fontSize: "clamp(1.4rem, 3vw, 2.8rem)",
-                      color: "#ffffff",
                       lineHeight: 1,
                       marginBottom: "6px",
                     }}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: 10, color: "#F2C94C" }}
+                    whileInView={{ opacity: 1, y: 0, color: "#ffffff" }}
                     viewport={VP}
-                    transition={{ duration: 0.30, delay: i * 0.07 + 0.05, ease: "easeOut" }}
+                    transition={{ duration: 0.55, delay: i * 0.07 + 0.05, ease: "easeOut" }}
                   >
                     {value}
                   </motion.div>

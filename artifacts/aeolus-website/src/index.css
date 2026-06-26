@@ -183,6 +183,7 @@ html {
    HERO SECTION
    ============================================================ */
 .hero-section {
+  position: relative;
   padding-left: 4vw;
   padding-right: 4vw;
   background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-gradient) 100%);

@@ -12,9 +12,15 @@ export default function LandingPage() {
       style={{ backgroundColor: "var(--bg-dark)", fontFamily: "var(--font-body)" }}
     >
       <Navbar />
-      <Hero />
+      <div style={{ position: "relative" }}>
+        <Hero />
+        <div style={{ position: "relative", zIndex: 1, marginTop: "-160px" }}>
+          <div className="container">
+            <FeaturePillars />
+          </div>
+        </div>
+      </div>
       <div className="container">
-        <FeaturePillars />
         <ProductGrid />
         <EngineeringCapabilities />
       </div>
@@ -40,7 +46,15 @@ function Hero() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="container w-full">
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "linear-gradient(to bottom, transparent 55%, #000000 100%)",
+          pointerEvents: "none",
+        }}
+      />
+      <div className="container w-full" style={{ position: "relative", zIndex: 1 }}>
         <h1
           className="uppercase mb-4"
           style={{
@@ -117,7 +131,7 @@ function FeaturePillars() {
   return (
     <section
       className="py-8 md:py-20 grid grid-cols-1 md:grid-cols-3 gap-5"
-      style={{ columnGap: "var(--col-gap)", borderTop: "1px solid var(--border-color)" }}
+      style={{ columnGap: "var(--col-gap)" }}
     >
       {features.map((f, i) => (
         <motion.div

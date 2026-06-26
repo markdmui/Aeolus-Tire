@@ -236,7 +236,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
               src={POS_SVG[TIRE_POS]}
               alt={`${TIRE_POS} tire position`}
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: truckHovered ? 1 : 0.7, y: 0 }}
+              animate={{ opacity: 0.7, y: 0 }}
               transition={{ duration: 0.38, delay: 1.0, ease: "easeOut" }}
               style={{ height: "auto", display: "block" }}
               className={`tire-hero-truck${TIRE_POS === "OTR" ? " tire-hero-truck--otr" : ""}`}

@@ -359,9 +359,15 @@ function AboutAeolus() {
                   viewport={VP}
                   transition={{ duration: 0.32, delay: i * 0.07, ease: "easeOut" }}
                 >
-                  <div style={{ marginBottom: "8px", lineHeight: 1 }}>
+                  <motion.div
+                    style={{ marginBottom: "8px", lineHeight: 1 }}
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={VP}
+                    transition={{ duration: 0.32, delay: i * 0.07 + 0.1, ease: "easeOut" }}
+                  >
                     <CaretCircleRight size={28} color="#a18a00" />
-                  </div>
+                  </motion.div>
                   <div
                     style={{
                       fontFamily: "'Inter', sans-serif",

@@ -95,8 +95,12 @@ export default function TireProductPage() {
       style={{ backgroundColor: "var(--bg-dark)", fontFamily: "var(--font-body)" }}
     >
       <Navbar />
-      <HeroSection onOpen={setActiveImg} />
-      <FeatureSection onOpen={setActiveImg} />
+      <div style={{ position: "relative" }}>
+        <HeroSection onOpen={setActiveImg} />
+        <div style={{ position: "relative", zIndex: 1, marginTop: "-190px" }}>
+          <FeatureSection onOpen={setActiveImg} />
+        </div>
+      </div>
       <SpecsSection />
       <TireTechExplorer imageSrc={cutawayImg} />
       <Footer />
@@ -116,6 +120,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
     <section
       className="tire-product-hero"
       style={{
+        position: "relative",
         marginTop: "-46px",
         backgroundImage: `url(${heroBg})`,
         backgroundSize: "cover",
@@ -345,7 +350,7 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
     <section
       className="md:pt-[100px]"
       style={{
-        backgroundColor: "#000000",
+        background: "linear-gradient(to bottom, transparent 0%, #000000 220px)",
         borderBottom: "1px solid var(--border-color)",
       }}
     >

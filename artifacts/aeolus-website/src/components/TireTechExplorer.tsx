@@ -67,7 +67,7 @@ const SAMPLE_POINTS: Point[] = [
       "Retreadability",
     ],
     x: 45,
-    y: 91,
+    y: 89,
   },
   {
     id: 7,

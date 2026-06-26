@@ -97,19 +97,17 @@ export default function TireProductPage() {
       <HeroSection onOpen={setActiveImg} />
       {/* Shared truck background spanning feature cards + downloads */}
       <div style={{ position: "relative" }}>
-        <div style={{
+        <img src={bgTruck} alt="" style={{
           position: "absolute",
-          inset: 0,
-          backgroundImage: `url(${bgTruck})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center 78%",
+          top: 0,
+          right: 0,
+          width: "auto",
+          height: "100%",
+          maxWidth: "100%",
+          objectFit: "contain",
+          objectPosition: "top right",
           zIndex: 0,
-        }} />
-        <div style={{
-          position: "absolute",
-          inset: 0,
-          background: "linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0) 70%), linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.0) 30%, rgba(0,0,0,0.35) 100%)",
-          zIndex: 0,
+          pointerEvents: "none",
         }} />
         <div style={{ position: "relative", zIndex: 1 }}>
           <FeatureSection onOpen={setActiveImg} />

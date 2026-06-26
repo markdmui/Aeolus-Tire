@@ -479,7 +479,7 @@ function SpecsSection() {
         />
 
         {/* Download buttons */}
-        <div className="container" style={{ position: "relative", zIndex: 1, paddingTop: "3rem" }}>
+        <div className="container" style={{ position: "relative", zIndex: 1, paddingTop: "calc(3rem + 30px)" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", width: "fit-content" }}>
             {[
               { icon: <Notebook size={22} weight="light" />, label: "Product Catalog", href: "/Aeolus-TBR-catalog.pdf" },

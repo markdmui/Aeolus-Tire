@@ -462,7 +462,7 @@ function SpecsSection() {
           backgroundSize: "cover",
           backgroundPosition: "center calc(60% + 60px)",
           minHeight: "480px",
-          marginBottom: "-40px",
+          marginBottom: "-180px",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
@@ -579,7 +579,7 @@ function SpecsSection() {
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.45, delay: 0.1, ease: "easeOut" }}
         style={{
-          backgroundColor: "#000000",
+          background: "linear-gradient(to bottom, transparent 0%, #000000 200px)",
           position: "relative",
           zIndex: 1,
         }}

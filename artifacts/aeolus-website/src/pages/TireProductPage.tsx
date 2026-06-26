@@ -18,7 +18,7 @@ import feature2 from "@assets/Template-f2_1782411546517.jpg";
 import feature3 from "@assets/Template-f3_1782411546518.jpg";
 import templateTireImg from "@assets/Template_1782411546518.png";
 
-import bgTruck from "@assets/bg-long-haul_1782483214098.jpg";
+import bgTruck from "@assets/bg-long-haul_1782483488801.jpg";
 import heroBg from "@assets/hero-bg-1_1782050148933.jpg";
 
 const tireImg = templateTireImg;

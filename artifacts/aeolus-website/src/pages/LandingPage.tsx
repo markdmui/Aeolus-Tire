@@ -14,7 +14,7 @@ export default function LandingPage() {
       <Navbar />
       <div style={{ position: "relative" }}>
         <Hero />
-        <div style={{ position: "relative", zIndex: 1, marginTop: "-160px" }}>
+        <div style={{ position: "relative", zIndex: 1, marginTop: "-240px" }}>
           <div className="container">
             <FeaturePillars />
           </div>

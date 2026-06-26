@@ -102,13 +102,13 @@ export default function TireProductPage() {
           inset: 0,
           backgroundImage: `url(${bgTruck})`,
           backgroundSize: "cover",
-          backgroundPosition: "center 68%",
+          backgroundPosition: "center 78%",
           zIndex: 0,
         }} />
         <div style={{
           position: "absolute",
           inset: 0,
-          background: "linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.25) 100%)",
+          background: "linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0) 70%), linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.0) 30%, rgba(0,0,0,0.35) 100%)",
           zIndex: 0,
         }} />
         <div style={{ position: "relative", zIndex: 1 }}>

@@ -350,13 +350,19 @@ html {
    Design: 3px top border (white), turns yellow on hover
    ============================================================ */
 .prop-card {
-  border-top: 1px solid var(--text-main);
   padding-top: 1.5rem;
-  transition: border-color 0.3s ease;
 }
 
-.prop-card:hover {
-  border-top-color: var(--accent-yellow);
+.prop-card-line {
+  height: 1px;
+  background: var(--text-main);
+  margin-bottom: 1.5rem;
+  transition: background 0.3s ease;
+  transform-origin: left;
+}
+
+.prop-card:hover .prop-card-line {
+  background: var(--accent-yellow);
 }
 
 /* ============================================================

@@ -147,8 +147,8 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
           {/* Title */}
           <motion.h1
             className="tire-product-h1 tire-hero-title uppercase"
-            initial={{ opacity: 0, y: 70 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: 70 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.38, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             style={{
               fontFamily: "'Inter', sans-serif",

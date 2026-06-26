@@ -564,7 +564,7 @@ function SpecsSection() {
           zIndex: 1,
         }}
       >
-        <div className="container" style={{ paddingTop: "130px", paddingBottom: "0" }}>
+        <div className="container" style={{ paddingTop: "110px", paddingBottom: "0" }}>
           {/* Heading */}
           <motion.h2
             className="uppercase"

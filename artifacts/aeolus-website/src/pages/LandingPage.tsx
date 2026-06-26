@@ -1,7 +1,15 @@
 import { CaretCircleRight, CaretRight } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+
+const HERO_IMAGES = [
+  "/hero-bg.png",
+  "/hero-bg-2.jpg",
+  "/hero-bg-3.jpg",
+  "/hero-bg-4.jpg",
+];
 
 const VP = { once: true, margin: "-80px" };
 
@@ -32,6 +40,9 @@ export default function LandingPage() {
 }
 
 function Hero() {
+  const [heroBg] = useState(
+    () => HERO_IMAGES[Math.floor(Math.random() * HERO_IMAGES.length)]
+  );
   return (
     <section
       className="hero-section flex flex-col justify-center pb-16 md:pb-24"
@@ -40,7 +51,7 @@ function Hero() {
         height: "720px",
         marginTop: "-46px",
         paddingTop: "110px",
-        backgroundImage: "url('/hero-bg.png')",
+        backgroundImage: `url('${heroBg}')`,
         backgroundSize: "cover",
         backgroundPosition: "center right",
         backgroundRepeat: "no-repeat",

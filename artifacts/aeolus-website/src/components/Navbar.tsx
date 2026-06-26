@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useRoute } from "wouter";
 import { List, X } from "@phosphor-icons/react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const DEMO = "/tires/neo-fuel-x3";
 
@@ -170,55 +171,77 @@ export default function Navbar() {
           </Link>
 
           {/* Dropdown panel — right:0 aligns with SEARCH button's right edge */}
-          {tiresOpen && (
-            <div
-              onMouseEnter={openTires}
-              style={{
-                position: "absolute",
-                top: "calc(100% + 10px)",
-                right: 0,
-                backgroundColor: "#000000",
-                border: "1px solid #2c2c2e",
-                padding: "1.5rem 1.75rem",
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: "0 2.5rem",
-                minWidth: "540px",
-                zIndex: 200,
-                boxShadow: "0 8px 32px rgba(0,0,0,0.6)",
-              }}
-            >
-              <div>
-                {TIRE_DROPDOWN.left.map((section) => (
-                  <div key={section.category} style={{ marginBottom: "0.9rem" }}>
-                    <div style={{ color: "#ffffff", fontWeight: 700, fontSize: "0.7rem", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.3rem", fontFamily: "var(--font-body)" }}>
-                      <CategoryHeader text={section.category} />
+          <AnimatePresence>
+            {tiresOpen && (
+              <motion.div
+                onMouseEnter={openTires}
+                initial={{ opacity: 0, y: -12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
+                style={{
+                  position: "absolute",
+                  top: "calc(100% + 10px)",
+                  right: 0,
+                  backgroundColor: "#000000",
+                  border: "1px solid #2c2c2e",
+                  padding: "1.5rem 1.75rem",
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: "0 2.5rem",
+                  minWidth: "540px",
+                  zIndex: 200,
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.6)",
+                }}
+              >
+                <div>
+                  {TIRE_DROPDOWN.left.map((section, si) => (
+                    <div key={section.category} style={{ marginBottom: "0.9rem" }}>
+                      <div style={{ color: "#ffffff", fontWeight: 700, fontSize: "0.7rem", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.3rem", fontFamily: "var(--font-body)" }}>
+                        <CategoryHeader text={section.category} />
+                      </div>
+                      {section.tires.map((tire, ti) =>
+                        tire.href === "#" ? (
+                          <motion.a
+                            key={tire.label} href="#" className="dropdown-tire-link"
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.2, delay: (si * 4 + ti) * 0.04, ease: [0.25, 0.46, 0.45, 0.94] }}
+                          >{tire.label}</motion.a>
+                        ) : (
+                          <motion.div
+                            key={tire.label}
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.2, delay: (si * 4 + ti) * 0.04, ease: [0.25, 0.46, 0.45, 0.94] }}
+                          >
+                            <Link href={tire.href} className="dropdown-tire-link">{tire.label}</Link>
+                          </motion.div>
+                        )
+                      )}
                     </div>
-                    {section.tires.map((tire) =>
-                      tire.href === "#" ? (
-                        <a key={tire.label} href="#" className="dropdown-tire-link">{tire.label}</a>
-                      ) : (
-                        <Link key={tire.label} href={tire.href} className="dropdown-tire-link">{tire.label}</Link>
-                      )
-                    )}
-
-                  </div>
-                ))}
-              </div>
-              <div>
-                {TIRE_DROPDOWN.right.map((section) => (
-                  <div key={section.category} style={{ marginBottom: "0.9rem" }}>
-                    <div style={{ color: "#ffffff", fontWeight: 700, fontSize: "0.7rem", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.3rem", fontFamily: "var(--font-body)" }}>
-                      <CategoryHeader text={section.category} />
+                  ))}
+                </div>
+                <div>
+                  {TIRE_DROPDOWN.right.map((section, si) => (
+                    <div key={section.category} style={{ marginBottom: "0.9rem" }}>
+                      <div style={{ color: "#ffffff", fontWeight: 700, fontSize: "0.7rem", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.3rem", fontFamily: "var(--font-body)" }}>
+                        <CategoryHeader text={section.category} />
+                      </div>
+                      {section.tires.map((tire, ti) => (
+                        <motion.a
+                          key={tire.label} href={tire.href} className="dropdown-tire-link"
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.2, delay: (si * 4 + ti) * 0.04 + 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
+                        >{tire.label}</motion.a>
+                      ))}
                     </div>
-                    {section.tires.map((tire) => (
-                      <a key={tire.label} href={tire.href} className="dropdown-tire-link">{tire.label}</a>
-                    ))}
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         {/* Mobile hamburger */}

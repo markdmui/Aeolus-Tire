@@ -155,7 +155,7 @@ export default function TireTechExplorer({
         {/* Feature list */}
         <motion.ul
           className="flex flex-col border-l border-neutral-800 pl-8"
-          style={{ minHeight: "460px", justifyContent: "flex-start" }}
+          style={{ minHeight: "400px", justifyContent: "flex-start" }}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}

@@ -579,7 +579,7 @@ function SpecsSection() {
               letterSpacing: "-0.02em",
               lineHeight: 1,
               color: "#cccccc",
-              marginBottom: "3.5rem",
+              marginBottom: "36px",
             }}
           >
             TECHNICAL SPECS

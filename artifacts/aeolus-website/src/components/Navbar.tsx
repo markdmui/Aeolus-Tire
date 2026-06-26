@@ -158,7 +158,7 @@ export default function Navbar() {
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.38, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{ duration: 0.38, ease: "easeOut" }}
         >
           <Link href="/" aria-label="Aeolus" className="flex items-center" onClick={() => setMenuOpen(false)}>
             <img src="/aeolus-logo.png" alt="Aeolus" className="h-[26px] w-auto" />
@@ -184,7 +184,7 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: -12 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
+                transition={{ duration: 0.22, ease: "easeOut" }}
                 style={{
                   position: "absolute",
                   top: "calc(100% + 10px)",
@@ -206,7 +206,7 @@ export default function Navbar() {
                       <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.2, delay: si * 0.06, ease: [0.25, 0.46, 0.45, 0.94] }}
+                        transition={{ duration: 0.2, delay: si * 0.06, ease: "easeOut" }}
                         style={{ color: "#ffffff", fontWeight: 700, fontSize: "0.7rem", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.3rem", fontFamily: "var(--font-body)" }}
                       >
                         <CategoryHeader text={section.category} />
@@ -217,14 +217,14 @@ export default function Navbar() {
                             key={tire.label} href="#" className="dropdown-tire-link"
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.2, delay: (si * 4 + ti) * 0.04, ease: [0.25, 0.46, 0.45, 0.94] }}
+                            transition={{ duration: 0.2, delay: (si * 4 + ti) * 0.04, ease: "easeOut" }}
                           >{tire.label}</motion.a>
                         ) : (
                           <motion.div
                             key={tire.label}
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.2, delay: (si * 4 + ti) * 0.04, ease: [0.25, 0.46, 0.45, 0.94] }}
+                            transition={{ duration: 0.2, delay: (si * 4 + ti) * 0.04, ease: "easeOut" }}
                           >
                             <Link href={tire.href} className="dropdown-tire-link">{tire.label}</Link>
                           </motion.div>
@@ -239,7 +239,7 @@ export default function Navbar() {
                       <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.2, delay: si * 0.06 + 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
+                        transition={{ duration: 0.2, delay: si * 0.06 + 0.05, ease: "easeOut" }}
                         style={{ color: "#ffffff", fontWeight: 700, fontSize: "0.7rem", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.3rem", fontFamily: "var(--font-body)" }}
                       >
                         <CategoryHeader text={section.category} />
@@ -249,7 +249,7 @@ export default function Navbar() {
                           key={tire.label} href={tire.href} className="dropdown-tire-link"
                           initial={{ opacity: 0, x: 20 }}
                           animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.2, delay: (si * 4 + ti) * 0.04 + 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
+                          transition={{ duration: 0.2, delay: (si * 4 + ti) * 0.04 + 0.05, ease: "easeOut" }}
                         >{tire.label}</motion.a>
                       ))}
                     </div>

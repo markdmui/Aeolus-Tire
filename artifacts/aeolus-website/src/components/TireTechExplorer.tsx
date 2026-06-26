@@ -96,7 +96,7 @@ export default function TireTechExplorer({
           initial={{ opacity: 0, x: -60 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.64, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{ duration: 0.64, ease: "easeOut" }}
         >
           <img
             src={imageSrc}
@@ -172,7 +172,7 @@ export default function TireTechExplorer({
                 className="py-0"
                 variants={{
                   hidden: { opacity: 0, x: 40 },
-                  visible: { opacity: 1, x: 0, transition: { duration: 0.44, ease: [0.25, 0.46, 0.45, 0.94] } },
+                  visible: { opacity: 1, x: 0, transition: { duration: 0.44, ease: "easeOut" } },
                 }}
               >
                 <button
@@ -213,7 +213,7 @@ export default function TireTechExplorer({
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
+                        transition={{ duration: 0.28, ease: "easeOut" }}
                         style={{ overflow: "hidden" }}
                       >
                         <ul className="mt-1 ml-9 space-y-0.5">
@@ -222,7 +222,7 @@ export default function TireTechExplorer({
                               key={i}
                               initial={{ opacity: 0, x: 50, y: 8 }}
                               animate={{ opacity: 1, x: 0, y: 0 }}
-                              transition={{ duration: 0.26, delay: i * 0.08, ease: [0.25, 0.46, 0.45, 0.94] }}
+                              transition={{ duration: 0.26, delay: i * 0.08, ease: "easeOut" }}
                               className="text-sm text-neutral-400 leading-relaxed list-disc"
                             >
                               {bullet}

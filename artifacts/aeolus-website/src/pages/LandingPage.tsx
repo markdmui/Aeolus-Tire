@@ -86,9 +86,9 @@ function Hero() {
         <motion.a
           href="/tires/neo-fuel-x3"
           className="link-accent group"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, delay: 0.76, ease: "easeOut" }}
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.92, ease: "easeOut" }}
         >
           EXPLORE OUR TIRE LINE UP
           <CaretRight size={16} className="ml-2 inline-block transition-transform group-hover:translate-x-1" />

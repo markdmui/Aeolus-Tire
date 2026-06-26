@@ -1,6 +1,9 @@
 import { CaretCircleRight, CaretRight } from "@phosphor-icons/react";
+import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+
+const VP = { once: true, margin: "-80px" };
 
 export default function LandingPage() {
   return (
@@ -48,27 +51,48 @@ function Hero() {
             letterSpacing: "-0.04em",
           }}
         >
-          <span className="block text-white">DRIVING</span>
-          <span className="block" style={{ color: "var(--accent-yellow)" }}>THE WORLD</span>
-          <span className="block text-white">TOGETHER</span>
+          {["DRIVING", "THE WORLD", "TOGETHER"].map((word, i) => (
+            <motion.span
+              key={word}
+              className="block"
+              style={{ color: i === 1 ? "var(--accent-yellow)" : "#fff" }}
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.55, delay: 0.1 + i * 0.12, ease: "easeOut" }}
+            >
+              {word}
+            </motion.span>
+          ))}
         </h1>
 
-        <p
+        <motion.p
           className="hero-subtitle mb-2"
           style={{ color: "rgba(255,255,255,0.72)", fontSize: "clamp(0.95rem, 2.5vw, 1.1rem)", maxWidth: "32rem" }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.52, ease: "easeOut" }}
         >
           Uncompromising radial truck tires for the modern global fleet.
-        </p>
-        <p
+        </motion.p>
+        <motion.p
           className="hero-subtitle mb-5"
           style={{ color: "rgba(255,255,255,0.72)", fontSize: "clamp(0.95rem, 2.5vw, 1.1rem)", maxWidth: "32rem" }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.62, ease: "easeOut" }}
         >
           Built for durability. Engineered for the long haul.
-        </p>
-        <a href="/tires/neo-fuel-x3" className="link-accent group">
+        </motion.p>
+        <motion.a
+          href="/tires/neo-fuel-x3"
+          className="link-accent group"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.76, ease: "easeOut" }}
+        >
           EXPLORE OUR TIRE LINE UP
           <CaretRight size={16} className="ml-2 inline-block transition-transform group-hover:translate-x-1" />
-        </a>
+        </motion.a>
       </div>
     </section>
   );
@@ -95,8 +119,15 @@ function FeaturePillars() {
       className="py-8 md:py-20 grid grid-cols-1 md:grid-cols-3 gap-5"
       style={{ columnGap: "var(--col-gap)", borderTop: "1px solid var(--border-color)" }}
     >
-      {features.map((f) => (
-        <div key={f.title} className="prop-card">
+      {features.map((f, i) => (
+        <motion.div
+          key={f.title}
+          className="prop-card"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={VP}
+          transition={{ duration: 0.5, delay: i * 0.12, ease: "easeOut" }}
+        >
           <h3
             className="uppercase mb-4"
             style={{ fontSize: "1rem", fontWeight: 600, letterSpacing: "0.02em" }}
@@ -106,7 +137,7 @@ function FeaturePillars() {
           <p style={{ color: "var(--text-muted)", fontSize: "0.95rem", lineHeight: 1.6 }}>
             {f.body}
           </p>
-        </div>
+        </motion.div>
       ))}
     </section>
   );
@@ -117,11 +148,18 @@ interface ProductCardProps {
   name: string;
   description: string;
   specs: { label: string; value: string }[];
+  delay?: number;
 }
 
-function ProductCard({ badge, name, description, specs }: ProductCardProps) {
+function ProductCard({ badge, name, description, specs, delay = 0 }: ProductCardProps) {
   return (
-    <div className="product-card flex flex-col">
+    <motion.div
+      className="product-card flex flex-col"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={VP}
+      transition={{ duration: 0.52, delay, ease: "easeOut" }}
+    >
       <div
         className="w-full aspect-[4/3]"
         style={{ backgroundColor: "#1a1a1b" }}
@@ -159,12 +197,12 @@ function ProductCard({ badge, name, description, specs }: ProductCardProps) {
           ))}
         </ul>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
 function ProductGrid() {
-  const products: ProductCardProps[] = [
+  const products: Omit<ProductCardProps, "delay">[] = [
     {
       badge: "BEST SELLER",
       name: "NEO FUEL D3",
@@ -204,7 +242,7 @@ function ProductGrid() {
     <section className="py-16 md:py-20" style={{ borderTop: "1px solid var(--border-color)" }}>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5" style={{ columnGap: "var(--col-gap)" }}>
         {products.map((p, i) => (
-          <ProductCard key={i} {...p} />
+          <ProductCard key={i} {...p} delay={i * 0.13} />
         ))}
       </div>
     </section>
@@ -226,8 +264,8 @@ function EngineeringCapabilities() {
   return (
     <section className="pb-16 md:pb-20" style={{ borderTop: "1px solid var(--border-color)" }}>
       <div className="pt-16 md:pt-20 grid grid-cols-1 md:grid-cols-2 gap-6">
-        {panels.map((p) => (
-          <div
+        {panels.map((p, i) => (
+          <motion.div
             key={p.title}
             className="flex flex-col"
             style={{
@@ -235,6 +273,10 @@ function EngineeringCapabilities() {
               border: "1px solid var(--border-color)",
               borderTop: "2px solid var(--accent-yellow)",
             }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={VP}
+            transition={{ duration: 0.52, delay: i * 0.14, ease: "easeOut" }}
           >
             <div className="p-8 md:p-10 flex-1">
               <h3
@@ -252,7 +294,7 @@ function EngineeringCapabilities() {
               </p>
             </div>
             <div className="w-full" style={{ backgroundColor: "#1a1a1b", height: "12rem" }} />
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>
@@ -279,16 +321,12 @@ function AboutAeolus() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      {/* Mobile: full-width stats panel with dark overlay */}
-      {/* Desktop: left half empty (shows truck), right half holds stats */}
       <div
         className="container"
         style={{ display: "flex", alignItems: "stretch", minHeight: "480px" }}
       >
-        {/* Left spacer — desktop only, lets the truck photo show through */}
         <div className="hidden md:block" style={{ flex: "0 0 45%" }} />
 
-        {/* Stats panel */}
         <div
           className="stats-panel"
           style={{
@@ -299,7 +337,6 @@ function AboutAeolus() {
             padding: "48px 0 48px 0",
           }}
         >
-          {/* On mobile add a semi-transparent backdrop so text is readable over the image */}
           <div>
             <div
               style={{
@@ -308,8 +345,14 @@ function AboutAeolus() {
                 gap: "32px 24px",
               }}
             >
-              {stats.map(({ value, label }) => (
-                <div key={value}>
+              {stats.map(({ value, label }, i) => (
+                <motion.div
+                  key={value}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={VP}
+                  transition={{ duration: 0.45, delay: i * 0.08, ease: "easeOut" }}
+                >
                   <div style={{ marginBottom: "8px", lineHeight: 1 }}>
                     <CaretCircleRight size={28} color="#a18a00" />
                   </div>
@@ -334,7 +377,7 @@ function AboutAeolus() {
                   >
                     {label}
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -348,7 +391,7 @@ function EngineeringApproach() {
   return (
     <section className="engineering-approach pb-16 md:pb-24 mt-4" style={{ backgroundColor: "var(--bg-dark)" }}>
       <div className="container">
-        <div
+        <motion.div
           className="relative flex flex-col justify-between"
           style={{
             backgroundColor: "#000000",
@@ -356,6 +399,10 @@ function EngineeringApproach() {
             minHeight: "24rem",
             padding: "clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 5vw, 4rem)",
           }}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={VP}
+          transition={{ duration: 0.55, ease: "easeOut" }}
         >
           <h2
             className="uppercase"
@@ -366,10 +413,21 @@ function EngineeringApproach() {
               letterSpacing: "-0.02em",
             }}
           >
-            <span className="block text-white">DISCOVER OUR</span>
-            <span className="block" style={{ color: "var(--accent-yellow)" }}>ENGINEERING APPROACH</span>
+            {["DISCOVER OUR", "ENGINEERING APPROACH"].map((line, i) => (
+              <motion.span
+                key={line}
+                className="block"
+                style={{ color: i === 1 ? "var(--accent-yellow)" : "#fff" }}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={VP}
+                transition={{ duration: 0.48, delay: 0.15 + i * 0.12, ease: "easeOut" }}
+              >
+                {line}
+              </motion.span>
+            ))}
           </h2>
-          <p
+          <motion.p
             style={{
               color: "var(--text-muted)",
               fontSize: "0.9rem",
@@ -377,12 +435,16 @@ function EngineeringApproach() {
               maxWidth: "20rem",
               marginTop: "1.5rem",
             }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={VP}
+            transition={{ duration: 0.48, delay: 0.4, ease: "easeOut" }}
           >
             Each tire model undergoes structured testing
             <br />to verify durability, load handling, and
             <br />consistency under real-world conditions.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
       </div>
     </section>
   );

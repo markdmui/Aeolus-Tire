@@ -286,21 +286,26 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
         {FEATURES.map((f, i) => (
           <motion.div
             key={f.title}
-            initial={{ opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.45, delay: i * 0.18, ease: [0.55, 0.055, 0.675, 0.19] }}
+            transition={{ duration: 0.3, delay: i * 0.18 }}
             style={{
               borderTop: "1px solid #cccccc",
               display: "grid",
               gridTemplateRows: "subgrid",
               gridRow: "span 3",
               alignContent: "start",
+              overflow: "hidden",
             }}
           >
-            {/* Title */}
-            <h3
+            {/* Title — in from right */}
+            <motion.h3
               className="uppercase md:pt-10"
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: i * 0.18 + 0.1, ease: [0.55, 0.055, 0.675, 0.19] }}
               style={{
                 color: "var(--accent-yellow)",
                 fontSize: "1.05rem",
@@ -312,10 +317,14 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
               }}
             >
               {f.title}
-            </h3>
+            </motion.h3>
 
-            {/* Body */}
-            <p
+            {/* Body — in from right, slightly later */}
+            <motion.p
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: i * 0.18 + 0.22, ease: [0.55, 0.055, 0.675, 0.19] }}
               style={{
                 color: "#cccccc",
                 fontSize: "0.86rem",
@@ -326,12 +335,16 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
               className="md:pb-8"
             >
               {f.body}
-            </p>
+            </motion.p>
 
-            {/* Feature image */}
-            <img
+            {/* Feature image — in from bottom */}
+            <motion.img
               src={f.image}
               alt={f.title}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.18 + 0.18, ease: [0.55, 0.055, 0.675, 0.19] }}
               style={{
                 width: "100%",
                 display: "block",

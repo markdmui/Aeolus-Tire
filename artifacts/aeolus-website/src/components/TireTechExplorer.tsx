@@ -136,8 +136,8 @@ export default function TireTechExplorer({
                   border: isActive ? "1.5px solid #fbbf24" : "1.5px solid #F2C94C",
                   position: "absolute",
                   transform: "translate(-50%, -50%)",
-                  width: "30px",
-                  height: "30px",
+                  width: "36px",
+                  height: "36px",
                 }}
                 className={[
                   "flex items-center justify-center",

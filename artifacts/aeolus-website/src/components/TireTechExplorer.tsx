@@ -138,10 +138,12 @@ export default function TireTechExplorer({
                   border: isActive ? "1.5px solid #fbbf24" : "1.5px solid #F2C94C",
                   position: "absolute",
                   transform: "translate(-50%, -50%)",
+                  width: "30px",
+                  height: "30px",
                 }}
                 className={[
                   "flex items-center justify-center",
-                  "w-7 h-7 text-sm font-semibold rounded-full",
+                  "text-sm font-semibold rounded-full",
                   "shadow-[2px_4px_7px_1px_rgba(0,0,0,0.8)]",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black",
                 ].join(" ")}

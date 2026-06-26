@@ -80,6 +80,7 @@ const SPEC_ROWS = [
 
 export default function TireProductPage() {
   const [activeImg, setActiveImg] = useState<string | null>(null);
+  const [truckHovered, setTruckHovered] = useState(false);
   const close = useCallback(() => setActiveImg(null), []);
 
   useEffect(() => {
@@ -224,18 +225,48 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
           </ul>
 
           {/* Position / application icon */}
-          <motion.img
-            src={POS_SVG[TIRE_POS]}
-            alt={`${TIRE_POS} tire position`}
-            title={`${TIRE_POS} Tire`}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 0.7, y: 0 }}
-            transition={{ duration: 0.38, delay: 1.0, ease: "easeOut" }}
-            style={{ height: "auto", display: "block", transition: "opacity 0.2s ease" }}
-            className={`tire-hero-truck${TIRE_POS === "OTR" ? " tire-hero-truck--otr" : ""}`}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = "1"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = "0.7"; }}
-          />
+          <div
+            style={{ position: "relative", display: "inline-block" }}
+            onMouseEnter={() => setTruckHovered(true)}
+            onMouseLeave={() => setTruckHovered(false)}
+          >
+            <motion.img
+              src={POS_SVG[TIRE_POS]}
+              alt={`${TIRE_POS} tire position`}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: truckHovered ? 1 : 0.7, y: 0 }}
+              transition={{ duration: 0.38, delay: 1.0, ease: "easeOut" }}
+              style={{ height: "auto", display: "block" }}
+              className={`tire-hero-truck${TIRE_POS === "OTR" ? " tire-hero-truck--otr" : ""}`}
+            />
+            <AnimatePresence>
+              {truckHovered && (
+                <motion.div
+                  initial={{ opacity: 0, y: 4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 4 }}
+                  transition={{ duration: 0.18, ease: "easeOut" }}
+                  style={{
+                    position: "absolute",
+                    bottom: "calc(100% + 8px)",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    background: "#000",
+                    border: "1px solid #333",
+                    color: "#fff",
+                    fontSize: "0.75rem",
+                    fontWeight: 500,
+                    letterSpacing: "0.04em",
+                    padding: "5px 10px",
+                    whiteSpace: "nowrap",
+                    pointerEvents: "none",
+                  }}
+                >
+                  {TIRE_POS} Tire
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
 
         {/* Tire image — cropped via overflow:hidden + aspectRatio */}

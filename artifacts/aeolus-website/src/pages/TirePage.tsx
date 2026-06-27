@@ -33,7 +33,7 @@ const TEMPLATE: TireEntry = { name: "Neo Fuel S", photo: "Neo-Fuel-S.png", label
 
 const GROUPS: CategoryGroup[] = [
   {
-    tires: [TEMPLATE, TEMPLATE, TEMPLATE, TEMPLATE, TEMPLATE],
+    tires: [TEMPLATE, TEMPLATE, TEMPLATE, TEMPLATE, TEMPLATE, TEMPLATE],
   },
 ];
 
@@ -88,7 +88,7 @@ function GroupSection({ group, groupIndex }: { group: CategoryGroup; groupIndex:
       transition={{ duration: 0.22, ease: "easeOut" }}
       style={{
         display: "grid",
-        gridTemplateColumns: "repeat(5, 1fr)",
+        gridTemplateColumns: "repeat(6, 1fr)",
         border: "none",
         backgroundColor: "transparent",
         gap: "1px",

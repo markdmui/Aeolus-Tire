@@ -9,6 +9,8 @@ const HERO_IMAGES = [
   "/hero-bg-2.jpg",
   "/hero-bg-3.jpg",
   "/hero-bg-4.jpg",
+  "/hero-bg-5.jpg",
+  "/hero-bg-6.jpg",
 ];
 
 const VP = { once: true, margin: "-80px" };

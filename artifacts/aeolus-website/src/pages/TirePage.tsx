@@ -118,7 +118,7 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
         <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
           <div style={{ padding: "16px 0.8rem 1px" }}>
             <p
-              className="uppercase"
+              className="uppercase lineup-card-name"
               style={{
                 fontSize: "clamp(0.78rem, 1.2vw, 0.92rem)",
                 fontWeight: 700,

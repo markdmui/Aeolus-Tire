@@ -87,7 +87,7 @@ export default function TireProductPage() {
         <div style={{ position: "relative", zIndex: 1, marginTop: "-20px" }}>
           <FeatureSection tire={tire} onOpen={setActiveImg} />
         </div>
-        <div style={{ position: "relative", marginTop: "0" }}>
+        <div style={{ position: "relative", marginTop: "-110px" }}>
           <SpecsSection tire={tire} />
         </div>
       </div>

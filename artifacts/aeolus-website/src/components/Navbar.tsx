@@ -206,7 +206,7 @@ export default function Navbar() {
                       <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, delay: si * 0.24, ease: "easeOut" }}
+                        transition={{ duration: 0.8, delay: 0, ease: "easeOut" }}
                         style={{ color: "#ffffff", fontWeight: 700, fontSize: "0.7rem", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.3rem", fontFamily: "var(--font-body)" }}
                       >
                         <CategoryHeader text={section.category} />
@@ -239,7 +239,7 @@ export default function Navbar() {
                       <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, delay: si * 0.24 + 0.2, ease: "easeOut" }}
+                        transition={{ duration: 0.8, delay: 0, ease: "easeOut" }}
                         style={{ color: "#ffffff", fontWeight: 700, fontSize: "0.7rem", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.3rem", fontFamily: "var(--font-body)" }}
                       >
                         <CategoryHeader text={section.category} />

@@ -62,8 +62,7 @@ const GROUPS: CategoryGroup[] = [
       { name: "ADR55",            photo: "ADR55.png",                   labelYellow: "ADR SERIES",    labelWhite: "DRIVE",        slug: "adr55",             subtitle: "Heavy-duty regional drive tire for demanding mixed terrain." },
       { name: "ADR57",            photo: "ADR57.png",                   labelYellow: "ADR SERIES",    labelWhite: "DRIVE",        slug: "adr57",             subtitle: "Drive tire for mixed regional routes with superior fuel efficiency." },
       { name: "ADR69",            photo: "ADR69.png",                   labelYellow: "ADR SERIES",    labelWhite: "DRIVE",        slug: "adr69",             subtitle: "High-capacity regional drive tire for long service life." },
-      { name: "ADR78",            photo: "ADR78.png",                   labelYellow: "ADR SERIES",    labelWhite: "DRIVE",        slug: "adr78",             subtitle: "Versatile drive tire for regional and mixed service operations." },
-      { name: "ADR78 II",         photo: "ADR78ii.png",                 labelYellow: "ADR SERIES",    labelWhite: "DRIVE",        slug: "adr78ii",           subtitle: "Second-generation regional drive tire with improved performance." },
+      { name: "ADR78",            photo: "ADR78.png",                   labelYellow: "ADR SERIES",    labelWhite: "DRIVE",        slug: "adr78",             subtitle: "Versatile drive tire for regional and mixed service operations.",          hasAlt: true },
       // — ADW Series —
       { name: "ADW80",            photo: "ADW80.png",                   labelYellow: "ADW SERIES",    labelWhite: "WIDE BASE",    slug: "adw80",             subtitle: "Wide-base drive tire for long haul operations with fuel savings." },
       { name: "ADW81",            photo: "ADW81.png",                   labelYellow: "ADW SERIES",    labelWhite: "WIDE BASE",    slug: "adw81",             subtitle: "Wide-base tire with superior load capacity and wear resistance." },
@@ -90,8 +89,7 @@ const GROUPS: CategoryGroup[] = [
       { name: "ASR30",            photo: "ASR30.png",                   labelYellow: "ASR SERIES",    labelWhite: "STEER",        slug: "asr30",             subtitle: "Regional steer tire for reliable performance on mixed service routes." },
       { name: "ASR35",            photo: "ASR35.png",                   labelYellow: "ASR SERIES",    labelWhite: "STEER",        slug: "asr35",             subtitle: "Steer tire with superior wet grip for regional applications." },
       { name: "ASR69",            photo: "ASR69.png",                   labelYellow: "ASR SERIES",    labelWhite: "STEER",        slug: "asr69",             subtitle: "High-mileage regional steer tire for consistent performance." },
-      { name: "ASR79",            photo: "ASR79.png",                   labelYellow: "ASR SERIES",    labelWhite: "STEER",        slug: "asr79",             subtitle: "Premium regional steer tire for demanding mixed service." },
-      { name: "ASR79 II",         photo: "ASR79ii.png",                 labelYellow: "ASR SERIES",    labelWhite: "STEER",        slug: "asr79ii",           subtitle: "Enhanced second-generation regional steer tire for improved wear." },
+      { name: "ASR79",            photo: "ASR79.png",                   labelYellow: "ASR SERIES",    labelWhite: "STEER",        slug: "asr79",             subtitle: "Premium regional steer tire for demanding mixed service.",               hasAlt: true },
       // — ATL Series —
       { name: "ATL08",            photo: "ATL08.png",                   labelYellow: "ATL SERIES",    labelWhite: "TRAILER",      slug: "atl08",             subtitle: "Long haul trailer tire with low rolling resistance and stability." },
     ],

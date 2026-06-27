@@ -33,7 +33,7 @@ const TEMPLATE: TireEntry = { name: "Neo Fuel S", photo: "Neo-Fuel-S.png", label
 
 const GROUPS: CategoryGroup[] = [
   {
-    tires: [TEMPLATE, TEMPLATE, TEMPLATE, TEMPLATE, TEMPLATE, TEMPLATE],
+    tires: Array(45).fill(TEMPLATE),
   },
 ];
 

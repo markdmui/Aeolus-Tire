@@ -272,7 +272,7 @@ html {
 }
 .lineup-card:hover { background: transparent !important; border-top-color: var(--accent-yellow) !important; }
 .lineup-card-img { position: relative; top: 0; transition: transform 0.22s ease, top 0.22s ease; }
-.lineup-card:hover .lineup-card-img { top: -5px; }
+.lineup-card:hover .lineup-card-img { top: -10px; }
 .lineup-card-name { opacity: 0.75; transition: opacity 0.18s ease; }
 .lineup-card:hover .lineup-card-name { opacity: 1; }
 .lineup-card-info { transition: background 0.18s ease; }

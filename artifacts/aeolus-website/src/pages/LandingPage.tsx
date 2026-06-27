@@ -113,7 +113,7 @@ function Hero() {
           transition={{ duration: 0.34, delay: 0.64, ease: "easeOut" }}
         >
           EXPLORE OUR TIRE LINE UP
-          <ArrowSquareRight size={18} className="ml-2 inline-block" />
+          <ArrowSquareRight size={20} className="ml-2 inline-block" />
         </motion.a>
       </div>
     </section>

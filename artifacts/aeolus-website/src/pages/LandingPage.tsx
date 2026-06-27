@@ -1,5 +1,5 @@
 import { CaretCircleRight, ArrowSquareRight } from "@phosphor-icons/react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -40,6 +40,7 @@ export default function LandingPage() {
 }
 
 function Hero() {
+  const [iconHovered, setIconHovered] = useState(false);
   const [heroBg] = useState(() => {
     const stored = localStorage.getItem("heroBgIndex");
     const next = stored === null
@@ -111,9 +112,35 @@ function Hero() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.34, delay: 0.64, ease: "easeOut" }}
+          onMouseEnter={() => setIconHovered(true)}
+          onMouseLeave={() => setIconHovered(false)}
         >
           EXPLORE OUR TIRE LINE UP
-          <ArrowSquareRight size={20} className="ml-2 inline-block" />
+          <span style={{ position: "relative", display: "inline-flex", width: 20, height: 20, marginLeft: "0.5rem", overflow: "hidden" }}>
+            <AnimatePresence mode="wait">
+              {!iconHovered ? (
+                <motion.span
+                  key="white"
+                  initial={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 8 }}
+                  transition={{ duration: 0.18, ease: "easeOut" }}
+                  style={{ position: "absolute", display: "flex" }}
+                >
+                  <ArrowSquareRight size={20} />
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="yellow"
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.18, ease: "easeOut" }}
+                  style={{ position: "absolute", display: "flex", color: "var(--accent-yellow)" }}
+                >
+                  <ArrowSquareRight size={20} />
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </span>
         </motion.a>
       </div>
     </section>

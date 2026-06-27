@@ -1,4 +1,4 @@
-import { CaretCircleRight, CaretRight } from "@phosphor-icons/react";
+import { CaretCircleRight, ArrowSquareRight } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import Navbar from "../components/Navbar";
@@ -113,7 +113,7 @@ function Hero() {
           transition={{ duration: 0.34, delay: 0.64, ease: "easeOut" }}
         >
           EXPLORE OUR TIRE LINE UP
-          <CaretRight size={16} className="ml-2 inline-block transition-transform group-hover:translate-x-1" />
+          <ArrowSquareRight size={18} className="ml-2 inline-block" />
         </motion.a>
       </div>
     </section>

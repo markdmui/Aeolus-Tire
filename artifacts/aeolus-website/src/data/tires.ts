@@ -3,7 +3,7 @@ import feature2Img from "@assets/Template-f2_1782411546517.jpg";
 import feature3Img from "@assets/Template-f3_1782411546518.jpg";
 import tireImg from "@assets/Template_1782411546518.png";
 import heroBgImg from "@assets/tire-hero-bg-1_1782515680443.jpg";
-import bgTruckImg from "@assets/bg-long-haul_1782483488801.jpg";
+import bgTruckImg from "@assets/bg-long-haul_1782518925332.jpg";
 import cutawayImg from "@assets/3d-cutaway_1782348127809.png";
 
 export type TirePosition = "Drive" | "Steer" | "Trailer" | "All Position" | "OTR" | "Bus";

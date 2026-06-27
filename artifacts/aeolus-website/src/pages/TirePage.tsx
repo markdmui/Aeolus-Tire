@@ -95,7 +95,7 @@ function GroupSection({ group, groupIndex }: { group: CategoryGroup; groupIndex:
       }}
     >
       {group.tires.map((tire, ti) => (
-        <TireCard key={tire.slug} tire={tire} delay={ti * 0.04} />
+        <TireCard key={`${tire.slug}-${ti}`} tire={tire} delay={ti * 0.04} />
       ))}
     </motion.div>
   );

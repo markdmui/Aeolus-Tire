@@ -136,7 +136,7 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
             style={{
               width: "100%",
               aspectRatio: "4 / 3",
-              backgroundColor: "#0d0d0d",
+              backgroundColor: "transparent",
               overflow: "hidden",
               flexShrink: 0,
               position: "relative",

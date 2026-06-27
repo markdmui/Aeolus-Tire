@@ -55,7 +55,7 @@ export default function TirePage() {
             style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "clamp(2.4rem, 5.5vw, 5rem)",
-              fontWeight: 700,
+              fontWeight: 300,
               lineHeight: 0.9,
               letterSpacing: "-0.03em",
             }}

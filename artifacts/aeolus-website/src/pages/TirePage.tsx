@@ -111,7 +111,7 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
       whileInView={{ opacity: 1 }}
       viewport={VP}
       transition={{ duration: 0.20, delay, ease: "easeOut" }}
-      style={{ backgroundColor: "#080808" }}
+      style={{ backgroundColor: "#141414" }}
       className="lineup-card"
     >
       <Link href={`/tires/${tire.slug}`} style={{ display: "block", textDecoration: "none", color: "inherit", height: "100%" }}>

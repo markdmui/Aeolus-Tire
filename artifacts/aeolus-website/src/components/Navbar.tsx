@@ -217,14 +217,14 @@ export default function Navbar() {
                             key={tire.label} href="#" className="dropdown-tire-link"
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.2, delay: (si * 4 + ti) * 0.04, ease: "easeOut" }}
+                            transition={{ duration: 0.2, delay: (si * 4 + ti) * 0.025, ease: "easeOut" }}
                           >{tire.label}</motion.a>
                         ) : (
                           <motion.div
                             key={tire.label}
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.2, delay: (si * 4 + ti) * 0.04, ease: "easeOut" }}
+                            transition={{ duration: 0.2, delay: (si * 4 + ti) * 0.025, ease: "easeOut" }}
                           >
                             <Link href={tire.href} className="dropdown-tire-link">{tire.label}</Link>
                           </motion.div>
@@ -249,7 +249,7 @@ export default function Navbar() {
                           key={tire.label} href={tire.href} className="dropdown-tire-link"
                           initial={{ opacity: 0, x: 20 }}
                           animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.2, delay: (si * 4 + ti) * 0.04 + 0.05, ease: "easeOut" }}
+                          transition={{ duration: 0.2, delay: (si * 4 + ti) * 0.025 + 0.05, ease: "easeOut" }}
                         >{tire.label}</motion.a>
                       ))}
                     </div>

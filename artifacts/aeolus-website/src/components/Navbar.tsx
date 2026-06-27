@@ -305,7 +305,7 @@ function NavLinks({ onTiresEnter }: { onTiresEnter: () => void }) {
     <ul className="flex items-center gap-10">
       <li><NavLink label="HOME" href="/" /></li>
       <li onMouseEnter={onTiresEnter}>
-        <a href="#" className="nav-link">TIRES</a>
+        <a href="/tires" className="nav-link">TIRES</a>
       </li>
       <li><NavLink label="ABOUT" href="#" /></li>
       <li><NavLink label="MEDIA" href="#" /></li>

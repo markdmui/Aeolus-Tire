@@ -114,7 +114,7 @@ function Hero() {
           Built for durability. Engineered for the long haul.
         </motion.p>
         <motion.a
-          href="/tires/neo-fuel-x3"
+          href="/tires"
           className="link-accent group"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}

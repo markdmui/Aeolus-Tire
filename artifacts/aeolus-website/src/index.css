@@ -266,6 +266,10 @@ html {
 .nav-logo { position: relative; left: 0; transition: left 0.2s ease; }
 .nav-logo:hover { left: 3px; }
 
+.lineup-card { transition: background 0.18s ease; }
+.lineup-card:hover { background: #111 !important; }
+.lineup-card:hover .lineup-card-img { transform: scale(1.04); }
+
 .link-accent {
   color: var(--text-main);
   text-decoration: none;

@@ -1,286 +1,148 @@
-import { useState } from "react";
 import { Link } from "wouter";
+import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-type Category = "ALL" | "LONG HAUL" | "REGIONAL" | "MIXED SERVICE" | "OTR";
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+const PHOTO = (f: string) => `${BASE}/tires/Tire-Photos/${f}`;
+const VP = { once: true, margin: "-40px" };
 
-interface Tire {
-  model: string;
-  badge: string;
-  category: Category;
-  position: string;
-  description: string;
-  specs: { label: string; value: string }[];
-  slug?: string;
+interface TireEntry {
+  name: string;
+  photo: string;
+  labelYellow: string;
+  labelWhite: string;
+  subtitle: string;
+  slug: string;
+  hasAlt?: boolean;
 }
 
-const TIRES: Tire[] = [
+interface CategoryGroup {
+  tires: TireEntry[];
+}
+
+function splitName(name: string): [string, string] {
+  const u = name.toUpperCase();
+  const s = u.lastIndexOf(" ");
+  if (s > 0) return [u.slice(0, s), u.slice(s + 1)];
+  const m = u.match(/^([A-Z]+)(\d.*)$/);
+  return m ? [m[1], m[2]] : [u, ""];
+}
+
+const GROUPS: CategoryGroup[] = [
   {
-    model: "NEO FUEL G3",
-    badge: "BEST SELLER",
-    category: "LONG HAUL",
-    position: "STEER",
-    description: "Premium long-haul steer tire engineered for maximum fuel efficiency and even wear over high-mileage routes.",
-    specs: [
-      { label: "Pattern", value: "3D Sipe & Block" },
-      { label: "Tread Profile", value: "Wide" },
-      { label: "Compound", value: "Low RRC" },
-      { label: "Load Index", value: "148/145L" },
-    ],
-    slug: "neo-fuel-x3",
-  },
-  {
-    model: "NEO FUEL S3",
-    badge: "NEW",
-    category: "LONG HAUL",
-    position: "DRIVE",
-    description: "Drive-axle companion to the D3 line. Deep lug design maintains traction while controlling heat buildup on extended runs.",
-    specs: [
-      { label: "Pattern", value: "Deep Lug" },
-      { label: "Tread Profile", value: "Wide" },
-      { label: "Compound", value: "Low RRC" },
-      { label: "Load Index", value: "149/146L" },
+    tires: [
+      { name: "Neo Fuel S",  photo: "Neo-Fuel-S.png",  labelYellow: "NEO SERIES", labelWhite: "LONG HAUL", slug: "neo-fuel-s",      subtitle: "Steer tire for long haul use with low rolling resistance, excellent stability and long life span." },
+      { name: "Neo Fuel D",  photo: "Neo-Fuel-D.png",  labelYellow: "NEO SERIES", labelWhite: "LONG HAUL", slug: "neo-fuel-d",      subtitle: "Drive tire with low rolling resistance and enhanced fuel efficiency for long-haul use." },
+      { name: "Neo Fuel D2", photo: "Neo-Fuel-D2.png", labelYellow: "NEO SERIES", labelWhite: "LONG HAUL", slug: "neo-fuel-d2",     subtitle: "Drive tire for long haul use with low rolling resistance and superior fuel efficiency.", hasAlt: true },
+      { name: "Neo Fuel D3", photo: "Neo-Fuel-D3.png", labelYellow: "NEO SERIES", labelWhite: "LONG HAUL", slug: "neo-fuel-d3",     subtitle: "Drive tire for long haul with wide base compound, low rolling resistance and extended mileage." },
+      { name: "Neo Fuel T+", photo: "Neo-Fuel-T+.png", labelYellow: "NEO SERIES", labelWhite: "LONG HAUL", slug: "neo-fuel-t-plus", subtitle: "Trailer tire for long haul use, providing superior stability and safety at high speed." },
+      { name: "Neo Fuel T2", photo: "Neo-Fuel-T2.png", labelYellow: "NEO SERIES", labelWhite: "LONG HAUL", slug: "neo-fuel-t2",     subtitle: "Trailer tire for long haul use with excellent tire life and superior fuel efficiency.", hasAlt: true },
+      { name: "Neo Fuel T3", photo: "Neo-Fuel-T3.png", labelYellow: "NEO SERIES", labelWhite: "LONG HAUL", slug: "neo-fuel-t3",     subtitle: "Trailer tire for long haul use with excellent fuel efficiency and superior tire life." },
+      { name: "Neo Fuel G3", photo: "Neo-Fuel-G3.png", labelYellow: "NEO SERIES", labelWhite: "LONG HAUL", slug: "neo-fuel-g3",     subtitle: "Trailer tire with excellent stability, long lifespan and superior fuel efficiency." },
     ],
   },
   {
-    model: "NEO FUEL T3",
-    badge: "BEST SELLER",
-    category: "LONG HAUL",
-    position: "TRAILER",
-    description: "Trailer axle tire with stabilized shoulder blocks for reduced irregular wear and longer retread life.",
-    specs: [
-      { label: "Pattern", value: "Rib" },
-      { label: "Tread Profile", value: "Standard" },
-      { label: "Compound", value: "Low RRC" },
-      { label: "Load Index", value: "148/145M" },
+    tires: [
+      { name: "Neo Allroads S",  photo: "Neo-Allroads-S.png",  labelYellow: "NEO SERIES", labelWhite: "REGIONAL", slug: "neo-allroads-s",      subtitle: "Steer tire for regional use with improved fuel economy, excellent wet performance and retreadability." },
+      { name: "Neo Allroads S+", photo: "Neo-Allroads-S+.png", labelYellow: "NEO SERIES", labelWhite: "REGIONAL", slug: "neo-allroads-s-plus", subtitle: "Steer tire for regional use with enhanced wet performance and excellent retreadability." },
+      { name: "Neo Allroads D",  photo: "Neo-Allroads-D.png",  labelYellow: "NEO SERIES", labelWhite: "REGIONAL", slug: "neo-allroads-d",      subtitle: "Drive tire for regional use with enhanced traction on wet roads and improved fuel economy." },
+      { name: "Neo Allroads D+", photo: "Neo-Allroads-D+.png", labelYellow: "NEO SERIES", labelWhite: "REGIONAL", slug: "neo-allroads-d-plus", subtitle: "Drive tire for regional use with excellent handling and improved resistance to irregular wear." },
+      { name: "Neo Allroads T2", photo: "Neo-Allroads-T2.png", labelYellow: "NEO SERIES", labelWhite: "REGIONAL", slug: "neo-allroads-t2",     subtitle: "Trailer tire for regional use, superior stability and resistance to irregular wear." },
+      { name: "ASR79",           photo: "ASR79.png",           labelYellow: "SAILOR",     labelWhite: "REGIONAL", slug: "asr79",               subtitle: "Steer tire for regional use with superior wet performance, long tire life and high retreadability." },
+      { name: "ASR79ii",         photo: "ASR79ii.png",         labelYellow: "SAILOR",     labelWhite: "REGIONAL", slug: "asr79ii",             subtitle: "Steer tire for regional use with low rolling resistance, improved casing life and excellent handling." },
+      { name: "ADR78",           photo: "ADR78.png",           labelYellow: "SAILOR",     labelWhite: "REGIONAL", slug: "adr78",               subtitle: "Drive tire for regional use with improved fuel economy, excellent traction and long tire life.", hasAlt: true },
     ],
   },
   {
-    model: "HN257",
-    badge: "",
-    category: "LONG HAUL",
-    position: "STEER",
-    description: "High-mileage steer tire with optimized contact patch geometry for consistent handling across highway conditions.",
-    specs: [
-      { label: "Pattern", value: "4-Rib" },
-      { label: "Tread Profile", value: "Wide" },
-      { label: "Compound", value: "Standard" },
-      { label: "Load Index", value: "146/143L" },
+    tires: [
+      { name: "Neo Construct D", photo: "Neo-Construct-D.png",       labelYellow: "NEO SERIES", labelWhite: "ON/OFF ROAD", slug: "neo-construct-d", subtitle: "Drive tire for on/off road use with excellent traction, reinforced casing and long life." },
+      { name: "Neo Construct G", photo: "Aeolus-Neo-Construct-G.png", labelYellow: "NEO SERIES", labelWhite: "ON/OFF ROAD", slug: "neo-construct-g", subtitle: "All-position tire for on/off road use with excellent traction and cut-resistant compound." },
+      { name: "Neo Winter S",    photo: "Neo-Winter-S.png",           labelYellow: "NEO SERIES", labelWhite: "WINTER",     slug: "neo-winter-s",   subtitle: "Steer tire for winter use with 3PMS designation, excellent traction and improved wet performance." },
+      { name: "Neo Allseason D", photo: "Neo-Allseason-D.png",        labelYellow: "NEO SERIES", labelWhite: "WINTER",     slug: "neo-allseason-d", subtitle: "Drive tire for winter and urban use with 3PMS, low-temperature compound, excellent traction." },
+      { name: "Sailor AGB23",    photo: "AGB23.png",                  labelYellow: "SAILOR",     labelWhite: "URBAN",      slug: "sailor-agb23",   subtitle: "All-position bus tire with excellent handling, stability and superior ride comfort." },
+      { name: "Neo Urban G",     photo: "Neo-Urban-G.png",            labelYellow: "NEO SERIES", labelWhite: "URBAN",      slug: "neo-urban-g",    subtitle: "Bus tire for urban use with excellent stability, handling and superior ride comfort." },
     ],
   },
   {
-    model: "HN268",
-    badge: "BEST SELLER",
-    category: "REGIONAL",
-    position: "STEER",
-    description: "Regional steer tire built for mixed highway and urban delivery routes, with reinforced sidewalls for curb impact resistance.",
-    specs: [
-      { label: "Pattern", value: "3-Rib" },
-      { label: "Tread Profile", value: "Standard" },
-      { label: "Compound", value: "Standard" },
-      { label: "Load Index", value: "144/142L" },
+    tires: [
+      { name: "ASL06", photo: "ASL06.png", labelYellow: "", labelWhite: "STANDARD LONG HAUL", slug: "asl06", subtitle: "Steer tire for long haul use with improved fuel economy and excellent handling." },
+      { name: "ADL58", photo: "ADL58.png", labelYellow: "", labelWhite: "STANDARD LONG HAUL", slug: "adl58", subtitle: "Drive tire for long haul use with improved fuel economy and excellent tire life." },
+      { name: "ATL08", photo: "ATL08.png", labelYellow: "", labelWhite: "STANDARD LONG HAUL", slug: "atl08", subtitle: "Trailer tire for long haul use with excellent stability and superior tire life." },
+      { name: "ASR30", photo: "ASR30.png", labelYellow: "", labelWhite: "STANDARD REGIONAL",  slug: "asr30", subtitle: "Steer/trailer tire for regional use with excellent handling and superior tire life." },
+      { name: "ASR35", photo: "ASR35.png", labelYellow: "", labelWhite: "STANDARD REGIONAL",  slug: "asr35", subtitle: "Steer tire for regional use with excellent handling and improved tire life." },
     ],
   },
   {
-    model: "HN208",
-    badge: "",
-    category: "REGIONAL",
-    position: "DRIVE",
-    description: "Regional drive tire with aggressive shoulder lug for reliable traction in start-stop urban and suburban operations.",
-    specs: [
-      { label: "Pattern", value: "Lug & Rib" },
-      { label: "Tread Profile", value: "Standard" },
-      { label: "Compound", value: "Standard" },
-      { label: "Load Index", value: "146/143L" },
+    tires: [
+      { name: "ASR69", photo: "ASR69.png", labelYellow: "", labelWhite: "STANDARD REGIONAL", slug: "asr69", subtitle: "Steer tire for regional use, low heat, improved casing life, excellent handling." },
+      { name: "ADR24", photo: "ADR24.png", labelYellow: "", labelWhite: "STANDARD REGIONAL", slug: "adr24", subtitle: "Drive tire for regional use with M+S pattern, good traction and higher load capacity." },
+      { name: "ADR26", photo: "ADR26.png", labelYellow: "", labelWhite: "STANDARD REGIONAL", slug: "adr26", subtitle: "Drive tire for regional applications, providing high traction and safety in slippery conditions." },
+      { name: "ADR35", photo: "ADR35.png", labelYellow: "", labelWhite: "STANDARD REGIONAL", slug: "adr35", subtitle: "Drive tire for urban regional use with excellent traction and improved handling." },
+      { name: "ADR55", photo: "ADR55.png", labelYellow: "", labelWhite: "STANDARD REGIONAL", slug: "adr55", subtitle: "Drive tire for regional use with excellent traction and improved fuel economy." },
     ],
   },
   {
-    model: "HN228",
-    badge: "NEW",
-    category: "MIXED SERVICE",
-    position: "DRIVE",
-    description: "Versatile all-position tire suited for fleets operating across highway, regional, and light off-road service without tire changes.",
-    specs: [
-      { label: "Pattern", value: "All-Terrain Rib" },
-      { label: "Tread Profile", value: "Wide" },
-      { label: "Compound", value: "HD Grade" },
-      { label: "Load Index", value: "146/143K" },
+    tires: [
+      { name: "ADR69", photo: "ADR69.png", labelYellow: "", labelWhite: "STANDARD REGIONAL",  slug: "adr69", subtitle: "Drive tire for regional use with excellent traction and improved fuel economy." },
+      { name: "ADR57", photo: "ADR57.png", labelYellow: "", labelWhite: "STANDARD REGIONAL",  slug: "adr57", subtitle: "Drive tire for regional use with improved slippery traction, low heat and high-speed performance." },
+      { name: "AGR26", photo: "AGR26.png", labelYellow: "", labelWhite: "STANDARD REGIONAL",  slug: "agr26", subtitle: "All-position tire for regional use with excellent traction and resistance to irregular wear." },
+      { name: "ADC52", photo: "ADC52.png", labelYellow: "", labelWhite: "STANDARD ON/OFF",    slug: "adc52", subtitle: "Drive tire for on/off road use with reinforced casing and cut-resistant compound." },
+      { name: "ADC53", photo: "ADC53.png", labelYellow: "", labelWhite: "STANDARD ON/OFF",    slug: "adc53", subtitle: "Drive tire for on/off road use with large tread blocks and excellent traction." },
     ],
   },
   {
-    model: "HN807",
-    badge: "",
-    category: "MIXED SERVICE",
-    position: "STEER/DRIVE",
-    description: "Heavy-duty all-position tire for demanding mixed-surface applications including construction sites and unpaved access roads.",
-    specs: [
-      { label: "Pattern", value: "Block & Lug" },
-      { label: "Tread Profile", value: "Deep" },
-      { label: "Compound", value: "HD Grade" },
-      { label: "Load Index", value: "148/145K" },
+    tires: [
+      { name: "ADC54", photo: "ADC54.png", labelYellow: "", labelWhite: "STANDARD ON/OFF",    slug: "adc54", subtitle: "Heavy-duty drive tire for on/off road use with reinforced casing and anti-cut compound." },
+      { name: "AGC08", photo: "AGC08.png", labelYellow: "", labelWhite: "STANDARD ON/OFF",    slug: "agc08", subtitle: "Trailer tire for on/off road use with excellent stability and resistance to irregular wear." },
+      { name: "AGC53", photo: "AGC53.png", labelYellow: "", labelWhite: "STANDARD ON/OFF",    slug: "agc53", subtitle: "All-position tire for on/off road use with excellent traction and cut-resistant compound." },
+      { name: "AGM10", photo: "AGM10.png", labelYellow: "", labelWhite: "STANDARD OFF ROAD",  slug: "agm10", subtitle: "OTR tire for off road use with excellent traction, stability and resistance to cuts." },
+      { name: "AGM84", photo: "AGM84.png", labelYellow: "", labelWhite: "STANDARD OFF ROAD",  slug: "agm84", subtitle: "OTR tire for off road use with excellent load capacity and resistance to cuts." },
     ],
   },
   {
-    model: "RL401",
-    badge: "NEW",
-    category: "OTR",
-    position: "ALL POSITION",
-    description: "Off-the-road radial designed for mining haul trucks and quarry operations, with extra-thick sidewalls and puncture-resistant belts.",
-    specs: [
-      { label: "Pattern", value: "E-3/L-3 Block" },
-      { label: "Tread Profile", value: "Deep Cut" },
-      { label: "Compound", value: "Cut Resistant" },
-      { label: "Load Index", value: "175F" },
-    ],
-  },
-  {
-    model: "GH718",
-    badge: "",
-    category: "OTR",
-    position: "ALL POSITION",
-    description: "Grader and heavy equipment tire for infrastructure and earthmoving fleets. Designed for maximum load capacity on rough terrain.",
-    specs: [
-      { label: "Pattern", value: "G-2/L-2 Traction" },
-      { label: "Tread Profile", value: "Wide Lug" },
-      { label: "Compound", value: "HD Cut Resistant" },
-      { label: "Load Index", value: "172F" },
+    tires: [
+      { name: "ADW80", photo: "ADW80.png", labelYellow: "", labelWhite: "STANDARD WINTER", slug: "adw80", subtitle: "Drive tire for winter use with M+S pattern, excellent traction and improved fuel economy." },
+      { name: "ADW81", photo: "ADW81.png", labelYellow: "", labelWhite: "STANDARD WINTER", slug: "adw81", subtitle: "Drive tire for winter use with 3PMS pattern, excellent traction in snow." },
+      { name: "ADW82", photo: "ADW82.png", labelYellow: "", labelWhite: "STANDARD WINTER", slug: "adw82", subtitle: "Drive tire for winter use with 3PMS designation and excellent cold-weather traction." },
     ],
   },
 ];
 
-const CATEGORIES: Category[] = ["ALL", "LONG HAUL", "REGIONAL", "MIXED SERVICE", "OTR"];
-
 export default function TirePage() {
-  const [activeCategory, setActiveCategory] = useState<Category>("ALL");
-
-  const filtered = activeCategory === "ALL"
-    ? TIRES
-    : TIRES.filter((t) => t.category === activeCategory);
-
   return (
     <div
-      className="antialiased text-white"
-      style={{ backgroundColor: "var(--bg-dark)", fontFamily: "var(--font-body)" }}
+      className="antialiased"
+      style={{ backgroundColor: "#000", color: "#fff", fontFamily: "var(--font-body)" }}
     >
       <Navbar />
 
-      {/* Page Header */}
-      <section
-        style={{
-          borderBottom: "1px solid var(--border-color)",
-          marginTop: "-46px",
-          paddingTop: "118px",
-          paddingBottom: "56px",
-          backgroundColor: "#000000",
-        }}
-      >
+      <section style={{ paddingTop: "calc(49px + 4rem)", paddingBottom: "3rem" }}>
         <div className="container">
-          <p
-            className="uppercase mb-3"
-            style={{ color: "var(--accent-yellow)", fontSize: "0.8rem", letterSpacing: "0.12em", fontWeight: 600 }}
-          >
-            Truck &amp; Bus Radial
-          </p>
-          <h1
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
             className="uppercase"
             style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "clamp(2.2rem, 5vw, 4.5rem)",
-              fontWeight: 600,
+              fontSize: "clamp(2.4rem, 5.5vw, 5rem)",
+              fontWeight: 700,
               lineHeight: 0.9,
               letterSpacing: "-0.03em",
-              marginBottom: "1.25rem",
             }}
           >
-            <span className="block text-white">TIRE</span>
-            <span className="block" style={{ color: "var(--accent-yellow)" }}>LINEUP</span>
-          </h1>
-          <p
-            style={{
-              color: "rgba(255,255,255,0.55)",
-              fontSize: "1rem",
-              maxWidth: "36rem",
-              lineHeight: 1.65,
-            }}
-          >
-            Engineered for every axle position and application — from long-haul highway to off-road
-            extraction. Select a category to narrow your search.
-          </p>
+            <span style={{ color: "var(--accent-yellow)" }}>TIRE</span>
+            {" "}LINEUP
+          </motion.h1>
         </div>
       </section>
 
-      {/* Filter Bar */}
-      <section
-        style={{
-          borderBottom: "1px solid var(--border-color)",
-          backgroundColor: "var(--bg-dark)",
-          position: "sticky",
-          top: "49px",
-          zIndex: 40,
-        }}
-      >
-        <div className="container">
-          <div className="flex items-center gap-0" style={{ overflowX: "auto" }}>
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                style={{
-                  padding: "1rem 1.5rem",
-                  fontSize: "0.78rem",
-                  fontWeight: 600,
-                  letterSpacing: "0.06em",
-                  textTransform: "uppercase",
-                  background: "none",
-                  border: "none",
-                  borderBottom: activeCategory === cat
-                    ? "2px solid var(--accent-yellow)"
-                    : "2px solid transparent",
-                  color: activeCategory === cat ? "var(--accent-yellow)" : "var(--text-muted)",
-                  cursor: "pointer",
-                  transition: "color 0.2s ease, border-color 0.2s ease",
-                  fontFamily: "var(--font-body)",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {cat}
-                {cat !== "ALL" && (
-                  <span
-                    style={{
-                      marginLeft: "8px",
-                      fontSize: "0.68rem",
-                      opacity: 0.6,
-                    }}
-                  >
-                    ({TIRES.filter((t) => t.category === cat).length})
-                  </span>
-                )}
-              </button>
-            ))}
-            <div style={{ marginLeft: "auto", padding: "0.9rem 0" }}>
-              <span style={{ color: "var(--text-muted)", fontSize: "0.78rem", letterSpacing: "0.04em" }}>
-                {filtered.length} {filtered.length === 1 ? "TIRE" : "TIRES"}
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Tire Grid */}
-      <section className="py-16">
-        <div className="container">
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: "1.5rem",
-            }}
-          >
-            {filtered.map((tire) => (
-              <TireCard key={tire.model} tire={tire} />
-            ))}
-          </div>
+      <section style={{ paddingBottom: "5rem" }}>
+        <div className="container" style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+          {GROUPS.map((group, gi) => (
+            <GroupSection key={gi} group={group} groupIndex={gi} />
+          ))}
         </div>
       </section>
 
@@ -289,142 +151,119 @@ export default function TirePage() {
   );
 }
 
-function TireCard({ tire }: { tire: Tire }) {
+function GroupSection({ group, groupIndex }: { group: CategoryGroup; groupIndex: number }) {
   return (
-    <div className="product-card flex flex-col">
-      {/* Image placeholder */}
-      <div
-        className="w-full"
-        style={{
-          backgroundColor: "#111112",
-          aspectRatio: "4 / 3",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          borderBottom: "1px solid var(--border-color)",
-          position: "relative",
-        }}
-      >
-        {/* Category tag */}
-        <div
-          style={{
-            position: "absolute",
-            top: "1rem",
-            left: "1rem",
-            fontSize: "0.65rem",
-            letterSpacing: "0.08em",
-            color: "var(--text-muted)",
-            textTransform: "uppercase",
-            backgroundColor: "rgba(0,0,0,0.5)",
-            padding: "3px 8px",
-            border: "1px solid var(--border-color)",
-          }}
-        >
-          {tire.category}
-        </div>
-        {/* Tire image area — placeholder until real images are added */}
-        <div
-          style={{
-            width: "72px",
-            height: "72px",
-            borderRadius: "50%",
-            border: "4px solid var(--border-color)",
-            opacity: 0.2,
-          }}
-        />
-      </div>
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={VP}
+      transition={{ duration: 0.22, ease: "easeOut" }}
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(5, 1fr)",
+        border: "1px solid rgba(255,255,255,0.07)",
+        backgroundColor: "rgba(255,255,255,0.07)",
+        gap: "1px",
+      }}
+    >
+      {group.tires.map((tire, ti) => (
+        <TireCard key={tire.slug} tire={tire} delay={ti * 0.04} />
+      ))}
+    </motion.div>
+  );
+}
 
-      {/* Content */}
-      <div className="p-8 flex flex-col flex-1 relative">
-        {tire.badge && (
-          <div
-            style={{
-              position: "absolute",
-              top: "2rem",
-              right: "2rem",
-              color: "var(--accent-yellow)",
-              fontSize: "0.65rem",
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-            }}
-          >
-            {tire.badge}
-          </div>
-        )}
+function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
+  const [prefix, suffix] = splitName(tire.name);
+  const isStandard = !tire.labelYellow;
 
-        <div
-          style={{
-            fontSize: "0.7rem",
-            letterSpacing: "0.08em",
-            color: "var(--text-muted)",
-            textTransform: "uppercase",
-            marginBottom: "0.4rem",
-          }}
-        >
-          {tire.position}
-        </div>
-
-        <h3
-          className="uppercase"
-          style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "1.35rem",
-            fontWeight: 600,
-            letterSpacing: "0.02em",
-            marginBottom: "0.5rem",
-          }}
-        >
-          {tire.model}
-        </h3>
-
-        <p
-          style={{
-            color: "var(--text-muted)",
-            fontSize: "0.88rem",
-            lineHeight: 1.55,
-            marginBottom: "1.5rem",
-            flex: 1,
-          }}
-        >
-          {tire.description}
-        </p>
-
-        <ul style={{ borderTop: "1px solid var(--border-color)" }}>
-          {tire.specs.map((s) => (
-            <li
-              key={s.label}
-              className="flex justify-between items-center py-3 uppercase"
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={VP}
+      transition={{ duration: 0.20, delay, ease: "easeOut" }}
+      style={{ backgroundColor: "#080808" }}
+      className="lineup-card"
+    >
+      <Link href={`/tires/${tire.slug}`} style={{ display: "block", textDecoration: "none", color: "inherit", height: "100%" }}>
+        <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+          <div style={{ padding: "0.7rem 0.8rem 0.4rem" }}>
+            <p
+              className="uppercase"
               style={{
-                borderBottom: "1px solid var(--border-color)",
-                fontSize: "0.78rem",
-                color: "var(--text-muted)",
-                letterSpacing: "0.05em",
+                fontSize: "clamp(0.78rem, 1.2vw, 0.92rem)",
+                fontWeight: 700,
+                letterSpacing: "0.02em",
+                lineHeight: 1.15,
+                color: "#fff",
               }}
             >
-              <span>{s.label}</span>
-              <span style={{ fontWeight: 600, color: "#fff" }}>{s.value}</span>
-            </li>
-          ))}
-        </ul>
+              <span style={{ color: "var(--accent-yellow)" }}>{prefix}</span>
+              {suffix && <>{" "}<span style={{ color: "#fff" }}>{suffix}</span></>}
+            </p>
+          </div>
 
-        {tire.slug ? (
-          <Link
-            href={`/tires/${tire.slug}`}
-            className="btn-primary mt-6"
-            style={{ width: "100%", textAlign: "center", display: "block" }}
+          <div
+            style={{
+              width: "100%",
+              aspectRatio: "1 / 1",
+              backgroundColor: "#0d0d0d",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              overflow: "hidden",
+              flexShrink: 0,
+            }}
           >
-            View Specs
-          </Link>
-        ) : (
-          <button
-            className="btn-primary mt-6"
-            style={{ width: "100%", textAlign: "center" }}
-            disabled
-          >
-            Coming Soon
-          </button>
-        )}
-      </div>
-    </div>
+            <img
+              src={PHOTO(tire.photo)}
+              alt={tire.name}
+              loading="lazy"
+              style={{
+                width: "88%",
+                height: "88%",
+                objectFit: "contain",
+                display: "block",
+                transition: "transform 0.22s ease",
+              }}
+              className="lineup-card-img"
+            />
+          </div>
+
+          <div style={{ padding: "0.6rem 0.8rem 0.85rem", flex: 1 }}>
+            <p
+              className="uppercase"
+              style={{
+                fontSize: "0.6rem",
+                letterSpacing: "0.09em",
+                marginBottom: "0.35rem",
+                lineHeight: 1.3,
+              }}
+            >
+              {tire.labelYellow && (
+                <span style={{ color: "var(--accent-yellow)" }}>{tire.labelYellow} </span>
+              )}
+              <span style={{ color: isStandard ? "rgba(255,255,255,0.45)" : "rgba(255,255,255,0.75)" }}>
+                {tire.labelWhite}
+              </span>
+            </p>
+            <p
+              style={{
+                color: "rgba(255,255,255,0.4)",
+                fontSize: "0.73rem",
+                lineHeight: 1.45,
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: "vertical" as const,
+                overflow: "hidden",
+              }}
+            >
+              {tire.subtitle}
+            </p>
+          </div>
+        </div>
+      </Link>
+    </motion.div>
   );
 }

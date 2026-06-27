@@ -54,7 +54,7 @@ export default function TirePage() {
             className="uppercase"
             style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "clamp(2.4rem, 5.5vw, 5rem)",
+              fontSize: "clamp(1.8rem, 3.5vw, 3rem)",
               fontWeight: 300,
               lineHeight: 0.9,
               letterSpacing: "-0.03em",

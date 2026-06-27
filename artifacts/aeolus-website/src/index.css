@@ -273,11 +273,12 @@ html {
   padding-bottom: 4px;
   display: inline-flex;
   align-items: center;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .link-accent:hover {
   color: var(--accent-yellow);
+  transform: translateX(5px);
 }
 
 /* Spec table row hover */

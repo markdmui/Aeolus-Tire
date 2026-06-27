@@ -39,8 +39,15 @@ export default function LandingPage() {
   );
 }
 
+const iconVariants = {
+  initial: (dir: number) => ({ opacity: 0, y: dir > 0 ? -8 : 8 }),
+  animate: { opacity: 1, y: 0 },
+  exit:    (dir: number) => ({ opacity: 0, y: dir > 0 ? 8 : -8 }),
+};
+
 function Hero() {
   const [iconHovered, setIconHovered] = useState(false);
+  const [iconDir, setIconDir] = useState(1);
   const [heroBg] = useState(() => {
     const stored = localStorage.getItem("heroBgIndex");
     const next = stored === null
@@ -112,17 +119,20 @@ function Hero() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.34, delay: 0.64, ease: "easeOut" }}
-          onMouseEnter={() => setIconHovered(true)}
-          onMouseLeave={() => setIconHovered(false)}
+          onMouseEnter={() => { setIconDir(1); setIconHovered(true); }}
+          onMouseLeave={() => { setIconDir(-1); setIconHovered(false); }}
         >
           EXPLORE OUR TIRE LINE UP
           <span style={{ position: "relative", display: "inline-flex", width: 20, height: 20, marginLeft: "0.5rem", overflow: "hidden" }}>
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" custom={iconDir}>
               {!iconHovered ? (
                 <motion.span
                   key="white"
-                  initial={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 8 }}
+                  custom={iconDir}
+                  variants={iconVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
                   transition={{ duration: 0.18, ease: "easeOut" }}
                   style={{ position: "absolute", display: "flex" }}
                 >
@@ -131,8 +141,11 @@ function Hero() {
               ) : (
                 <motion.span
                   key="yellow"
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  custom={iconDir}
+                  variants={iconVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
                   transition={{ duration: 0.18, ease: "easeOut" }}
                   style={{ position: "absolute", display: "flex", color: "var(--accent-yellow)" }}
                 >

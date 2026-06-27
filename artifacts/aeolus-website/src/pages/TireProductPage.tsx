@@ -415,7 +415,6 @@ function FeatureSection({ tire, onOpen }: { tire: TireData; onOpen: (src: string
             <motion.img
               src={f.image}
               alt={f.title}
-              onClick={() => onOpen(f.image)}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -425,7 +424,6 @@ function FeatureSection({ tire, onOpen }: { tire: TireData; onOpen: (src: string
                 display: "block",
                 aspectRatio: "16 / 9",
                 objectFit: "cover",
-                cursor: "zoom-in",
               }}
             />
           </motion.div>

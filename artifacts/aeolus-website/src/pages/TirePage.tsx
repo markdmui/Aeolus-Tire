@@ -135,7 +135,7 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
           <div
             style={{
               width: "100%",
-              aspectRatio: "4 / 5",
+              aspectRatio: "4 / 3",
               backgroundColor: "#0d0d0d",
               overflow: "hidden",
               flexShrink: 0,
@@ -150,7 +150,7 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
                 width: "100%",
                 height: "auto",
                 display: "block",
-                transform: "scale(1.65) translateY(-4%)",
+                transform: "scale(1.65) translateY(14%)",
                 transformOrigin: "top center",
                 transition: "transform 0.22s ease",
               }}

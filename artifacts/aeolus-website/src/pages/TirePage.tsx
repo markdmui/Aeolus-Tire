@@ -29,11 +29,11 @@ function splitName(name: string): [string, string] {
   return m ? [m[1], m[2]] : [u, ""];
 }
 
+const TEMPLATE: TireEntry = { name: "Neo Fuel S", photo: "Neo-Fuel-S.png", labelYellow: "NEO SERIES", labelWhite: "LONG HAUL", slug: "neo-fuel-s", subtitle: "Steer tire for long haul use with low rolling resistance, excellent stability and long life span." };
+
 const GROUPS: CategoryGroup[] = [
   {
-    tires: [
-      { name: "Neo Fuel S", photo: "Neo-Fuel-S.png", labelYellow: "NEO SERIES", labelWhite: "LONG HAUL", slug: "neo-fuel-s", subtitle: "Steer tire for long haul use with low rolling resistance, excellent stability and long life span." },
-    ],
+    tires: [TEMPLATE, TEMPLATE, TEMPLATE, TEMPLATE, TEMPLATE],
   },
 ];
 

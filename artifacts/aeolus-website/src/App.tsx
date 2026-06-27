@@ -1,18 +1,28 @@
-import { Switch, Route, Router as WouterRouter } from "wouter";
+import { Switch, Route, Router as WouterRouter, useLocation } from "wouter";
+import { useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import LandingPage from "@/pages/LandingPage";
 import TirePage from "@/pages/TirePage";
 import TireProductPage from "@/pages/TireProductPage";
 import NotFound from "@/pages/not-found";
 
+function ScrollToTop() {
+  const [location] = useLocation();
+  useEffect(() => { window.scrollTo(0, 0); }, [location]);
+  return null;
+}
+
 function Router() {
   return (
-    <Switch>
-      <Route path="/" component={LandingPage} />
-      <Route path="/tires" component={TirePage} />
-      <Route path="/tires/:slug" component={TireProductPage} />
-      <Route component={NotFound} />
-    </Switch>
+    <>
+      <ScrollToTop />
+      <Switch>
+        <Route path="/" component={LandingPage} />
+        <Route path="/tires" component={TirePage} />
+        <Route path="/tires/:slug" component={TireProductPage} />
+        <Route component={NotFound} />
+      </Switch>
+    </>
   );
 }
 

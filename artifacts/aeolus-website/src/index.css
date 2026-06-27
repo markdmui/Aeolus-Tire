@@ -274,7 +274,7 @@ html {
 .lineup-card:hover .lineup-card-img { transform: scale(1.04); }
 .lineup-card-info { transition: background 0.18s ease; }
 .lineup-card-info * { transition: color 0.18s ease; }
-.lineup-card:hover .lineup-card-info { background: #ffffff; }
+.lineup-card:hover .lineup-card-info { background: #cccccc; }
 .lineup-card:hover .lineup-card-info * { color: #000000 !important; }
 
 .link-accent {

@@ -161,7 +161,7 @@ export default function Navbar() {
           transition={{ duration: 0.38, ease: "easeOut" }}
         >
           <Link href="/" aria-label="Aeolus" className="flex items-center" onClick={() => setMenuOpen(false)}>
-            <img src="/aeolus-logo.png" alt="Aeolus" className="h-[26px] w-auto" />
+            <img src="/aeolus-logo.png" alt="Aeolus" className="h-[26px] w-auto nav-logo" />
           </Link>
         </motion.div>
 

@@ -263,6 +263,9 @@ html {
 /* ============================================================
    LINKS
    ============================================================ */
+.nav-logo { position: relative; left: 0; transition: left 0.2s ease; }
+.nav-logo:hover { left: 3px; }
+
 .link-accent {
   color: var(--text-main);
   text-decoration: none;

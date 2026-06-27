@@ -88,7 +88,7 @@ function Hero() {
               style={{ color: i === 1 ? "var(--accent-yellow)" : "#fff" }}
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.38, delay: 0.1 + i * 0.1, ease: "easeOut" }}
+              transition={{ duration: 0.25, delay: 0.07 + i * 0.07, ease: "easeOut" }}
             >
               {word}
             </motion.span>
@@ -100,7 +100,7 @@ function Hero() {
           style={{ color: "rgba(255,255,255,0.72)", fontSize: "clamp(0.95rem, 2.5vw, 1.1rem)", maxWidth: "32rem" }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.34, delay: 0.42, ease: "easeOut" }}
+          transition={{ duration: 0.22, delay: 0.28, ease: "easeOut" }}
         >
           Uncompromising radial truck tires for the modern global fleet.
         </motion.p>
@@ -109,7 +109,7 @@ function Hero() {
           style={{ color: "rgba(255,255,255,0.72)", fontSize: "clamp(0.95rem, 2.5vw, 1.1rem)", maxWidth: "32rem" }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.34, delay: 0.52, ease: "easeOut" }}
+          transition={{ duration: 0.22, delay: 0.35, ease: "easeOut" }}
         >
           Built for durability. Engineered for the long haul.
         </motion.p>
@@ -118,7 +118,7 @@ function Hero() {
           className="link-accent group"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.34, delay: 0.64, ease: "easeOut" }}
+          transition={{ duration: 0.22, delay: 0.44, ease: "easeOut" }}
           onMouseEnter={() => { setIconDir(1); setIconHovered(true); }}
           onMouseLeave={() => { setIconDir(-1); setIconHovered(false); }}
         >
@@ -188,13 +188,13 @@ function FeaturePillars() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={VP}
-          transition={{ duration: 0.36, delay: i * 0.1, ease: "easeOut" }}
+          transition={{ duration: 0.24, delay: i * 0.07, ease: "easeOut" }}
         >
           <motion.div
             className="prop-card-line"
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
-            transition={{ duration: 0.44, delay: 0.3 + i * 0.1, ease: "easeOut" }}
+            transition={{ duration: 0.28, delay: 0.2 + i * 0.07, ease: "easeOut" }}
           />
           <h3
             className="uppercase mb-4"
@@ -226,7 +226,7 @@ function ProductCard({ badge, name, description, specs, delay = 0 }: ProductCard
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={VP}
-      transition={{ duration: 0.38, delay, ease: "easeOut" }}
+      transition={{ duration: 0.25, delay, ease: "easeOut" }}
     >
       <div
         className="w-full aspect-[4/3]"
@@ -310,7 +310,7 @@ function ProductGrid() {
     <section className="py-16 md:py-20" style={{ borderTop: "1px solid var(--border-color)" }}>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5" style={{ columnGap: "var(--col-gap)" }}>
         {products.map((p, i) => (
-          <ProductCard key={i} {...p} delay={i * 0.13} />
+          <ProductCard key={i} {...p} delay={i * 0.09} />
         ))}
       </div>
     </section>
@@ -344,7 +344,7 @@ function EngineeringCapabilities() {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={VP}
-            transition={{ duration: 0.38, delay: i * 0.11, ease: "easeOut" }}
+            transition={{ duration: 0.25, delay: i * 0.07, ease: "easeOut" }}
           >
             <div className="p-8 md:p-10 flex-1">
               <h3
@@ -419,14 +419,14 @@ function AboutAeolus() {
                   initial={{ y: 30 }}
                   whileInView={{ y: 0 }}
                   viewport={VP}
-                  transition={{ duration: 0.32, delay: i * 0.07, ease: "easeOut" }}
+                  transition={{ duration: 0.22, delay: i * 0.05, ease: "easeOut" }}
                 >
                   <motion.div
                     style={{ marginBottom: "8px", lineHeight: 1 }}
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={VP}
-                    transition={{ duration: 0.32, delay: i * 0.07 + 0.1, ease: "easeOut" }}
+                    transition={{ duration: 0.22, delay: i * 0.05 + 0.07, ease: "easeOut" }}
                   >
                     <CaretCircleRight size={28} color="#a18a00" />
                   </motion.div>
@@ -441,7 +441,7 @@ function AboutAeolus() {
                     initial={{ opacity: 0, y: 10, color: "#F2C94C" }}
                     whileInView={{ opacity: 1, y: 0, color: "#ffffff" }}
                     viewport={VP}
-                    transition={{ duration: 0.55, delay: i * 0.07 + 0.05, ease: "easeOut" }}
+                    transition={{ duration: 0.36, delay: i * 0.05 + 0.03, ease: "easeOut" }}
                   >
                     {value}
                   </motion.div>
@@ -454,7 +454,7 @@ function AboutAeolus() {
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={VP}
-                    transition={{ duration: 0.30, delay: i * 0.07 + 0.30, ease: "easeOut" }}
+                    transition={{ duration: 0.20, delay: i * 0.05 + 0.20, ease: "easeOut" }}
                   >
                     {label}
                   </motion.div>
@@ -483,7 +483,7 @@ function EngineeringApproach() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={VP}
-          transition={{ duration: 0.40, ease: "easeOut" }}
+          transition={{ duration: 0.26, ease: "easeOut" }}
         >
           <h2
             className="uppercase"
@@ -502,7 +502,7 @@ function EngineeringApproach() {
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={VP}
-                transition={{ duration: 0.34, delay: 0.12 + i * 0.1, ease: "easeOut" }}
+                transition={{ duration: 0.22, delay: 0.08 + i * 0.07, ease: "easeOut" }}
               >
                 {line}
               </motion.span>
@@ -519,7 +519,7 @@ function EngineeringApproach() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={VP}
-            transition={{ duration: 0.34, delay: 0.28, ease: "easeOut" }}
+            transition={{ duration: 0.22, delay: 0.19, ease: "easeOut" }}
           >
             Each tire model undergoes structured testing
             <br />to verify durability, load handling, and

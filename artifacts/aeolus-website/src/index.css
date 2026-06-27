@@ -280,7 +280,7 @@ html {
 
 .link-accent:hover {
   color: var(--accent-yellow);
-  left: 5px;
+  left: 3px;
 }
 
 /* Spec table row hover */

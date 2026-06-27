@@ -35,13 +35,12 @@ const GROUPS: CategoryGroup[] = [
       // — Premium Long Haul —
       { name: "Neo Fuel S",       photo: "Neo-Fuel-S.png",              labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-s",        subtitle: "Long haul steer tire engineered for fuel efficiency, stability, and even wear." },
       { name: "Neo Fuel D",       photo: "Neo-Fuel-D.png",              labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-d",        subtitle: "Long haul drive tire with low rolling resistance and superior durability." },
-      { name: "Neo Fuel D2",      photo: "Neo-Fuel-D2.png",             labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-d2",       subtitle: "Drive tire optimized for long haul routes with an enhanced tread compound." },
+      { name: "Neo Fuel D2",      photo: "Neo-Fuel-D2.png",             labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-d2",       subtitle: "Drive tire optimized for long haul routes with an enhanced tread compound.",  hasAlt: true },
       { name: "Neo Fuel D3",      photo: "Neo-Fuel-D3.png",             labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-d3",       subtitle: "Third-generation long haul drive tire for maximum mileage and fuel savings." },
       { name: "Neo Fuel G3",      photo: "Neo-Fuel-G3.png",             labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-g3",       subtitle: "All-position tire for regional and mixed service operations." },
       { name: "Neo Fuel T2",      photo: "Neo-Fuel-T2.png",             labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-t2",       subtitle: "Long haul trailer tire for low rolling resistance and high-speed stability." },
       { name: "Neo Fuel T3",      photo: "Neo-Fuel-T3.png",             labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-t3",       subtitle: "Trailer tire engineered for demanding long haul applications." },
       { name: "Neo Fuel T+",      photo: "Neo-Fuel-T+.png",             labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-tplus",    subtitle: "Premium long haul trailer tire for heavy loads and extended service life." },
-      { name: "Fuel D2 W",        photo: "Fuel-D2-W.png",               labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "fuel-d2-w",         subtitle: "Wide-base long haul drive tire for improved fuel economy and reduced weight." },
       // — Premium Regional —
       { name: "Neo Allroads S",   photo: "Neo-Allroads-S.png",          labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "neo-allroads-s",    subtitle: "All-roads steer tire for reliable performance on mixed terrain." },
       { name: "Neo Allroads S+",  photo: "Neo-Allroads-S+.png",         labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "neo-allroads-splus",subtitle: "Enhanced all-roads steer tire with superior wet grip and handling." },

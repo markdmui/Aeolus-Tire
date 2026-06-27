@@ -110,6 +110,7 @@ function Hero() {
           className="link-accent group"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
+          whileHover={{ x: 5 }}
           transition={{ duration: 0.34, delay: 0.64, ease: "easeOut" }}
         >
           EXPLORE OUR TIRE LINE UP

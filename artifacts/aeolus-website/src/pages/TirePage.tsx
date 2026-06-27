@@ -116,7 +116,7 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
     >
       <Link href={`/tires/${tire.slug}`} style={{ display: "block", textDecoration: "none", color: "inherit", height: "100%" }}>
         <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-          <div style={{ padding: "0.7rem 0.8rem 0.4rem" }}>
+          <div style={{ padding: "1px 0.8rem 1px" }}>
             <p
               className="uppercase"
               style={{

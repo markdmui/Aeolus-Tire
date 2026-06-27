@@ -89,8 +89,8 @@ function GroupSection({ group, groupIndex }: { group: CategoryGroup; groupIndex:
       style={{
         display: "grid",
         gridTemplateColumns: "repeat(5, 1fr)",
-        border: "1px solid rgba(255,255,255,0.07)",
-        backgroundColor: "rgba(255,255,255,0.07)",
+        border: "none",
+        backgroundColor: "transparent",
         gap: "1px",
       }}
     >

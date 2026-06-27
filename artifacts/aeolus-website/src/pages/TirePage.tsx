@@ -169,9 +169,9 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
               }}
             >
               {tire.labelYellow && (
-                <span style={{ color: "var(--accent-yellow)" }}>{tire.labelYellow} </span>
+                <span style={{ color: "rgba(255,255,255,0.75)" }}>{tire.labelYellow} </span>
               )}
-              <span style={{ color: isStandard ? "rgba(255,255,255,0.45)" : "rgba(255,255,255,0.75)" }}>
+              <span style={{ color: "rgba(255,255,255,0.75)" }}>
                 {tire.labelWhite}
               </span>
             </p>

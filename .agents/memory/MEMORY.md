@@ -1,1 +1,2 @@
 - [Tire image workflow](tire-image-workflow.md) — print (300 DPI) vs web (72 DPI) split per tire; Pillow already installed; public/ path, not Vite import.
+- [SpecsSection layout constants](specs-section-layout.md) — key layout values for the truck bg / specs overlap section; change these before touching inline styles.

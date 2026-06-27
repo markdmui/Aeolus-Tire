@@ -305,9 +305,9 @@ html {
 .tire-hero-title  { margin-bottom: 1.25rem; }
 .tire-hero-subtitle { margin-bottom: 2rem; }
 .tire-hero-divider  { margin-bottom: 1.75rem; }
-.tire-hero-truck    { margin-top: 2rem; width: 140px; }
+.tire-hero-truck    { margin-top: 2rem; width: 140px; position: relative; left: 0; transition: left 0.2s ease; }
 .tire-hero-truck--otr { width: 175px; }
-.tire-hero-truck:hover { opacity: 1 !important; }
+.tire-hero-truck:hover { opacity: 1 !important; left: 3px; }
 .tire-hero-bullets  { gap: 0.45rem; }
 
 /* Portrait tablet: enlarge tire image to fill available space */

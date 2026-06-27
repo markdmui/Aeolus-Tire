@@ -1,3 +1,4 @@
 - [Tire image workflow](tire-image-workflow.md) — print (300 DPI) vs web (72 DPI) split per tire; Pillow already installed; public/ path, not Vite import.
 - [SpecsSection layout constants](specs-section-layout.md) — key layout values for the truck bg / specs overlap section; change these before touching inline styles.
-- [Tire photos catalog](tire-photos-catalog.md) — 48 hi-res PNGs at `/tires/Tire-Photos/<file>`; 3 tires have two variants (ADR78, ASR79, Neo-Allroads-T2); grouped by series.
+- [Tire photos catalog](tire-photos-catalog.md) — 48 hi-res PNGs at `/tires/Tire-Photos/<file>`; grouped by series.
+- [Wireframe data](wireframe-data.json) — 45 tires, full structured data (name, alt, pos, category, subtitle, tags, bullets, specs_table, features). Source: Wireframe-04. Three tires have `alt` field set (Neo Fuel D2, Neo Fuel T2, ADR78) — custom action TBD.

@@ -270,7 +270,7 @@ html {
   transition: background 0.18s ease, border-color 0.18s ease;
   border-top: 1px solid transparent;
 }
-.lineup-card:hover { background: #1c1c1c !important; border-top-color: var(--accent-yellow) !important; }
+.lineup-card:hover { background: #1e1e1e !important; border-top-color: var(--accent-yellow) !important; }
 .lineup-card:hover .lineup-card-img { transform: scale(1.04); }
 
 .link-accent {

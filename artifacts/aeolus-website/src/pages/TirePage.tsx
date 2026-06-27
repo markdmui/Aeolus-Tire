@@ -135,13 +135,11 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
           <div
             style={{
               width: "100%",
-              aspectRatio: "1 / 1",
+              aspectRatio: "4 / 5",
               backgroundColor: "#0d0d0d",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
               overflow: "hidden",
               flexShrink: 0,
+              position: "relative",
             }}
           >
             <img
@@ -149,10 +147,11 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
               alt={tire.name}
               loading="lazy"
               style={{
-                width: "88%",
-                height: "88%",
-                objectFit: "contain",
+                width: "100%",
+                height: "auto",
                 display: "block",
+                transform: "scale(1.65) translateY(-4%)",
+                transformOrigin: "top center",
                 transition: "transform 0.22s ease",
               }}
               className="lineup-card-img"

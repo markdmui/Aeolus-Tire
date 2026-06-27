@@ -24,7 +24,7 @@ const FEATURE_SECTION_BG =
 const TRUCK_BG_POSITION  = "center calc(60% + 190px)";
 const TRUCK_MIN_HEIGHT   = 540;
 const TRUCK_MARGIN_BOTTOM = -180;
-const SPECS_TABLE_BG     = "none";
+const SPECS_TABLE_BG     = "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.75) 200px)";
 const DOWNLOAD_BTN_PT    = "calc(3rem + 30px)";
 
 // ─── Table cell styles (module-level, reused by SpecsSection) ────────────────

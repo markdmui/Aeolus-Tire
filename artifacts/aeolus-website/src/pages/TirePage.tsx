@@ -158,7 +158,7 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
             />
           </div>
 
-          <div style={{ padding: "0.6rem 0.8rem 0.85rem", flex: 1 }}>
+          <div className="lineup-card-info" style={{ padding: "0.6rem 0.8rem 0.85rem", flex: 1 }}>
             <p
               className="uppercase"
               style={{

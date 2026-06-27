@@ -143,7 +143,7 @@ function HeroSection({ tire, onOpen }: { tire: TireData; onOpen: (src: string) =
             className="tire-hero-badge"
             initial={{ opacity: 0, y: 48 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.34, delay: 0.1, ease: "easeOut" }}
+            transition={{ duration: 0.22, delay: 0.07, ease: "easeOut" }}
             style={{
               display: "inline-block",
               border: "1px solid var(--accent-yellow)",
@@ -163,7 +163,7 @@ function HeroSection({ tire, onOpen }: { tire: TireData; onOpen: (src: string) =
             className="tire-product-h1 tire-hero-title uppercase"
             initial={{ opacity: 0, x: 70 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.38, delay: 0.2, ease: "easeOut" }}
+            transition={{ duration: 0.25, delay: 0.13, ease: "easeOut" }}
             style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "clamp(2.4rem, 4.5vw, 4rem)",
@@ -181,7 +181,7 @@ function HeroSection({ tire, onOpen }: { tire: TireData; onOpen: (src: string) =
             className="tire-hero-subtitle"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.36, delay: 0.35, ease: "easeOut" }}
+            transition={{ duration: 0.24, delay: 0.23, ease: "easeOut" }}
             style={{
               color: "rgba(255,255,255,0.75)",
               fontSize: "0.95rem",
@@ -197,7 +197,7 @@ function HeroSection({ tire, onOpen }: { tire: TireData; onOpen: (src: string) =
             className="tire-hero-divider"
             initial={{ scaleX: 0, originX: 0 }}
             animate={{ scaleX: 1 }}
-            transition={{ duration: 0.29, delay: 0.5, ease: "easeOut" }}
+            transition={{ duration: 0.20, delay: 0.33, ease: "easeOut" }}
             style={{ width: "2.5rem", height: "2px", backgroundColor: "var(--accent-yellow)" }}
           />
 
@@ -208,7 +208,7 @@ function HeroSection({ tire, onOpen }: { tire: TireData; onOpen: (src: string) =
                 key={point}
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.31, delay: 0.58 + i * 0.14, ease: "easeOut" }}
+                transition={{ duration: 0.20, delay: 0.38 + i * 0.09, ease: "easeOut" }}
                 style={{
                   display: "flex",
                   alignItems: "flex-start",
@@ -246,7 +246,7 @@ function HeroSection({ tire, onOpen }: { tire: TireData; onOpen: (src: string) =
               alt={`${tire.position} tire position`}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 0.7, y: 0 }}
-              transition={{ duration: 0.38, delay: 1.0, ease: "easeOut" }}
+              transition={{ duration: 0.25, delay: 0.65, ease: "easeOut" }}
               style={{ height: "auto", display: "block" }}
               className={`tire-hero-truck${tire.position === "OTR" ? " tire-hero-truck--otr" : ""}`}
             />
@@ -285,7 +285,7 @@ function HeroSection({ tire, onOpen }: { tire: TireData; onOpen: (src: string) =
           className="flex items-center justify-center pb-10 md:py-8"
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.43, delay: 0.1, ease: "easeOut" }}
+          transition={{ duration: 0.28, delay: 0.07, ease: "easeOut" }}
         >
           <div
             style={{ position: "relative", display: "inline-block", width: "100%", maxWidth: "520px" }}
@@ -355,7 +355,7 @@ function FeatureSection({ tire, onOpen }: { tire: TireData; onOpen: (src: string
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.3, delay: i * 0.18 }}
+            transition={{ duration: 0.20, delay: i * 0.12 }}
             style={{
               position: "relative",
               display: "grid",
@@ -369,7 +369,7 @@ function FeatureSection({ tire, onOpen }: { tire: TireData; onOpen: (src: string
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.44, delay: i * 0.18, ease: "easeOut" }}
+              transition={{ duration: 0.28, delay: i * 0.12, ease: "easeOut" }}
               style={{ position: "absolute", top: 0, left: 0, height: "1px", backgroundColor: "#cccccc", width: "100%", originX: 0 }}
             />
 
@@ -379,7 +379,7 @@ function FeatureSection({ tire, onOpen }: { tire: TireData; onOpen: (src: string
               initial={{ opacity: 0, x: 60 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.36, delay: i * 0.18 + 0.1, ease: "easeOut" }}
+              transition={{ duration: 0.24, delay: i * 0.12 + 0.07, ease: "easeOut" }}
               style={{
                 color: "var(--accent-yellow)",
                 fontSize: "1.05rem",
@@ -398,7 +398,7 @@ function FeatureSection({ tire, onOpen }: { tire: TireData; onOpen: (src: string
               initial={{ opacity: 0, x: 60 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.36, delay: i * 0.18 + 0.22, ease: "easeOut" }}
+              transition={{ duration: 0.24, delay: i * 0.12 + 0.15, ease: "easeOut" }}
               style={{
                 color: "#cccccc",
                 fontSize: "0.86rem",
@@ -418,7 +418,7 @@ function FeatureSection({ tire, onOpen }: { tire: TireData; onOpen: (src: string
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.40, delay: i * 0.18 + 0.18, ease: "easeOut" }}
+              transition={{ duration: 0.26, delay: i * 0.12 + 0.12, ease: "easeOut" }}
               style={{
                 width: "100%",
                 display: "block",

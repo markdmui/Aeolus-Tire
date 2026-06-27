@@ -10,7 +10,7 @@ function Router() {
     <Switch>
       <Route path="/" component={LandingPage} />
       <Route path="/tires" component={TirePage} />
-      <Route path="/tires/neo-fuel-x3" component={TireProductPage} />
+      <Route path="/tires/:slug" component={TireProductPage} />
       <Route component={NotFound} />
     </Switch>
   );

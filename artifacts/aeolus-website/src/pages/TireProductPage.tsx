@@ -1,11 +1,14 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useParams } from "wouter";
 import { Notebook, FilePdf, ShieldCheck, Image } from "@phosphor-icons/react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import TireTechExplorer from "../components/TireTechExplorer";
-import cutawayImg from "@assets/3d-cutaway_1782348127809.png";
+import { getTireBySlug, TireData } from "../data/tires";
+import NotFound from "./not-found";
 
+// ─── Position SVG map ────────────────────────────────────────────────────────
 const POS_SVG: Record<string, string> = {
   "Drive":        "/pos-drive-tire.svg",
   "Steer":        "/pos-steer-tire.svg",
@@ -14,71 +17,53 @@ const POS_SVG: Record<string, string> = {
   "OTR":          "/pos-otr-tire.svg",
   "Bus":          "/pos-bus-tire.svg",
 };
-import feature1 from "@assets/Template-f1_1782411546517.jpg";
-import feature2 from "@assets/Template-f2_1782411546517.jpg";
-import feature3 from "@assets/Template-f3_1782411546518.jpg";
-import templateTireImg from "@assets/Template_1782411546518.png";
 
-import bgTruck from "@assets/bg-long-haul_1782483488801.jpg";
-import heroBg from "@assets/tire-hero-bg-1_1782515680443.jpg";
+// ─── Layout constants ────────────────────────────────────────────────────────
+const FEATURE_SECTION_BG =
+  "linear-gradient(to bottom, transparent 0%, #000000 220px, #000000 55%, transparent 100%)";
+const TRUCK_BG_POSITION  = "center calc(60% + 190px)";
+const TRUCK_MIN_HEIGHT   = 540;
+const TRUCK_MARGIN_BOTTOM = -180;
+const SPECS_TABLE_BG     = "linear-gradient(to bottom, transparent 0%, #000000 200px)";
+const DOWNLOAD_BTN_PT    = "calc(3rem + 30px)";
 
-const tireImg = templateTireImg;
+// ─── Table cell styles (module-level, reused by SpecsSection) ────────────────
+const thStyle: React.CSSProperties = {
+  padding: "0.9rem calc(0.55rem - 4px)",
+  textAlign: "left",
+  color: "#cccccc",
+  fontWeight: 600,
+  fontSize: "0.7rem",
+  letterSpacing: "0.05em",
+  textTransform: "uppercase",
+  verticalAlign: "top",
+  whiteSpace: "nowrap",
+};
 
-const TIRE_NAME = "Neo Fuel X3";
-const TIRE_SLUG = TIRE_NAME.replace(/\s+/g, "-").toLowerCase(); // → "neo-fuel-x3"
-const SEGMENT_CATEGORY = "Premium Long Haul";
-const TIRE_POS = "Drive";
+const subThStyle: React.CSSProperties = {
+  padding: "0rem calc(0.55rem - 4px) 0.7rem",
+  textAlign: "left",
+  color: "#888888",
+  fontWeight: 500,
+  fontSize: "0.78rem",
+  letterSpacing: "0.04em",
+  verticalAlign: "bottom",
+  whiteSpace: "nowrap",
+};
 
-const BULLET_POINTS = [
-  "4 longitudinal grooves on the tread providing excellent guiding performance.",
-  "Optimized ground pressure distribution to ensure product life.",
-  "SATT construction for better endurance, effectively securing tire life.",
-  "Low rolling resistance formula in tread to maximize fuel efficiency.",
-];
+const tdStyle: React.CSSProperties = {
+  padding: "0.85rem calc(0.55rem - 4px)",
+  color: "#cccccc",
+  letterSpacing: "0.02em",
+  verticalAlign: "middle",
+  whiteSpace: "nowrap",
+};
 
-const FEATURES = [
-  {
-    title: "OPTIMIZED Z-SHAPED GROOVE DESIGN",
-    body: "Z-shaped straight grooves with optimized geometry and higher pattern saturation ensure even wear and higher mileage, delivering long-lasting tread life and consistent performance on long-haul routes.",
-    image: feature1,
-  },
-  {
-    title: "CLOSED SHOULDER STRUCTURE",
-    body: "A reinforced closed shoulder design enhances heat dissipation and traction while maintaining even wear performance—improving handling stability and extending tire durability.",
-    image: feature2,
-  },
-  {
-    title: "ADVANCED 3D SIPE TECHNOLOGY",
-    body: "New 3D sipe solutions in the central and shoulder tread blocks enable better block movement, enhancing snow grip and traction while providing regular wear, lower rolling resistance, reduced noise, and improved control in both dry and wet conditions.",
-    image: feature3,
-  },
-];
-
-const SPEC_ROWS = [
-  {
-    size: "295/75R22.5", ply: "16", rimW: "9.00", secW: "11.7",
-    odIn: "39.9",  odMm: "1014",  td32: "15", tdMm: "18.9",
-    mlSlbs: "6600",  mlSpsi: "120", mlSkg: "3000", mlSkpa: "830",
-    mlDlbs: "5995",  mlDpsi: "120", mlDkg: "2725", mlDkpa: "830",
-    liss: "146/143M", smartway: false, ms: true, "3PMSF": false,
-  },
-  {
-    size: "11R22.5",    ply: "16", rimW: "8.25", secW: "11.1",
-    odIn: "41.4",  odMm: "1051",  td32: "15", tdMm: "18.9",
-    mlSlbs: "6614",  mlSpsi: "120", mlSkg: "3000", mlSkpa: "830",
-    mlDlbs: "6008",  mlDpsi: "120", mlDkg: "2725", mlDkpa: "830",
-    liss: "146/143M", smartway: true, ms: true, "3PMSF": false,
-  },
-  {
-    size: "11R24.5",    ply: "16", rimW: "8.25", secW: "11.4",
-    odIn: "43.0",  odMm: "1093",  td32: "15", tdMm: "18.9",
-    mlSlbs: "7165",  mlSpsi: "120", mlSkg: "3250", mlSkpa: "830",
-    mlDlbs: "6614",  mlDpsi: "120", mlDkg: "3000", mlDkpa: "830",
-    liss: "149/146M", smartway: true, ms: true, "3PMSF": false,
-  },
-];
-
+// ─── Page ────────────────────────────────────────────────────────────────────
 export default function TireProductPage() {
+  const { slug } = useParams<{ slug: string }>();
+  const tire = getTireBySlug(slug ?? "");
+
   const [activeImg, setActiveImg] = useState<string | null>(null);
   const close = useCallback(() => setActiveImg(null), []);
 
@@ -89,6 +74,8 @@ export default function TireProductPage() {
     return () => window.removeEventListener("keydown", onKey);
   }, [activeImg, close]);
 
+  if (!tire) return <NotFound />;
+
   return (
     <div
       className="antialiased text-white"
@@ -96,35 +83,49 @@ export default function TireProductPage() {
     >
       <Navbar />
       <div style={{ position: "relative" }}>
-        <HeroSection onOpen={setActiveImg} />
+        <HeroSection tire={tire} onOpen={setActiveImg} />
         <div style={{ position: "relative", zIndex: 1, marginTop: "-20px" }}>
-          <FeatureSection onOpen={setActiveImg} />
+          <FeatureSection tire={tire} onOpen={setActiveImg} />
         </div>
         <div style={{ position: "relative", marginTop: "0" }}>
-          <SpecsSection />
+          <SpecsSection tire={tire} />
         </div>
       </div>
-      <TireTechExplorer imageSrc={cutawayImg} />
+      <TireTechExplorer imageSrc={tire.cutawayImage} />
       <Footer />
       <AnimatePresence>
-        {activeImg && <Lightbox key="lightbox" src={activeImg} onClose={close} category={SEGMENT_CATEGORY} tireName={TIRE_NAME} />}
+        {activeImg && (
+          <Lightbox
+            key="lightbox"
+            src={activeImg}
+            onClose={close}
+            category={tire.segment}
+            tireName={tire.name}
+          />
+        )}
       </AnimatePresence>
     </div>
   );
 }
 
-function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
+// ─── Hero ─────────────────────────────────────────────────────────────────────
+function HeroSection({ tire, onOpen }: { tire: TireData; onOpen: (src: string) => void }) {
   const [truckHovered, setTruckHovered] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [tireHovered, setTireHovered] = useState(false);
   const [tireMouse, setTireMouse] = useState({ x: 0, y: 0 });
+
+  const words = tire.name.toUpperCase().split(" ");
+  const lastName = words.pop()!;
+  const firstName = words.join(" ");
+
   return (
     <section
       className="tire-product-hero"
       style={{
         position: "relative",
         marginTop: "-46px",
-        backgroundImage: `url(${heroBg})`,
+        backgroundImage: `url(${tire.heroBg})`,
         backgroundSize: "cover",
         backgroundPosition: "right center",
         backgroundRepeat: "no-repeat",
@@ -137,7 +138,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
       >
         {/* Text content */}
         <div className="tire-hero-text md:pb-8">
-          {/* Badge */}
+          {/* Segment badge */}
           <motion.div
             className="tire-hero-badge"
             initial={{ opacity: 0, y: 48 }}
@@ -154,7 +155,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
               padding: "4px 10px",
             }}
           >
-            Premium Long Haul
+            {tire.segment}
           </motion.div>
 
           {/* Title */}
@@ -171,8 +172,8 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
               letterSpacing: "-0.02em",
             }}
           >
-            <span style={{ color: "#fff" }}>NEO FUEL </span>
-            <span style={{ color: "var(--accent-yellow)" }}>{TIRE_NAME.split(" ").pop()}</span>
+            <span style={{ color: "#fff" }}>{firstName} </span>
+            <span style={{ color: "var(--accent-yellow)" }}>{lastName}</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -188,8 +189,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
               maxWidth: "32rem",
             }}
           >
-            Engineered for long-distance journeys ensuring high-speed stability,
-            fuel efficiency, and endurance mile after mile.
+            {tire.subtitle}
           </motion.p>
 
           {/* Divider */}
@@ -203,7 +203,7 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
 
           {/* Bullet points */}
           <ul className="tire-hero-bullets" style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column" }}>
-            {BULLET_POINTS.map((point, i) => (
+            {tire.bullets.map((point, i) => (
               <motion.li
                 key={point}
                 initial={{ opacity: 0, x: 50 }}
@@ -242,13 +242,13 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
             onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })}
           >
             <motion.img
-              src={POS_SVG[TIRE_POS]}
-              alt={`${TIRE_POS} tire position`}
+              src={POS_SVG[tire.position]}
+              alt={`${tire.position} tire position`}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 0.7, y: 0 }}
               transition={{ duration: 0.38, delay: 1.0, ease: "easeOut" }}
               style={{ height: "auto", display: "block" }}
-              className={`tire-hero-truck${TIRE_POS === "OTR" ? " tire-hero-truck--otr" : ""}`}
+              className={`tire-hero-truck${tire.position === "OTR" ? " tire-hero-truck--otr" : ""}`}
             />
             <AnimatePresence>
               {truckHovered && (
@@ -273,14 +273,14 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
                     zIndex: 9999,
                   }}
                 >
-                  {TIRE_POS} Tire
+                  {tire.position} Tire
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
         </div>
 
-        {/* Tire image — cropped via overflow:hidden + aspectRatio */}
+        {/* Tire image */}
         <motion.div
           className="flex items-center justify-center pb-10 md:py-8"
           initial={{ opacity: 0, y: 60 }}
@@ -295,22 +295,13 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
           >
             <div
               className="tire-hero-img-wrap"
-              style={{
-                width: "100%",
-                overflow: "hidden",
-                aspectRatio: "1 / 0.83",
-              }}
+              style={{ width: "100%", overflow: "hidden", aspectRatio: "1 / 0.83" }}
             >
               <img
-                src={tireImg}
-                alt={`Aeolus ${TIRE_NAME}`}
-                onClick={() => onOpen(tireImg)}
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  display: "block",
-                  cursor: "zoom-in",
-                }}
+                src={tire.tireImage}
+                alt={`Aeolus ${tire.name}`}
+                onClick={() => onOpen(tire.tireImage)}
+                style={{ width: "100%", height: "auto", display: "block", cursor: "zoom-in" }}
               />
             </div>
             <AnimatePresence>
@@ -347,19 +338,18 @@ function HeroSection({ onOpen }: { onOpen: (src: string) => void }) {
   );
 }
 
-function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
+// ─── Features ─────────────────────────────────────────────────────────────────
+function FeatureSection({ tire, onOpen }: { tire: TireData; onOpen: (src: string) => void }) {
   return (
     <section
       className="md:pt-[100px]"
-      style={{
-        background: "linear-gradient(to bottom, transparent 0%, #000000 220px, #000000 55%, transparent 100%)",
-      }}
+      style={{ background: FEATURE_SECTION_BG }}
     >
       <div
         className="container grid grid-cols-1 md:grid-cols-3"
         style={{ gap: "var(--col-gap)", gridTemplateRows: "auto auto auto" }}
       >
-        {FEATURES.map((f, i) => (
+        {tire.features.map((f, i) => (
           <motion.div
             key={f.title}
             initial={{ opacity: 0 }}
@@ -374,7 +364,7 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
               alignContent: "start",
             }}
           >
-            {/* Top rule — grows from left, absolutely positioned so it doesn't consume a subgrid row */}
+            {/* Top rule */}
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
@@ -383,7 +373,7 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
               style={{ position: "absolute", top: 0, left: 0, height: "1px", backgroundColor: "#cccccc", width: "100%", originX: 0 }}
             />
 
-            {/* Title — in from right */}
+            {/* Title */}
             <motion.h3
               className="uppercase md:pt-10"
               initial={{ opacity: 0, x: 60 }}
@@ -403,7 +393,7 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
               {f.title}
             </motion.h3>
 
-            {/* Body — in from right, slightly later */}
+            {/* Body */}
             <motion.p
               initial={{ opacity: 0, x: 60 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -421,10 +411,11 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
               {f.body}
             </motion.p>
 
-            {/* Feature image — in from bottom */}
+            {/* Feature image */}
             <motion.img
               src={f.image}
               alt={f.title}
+              onClick={() => onOpen(f.image)}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -434,6 +425,7 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
                 display: "block",
                 aspectRatio: "16 / 9",
                 objectFit: "cover",
+                cursor: "zoom-in",
               }}
             />
           </motion.div>
@@ -443,115 +435,103 @@ function FeatureSection({ onOpen }: { onOpen: (src: string) => void }) {
   );
 }
 
-function SpecsSection() {
-  const showSmartway = SPEC_ROWS.some((r) => r.smartway);
-  const showMs       = SPEC_ROWS.some((r) => r.ms);
-  const showPmsf     = SPEC_ROWS.some((r) => r["3PMSF"]);
+// ─── Specs (truck bg + download buttons + spec table) ────────────────────────
+function SpecsSection({ tire }: { tire: TireData }) {
+  const showSmartway = tire.specRows.some((r) => r.smartway);
+  const showMs       = tire.specRows.some((r) => r.ms);
+  const showPmsf     = tire.specRows.some((r) => r["3PMSF"]);
   const [hoveredCol, setHoveredCol] = useState<number | null>(null);
-  // Sub-header row covers col indices 2–15; sub-header index = col - 2
+
   const subHdrColor = (col: number) =>
     hoveredCol === col ? "var(--accent-yellow)" : "var(--text-muted)";
   const col = (n: number) => ({ onMouseEnter: () => setHoveredCol(n) });
 
+  const downloadItems = [
+    { icon: <Notebook size={22} weight="light" />, label: "Product Catalog", href: tire.downloads.catalog },
+    { icon: <FilePdf size={22} weight="light" />,  label: "Product Sheet",   href: tire.downloads.productSheet },
+    { icon: <ShieldCheck size={22} weight="light" />, label: "Warranty",     href: tire.downloads.warranty },
+    { icon: <Image size={22} weight="light" />,    label: "Tire Photo",      href: tire.downloads.tirePhoto, download: true },
+  ];
+
+  const btnBase: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    gap: "0.9rem",
+    background: "rgba(10,10,10,0.5)",
+    borderTop: "1px solid rgba(255,255,255,0.2)",
+    borderRight: "1px solid rgba(255,255,255,0.2)",
+    borderBottom: "1px solid rgba(255,255,255,0.2)",
+    borderLeft: "5px solid var(--accent-yellow)",
+    color: "#888888",
+    fontSize: "0.8rem",
+    fontFamily: "var(--font-body)",
+    letterSpacing: "0.08em",
+    textTransform: "uppercase",
+    padding: "0.6rem 1.4rem 0.6rem 1rem",
+    cursor: "pointer",
+    minWidth: "220px",
+    textAlign: "left",
+    backdropFilter: "blur(4px)",
+    transition: "background 0.15s ease, border-color 0.15s ease",
+    textDecoration: "none",
+  };
+
+  const onEnter = (e: React.MouseEvent<HTMLElement>) => {
+    const el = e.currentTarget as HTMLElement;
+    el.style.background = "rgba(242,201,76,0.6)";
+    el.style.color = "#ffffff";
+    el.style.borderLeft = "5px solid #ffffff";
+    const sp = el.querySelector("span") as HTMLElement | null;
+    if (sp) sp.style.color = "#ffffff";
+  };
+  const onLeave = (e: React.MouseEvent<HTMLElement>) => {
+    const el = e.currentTarget as HTMLElement;
+    el.style.background = "rgba(10,10,10,0.5)";
+    el.style.color = "#888888";
+    el.style.borderLeft = "5px solid var(--accent-yellow)";
+    const sp = el.querySelector("span") as HTMLElement | null;
+    if (sp) sp.style.color = "var(--accent-yellow)";
+  };
+
   return (
     <section style={{ backgroundColor: "transparent", paddingTop: "0" }}>
-      {/* Truck background with download buttons + heading */}
+      {/* Truck background */}
       <div
         style={{
           position: "relative",
-          backgroundImage: `url(${bgTruck})`,
+          backgroundImage: `url(${tire.bgTruck})`,
           backgroundSize: "cover",
-          backgroundPosition: "center calc(60% + 190px)",
+          backgroundPosition: TRUCK_BG_POSITION,
           backgroundRepeat: "no-repeat",
-          minHeight: "540px",
-          marginBottom: "-180px",
+          minHeight: `${TRUCK_MIN_HEIGHT}px`,
+          marginBottom: `${TRUCK_MARGIN_BOTTOM}px`,
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
         }}
       >
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: "linear-gradient(to bottom, rgba(10,10,10,0) 0%, rgba(10,10,10,0) 100%)",
-          }}
-        />
-
         {/* Download buttons */}
-        <div className="container" style={{ position: "relative", zIndex: 1, paddingTop: "calc(3rem + 30px)" }}>
+        <div className="container" style={{ position: "relative", zIndex: 1, paddingTop: DOWNLOAD_BTN_PT }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", width: "fit-content" }}>
-            {[
-              { icon: <Notebook size={22} weight="light" />, label: "Product Catalog", href: "/Aeolus-TBR-catalog.pdf" },
-              { icon: <FilePdf size={22} weight="light" />, label: "Product Sheet", href: "/template.pdf" },
-              { icon: <ShieldCheck size={22} weight="light" />, label: "Warranty", href: "/Aeolus-TBR-Warranty.pdf" },
-              { icon: <Image size={22} weight="light" />, label: "Tire Photo", href: "/template.png", download: "template.png" },
-            ].map(({ icon, label, href, download }, i) => {
-              const sharedStyle: React.CSSProperties = {
-                display: "flex",
-                alignItems: "center",
-                gap: "0.9rem",
-                background: "rgba(10,10,10,0.5)",
-                borderTop: "1px solid rgba(255,255,255,0.2)",
-                borderRight: "1px solid rgba(255,255,255,0.2)",
-                borderBottom: "1px solid rgba(255,255,255,0.2)",
-                borderLeft: "5px solid var(--accent-yellow)",
-                color: "#888888",
-                fontSize: "0.8rem",
-                fontFamily: "var(--font-body)",
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                padding: "0.6rem 1.4rem 0.6rem 1rem",
-                cursor: "pointer",
-                minWidth: "220px",
-                textAlign: "left",
-                backdropFilter: "blur(4px)",
-                transition: "background 0.15s ease, border-color 0.15s ease",
-                textDecoration: "none",
-              };
-              const onEnter = (e: React.MouseEvent<HTMLElement>) => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.background = "rgba(242,201,76,0.6)";
-                el.style.color = "#ffffff";
-                el.style.borderLeft = "5px solid #ffffff";
-                const sp = el.querySelector("span") as HTMLElement | null;
-                if (sp) sp.style.color = "#ffffff";
-              };
-              const onLeave = (e: React.MouseEvent<HTMLElement>) => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.background = "rgba(10,10,10,0.5)";
-                el.style.color = "#888888";
-                el.style.borderLeft = "5px solid var(--accent-yellow)";
-                const sp = el.querySelector("span") as HTMLElement | null;
-                if (sp) sp.style.color = "var(--accent-yellow)";
-              };
-              const inner = (
+            {downloadItems.map(({ icon, label, href, download }, i) => (
+              <motion.a
+                key={label}
+                href={href}
+                {...(download ? { download: href.split("/").pop() } : { target: "_blank", rel: "noopener noreferrer" })}
+                initial={{ opacity: 0, x: -70 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.31, delay: i * 0.15, ease: "easeOut" }}
+                style={btnBase}
+                onMouseEnter={onEnter}
+                onMouseLeave={onLeave}
+              >
                 <span style={{ color: "var(--accent-yellow)", display: "flex", alignItems: "center" }}>{icon}</span>
-              );
-              return href ? (
-                <motion.a key={label} href={href}
-                  {...(download ? { download } : { target: "_blank", rel: "noopener noreferrer" })}
-                  initial={{ opacity: 0, x: -70 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.31, delay: i * 0.15, ease: "easeOut" }}
-                  style={sharedStyle} onMouseEnter={onEnter} onMouseLeave={onLeave}>
-                  {inner}{label}
-                </motion.a>
-              ) : (
-                <motion.button key={label}
-                  initial={{ opacity: 0, x: -70 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.31, delay: i * 0.15, ease: "easeOut" }}
-                  style={sharedStyle} onMouseEnter={onEnter} onMouseLeave={onLeave}>
-                  {inner}{label}
-                </motion.button>
-              );
-            })}
+                {label}
+              </motion.a>
+            ))}
           </div>
         </div>
-
       </div>
 
       {/* Specs table */}
@@ -560,14 +540,9 @@ function SpecsSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.45, delay: 0.1, ease: "easeOut" }}
-        style={{
-          background: "linear-gradient(to bottom, transparent 0%, #000000 200px)",
-          position: "relative",
-          zIndex: 1,
-        }}
+        style={{ background: SPECS_TABLE_BG, position: "relative", zIndex: 1 }}
       >
         <div className="container" style={{ paddingTop: "110px", paddingBottom: "0" }}>
-          {/* Heading */}
           <motion.h2
             className="uppercase"
             initial={{ opacity: 0, y: -40 }}
@@ -586,7 +561,6 @@ function SpecsSection() {
           >
             TECHNICAL SPECS
           </motion.h2>
-          {/* Specs Top Line — yellow 1px fade-in line above the spec table */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -595,18 +569,19 @@ function SpecsSection() {
             style={{ height: "1px", backgroundColor: "rgba(242, 201, 76, 0.6)", marginBottom: "0" }}
           />
         </div>
+
         <div className="container" style={{ overflowX: "auto", paddingTop: "0", paddingBottom: "0" }}>
           <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.86rem" }}>
             <thead>
               <tr>
                 <th rowSpan={2} style={thStyle}>Size</th>
                 <th rowSpan={2} style={thStyle}>Ply</th>
-                <th style={thStyle}>Rim<br/>Width</th>
-                <th style={thStyle}>Section<br/>Width</th>
-                <th colSpan={2} style={{ ...thStyle, textAlign: "left" }}>Overall<br/>Diameter</th>
-                <th colSpan={2} style={{ ...thStyle, textAlign: "left" }}>Tread<br/>Depth</th>
-                <th colSpan={4} style={{ ...thStyle, textAlign: "left" }}>Max. Load<br/>(Single)</th>
-                <th colSpan={4} style={{ ...thStyle, textAlign: "left" }}>Max. Load<br/>(Dual)</th>
+                <th style={thStyle}>Rim<br />Width</th>
+                <th style={thStyle}>Section<br />Width</th>
+                <th colSpan={2} style={{ ...thStyle, textAlign: "left" }}>Overall<br />Diameter</th>
+                <th colSpan={2} style={{ ...thStyle, textAlign: "left" }}>Tread<br />Depth</th>
+                <th colSpan={4} style={{ ...thStyle, textAlign: "left" }}>Max. Load<br />(Single)</th>
+                <th colSpan={4} style={{ ...thStyle, textAlign: "left" }}>Max. Load<br />(Dual)</th>
                 <th rowSpan={2} style={thStyle}>LI/SS</th>
                 {showSmartway && <th rowSpan={2} style={{ ...thStyle, textAlign: "center" }}>Smartway</th>}
                 {showMs       && <th rowSpan={2} style={{ ...thStyle, textAlign: "center" }}>M+S</th>}
@@ -630,12 +605,12 @@ function SpecsSection() {
               </tr>
             </thead>
             <tbody onMouseLeave={() => setHoveredCol(null)}>
-              {SPEC_ROWS.map((row, i) => (
+              {tire.specRows.map((row, i) => (
                 <tr
                   key={row.size}
                   className="spec-row"
                   style={{
-                    borderBottom: i < SPEC_ROWS.length - 1 ? "1px solid var(--border-color)" : "none",
+                    borderBottom: i < tire.specRows.length - 1 ? "1px solid var(--border-color)" : "none",
                     transition: "background-color 0.15s ease",
                   }}
                 >
@@ -656,15 +631,27 @@ function SpecsSection() {
                   <td style={tdStyle} {...col(14)}>{row.mlDkg}</td>
                   <td style={tdStyle} {...col(15)}>{row.mlDkpa}</td>
                   <td style={tdStyle} onMouseEnter={() => setHoveredCol(null)}>{row.liss}</td>
-                  {showSmartway && <td style={{ ...tdStyle, textAlign: "center" }} onMouseEnter={() => setHoveredCol(null)}>
-                    {row.smartway ? <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span> : <span style={{ color: "var(--border-color)" }}>—</span>}
-                  </td>}
-                  {showMs && <td style={{ ...tdStyle, textAlign: "center" }} onMouseEnter={() => setHoveredCol(null)}>
-                    {row.ms ? <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span> : <span style={{ color: "var(--border-color)" }}>—</span>}
-                  </td>}
-                  {showPmsf && <td style={{ ...tdStyle, textAlign: "center" }} onMouseEnter={() => setHoveredCol(null)}>
-                    {row["3PMSF"] ? <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span> : <span style={{ color: "var(--border-color)" }}>—</span>}
-                  </td>}
+                  {showSmartway && (
+                    <td style={{ ...tdStyle, textAlign: "center" }} onMouseEnter={() => setHoveredCol(null)}>
+                      {row.smartway
+                        ? <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span>
+                        : <span style={{ color: "var(--border-color)" }}>—</span>}
+                    </td>
+                  )}
+                  {showMs && (
+                    <td style={{ ...tdStyle, textAlign: "center" }} onMouseEnter={() => setHoveredCol(null)}>
+                      {row.ms
+                        ? <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span>
+                        : <span style={{ color: "var(--border-color)" }}>—</span>}
+                    </td>
+                  )}
+                  {showPmsf && (
+                    <td style={{ ...tdStyle, textAlign: "center" }} onMouseEnter={() => setHoveredCol(null)}>
+                      {row["3PMSF"]
+                        ? <span style={{ color: "var(--accent-yellow)", fontWeight: 700 }}>✓</span>
+                        : <span style={{ color: "var(--border-color)" }}>—</span>}
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>
@@ -675,41 +662,17 @@ function SpecsSection() {
   );
 }
 
-const thStyle: React.CSSProperties = {
-  padding: "0.9rem calc(0.55rem - 4px)",
-  textAlign: "left",
-  color: "#cccccc",
-  fontWeight: 600,
-  fontSize: "0.7rem",
-  letterSpacing: "0.05em",
-  textTransform: "uppercase",
-  verticalAlign: "top",
-  whiteSpace: "nowrap",
-};
+// ─── Lightbox ─────────────────────────────────────────────────────────────────
+function Lightbox({ src, onClose, category, tireName }: {
+  src: string;
+  onClose: () => void;
+  category: string;
+  tireName: string;
+}) {
+  const words = tireName.split(" ");
+  const last = words.pop()!;
+  const rest = words.join(" ");
 
-const subThStyle: React.CSSProperties = {
-  padding: "0rem calc(0.55rem - 4px) 0.7rem",
-  textAlign: "left",
-  color: "#888888",
-  fontWeight: 500,
-  fontSize: "0.78rem",
-  letterSpacing: "0.04em",
-  verticalAlign: "bottom",
-  whiteSpace: "nowrap",
-};
-
-const tdStyle: React.CSSProperties = {
-  padding: "0.85rem calc(0.55rem - 4px)",
-  color: "#cccccc",
-  letterSpacing: "0.02em",
-  verticalAlign: "middle",
-  whiteSpace: "nowrap",
-};
-
-function Lightbox({ src, onClose, category, tireName }: { src: string; onClose: () => void; category: string; tireName: string }) {
-  const [first, ...rest] = tireName.split(" ");
-  const last = rest[rest.length - 1];
-  const middle = rest.slice(0, -1).join(" ");
   return (
     <motion.div
       onClick={onClose}
@@ -729,12 +692,10 @@ function Lightbox({ src, onClose, category, tireName }: { src: string; onClose: 
         cursor: "zoom-out",
       }}
     >
-      {/* Top-left: category badge + tire name */}
       <div
         style={{ position: "absolute", top: "1.25rem", left: "1.5rem" }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Category badge — on top visually, comes in second */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
@@ -754,8 +715,6 @@ function Lightbox({ src, onClose, category, tireName }: { src: string; onClose: 
         >
           {category}
         </motion.div>
-
-        {/* Tire name — below the badge, comes in first */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
@@ -770,7 +729,7 @@ function Lightbox({ src, onClose, category, tireName }: { src: string; onClose: 
             textTransform: "uppercase",
           }}
         >
-          <span style={{ color: "#fff" }}>{first}{middle ? " " + middle : ""} </span>
+          <span style={{ color: "#fff" }}>{rest} </span>
           <span style={{ color: "var(--accent-yellow)" }}>{last}</span>
         </motion.div>
       </div>

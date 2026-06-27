@@ -134,7 +134,7 @@ function Hero() {
                   animate="animate"
                   exit="exit"
                   transition={{ duration: 0.18, ease: "easeOut" }}
-                  style={{ position: "absolute", display: "flex" }}
+                  style={{ position: "absolute", display: "flex", color: "var(--accent-yellow)" }}
                 >
                   <ArrowSquareRight size={20} />
                 </motion.span>
@@ -147,7 +147,7 @@ function Hero() {
                   animate="animate"
                   exit="exit"
                   transition={{ duration: 0.18, ease: "easeOut" }}
-                  style={{ position: "absolute", display: "flex", color: "var(--accent-yellow)" }}
+                  style={{ position: "absolute", display: "flex" }}
                 >
                   <ArrowSquareRight size={20} />
                 </motion.span>

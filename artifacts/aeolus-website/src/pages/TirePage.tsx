@@ -47,8 +47,7 @@ const GROUPS: CategoryGroup[] = [
       { name: "Neo Allroads S+",  photo: "Neo-Allroads-S+.png",         labelYellow: "NEO ALLROADS",  labelWhite: "STEER",        slug: "neo-allroads-splus",subtitle: "Enhanced all-roads steer tire with superior wet grip and handling." },
       { name: "Neo Allroads D",   photo: "Neo-Allroads-D.png",          labelYellow: "NEO ALLROADS",  labelWhite: "DRIVE",        slug: "neo-allroads-d",    subtitle: "All-roads drive tire for regional and mixed service applications." },
       { name: "Neo Allroads D+",  photo: "Neo-Allroads-D+.png",         labelYellow: "NEO ALLROADS",  labelWhite: "DRIVE",        slug: "neo-allroads-dplus",subtitle: "Premium all-roads drive tire with advanced traction on all surfaces." },
-      { name: "Neo Allroads T2",  photo: "Neo-Allroads-T2.png",         labelYellow: "NEO ALLROADS",  labelWhite: "TRAILER",      slug: "neo-allroads-t2",   subtitle: "All-roads trailer tire for versatile regional operation." },
-      { name: "Neo Allroads T2 HL", photo: "Neo-Allroads-T2-HL.png",   labelYellow: "NEO ALLROADS",  labelWhite: "TRAILER",      slug: "neo-allroads-t2-hl",subtitle: "Heavy-load trailer tire for all-roads regional applications." },
+      { name: "Neo Allroads T2",  photo: "Neo-Allroads-T2.png",         labelYellow: "NEO ALLROADS",  labelWhite: "TRAILER",      slug: "neo-allroads-t2",   subtitle: "All-roads trailer tire for versatile regional operation.",               hasAlt: true },
       // — Neo other —
       { name: "Neo Allseason D",  photo: "Neo-Allseason-D.png",         labelYellow: "NEO ALLSEASON", labelWhite: "DRIVE",        slug: "neo-allseason-d",   subtitle: "All-season drive tire for year-round performance in any weather." },
       { name: "Neo Construct D",  photo: "Neo-Construct-D.png",         labelYellow: "NEO CONSTRUCT", labelWhite: "DRIVE",        slug: "neo-construct-d",   subtitle: "Construction drive tire built for off-road durability and traction." },

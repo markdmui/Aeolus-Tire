@@ -30,13 +30,13 @@ function splitName(name: string): [string, string] {
   return m ? [m[1], m[2]] : [u, ""];
 }
 
-const FILTERS = ["Neo", "Standard", "Long Haul", "Regional", "On/Off Road", "Winter", "Urban"] as const;
+const FILTERS = ["Neo Series", "Standard", "Long Haul", "Regional", "On/Off Road", "Winter", "Urban"] as const;
 type Filter = typeof FILTERS[number];
 
 function matchesFilter(tire: TireEntry, filter: Filter | null): boolean {
   if (!filter) return true;
   switch (filter) {
-    case "Neo":         return tire.name.toLowerCase().startsWith("neo");
+    case "Neo Series":  return tire.name.toLowerCase().startsWith("neo");
     case "Standard":   return tire.labelYellow === "STANDARD";
     case "Long Haul":  return tire.labelWhite === "LONG HAUL";
     case "Regional":   return tire.labelWhite === "REGIONAL";

@@ -269,11 +269,13 @@ html {
 .lineup-card {
   transition: background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
   border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
 }
 .lineup-card:hover {
   background: transparent !important;
-  border-top-color: var(--accent-yellow) !important;
-  box-shadow: inset 1px 0 0 #555, inset -1px 0 0 #555, inset 0 -1px 0 #555;
+  border-top-color: #555 !important;
+  border-bottom-color: var(--accent-yellow) !important;
+  box-shadow: inset 1px 0 0 #555, inset -1px 0 0 #555;
 }
 .lineup-card-img { position: relative; top: 0; transition: transform 0.22s ease, top 0.22s ease; }
 .lineup-card:hover .lineup-card-img { top: -10px; }

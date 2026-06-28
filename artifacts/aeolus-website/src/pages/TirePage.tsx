@@ -151,7 +151,7 @@ export default function TirePage() {
               className={isFiltered ? "filter-btn" : undefined}
               style={{
                 border: `1px solid ${!isFiltered ? "rgba(242,201,76,0.8)" : "rgba(68,68,68,0.8)"}`,
-                color: !isFiltered ? "var(--accent-yellow)" : "rgba(255,255,255,0.55)",
+                color: !isFiltered ? "var(--accent-yellow)" : "rgba(255,255,255,0.65)",
                 background: "transparent",
                 padding: "calc(0.3rem + 2px) calc(0.75rem + 2px)",
                 fontSize: "0.76rem",
@@ -177,7 +177,7 @@ export default function TirePage() {
                   className={active ? undefined : "filter-btn"}
                   style={{
                     border: `1px solid ${active ? "rgba(242,201,76,0.8)" : "rgba(68,68,68,0.8)"}`,
-                    color: active ? "var(--accent-yellow)" : "rgba(255,255,255,0.55)",
+                    color: active ? "var(--accent-yellow)" : "rgba(255,255,255,0.65)",
                     background: "transparent",
                     padding: "calc(0.3rem + 2px) calc(0.75rem + 2px)",
                     fontSize: "0.76rem",

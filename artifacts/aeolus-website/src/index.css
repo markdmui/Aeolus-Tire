@@ -284,6 +284,9 @@ html {
   background-color: transparent;
   border: none;
 }
+@media (min-width: 1536px) {
+  .lineup-grid { grid-template-columns: repeat(8, 1fr); }
+}
 @media (max-width: 1023px) {
   .lineup-grid { grid-template-columns: repeat(4, 1fr); }
 }

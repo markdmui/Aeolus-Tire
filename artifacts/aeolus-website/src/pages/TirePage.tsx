@@ -110,9 +110,7 @@ const GROUPS: CategoryGroup[] = [
 export default function TirePage() {
   const [activeFilter, setActiveFilter] = useState<Filter | null>(null);
 
-  function toggleFilter(f: Filter) {
-    setActiveFilter(prev => prev === f ? null : f);
-  }
+  const isFiltered = activeFilter !== null;
 
   return (
     <div
@@ -147,25 +145,50 @@ export default function TirePage() {
             transition={{ duration: 0.25, delay: 0.15, ease: "easeOut" }}
             style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap", flex: 1 }}
           >
+            {/* All Tires — always clickable */}
+            <button
+              onClick={() => setActiveFilter(null)}
+              className={isFiltered ? "filter-btn" : "filter-btn filter-btn--active"}
+              style={{
+                border: `1px solid ${!isFiltered ? "var(--accent-yellow)" : "#444"}`,
+                color: !isFiltered ? "var(--accent-yellow)" : "rgba(255,255,255,0.55)",
+                background: "transparent",
+                padding: "0.3rem 0.75rem",
+                fontSize: "0.68rem",
+                letterSpacing: "0.07em",
+                textTransform: "uppercase",
+                cursor: "pointer",
+                fontFamily: "var(--font-body)",
+                fontWeight: !isFiltered ? 600 : 400,
+                transition: "border-color 0.15s ease, color 0.15s ease",
+              }}
+            >
+              All Tires
+            </button>
+
+            {/* Category filters — disabled when a filter is already active */}
             {FILTERS.map(f => {
               const active = activeFilter === f;
+              const disabled = isFiltered && !active;
               return (
                 <button
                   key={f}
-                  onClick={() => toggleFilter(f)}
-                  className="filter-btn"
+                  onClick={disabled ? undefined : () => setActiveFilter(f)}
+                  className={disabled ? undefined : "filter-btn"}
                   style={{
                     border: `1px solid ${active ? "var(--accent-yellow)" : "#444"}`,
-                    color: active ? "var(--accent-yellow)" : "rgba(255,255,255,0.55)",
+                    color: active ? "var(--accent-yellow)" : disabled ? "rgba(255,255,255,0.18)" : "rgba(255,255,255,0.55)",
                     background: "transparent",
                     padding: "0.3rem 0.75rem",
                     fontSize: "0.68rem",
                     letterSpacing: "0.07em",
                     textTransform: "uppercase",
-                    cursor: "pointer",
+                    cursor: disabled ? "default" : "pointer",
                     fontFamily: "var(--font-body)",
                     fontWeight: active ? 600 : 400,
                     transition: "border-color 0.15s ease, color 0.15s ease",
+                    pointerEvents: disabled ? "none" : "auto",
+                    borderColor: disabled ? "#2a2a2a" : active ? "var(--accent-yellow)" : "#444",
                   }}
                 >
                   {f}

@@ -277,6 +277,20 @@ html {
 }
 .lineup-card-img { position: relative; top: 0; transition: transform 0.22s ease, top 0.22s ease; }
 .lineup-card:hover .lineup-card-img { top: -10px; }
+.lineup-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1px;
+  background-color: transparent;
+  border: none;
+}
+@media (max-width: 1023px) {
+  .lineup-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 767px) {
+  .lineup-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 .lineup-card-name { opacity: 0.75; transition: opacity 0.18s ease; }
 .lineup-card:hover .lineup-card-name { opacity: 1; }
 .lineup-card-info { transition: background 0.18s ease; }

@@ -139,13 +139,7 @@ function GroupSection({ group, groupIndex }: { group: CategoryGroup; groupIndex:
       whileInView={{ opacity: 1, y: 0 }}
       viewport={VP}
       transition={{ duration: 0.22, ease: "easeOut" }}
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(6, 1fr)",
-        border: "none",
-        backgroundColor: "transparent",
-        gap: "1px",
-      }}
+      className="lineup-grid"
     >
       {group.tires.map((tire, ti) => (
         <TireCard key={`${tire.slug}-${ti}`} tire={tire} delay={ti * 0.04} />

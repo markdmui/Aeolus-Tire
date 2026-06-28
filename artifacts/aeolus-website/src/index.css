@@ -289,9 +289,11 @@ html {
 }
 @media (max-width: 1023px) {
   .lineup-grid { grid-template-columns: repeat(4, 1fr); }
+  .container { padding: 0 35px; }
 }
 @media (max-width: 767px) {
   .lineup-grid { grid-template-columns: repeat(3, 1fr); }
+  .container { padding: 0 20px; }
 }
 
 .lineup-card-name { opacity: 0.75; transition: opacity 0.18s ease; }

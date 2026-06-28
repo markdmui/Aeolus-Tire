@@ -189,7 +189,7 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
                   height: "auto",
                   display: "block",
                   transform: "scale(1.906) translateY(2.5%) translateX(12.5%)",
-                  transformOrigin: "30% center",
+                  transformOrigin: "top center",
                 }}
                 className="lineup-card-img"
               />

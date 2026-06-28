@@ -145,10 +145,10 @@ export default function TirePage() {
             transition={{ duration: 0.25, delay: 0.15, ease: "easeOut" }}
             style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap", flex: 1 }}
           >
-            {/* All Tires — always clickable */}
+            {/* All Tires — disabled (no hover) when active */}
             <button
-              onClick={() => setActiveFilter(null)}
-              className={isFiltered ? "filter-btn" : "filter-btn filter-btn--active"}
+              onClick={isFiltered ? () => setActiveFilter(null) : undefined}
+              className={isFiltered ? "filter-btn" : undefined}
               style={{
                 border: `1px solid ${!isFiltered ? "var(--accent-yellow)" : "#444"}`,
                 color: !isFiltered ? "var(--accent-yellow)" : "rgba(255,255,255,0.55)",
@@ -157,9 +157,10 @@ export default function TirePage() {
                 fontSize: "0.68rem",
                 letterSpacing: "0.07em",
                 textTransform: "uppercase",
-                cursor: "pointer",
+                cursor: !isFiltered ? "default" : "pointer",
                 fontFamily: "var(--font-body)",
                 fontWeight: !isFiltered ? 600 : 400,
+                pointerEvents: !isFiltered ? "none" : "auto",
                 transition: "border-color 0.15s ease, color 0.15s ease",
               }}
             >
@@ -172,8 +173,8 @@ export default function TirePage() {
               return (
                 <button
                   key={f}
-                  onClick={() => setActiveFilter(f)}
-                  className="filter-btn"
+                  onClick={active ? undefined : () => setActiveFilter(f)}
+                  className={active ? undefined : "filter-btn"}
                   style={{
                     border: `1px solid ${active ? "var(--accent-yellow)" : "#444"}`,
                     color: active ? "var(--accent-yellow)" : "rgba(255,255,255,0.55)",
@@ -182,9 +183,10 @@ export default function TirePage() {
                     fontSize: "0.68rem",
                     letterSpacing: "0.07em",
                     textTransform: "uppercase",
-                    cursor: "pointer",
+                    cursor: active ? "default" : "pointer",
                     fontFamily: "var(--font-body)",
                     fontWeight: active ? 600 : 400,
+                    pointerEvents: active ? "none" : "auto",
                     transition: "border-color 0.15s ease, color 0.15s ease",
                   }}
                 >

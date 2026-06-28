@@ -275,6 +275,7 @@ html {
   border-bottom-color: var(--accent-yellow) !important;
 }
 .lineup-card-img { will-change: transform; }
+.lineup-zoom-wrapper { transform-origin: 30% 50% !important; }
 .lineup-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);

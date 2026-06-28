@@ -1,5 +1,100 @@
 uploads = []
-generated = []
+
+[[generated]]
+id = "wmIaz1oMin-Rv73zy35Z3"
+uri = "file://artifacts/mockup-sandbox/public/images/aeolus-landing/technical-hero-bg.png"
+type = "image"
+title = "Tire cutaway technical cross section"
+
+[[generated]]
+id = "1-xpwDH76JQ1EguBARxEV"
+uri = "file://artifacts/mockup-sandbox/public/images/aeolus-landing/tire-tread-detail.png"
+type = "image"
+title = "Truck tire tread closeup"
+
+[[generated]]
+id = "8vW63lMlTn6hW7tJsfRuI"
+uri = "file://artifacts/mockup-sandbox/public/images/aeolus-landing/testing-facility.png"
+type = "image"
+title = "Industrial fleet testing facility"
+
+[[generated]]
+id = "zyy_U-PVPcszoSWdXohFb"
+uri = "file://artifacts/mockup-sandbox/public/images/aeolus-landing/neo-fuel-g3.png"
+type = "image"
+title = "Neo Fuel G3 Tire"
+
+[[generated]]
+id = "WsK5RTB0NXB_UP-e32aBb"
+uri = "file://artifacts/mockup-sandbox/public/images/aeolus-landing/manifesto-hero.png"
+type = "image"
+title = "Cinematic dark truck on wet road"
+
+[[generated]]
+id = "__0q-d3AXe2Okfrx3zJgD"
+uri = "file://artifacts/mockup-sandbox/public/images/aeolus-landing/manifesto-factory.png"
+type = "image"
+title = "High tech dark industrial factory"
+
+[[generated]]
+id = "SqWFn_z5NbFdPwSeZzifp"
+uri = "file://artifacts/mockup-sandbox/public/images/aeolus-landing/manifesto-global.png"
+type = "image"
+title = "Dark global logistics shipping port"
+
+[[generated]]
+id = "UTv-vnIzcJIwjRgyliIHP"
+uri = "file://artifacts/mockup-sandbox/public/images/aeolus-landing/manifesto-tire.png"
+type = "image"
+title = "Premium heavy duty tire closeup"
+
+[[generated]]
+id = "qjfGByD964wLJaIdRJKTc"
+uri = "file://artifacts/mockup-sandbox/public/images/aeolus-landing/scale-hero.png"
+type = "image"
+title = "Massive industrial tire factory"
+
+[[generated]]
+id = "jU2xfXyWJdWFqVnYhzfjz"
+uri = "file://artifacts/mockup-sandbox/public/images/aeolus-landing/scale-tire.png"
+type = "image"
+title = "Premium commercial truck tire"
+
+[[generated]]
+id = "J48A99iUjO2VXEy6Jb4uV"
+uri = "file://artifacts/mockup-sandbox/public/images/aeolus-landing/scale-global.png"
+type = "image"
+title = "Global logistics truck fleet"
+
+[[generated]]
+id = "Evbuk4JnQAdtfbsZFyZz3"
+uri = "file://artifacts/mockup-sandbox/public/images/aeolus-landing/scale-patents.png"
+type = "image"
+title = "R&D engineering patent blueprint"
+
+[[generated]]
+id = "6emdW75EY_bKYT1rSgnNG"
+uri = "file://artifacts/mockup-sandbox/public/images/aeolus-landing/hero-catalog.png"
+type = "image"
+title = "Moody truck on highway"
+
+[[generated]]
+id = "89QaSBdHX6iIfo9aQdzZs"
+uri = "file://artifacts/mockup-sandbox/public/images/aeolus-landing/tire-steer.png"
+type = "image"
+title = "Steer truck tire"
+
+[[generated]]
+id = "69Awz2UTntjg6KfkNLZo4"
+uri = "file://artifacts/mockup-sandbox/public/images/aeolus-landing/tire-drive.png"
+type = "image"
+title = "Drive truck tire"
+
+[[generated]]
+id = "DzqK1lvy6dSZuh8uwmnjq"
+uri = "file://artifacts/mockup-sandbox/public/images/aeolus-landing/tire-trailer.png"
+type = "image"
+title = "Trailer truck tire"
 
 [[outputs]]
 id = "BD-4Rr4vUw5xQop08kS9Y"

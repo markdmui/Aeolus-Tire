@@ -297,7 +297,7 @@ html {
   .lineup-card-info p:first-child { font-size: 0.75rem !important; }
   .lineup-card-info p:last-child  { font-size: 0.85rem !important; }
   .lineup-card-name { font-size: 1rem !important; }
-  .lineup-card-name-row { min-height: 70px; padding-top: 8px !important; }
+  .lineup-card-name-row { min-height: 72px; }
 }
 
 .lineup-card-name { opacity: 0.75; transition: opacity 0.18s ease; }

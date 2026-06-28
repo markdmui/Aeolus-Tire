@@ -189,7 +189,7 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
             />
           </div>
 
-          <div className="lineup-card-name-row" style={{ padding: "10px 0.8rem 2px" }}>
+          <div className="lineup-card-name-row" style={{ padding: "8px 0.8rem 8px" }}>
             <p
               className="uppercase lineup-card-name"
               style={{

@@ -70,8 +70,18 @@ function Hero() {
         backgroundSize: "cover",
         backgroundPosition: "center right",
         backgroundRepeat: "no-repeat",
+        position: "relative",
       }}
     >
+      {/* Flipped background layer — visible only on tablet/mobile */}
+      <div
+        className="hero-bg-flip"
+        style={{
+          backgroundImage: `url('${heroBg}')`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
       <div className="container w-full" style={{ position: "relative", zIndex: 1 }}>
         <h1
           className="uppercase mb-4"

@@ -171,7 +171,6 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
               overflow: "hidden",
               flexShrink: 0,
               position: "relative",
-              marginBottom: "2px",
             }}
           >
             <img

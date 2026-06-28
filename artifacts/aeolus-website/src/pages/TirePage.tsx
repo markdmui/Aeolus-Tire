@@ -206,35 +206,17 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
             </p>
           </div>
 
-          <div className="lineup-card-info" style={{ padding: "0.6rem 0.8rem 0.85rem", flex: 1 }}>
+          <div className="lineup-card-info" style={{ padding: "0 0.8rem 0.85rem", flex: 1 }}>
             <p
               className="uppercase"
               style={{
-                fontSize: "0.6rem",
-                letterSpacing: "0.09em",
-                marginBottom: "0.35rem",
+                fontSize: "clamp(0.58rem, 0.95vw, 0.68rem)",
+                letterSpacing: "0.07em",
                 lineHeight: 1.3,
+                color: "rgba(255,255,255,0.6)",
               }}
             >
-              {tire.labelYellow && (
-                <span style={{ color: "rgba(255,255,255,0.75)" }}>{tire.labelYellow} </span>
-              )}
-              <span style={{ color: "rgba(255,255,255,0.75)" }}>
-                {tire.labelWhite}
-              </span>
-            </p>
-            <p
-              style={{
-                color: "rgba(255,255,255,0.4)",
-                fontSize: "0.73rem",
-                lineHeight: 1.45,
-                display: "-webkit-box",
-                WebkitLineClamp: 2,
-                WebkitBoxOrient: "vertical" as const,
-                overflow: "hidden",
-              }}
-            >
-              {tire.subtitle}
+              {[tire.labelYellow, tire.labelWhite].filter(Boolean).join(" ")}
             </p>
           </div>
         </div>

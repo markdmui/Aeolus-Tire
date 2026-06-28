@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -151,7 +152,7 @@ function GroupSection({ group, groupIndex }: { group: CategoryGroup; groupIndex:
 
 function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
   const [prefix, suffix] = splitName(tire.name);
-  const isStandard = !tire.labelYellow;
+  const [hovered, setHovered] = useState(false);
 
   return (
     <motion.div
@@ -159,7 +160,9 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
       whileInView={{ opacity: 1 }}
       viewport={VP}
       transition={{ duration: 0.20, delay, ease: "easeOut" }}
-      style={{ backgroundColor: "transparent" }}
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
+      style={{ backgroundColor: hovered ? "#1e1e1e" : "transparent", position: "relative" }}
       className="lineup-card"
     >
       <Link href="/tires/neo-fuel-x3" style={{ display: "block", textDecoration: "none", color: "inherit", height: "100%" }}>
@@ -214,7 +217,8 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
                 fontSize: "clamp(0.58rem, 0.95vw, 0.68rem)",
                 letterSpacing: "0.07em",
                 lineHeight: 1.3,
-                color: "rgba(255,255,255,0.6)",
+                color: hovered ? "#fff" : "rgba(255,255,255,0.6)",
+                transition: "color 0.18s ease",
               }}
             >
               {[tire.labelYellow, tire.labelWhite].filter(Boolean).join(" ")}
@@ -222,6 +226,21 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
           </div>
         </div>
       </Link>
+
+      {/* Animated yellow bottom border */}
+      <motion.div
+        initial={{ width: 50, opacity: 0 }}
+        animate={hovered ? { width: "100%", opacity: 1 } : { width: 50, opacity: 0 }}
+        transition={{ duration: 0.28, ease: "easeOut" }}
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          height: 3,
+          background: "var(--accent-yellow)",
+          pointerEvents: "none",
+        }}
+      />
     </motion.div>
   );
 }

@@ -291,7 +291,7 @@ html {
   .lineup-grid { grid-template-columns: repeat(4, 1fr); }
 }
 @media (max-width: 767px) {
-  .lineup-grid { grid-template-columns: repeat(2, 1fr); }
+  .lineup-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 .lineup-card-name { opacity: 0.75; transition: opacity 0.18s ease; }

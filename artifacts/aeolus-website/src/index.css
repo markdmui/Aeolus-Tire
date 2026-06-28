@@ -189,33 +189,14 @@ html {
   background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-gradient) 100%);
 }
 
-/* Flipped hero background layer — hidden on desktop */
-.hero-bg-flip {
-  display: none;
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  transform: scaleX(-1);
-}
-
 /* Tablet: push the hero background image 200px further right so the truck
    clears the text on the left. calc(100% + 200px) moves the image's
    right anchor 200px beyond the container edge. */
 @media (max-width: 1023px) {
   .hero-section {
-    background-image: none !important;
+    background-position: calc(100% + 200px) calc(50% + 60px) !important;
     justify-content: flex-start !important;
     padding-top: 90px !important;
-  }
-  .hero-bg-flip {
-    display: block;
-    background-position: calc(100% + 200px) calc(50% + 60px);
-  }
-}
-
-@media (max-width: 767px) {
-  .hero-bg-flip {
-    background-position: calc(100% + 300px) calc(50% + 60px);
   }
 }
 

@@ -23,6 +23,7 @@ interface CategoryGroup {
 
 function splitName(name: string): [string, string] {
   const u = name.toUpperCase();
+  if (u.startsWith("NEO ")) return ["NEO", u.slice(4)];
   const s = u.lastIndexOf(" ");
   if (s > 0) return [u.slice(0, s), u.slice(s + 1)];
   const m = u.match(/^([A-Z]+)(\d.*)$/);

@@ -6,7 +6,6 @@ import Footer from "../components/Footer";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 const PHOTO = (f: string) => `${BASE}/tires/Tire-Photos/${f}`;
-const VP = { once: true, margin: "-40px" };
 
 interface TireEntry {
   name: string;
@@ -157,8 +156,7 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={VP}
+      animate={{ opacity: 1 }}
       transition={{ duration: 0.20, delay, ease: "easeOut" }}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}

@@ -231,7 +231,7 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
       <motion.div
         initial={{ width: 50, opacity: 0 }}
         animate={hovered ? { width: "100%", opacity: 1 } : { width: 50, opacity: 0 }}
-        transition={{ duration: 0.28, ease: "easeOut" }}
+        transition={{ duration: 0.15, ease: "easeOut" }}
         style={{
           position: "absolute",
           bottom: 0,

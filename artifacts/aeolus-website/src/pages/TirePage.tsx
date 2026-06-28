@@ -166,29 +166,26 @@ export default function TirePage() {
               All Tires
             </button>
 
-            {/* Category filters — disabled when a filter is already active */}
+            {/* Category filters — always interactive */}
             {FILTERS.map(f => {
               const active = activeFilter === f;
-              const disabled = isFiltered && !active;
               return (
                 <button
                   key={f}
-                  onClick={disabled ? undefined : () => setActiveFilter(f)}
-                  className={disabled ? undefined : "filter-btn"}
+                  onClick={() => setActiveFilter(f)}
+                  className="filter-btn"
                   style={{
                     border: `1px solid ${active ? "var(--accent-yellow)" : "#444"}`,
-                    color: active ? "var(--accent-yellow)" : disabled ? "rgba(255,255,255,0.18)" : "rgba(255,255,255,0.55)",
+                    color: active ? "var(--accent-yellow)" : "rgba(255,255,255,0.55)",
                     background: "transparent",
                     padding: "0.3rem 0.75rem",
                     fontSize: "0.68rem",
                     letterSpacing: "0.07em",
                     textTransform: "uppercase",
-                    cursor: disabled ? "default" : "pointer",
+                    cursor: "pointer",
                     fontFamily: "var(--font-body)",
                     fontWeight: active ? 600 : 400,
                     transition: "border-color 0.15s ease, color 0.15s ease",
-                    pointerEvents: disabled ? "none" : "auto",
-                    borderColor: disabled ? "#2a2a2a" : active ? "var(--accent-yellow)" : "#444",
                   }}
                 >
                   {f}

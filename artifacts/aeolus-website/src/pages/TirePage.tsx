@@ -175,19 +175,25 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
               marginBottom: "4px",
             }}
           >
-            <img
-              src={PHOTO(tire.photo)}
-              alt={tire.name}
-              loading="lazy"
-              style={{
-                width: "100%",
-                height: "auto",
-                display: "block",
-                transform: "scale(1.906) translateY(2.5%) translateX(12.5%)",
-                transformOrigin: "top center",
-              }}
-              className="lineup-card-img"
-            />
+            <motion.div
+              whileHover={{ scale: 1.43 }}
+              transition={{ type: "spring", stiffness: 500, damping: 18, mass: 0.6 }}
+              style={{ width: "100%", height: "100%" }}
+            >
+              <img
+                src={PHOTO(tire.photo)}
+                alt={tire.name}
+                loading="lazy"
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  display: "block",
+                  transform: "scale(1.906) translateY(2.5%) translateX(12.5%)",
+                  transformOrigin: "30% center",
+                }}
+                className="lineup-card-img"
+              />
+            </motion.div>
           </div>
 
           <div className="lineup-card-name-row" style={{ padding: "8px 0.8rem 8px" }}>

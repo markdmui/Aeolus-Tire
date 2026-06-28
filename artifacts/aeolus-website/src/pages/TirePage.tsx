@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -28,6 +28,22 @@ function splitName(name: string): [string, string] {
   if (s > 0) return [u.slice(0, s), u.slice(s + 1)];
   const m = u.match(/^([A-Z]+)(\d.*)$/);
   return m ? [m[1], m[2]] : [u, ""];
+}
+
+const FILTERS = ["Neo", "Standard", "Long Haul", "Regional", "On/Off Road", "Winter", "Urban"] as const;
+type Filter = typeof FILTERS[number];
+
+function matchesFilter(tire: TireEntry, filter: Filter | null): boolean {
+  if (!filter) return true;
+  switch (filter) {
+    case "Neo":         return tire.name.toLowerCase().startsWith("neo");
+    case "Standard":   return tire.labelYellow === "STANDARD";
+    case "Long Haul":  return tire.labelWhite === "LONG HAUL";
+    case "Regional":   return tire.labelWhite === "REGIONAL";
+    case "On/Off Road":return tire.labelWhite.includes("OFF ROAD") || tire.labelWhite.includes("ON/OFF");
+    case "Winter":     return tire.labelWhite === "WINTER";
+    case "Urban":      return tire.labelWhite === "URBAN";
+  }
 }
 
 const GROUPS: CategoryGroup[] = [
@@ -92,6 +108,12 @@ const GROUPS: CategoryGroup[] = [
 ];
 
 export default function TirePage() {
+  const [activeFilter, setActiveFilter] = useState<Filter | null>(null);
+
+  function toggleFilter(f: Filter) {
+    setActiveFilter(prev => prev === f ? null : f);
+  }
+
   return (
     <div
       className="antialiased"
@@ -99,8 +121,8 @@ export default function TirePage() {
     >
       <Navbar />
 
-      <section style={{ paddingTop: "calc(49px + 4rem)", paddingBottom: "3rem" }}>
-        <div className="container">
+      <section style={{ paddingTop: "calc(49px + 4rem)", paddingBottom: "2rem" }}>
+        <div className="container" style={{ display: "flex", alignItems: "center", gap: "2rem", flexWrap: "wrap" }}>
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -112,18 +134,52 @@ export default function TirePage() {
               fontWeight: 300,
               lineHeight: 0.9,
               letterSpacing: "-0.03em",
+              flexShrink: 0,
             }}
           >
             <span style={{ color: "var(--accent-yellow)" }}>TIRE</span>
             {" "}LINEUP
           </motion.h1>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.25, delay: 0.15, ease: "easeOut" }}
+            style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap", flex: 1 }}
+          >
+            {FILTERS.map(f => {
+              const active = activeFilter === f;
+              return (
+                <button
+                  key={f}
+                  onClick={() => toggleFilter(f)}
+                  className="filter-btn"
+                  style={{
+                    border: `1px solid ${active ? "var(--accent-yellow)" : "#444"}`,
+                    color: active ? "var(--accent-yellow)" : "rgba(255,255,255,0.55)",
+                    background: "transparent",
+                    padding: "0.3rem 0.75rem",
+                    fontSize: "0.68rem",
+                    letterSpacing: "0.07em",
+                    textTransform: "uppercase",
+                    cursor: "pointer",
+                    fontFamily: "var(--font-body)",
+                    fontWeight: active ? 600 : 400,
+                    transition: "border-color 0.15s ease, color 0.15s ease",
+                  }}
+                >
+                  {f}
+                </button>
+              );
+            })}
+          </motion.div>
         </div>
       </section>
 
       <section style={{ paddingBottom: "5rem" }}>
         <div className="container" style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
           {GROUPS.map((group, gi) => (
-            <GroupSection key={gi} group={group} groupIndex={gi} />
+            <GroupSection key={gi} group={group} groupIndex={gi} activeFilter={activeFilter} />
           ))}
         </div>
       </section>
@@ -133,17 +189,21 @@ export default function TirePage() {
   );
 }
 
-function GroupSection({ group, groupIndex }: { group: CategoryGroup; groupIndex: number }) {
+function GroupSection({ group, groupIndex, activeFilter }: { group: CategoryGroup; groupIndex: number; activeFilter: Filter | null }) {
+  const visible = group.tires.filter(t => matchesFilter(t, activeFilter));
   return (
     <motion.div
+      layout
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.22, ease: "easeOut" }}
       className="lineup-grid"
     >
-      {group.tires.map((tire, ti) => (
-        <TireCard key={`${tire.slug}-${ti}`} tire={tire} delay={0.4 + ti * 0.04} />
-      ))}
+      <AnimatePresence mode="popLayout">
+        {visible.map((tire, ti) => (
+          <TireCard key={tire.slug} tire={tire} delay={ti * 0.02} />
+        ))}
+      </AnimatePresence>
     </motion.div>
   );
 }
@@ -154,8 +214,10 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
 
   return (
     <motion.div
+      layout
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
+      exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.15 } }}
       transition={{ duration: 0.20, delay, ease: "easeOut" }}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}

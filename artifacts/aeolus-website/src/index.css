@@ -266,6 +266,10 @@ html {
 .nav-logo { position: relative; left: 0; transition: left 0.2s ease; }
 .nav-logo:hover { left: 3px; }
 
+.lineup-card-name-row,
+.lineup-card-info { position: relative; left: 0; transition: left 0.15s ease; }
+.lineup-card:hover .lineup-card-name-row,
+.lineup-card:hover .lineup-card-info { left: 3px; }
 .lineup-card-img { transition: none; will-change: transform; }
 .lineup-card:hover .lineup-card-img { transform: scale(2.72) translateY(2.5%) translateX(12.5%) !important; transform-origin: 30% center !important; }
 .lineup-grid {

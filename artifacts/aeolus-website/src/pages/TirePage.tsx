@@ -163,7 +163,7 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
     >
       <Link href="/tires/neo-fuel-x3" style={{ display: "block", textDecoration: "none", color: "inherit", height: "100%" }}>
         <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-          <div style={{ padding: "16px 0.8rem 1px" }}>
+          <div className="lineup-card-name-row" style={{ padding: "16px 0.8rem 1px" }}>
             <p
               className="uppercase lineup-card-name"
               style={{

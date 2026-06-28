@@ -274,7 +274,7 @@ html {
   background: #1e1e1e !important;
   border-bottom-color: var(--accent-yellow) !important;
 }
-.lineup-card-img { transition: transform 0.3s ease; will-change: transform; }
+.lineup-card-img { transition: none; will-change: transform; }
 .lineup-card:hover .lineup-card-img { transform: scale(2.72) translateY(2.5%) translateX(12.5%) !important; transform-origin: 30% center !important; }
 .lineup-grid {
   display: grid;

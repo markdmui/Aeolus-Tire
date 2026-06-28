@@ -268,7 +268,7 @@ html {
 
 .lineup-card {
   transition: background 0.18s ease, border-color 0.18s ease;
-  border-bottom: 1px solid transparent;
+  border-bottom: 2px solid transparent;
 }
 .lineup-card:hover {
   background: #1e1e1e !important;

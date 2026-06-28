@@ -143,7 +143,7 @@ function GroupSection({ group, groupIndex }: { group: CategoryGroup; groupIndex:
       className="lineup-grid"
     >
       {group.tires.map((tire, ti) => (
-        <TireCard key={`${tire.slug}-${ti}`} tire={tire} delay={ti * 0.04} />
+        <TireCard key={`${tire.slug}-${ti}`} tire={tire} delay={0.4 + ti * 0.04} />
       ))}
     </motion.div>
   );
@@ -187,6 +187,7 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
                 transformOrigin: "top center",
               }}
               className="lineup-card-img"
+              decoding="async"
             />
           </div>
 

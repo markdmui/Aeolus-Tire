@@ -163,22 +163,6 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
     >
       <Link href="/tires/neo-fuel-x3" style={{ display: "block", textDecoration: "none", color: "inherit", height: "100%" }}>
         <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-          <div className="lineup-card-name-row" style={{ padding: "16px 0.8rem 1px" }}>
-            <p
-              className="uppercase lineup-card-name"
-              style={{
-                fontSize: "clamp(0.78rem, 1.2vw, 0.92rem)",
-                fontWeight: 700,
-                letterSpacing: "0.02em",
-                lineHeight: 1.15,
-                color: "#fff",
-              }}
-            >
-              <span style={{ color: "var(--accent-yellow)" }}>{prefix}</span>
-              {suffix && <>{" "}<span style={{ color: "#fff" }}>{suffix}</span></>}
-            </p>
-          </div>
-
           <div
             style={{
               width: "100%",
@@ -203,6 +187,22 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
               }}
               className="lineup-card-img"
             />
+          </div>
+
+          <div className="lineup-card-name-row" style={{ padding: "10px 0.8rem 2px" }}>
+            <p
+              className="uppercase lineup-card-name"
+              style={{
+                fontSize: "clamp(0.78rem, 1.2vw, 0.92rem)",
+                fontWeight: 700,
+                letterSpacing: "0.02em",
+                lineHeight: 1.15,
+                color: "#fff",
+              }}
+            >
+              <span style={{ color: "var(--accent-yellow)" }}>{prefix}</span>
+              {suffix && <>{" "}<span style={{ color: "#fff" }}>{suffix}</span></>}
+            </p>
           </div>
 
           <div className="lineup-card-info" style={{ padding: "0.6rem 0.8rem 0.85rem", flex: 1 }}>

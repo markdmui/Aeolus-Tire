@@ -150,7 +150,7 @@ export default function TirePage() {
               onClick={isFiltered ? () => setActiveFilter(null) : undefined}
               className={isFiltered ? "filter-btn" : undefined}
               style={{
-                border: `1px solid ${!isFiltered ? "var(--accent-yellow)" : "#444"}`,
+                border: `1px solid ${!isFiltered ? "rgba(242,201,76,0.8)" : "rgba(68,68,68,0.8)"}`,
                 color: !isFiltered ? "var(--accent-yellow)" : "rgba(255,255,255,0.55)",
                 background: "transparent",
                 padding: "calc(0.3rem + 2px) calc(0.75rem + 2px)",
@@ -176,7 +176,7 @@ export default function TirePage() {
                   onClick={active ? undefined : () => setActiveFilter(f)}
                   className={active ? undefined : "filter-btn"}
                   style={{
-                    border: `1px solid ${active ? "var(--accent-yellow)" : "#444"}`,
+                    border: `1px solid ${active ? "rgba(242,201,76,0.8)" : "rgba(68,68,68,0.8)"}`,
                     color: active ? "var(--accent-yellow)" : "rgba(255,255,255,0.55)",
                     background: "transparent",
                     padding: "calc(0.3rem + 2px) calc(0.75rem + 2px)",

@@ -13,6 +13,8 @@ const HERO_IMAGES = [
   "/hero-bg-6.jpg",
 ];
 
+const MOBILE_EXCLUDED = ["/hero-bg-6.jpg"];
+
 const VP = { once: true, margin: "-80px" };
 
 export default function LandingPage() {
@@ -51,12 +53,16 @@ function Hero() {
   const [iconHovered, setIconHovered] = useState(false);
   const [iconDir, setIconDir] = useState(1);
   const [heroBg] = useState(() => {
+    const isMobile = window.innerWidth <= 767;
+    const pool = isMobile
+      ? HERO_IMAGES.filter(img => !MOBILE_EXCLUDED.includes(img))
+      : HERO_IMAGES;
     const stored = localStorage.getItem("heroBgIndex");
     const next = stored === null
-      ? Math.floor(Math.random() * HERO_IMAGES.length)
-      : (parseInt(stored, 10) + 1) % HERO_IMAGES.length;
+      ? Math.floor(Math.random() * pool.length)
+      : (parseInt(stored, 10) + 1) % pool.length;
     localStorage.setItem("heroBgIndex", String(next));
-    return HERO_IMAGES[next];
+    return pool[next];
   });
   return (
     <section

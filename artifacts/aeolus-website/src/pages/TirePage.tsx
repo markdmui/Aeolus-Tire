@@ -178,7 +178,7 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
             <motion.div
               whileHover={{ scale: 1.43 }}
               transition={{ type: "spring", stiffness: 500, damping: 18, mass: 0.6 }}
-              style={{ width: "100%", height: "100%", transformOrigin: "30% 50%" }}
+              style={{ width: "100%", height: "100%", originX: 0.3, originY: 0.5 }}
             >
               <img
                 src={PHOTO(tire.photo)}

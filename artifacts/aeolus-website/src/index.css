@@ -272,7 +272,7 @@ html {
   border-bottom: 1px solid transparent;
 }
 .lineup-card:hover {
-  background: transparent !important;
+  background: #1e1e1e !important;
   border-top-color: #555 !important;
   border-bottom-color: var(--accent-yellow) !important;
   box-shadow: inset 1px 0 0 #555, inset -1px 0 0 #555;

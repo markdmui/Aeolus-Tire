@@ -141,6 +141,7 @@ body{
 .chiprow.disabled .box{border-color:var(--line-strong);}
 
 .taglist{display:flex;flex-wrap:wrap;gap:6px;}
+.features-strip{border-top:1px solid var(--line);margin-top:32px;padding-top:16px;}
 .tagchip{
   font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;
   padding:6px 10px;border:1px solid var(--line-strong);color:var(--muted);cursor:pointer;background:transparent;
@@ -370,11 +371,6 @@ table.spectable td.markcol{text-align:center;}
           <div class="chiplist" id="facetCert"></div>
         </div>
 
-        <div class="facet">
-          <p class="facet-title">Features <button class="resetlink" data-reset="tags">reset</button></p>
-          <div class="taglist" id="facetTags"></div>
-        </div>
-
       </div>
 
       <!-- SIZE MODE FACETS -->
@@ -412,6 +408,13 @@ table.spectable td.markcol{text-align:center;}
     </main>
 
   </div>
+
+  <!-- ===================== FEATURES STRIP ===================== -->
+  <div class="features-strip" id="featuresStrip">
+    <p class="facet-title">Features <button class="resetlink" data-reset="tags">reset</button></p>
+    <div class="taglist" id="facetTags"></div>
+  </div>
+
 </div>
 
 <!-- ===================== MODAL ===================== -->

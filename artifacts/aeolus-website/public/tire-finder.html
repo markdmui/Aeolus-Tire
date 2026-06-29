@@ -62,8 +62,11 @@ body{
 .sitenav .searchbtn{
   font-family:'JetBrains Mono',monospace;font-weight:700;font-size:12px;letter-spacing:.04em;
   background:var(--yellow);color:#0a0a0a;border:none;padding:11px 24px;
-  text-transform:uppercase;cursor:pointer;align-self:center;
+  text-transform:uppercase;cursor:pointer;
 }
+.searchwrap{position:relative;align-self:center;}
+.searchwrap .dropdown{left:auto;right:0;transform:none;}
+.searchwrap:hover .dropdown{display:flex;}
 
 /* ---------- Page title (Tire Finder, within the site) ---------- */
 .pagehead{
@@ -360,7 +363,14 @@ table.spectable td.markcol{text-align:center;}
       </div>
     </div>
   </nav>
-  <button class="searchbtn">SEARCH</button>
+  <div class="searchwrap">
+    <button class="searchbtn">SEARCH</button>
+    <div class="dropdown">
+      <a href="Tire-Finder-v1.html">Tire-Finder-v1</a>
+      <a href="tire-finder-v2.html">Tire-Finder-v2</a>
+      <a href="tire-finder-v3.html">Tire-Finder-v3</a>
+    </div>
+  </div>
 </header>
 
 <div class="app">

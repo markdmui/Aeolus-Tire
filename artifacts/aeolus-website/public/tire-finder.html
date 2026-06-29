@@ -279,7 +279,7 @@ body{
 }
 .modal-section-title::after{content:"";flex:1;height:1px;background:var(--line);}
 
-.bullets{list-style:none;margin:0 0 26px;padding:0;display:grid;gap:10px;}
+.bullets{list-style:none;margin:0 0 26px;padding:0;display:grid;gap:5px;}
 .bullets li{font-size:14px;padding-left:18px;position:relative;}
 .bullets li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;background:var(--yellow);}
 
@@ -291,6 +291,11 @@ table.spectable thead th{
   background:var(--panel);border-bottom:1px solid var(--line-strong);position:sticky;top:0;
 }
 table.spectable tbody tr:hover{background:var(--panel);}
+table.spectable .units-row td{
+  font-size:10px;letter-spacing:.05em;color:var(--muted-2);
+  background:var(--panel);border-bottom:1px solid var(--line-strong);padding-top:1px;padding-bottom:5px;
+}
+table.spectable .units-row:hover td{background:var(--panel);}
 table.spectable td.dim{color:var(--muted-2);}
 table.spectable td.markcol{text-align:center;}
 .markyes{color:var(--text);}
@@ -763,16 +768,22 @@ function openModal(name){
   document.getElementById('modalSub').textContent=t.subtitle;
   document.getElementById('modalPosLabel').textContent='POSITION\n'+t.pos.toUpperCase();
 
-  let body = `<p class="modal-section-title">Design Highlights</p>
+  let body = `<p class="modal-section-title">Features and Benefits</p>
     <ul class="bullets">${t.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>`;
 
-  body += `<p class="modal-section-title">FIG. 02 — Spec Chart</p>`;
+  body += `<p class="modal-section-title">Spec Chart</p>`;
   if(t.sizes.length){
     body += `<div class="spectable-wrap"><table class="spectable">
-      <thead><tr>
-        <th>Size</th><th>Ply</th><th>Rim&nbsp;W&nbsp;(in)</th><th>Sec.&nbsp;W</th><th>O.D.&nbsp;(in)</th><th>T.D.&nbsp;32nds</th>
-        <th>Max Load S (lbs/psi)</th><th>Max Load D (lbs/psi)</th><th>LI/SS</th><th>M+S</th><th>3PMSF</th><th>SmartWay</th>
-      </tr></thead>
+      <thead>
+        <tr>
+          <th>Size</th><th>Ply</th><th>Rim&nbsp;W</th><th>Sec.&nbsp;W</th><th>O.D.</th><th>T.D.</th>
+          <th>Max Load S</th><th>Max Load D</th><th>LI/SS</th><th>M+S</th><th>3PMSF</th><th>SmartWay</th>
+        </tr>
+        <tr class="units-row">
+          <td></td><td></td><td>(in)</td><td></td><td>(in)</td><td>32nds</td>
+          <td>(lbs/psi)</td><td>(lbs/psi)</td><td></td><td></td><td></td><td></td>
+        </tr>
+      </thead>
       <tbody>${t.sizes.map(specRow).join('')}</tbody>
     </table></div>`;
   } else {

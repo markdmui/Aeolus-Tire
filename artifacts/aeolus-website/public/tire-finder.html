@@ -754,8 +754,8 @@ function specRow(s){
     <td class="dim">${s.secw!=null?Number(s.secw).toFixed(1):dash}</td>
     <td class="dim">${s.diam!=null?Number(s.diam).toFixed(1):dash}</td>
     <td class="dim">${s.od_mm||dash}</td>
-    <td class="dim">${s.td!=null?Number(s.td).toFixed(1):dash}</td>
     <td class="dim">${s.td_mm||dash}</td>
+    <td class="dim">${s.td!=null?Number(s.td).toFixed(1):dash}</td>
     <td class="dim">${s.loadS_lbs?s.loadS_lbs+'/'+s.loadS_psi:dash}</td>
     <td class="dim">${s.loadS_kg?s.loadS_kg+'/'+s.loadS_kpa:dash}</td>
     <td class="dim">${s.loadD_lbs?s.loadD_lbs+'/'+s.loadD_psi:dash}</td>
@@ -787,7 +787,7 @@ function openModal(name){
           <th colspan="2">Max Load 1X</th><th colspan="2">Max Load 2X</th><th>LI/SS</th><th>M+S</th><th>3PMSF</th><th>SmartWay</th>
         </tr>
         <tr class="units-row">
-          <td></td><td></td><td>in</td><td>in</td><td>in</td><td>mm</td><td>32nds</td><td>mm</td>
+          <td></td><td></td><td>in</td><td>in</td><td>in</td><td>mm</td><td>mm</td><td>32nds</td>
           <td>lbs/psi</td><td>kg/kPa</td><td>lbs/psi</td><td>kg/kPa</td><td></td><td></td><td></td><td></td>
         </tr>
       </thead>

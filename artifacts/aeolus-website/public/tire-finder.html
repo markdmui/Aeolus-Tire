@@ -750,11 +750,11 @@ function specRow(s){
   return `<tr>
     <td>${s.size}</td>
     <td class="dim">${s.ply||dash}</td>
-    <td class="dim">${s.rimw||dash}</td>
+    <td class="dim">${s.rimw!=null?Number(s.rimw).toFixed(2):dash}</td>
     <td class="dim">${s.secw||dash}</td>
     <td class="dim">${s.diam||dash}</td>
     <td class="dim">${s.od_mm||dash}</td>
-    <td class="dim">${s.td||dash}</td>
+    <td class="dim">${s.td!=null?Number(s.td).toFixed(1):dash}</td>
     <td class="dim">${s.td_mm||dash}</td>
     <td class="dim">${s.loadS_lbs?s.loadS_lbs+'/'+s.loadS_psi:dash}</td>
     <td class="dim">${s.loadS_kg?s.loadS_kg+'/'+s.loadS_kpa:dash}</td>
@@ -783,7 +783,7 @@ function openModal(name){
     body += `<div class="spectable-wrap"><table class="spectable">
       <thead>
         <tr>
-          <th>Size</th><th>Ply</th><th>Rim</th><th>Sect S.W.</th><th>O.D.</th><th>O.D.</th><th>T.D.</th><th>T.D.</th>
+          <th>Size</th><th>Ply</th><th>Rim</th><th>S.W.</th><th>O.D.</th><th>O.D.</th><th>T.D.</th><th>T.D.</th>
           <th colspan="2">Max Load 1X</th><th colspan="2">Max Load 2X</th><th>LI/SS</th><th>M+S</th><th>3PMSF</th><th>SmartWay</th>
         </tr>
         <tr class="units-row">

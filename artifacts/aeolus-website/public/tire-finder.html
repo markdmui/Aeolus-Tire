@@ -394,7 +394,7 @@ table.spectable td.markcol{text-align:center;}
     <!-- ===================== RESULTS ===================== -->
     <main>
       <div class="results-head">
-        <p class="fig mono">FIG. 01 — SHOWING <b id="resultCount">45</b> OF 45 TIRES</p>
+        <p class="fig mono"><b id="resultCount">45</b> OF 45 TIRES</p>
         <div class="sortwrap">
           <label for="sortSelect">Sort</label>
           <select id="sortSelect">
@@ -662,7 +662,7 @@ function render(){
 
   const list=sortTires(filteredTires());
   document.getElementById('resultCount').textContent=list.length;
-  document.querySelector('.fig').innerHTML = `FIG. 01 — SHOWING <b id="resultCount">${list.length}</b> OF 45 TIRES`;
+  document.querySelector('.fig').innerHTML = `<b id="resultCount">${list.length}</b> OF 45 TIRES`;
 
   const grid=document.getElementById('resultsGrid');
   if(!list.length){

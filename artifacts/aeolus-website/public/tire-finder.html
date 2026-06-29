@@ -285,7 +285,7 @@ body{
 
 .spectable-wrap{overflow-x:auto;border:1px solid var(--line);}
 table.spectable{width:100%;border-collapse:collapse;font-family:'JetBrains Mono',monospace;font-size:12px;white-space:nowrap;}
-table.spectable th, table.spectable td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);}
+table.spectable th, table.spectable td{padding:9px 6px;text-align:left;border-bottom:1px solid var(--line);}
 table.spectable tbody td{padding-top:5px;padding-bottom:5px;}
 table.spectable thead th{
   font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted-2);
@@ -756,10 +756,10 @@ function specRow(s){
     <td class="dim">${s.od_mm||dash}</td>
     <td class="dim">${s.td||dash}</td>
     <td class="dim">${s.td_mm||dash}</td>
-    <td class="dim">${s.loadS_lbs?s.loadS_lbs+' / '+s.loadS_psi:dash}</td>
-    <td class="dim">${s.loadS_kg?s.loadS_kg+' / '+s.loadS_kpa:dash}</td>
-    <td class="dim">${s.loadD_lbs?s.loadD_lbs+' / '+s.loadD_psi:dash}</td>
-    <td class="dim">${s.loadD_kg?s.loadD_kg+' / '+s.loadD_kpa:dash}</td>
+    <td class="dim">${s.loadS_lbs?s.loadS_lbs+'/'+s.loadS_psi:dash}</td>
+    <td class="dim">${s.loadS_kg?s.loadS_kg+'/'+s.loadS_kpa:dash}</td>
+    <td class="dim">${s.loadD_lbs?s.loadD_lbs+'/'+s.loadD_psi:dash}</td>
+    <td class="dim">${s.loadD_kg?s.loadD_kg+'/'+s.loadD_kpa:dash}</td>
     <td>${s.liss||dash}</td>
     <td class="markcol">${mark(s.ms)}</td>
     <td class="markcol">${mark(s.pmsf)}</td>
@@ -783,7 +783,7 @@ function openModal(name){
     body += `<div class="spectable-wrap"><table class="spectable">
       <thead>
         <tr>
-          <th>Size</th><th>Ply</th><th>Rim&nbsp;W</th><th>Sec.&nbsp;W</th><th>O.D.</th><th>O.D.</th><th>T.D.</th><th>T.D.</th>
+          <th>Size</th><th>Ply</th><th>Rim</th><th>Sect S.W.</th><th>O.D.</th><th>O.D.</th><th>T.D.</th><th>T.D.</th>
           <th colspan="2">Max Load 1X</th><th colspan="2">Max Load 2X</th><th>LI/SS</th><th>M+S</th><th>3PMSF</th><th>SmartWay</th>
         </tr>
         <tr class="units-row">

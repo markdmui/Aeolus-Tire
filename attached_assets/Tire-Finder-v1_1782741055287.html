@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aeolus Tire Finder — Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders:wght@500;700;800&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff;
+  --text:#1a1a1a;
+  --line: rgba(0,0,0,.12);
+  --line-strong: rgba(0,0,0,.22);
+  --muted:#5c5b54;
+  --muted-2:#8f8e87;
+  --panel:#f4f4f2;
+  --yellow:#f5c400;
+  --ink-on-yellow:#0a0a0a;
+  --blue:#4d8fdc;
+  --radius:0;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);}
+body{
+  font-family:'Outfit',sans-serif;
+  -webkit-font-smoothing:antialiased;
+  font-size:15px;
+  line-height:1.45;
+}
+.mono{font-family:'JetBrains Mono',monospace;}
+.display{font-family:'Big Shoulders',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.01em;}
+
+/* ---------- App shell ---------- */
+.app{max-width:1320px;margin:0 auto;padding:0 28px 80px;}
+
+/* ---------- Site header (real Aeolus nav, from wireframe) ---------- */
+.topstrip{height:6px;background:var(--yellow);}
+.sitenav{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding:22px 28px;border-bottom:1px solid var(--line);max-width:1320px;margin:0 auto;flex-wrap:wrap;
+}
+.sitenav .logo img{height:26px;display:block;}
+.sitenav .navlinks{display:flex;align-items:center;gap:34px;flex-wrap:wrap;}
+.sitenav .navlinks a{
+  font-family:'Outfit',sans-serif;font-weight:500;font-size:14.5px;letter-spacing:.01em;
+  color:var(--text);text-decoration:none;text-transform:uppercase;position:relative;
+}
+.sitenav .navlinks a.active{font-weight:700;}
+.sitenav .navlinks a.active::after{
+  content:"";position:absolute;left:0;right:0;bottom:-22px;height:3px;background:var(--yellow);
+}
+.sitenav .searchbtn{
+  font-family:'Outfit',sans-serif;font-weight:700;font-size:13.5px;letter-spacing:.03em;
+  background:var(--yellow);color:var(--ink-on-yellow);border:none;padding:14px 26px;
+  text-transform:uppercase;cursor:pointer;
+}
+@media (max-width:880px){
+  .sitenav{padding:18px 20px;}
+  .sitenav .navlinks{order:3;width:100%;gap:18px 24px;padding-top:14px;border-top:1px solid var(--line);}
+  .sitenav .navlinks a.active::after{bottom:-15px;}
+}
+
+/* ---------- Page title (Tire Finder, within the site) ---------- */
+.pagehead{
+  display:flex;align-items:baseline;justify-content:space-between;
+  padding:30px 0 20px;border-bottom:1px solid var(--line);flex-wrap:wrap;gap:14px;
+}
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.12em;
+  color:var(--muted-2);text-transform:uppercase;
+}
+.headline{font-size:clamp(34px,4.4vw,54px);line-height:.96;margin:6px 0 0;}
+.headline em{font-style:normal;color:var(--yellow);}
+.doccode{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted-2);text-align:right;white-space:nowrap;}
+
+/* ---------- Search bar ---------- */
+.searchrow{
+  display:flex;gap:0;margin:26px 0 0;border:1px solid var(--text);
+}
+.searchrow input{
+  flex:1;border:none;outline:none;background:transparent;
+  font-family:'Outfit',sans-serif;font-size:17px;padding:16px 18px;color:var(--text);
+}
+.searchrow input::placeholder{color:var(--muted-2);}
+.searchrow .searchicon{
+  display:flex;align-items:center;padding:0 16px;color:var(--muted-2);border-right:1px solid var(--line);
+}
+.searchrow .clearbtn{
+  border:none;background:transparent;border-left:1px solid var(--line);
+  padding:0 18px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.08em;color:var(--muted);text-transform:uppercase;
+}
+.searchrow .clearbtn:hover{color:var(--text);background:var(--panel);}
+
+/* ---------- Mode tabs ---------- */
+.modetabs{display:flex;gap:0;margin-top:18px;border-bottom:1px solid var(--line);}
+.modetab{
+  font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  padding:12px 4px;margin-right:32px;color:var(--muted);background:none;border:none;cursor:pointer;
+  position:relative;top:1px;
+}
+.modetab.active{color:var(--text);border-bottom:2px solid var(--yellow);font-weight:600;}
+.modetab .count{color:var(--muted-2);margin-left:4px;}
+
+/* ---------- Layout: sidebar + results ---------- */
+.layout{display:grid;grid-template-columns:268px 1fr;gap:40px;margin-top:30px;align-items:start;}
+@media (max-width:880px){.layout{grid-template-columns:1fr;}}
+
+/* ---------- Sidebar / Facets ---------- */
+.sidebar{position:sticky;top:20px;}
+.facet{border-top:1px solid var(--line);padding:18px 0;}
+.facet:first-child{border-top:none;padding-top:0;}
+.facet-title{
+  font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text);margin:0 0 12px;display:flex;justify-content:space-between;align-items:center;
+}
+.facet-title .resetlink{
+  font-size:10.5px;color:var(--muted-2);text-transform:none;letter-spacing:0;cursor:pointer;
+  background:none;border:none;padding:0;text-decoration:underline;
+}
+.facet-title .resetlink:hover{color:var(--text);}
+.chiplist{display:flex;flex-direction:column;gap:7px;}
+.chiprow{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  cursor:pointer;font-size:14px;color:var(--text);padding:3px 0;
+}
+.chiprow .box{
+  width:15px;height:15px;border:1.4px solid var(--text);flex:0 0 auto;
+  display:flex;align-items:center;justify-content:center;
+}
+.chiprow .box svg{width:10px;height:10px;display:none;}
+.chiprow.checked .box{background:var(--text);}
+.chiprow.checked .box svg{display:block;}
+.chiprow.checked .box svg path{stroke:var(--bg);}
+.chiprow .lbl{flex:1;}
+.chiprow .ct{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted-2);}
+.chiprow.disabled{color:var(--muted-2);cursor:not-allowed;}
+.chiprow.disabled .box{border-color:var(--line-strong);}
+
+.taglist{display:flex;flex-wrap:wrap;gap:6px;}
+.tagchip{
+  font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;
+  padding:6px 10px;border:1px solid var(--line-strong);color:var(--muted);cursor:pointer;background:transparent;
+}
+.tagchip:hover{border-color:var(--text);color:var(--text);}
+.tagchip.active{background:var(--text);color:var(--bg);border-color:var(--text);}
+
+/* size-search accordion */
+.sizegrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.sizegrid select{
+  width:100%;font-family:'JetBrains Mono',monospace;font-size:12.5px;padding:9px 8px;
+  border:1px solid var(--line-strong);background:var(--bg);color:var(--text);
+}
+.sizehint{font-size:12px;color:var(--muted-2);margin-top:8px;}
+
+/* ---------- Results header ---------- */
+.results-head{
+  display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  padding-bottom:14px;border-bottom:1px solid var(--text);margin-bottom:18px;
+}
+.fig{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:.04em;}
+.fig b{color:var(--text);}
+.sortwrap{display:flex;align-items:center;gap:8px;}
+.sortwrap label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted-2);text-transform:uppercase;letter-spacing:.08em;}
+.sortwrap select{
+  font-family:'JetBrains Mono',monospace;font-size:12.5px;border:1px solid var(--line-strong);
+  background:var(--bg);padding:7px 9px;color:var(--text);
+}
+
+.activefilters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+.afchip{
+  display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:11px;
+  padding:6px 6px 6px 10px;background:var(--panel);border:1px solid var(--line);text-transform:uppercase;letter-spacing:.04em;
+}
+.afchip button{border:none;background:none;cursor:pointer;color:var(--muted);font-size:13px;line-height:1;padding:2px 4px;}
+.afchip button:hover{color:var(--text);}
+
+/* ---------- Results grid ---------- */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);}
+@media (max-width:1080px){.grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:620px){.grid{grid-template-columns:1fr;}}
+
+.card{
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:22px 22px 20px;display:flex;flex-direction:column;gap:12px;cursor:pointer;
+  background:var(--bg);transition:background .12s ease;position:relative;
+}
+.card:hover{background:var(--panel);}
+.card:hover .crop{opacity:1;}
+.crop{position:absolute;width:9px;height:9px;border-color:var(--text);opacity:0;transition:opacity .12s ease;}
+.crop.tl{top:6px;left:6px;border-top:1.4px solid;border-left:1.4px solid;}
+.crop.tr{top:6px;right:6px;border-top:1.4px solid;border-right:1.4px solid;}
+.crop.bl{bottom:6px;left:6px;border-bottom:1.4px solid;border-left:1.4px solid;}
+.crop.br{bottom:6px;right:6px;border-bottom:1.4px solid;border-right:1.4px solid;}
+
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+.pill{
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.07em;text-transform:uppercase;
+  padding:4px 8px;white-space:nowrap;
+}
+.pill.premium{background:var(--yellow);color:var(--ink-on-yellow);}
+.pill.standard{border:1px solid var(--line-strong);color:var(--muted);}
+.posmark{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;text-align:right;}
+
+.card-name{font-size:24px;line-height:1.02;margin:0;}
+.card-sub{font-size:13px;color:var(--muted);margin:0;}
+
+.card-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:2px;}
+.mini-tag{
+  font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--muted);border:1px solid var(--line);padding:3px 7px;
+}
+
+.card-bottom{
+  margin-top:auto;display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid var(--line);padding-top:12px;
+}
+.certs{display:flex;gap:10px;align-items:center;}
+.cert{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted-2);display:flex;align-items:center;gap:4px;}
+.cert.on{color:var(--text);}
+.cert .dot{width:6px;height:6px;border:1.2px solid var(--muted-2);}
+.cert.on .dot{background:var(--yellow);border-color:var(--text);}
+.sizecount{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);}
+.sizecount.pending{color:var(--muted-2);font-style:normal;}
+.viewlink{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text);white-space:nowrap;}
+.viewlink::after{content:" →";}
+
+/* ---------- Empty state ---------- */
+.empty{
+  grid-column:1/-1;border:1px solid var(--line);padding:60px 30px;text-align:center;
+}
+.empty .display{font-size:30px;margin:0 0 8px;}
+.empty p{color:var(--muted);margin:0 0 18px;max-width:420px;margin-left:auto;margin-right:auto;}
+.empty button{
+  font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+  padding:11px 20px;background:var(--text);color:var(--bg);border:none;cursor:pointer;
+}
+
+/* ---------- Modal ---------- */
+.overlay{
+  position:fixed;inset:0;background:rgba(10,10,10,.45);display:none;
+  align-items:flex-start;justify-content:center;padding:5vh 18px;z-index:50;overflow-y:auto;
+}
+.overlay.show{display:flex;}
+.modal{
+  background:var(--bg);max-width:880px;width:100%;margin-bottom:5vh;position:relative;
+  border:1px solid var(--text);
+}
+.modal .crop{opacity:1;}
+.modal-head{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:16px;
+  padding:30px 34px 22px;border-bottom:1px solid var(--line);
+}
+.modal-head .pill{margin-bottom:10px;}
+.modal-name{font-size:40px;line-height:.95;margin:0;}
+.modal-sub{color:var(--muted);font-size:14px;margin:6px 0 0;max-width:520px;}
+.modal-pos{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;text-align:right;white-space:nowrap;}
+.closebtn{
+  border:1px solid var(--line-strong);background:none;width:30px;height:30px;cursor:pointer;
+  font-size:16px;color:var(--muted);line-height:1;flex:0 0 auto;
+}
+.closebtn:hover{background:var(--text);color:var(--bg);border-color:var(--text);}
+
+.modal-body{padding:26px 34px 34px;}
+.modal-section-title{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted-2);margin:0 0 12px;display:flex;align-items:center;gap:10px;
+}
+.modal-section-title::after{content:"";flex:1;height:1px;background:var(--line);}
+
+.bullets{list-style:none;margin:0 0 26px;padding:0;display:grid;gap:10px;}
+.bullets li{font-size:14px;padding-left:18px;position:relative;}
+.bullets li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;background:var(--yellow);}
+
+.spectable-wrap{overflow-x:auto;border:1px solid var(--line);}
+table.spectable{width:100%;border-collapse:collapse;font-family:'JetBrains Mono',monospace;font-size:12px;white-space:nowrap;}
+table.spectable th, table.spectable td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);}
+table.spectable thead th{
+  font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted-2);
+  background:var(--panel);border-bottom:1px solid var(--line-strong);position:sticky;top:0;
+}
+table.spectable tbody tr:hover{background:var(--panel);}
+table.spectable td.dim{color:var(--muted-2);}
+table.spectable td.markcol{text-align:center;}
+.markyes{color:var(--text);}
+.markno{color:var(--line-strong);}
+
+.pending-note{
+  border:1px dashed var(--line-strong);padding:16px 18px;color:var(--muted);font-size:13px;
+  font-family:'JetBrains Mono',monospace;font-size:12px;
+}
+
+.modal-footer{
+  padding:18px 34px 28px;display:flex;gap:10px;flex-wrap:wrap;border-top:1px solid var(--line);
+}
+.modal-footer .tagchip{cursor:default;}
+.modal-footer .tagchip:hover{border-color:var(--line-strong);color:var(--muted);}
+
+/* utility */
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+:focus-visible{outline:2px solid var(--blue);outline-offset:1px;}
+</style>
+</head>
+<body>
+
+<div class="topstrip"></div>
+<header class="sitenav">
+  <a class="logo" href="#" aria-label="Aeolus home"><img src="data:image/png;base64,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" alt="Aeolus"></a>
+  <nav class="navlinks">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Why</a>
+    <a href="#" class="active">Tires</a>
+    <a href="#">Dealers</a>
+    <a href="#">Dealer Locator</a>
+    <a href="#">Contact</a>
+  </nav>
+  <button class="searchbtn">Search</button>
+</header>
+
+<div class="app">
+
+  <div class="pagehead">
+    <div>
+      <div class="eyebrow">Aeolus Commercial &middot; Wireframe White</div>
+      <h1 class="headline display">TIRE <em>FINDER</em></h1>
+    </div>
+    <div class="doccode mono">TOOL. AE&#8209;FINDER&#8209;01<br>REV. 2026 &middot; 45 SKUs INDEXED</div>
+  </div>
+
+
+  <div class="searchrow">
+    <span class="searchicon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </span>
+    <input id="searchInput" type="text" placeholder="Search by tire name, size (e.g. 295/75R22.5), or feature&hellip;" autocomplete="off">
+    <button class="clearbtn" id="clearSearchBtn">Clear</button>
+  </div>
+
+  <div class="modetabs">
+    <button class="modetab active" data-mode="application" id="tabApplication">By Application</button>
+    <button class="modetab" data-mode="size" id="tabSize">By Tire Size</button>
+  </div>
+
+  <div class="layout">
+
+    <!-- ===================== SIDEBAR ===================== -->
+    <aside class="sidebar" id="sidebar">
+
+      <!-- APPLICATION MODE FACETS -->
+      <div id="facetsApplication">
+
+        <div class="facet">
+          <p class="facet-title">Application <button class="resetlink" data-reset="segment">reset</button></p>
+          <div class="chiplist" id="facetSegment"></div>
+        </div>
+
+        <div class="facet">
+          <p class="facet-title">Tire Position <button class="resetlink" data-reset="pos">reset</button></p>
+          <div class="chiplist" id="facetPos"></div>
+        </div>
+
+        <div class="facet">
+          <p class="facet-title">Series</p>
+          <div class="chiplist" id="facetSeries"></div>
+        </div>
+
+        <div class="facet">
+          <p class="facet-title">Certification</p>
+          <div class="chiplist" id="facetCert"></div>
+        </div>
+
+        <div class="facet">
+          <p class="facet-title">Features <button class="resetlink" data-reset="tags">reset</button></p>
+          <div class="taglist" id="facetTags"></div>
+        </div>
+
+      </div>
+
+      <!-- SIZE MODE FACETS -->
+      <div id="facetsSize" style="display:none;">
+        <div class="facet">
+          <p class="facet-title">Find by dimension <button class="resetlink" data-reset="size">reset</button></p>
+          <div class="sizegrid">
+            <select id="selWidth"><option value="">Width</option></select>
+            <select id="selRatio"><option value="">Ratio</option></select>
+            <select id="selRim"><option value="">Rim</option></select>
+          </div>
+          <p class="sizehint">Choose one or more dimensions, in any order — e.g. set Rim to 22.5 to see every Aeolus tire built on a 22.5&Prime; wheel.</p>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ===================== RESULTS ===================== -->
+    <main>
+      <div class="results-head">
+        <p class="fig mono">FIG. 01 — SHOWING <b id="resultCount">45</b> OF 45 TIRES</p>
+        <div class="sortwrap">
+          <label for="sortSelect">Sort</label>
+          <select id="sortSelect">
+            <option value="name">Name A–Z</option>
+            <option value="series">Series: Premium first</option>
+            <option value="sizes">Most sizes available</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="activefilters" id="activeFilters"></div>
+
+      <div class="grid" id="resultsGrid"></div>
+    </main>
+
+  </div>
+</div>
+
+<!-- ===================== MODAL ===================== -->
+<div class="overlay" id="overlay">
+  <div class="modal" id="modalPanel" role="dialog" aria-modal="true">
+    <span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+    <div class="modal-head">
+      <div>
+        <span class="pill" id="modalPill"></span>
+        <h2 class="modal-name display" id="modalName"></h2>
+        <p class="modal-sub" id="modalSub"></p>
+      </div>
+      <p class="modal-pos mono" id="modalPosLabel" style="white-space:pre-line;"></p>
+      <button class="closebtn" id="modalClose" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer" id="modalFooter"></div>
+  </div>
+</div>
+
+<script>
+const TIRES = [{"name":"Neo Fuel S","sizes":[{"size":"295/60R22.5","ply":18,"rimw":9,"secw":11.4,"diam":36.1,"td":18.3,"loadS_lbs":7385,"loadS_psi":131,"loadD_lbs":6779,"loadD_psi":131,"liss":"150/147K","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"315/70R22.5","ply":18,"rimw":9,"secw":12.4,"diam":40.2,"td":18.3,"loadS_lbs":8818,"loadS_psi":131,"loadD_lbs":7385,"loadD_psi":131,"liss":"156/150L","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"315/80R22.5","ply":18,"rimw":9,"secw":12.3,"diam":42.5,"td":18.3,"loadS_lbs":9370,"loadS_psi":131,"loadD_lbs":7385,"loadD_psi":131,"liss":"158/150L","smartway":"","ms":"\u2022","pmsf":"\u2022"}],"bullets":["Steer tire designed for long haul and super regional applications","Four groove tread design provides excellent water evacuation, providing improved grip and adherence in wet conditions","Innovative sipe design combined with low heat generation compound improves cooling, extending tread and casing life","Grove bottom S design stone ejectors prevent stone retention, improving casing retreadability"],"category":"Premium Long Haul","subtitle":"Fuel-efficient steer tire with strong casing, uniform wearand excellent handling.","tags":["Fuel Efficient","Long Life","Durable","M+S"],"pos":"Steer","hero":"$hero-#","series":"Premium","segment":"Long Haul"},{"name":"Neo Fuel D","sizes":[],"bullets":["Drive position tire for long haul and super regional applications","Wide tread design and dual layer compound improves mileage, reducing operating costs","Open block design provides excellent traction in wet conditions, improving safety"],"category":"Premium Long Haul","subtitle":"Long-distance drive tire with high mileage, traction and fuel efficiency.","tags":["Long Haul","Mileage","Fuel Efficient","Traction","M+S","3PMSF"],"pos":"Drive","hero":"$hero-#","series":"Premium","segment":"Long Haul"},{"name":"Neo Fuel D2","sizes":[{"size":"295/60R22.5","ply":18,"rimw":9,"secw":11.5,"diam":36.3,"td":19.5,"loadS_lbs":7385,"loadS_psi":131,"loadD_lbs":6779,"loadD_psi":131,"liss":"150/147K","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"445/50R22.5","ply":20,"rimw":14,"secw":17.4,"diam":40.3,"td":24.6,"loadS_lbs":10196,"loadS_psi":120,"loadD_lbs":"","loadD_psi":"","liss":"161L","smartway":"","ms":"\u2022","pmsf":""}],"bullets":["Drive axle tire for long haul and super regional applications, available in wide base single size","295/60R22.5 size offers directional tread for improved traction and adherence","Bottom grove design reduces stone retention, improving casing life and retreadability","Low profile design and 18 ply capacity for over dimensional loads provides increased fleet operator flexibility"],"category":"Premium Long Haul","subtitle":"Long-haul drive tire with enhanced traction, durableand puncture protection.","tags":["Long Haul","Traction","Durable","M+S","3PMSF"],"pos":"Drive","hero":"$hero-#","series":"Premium","segment":"Long Haul"},{"name":"Neo Fuel D3","sizes":[{"size":"295/75R22.5","ply":16,"rimw":9,"secw":297,"diam":40.4,"td":26,"loadS_lbs":6600,"loadS_psi":120,"loadD_lbs":5995,"loadD_psi":120,"liss":"146/143M","smartway":"","ms":"\u2022","pmsf":""},{"size":"11R22.5","ply":16,"rimw":8.25,"secw":11,"diam":41.9,"td":25.8,"loadS_lbs":6614,"loadS_psi":120,"loadD_lbs":6008,"loadD_psi":120,"liss":"146/143L","smartway":"\u2022","ms":"\u2022","pmsf":""},{"size":"11R24.5","ply":16,"rimw":8.25,"secw":11.5,"diam":43.5,"td":25.8,"loadS_lbs":7165,"loadS_psi":120,"loadD_lbs":6614,"loadD_psi":120,"liss":"149/146L","smartway":"\u2022","ms":"\u2022","pmsf":""}],"bullets":["Drive position tire for long haul and super regional applications","Extra wide tread with 3D sipes and closed shoulder tread pattern provide excellent mileage, reducing operating cost","SATT technology ensures an even contact patch, reducing irregular wear and extending tire life","Low rolling resistance tread compound improves fuel economy, Reducing operating costs"],"category":"Premium Long Haul","subtitle":"Durable drive tire with high mileage, strong tractionand fuel efficiency.","tags":["Mileage","Fuel Efficient","Durable","Traction","SmartWay","M+S"],"pos":"Drive","hero":"$hero-#","series":"Premium","segment":"Long Haul"},{"name":"Neo Fuel T+","sizes":[{"size":"435/50R19.5","ply":20,"rimw":14,"secw":17.2,"diam":36.5,"td":15.1,"loadS_lbs":9921,"loadS_psi":131,"loadD_lbs":"","loadD_psi":"","liss":"160J","smartway":"","ms":"\u2022","pmsf":""}],"bullets":["Speciality tire for low deck trailers carrying over dimensional loads for use in long haul and super regional applications","Longitudinal grooves reduce heat generation and improve wet weather adherence, increasing safety","Low rolling resistance tread compound improves fuel economy, lowering operating costs"],"category":"Premium Long Haul","subtitle":"Long-haul trailer tire with strong casing, uniform wearand fuel efficiency.","tags":["Fuel Efficient","Durable","Traction","M+S"],"pos":"Trailer","hero":"$hero-#","series":"Premium","segment":"Long Haul"},{"name":"Neo Fuel T2","sizes":[{"size":"445/50R22.5","ply":20,"rimw":14,"secw":17.4,"diam":39.6,"td":13.2,"loadS_lbs":10196,"loadS_psi":120,"loadD_lbs":"","loadD_psi":"","liss":"161L","smartway":"","ms":"\u2022","pmsf":""}],"bullets":["Trailer position tire available in wide base sizes for long haul applications","Longitudinal grooves reduce heat generation and improve wet weather adherence, increasing safety","Wide base casing design and low rolling resistance compound improves fuel economy, reducing operating costs","Wide base design reduces unsprung weight, allowing for increased bulk haul capacity, increasing revenue potential"],"category":"Premium Long Haul","subtitle":"Long-haul trailer tire with excellent drainage, even wearand fuel-saving performance.","tags":["Long Haul","Fuel Efficient","Multi-Groove","M+S"],"pos":"Trailer","hero":"$hero-#","series":"Premium","segment":"Long Haul"},{"name":"Neo Fuel T3","sizes":[{"size":"11R22.5","ply":14,"rimw":8.25,"secw":279,"diam":41.3,"td":12.6,"loadS_lbs":6160,"loadS_psi":105,"loadD_lbs":5830,"loadD_psi":105,"liss":"144/142M","smartway":"","ms":"\u2022","pmsf":""},{"size":"11R24.5","ply":14,"rimw":8.25,"secw":11.5,"diam":43.3,"td":12.6,"loadS_lbs":6614,"loadS_psi":104,"loadD_lbs":6008,"loadD_psi":104,"liss":"146/143M","smartway":"\u2022","ms":"\u2022","pmsf":""}],"bullets":["Shallow tread long haul trailer tire","Longitudinal grooves and full depth sipes improve wet and dry handling for increased driver comfort","Grove bottom stone ejectors reduce stone retention, increasing retreadability","Optimized tread design reduces irregular wear, increasing mileage and lowering operating costs"],"category":"Premium Long Haul","subtitle":"Stable long-haul trailer tire with stone ejection, high tractionand long mileage.","tags":["Traction","Long Life","Mileage","SmartWay","M+S"],"pos":"Trailer","hero":"$hero-#","series":"Premium","segment":"Long Haul"},{"name":"Neo Fuel G3","sizes":[{"size":"295/75R22.5","ply":16,"rimw":9,"secw":296,"diam":39.9,"td":18.9,"loadS_lbs":6600,"loadS_psi":120,"loadD_lbs":5995,"loadD_psi":120,"liss":"146/143M","smartway":"","ms":"\u2022","pmsf":""},{"size":"11R22.5","ply":16,"rimw":8.25,"secw":11.1,"diam":41.4,"td":18.9,"loadS_lbs":6614,"loadS_psi":120,"loadD_lbs":6008,"loadD_psi":120,"liss":"146/143M","smartway":"\u2022","ms":"\u2022","pmsf":""},{"size":"11R24.5","ply":16,"rimw":8.25,"secw":11.4,"diam":43,"td":18.9,"loadS_lbs":7165,"loadS_psi":120,"loadD_lbs":6614,"loadD_psi":120,"liss":"149/146M","smartway":"\u2022","ms":"\u2022","pmsf":""}],"bullets":["All position rib tire for long haul and super regional applications","Longitudinal grooves improve wet and dry handling for increased driver comfort","SATT technology ensures an even contact patch, reducing irregular wear and extending tire life","Low rolling resistance tread compound improves fuel economy, lowering operating costs"],"category":"Premium Long Haul","subtitle":"Steer tire with excellent stability, long lifespanand superior fuel efficiency.","tags":["Fuel Efficient","Long Life","Durable","SmartWay","M+S"],"pos":"Trailer","hero":"hero-1","series":"Premium","segment":"Long Haul"},{"name":"Neo Allroads S","sizes":[{"size":"295/80R22.5","ply":18,"rimw":9,"secw":309,"diam":41.7,"td":20.8,"loadS_lbs":8250,"loadS_psi":131,"loadD_lbs":7150,"loadD_psi":131,"liss":"154/149M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"11R24.5","ply":16,"rimw":8.25,"secw":11.5,"diam":43.3,"td":22,"loadS_lbs":7165,"loadS_psi":120,"loadD_lbs":6614,"loadD_psi":120,"liss":"149/146L","smartway":"","ms":"\u2022","pmsf":""},{"size":"11R22.5","ply":16,"rimw":8.25,"secw":10.9,"diam":41.5,"td":20.2,"loadS_lbs":6945,"loadS_psi":120,"loadD_lbs":6393,"loadD_psi":120,"liss":"148/145M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"215/75R17.5","ply":16,"rimw":6,"secw":8.5,"diam":30.1,"td":16.4,"loadS_lbs":3748,"loadS_psi":102,"loadD_lbs":3527,"loadD_psi":102,"liss":"126/124M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"215/75R17.5","ply":18,"rimw":6,"secw":8.5,"diam":30,"td":16.4,"loadS_lbs":4806,"loadS_psi":123,"loadD_lbs":4542,"loadD_psi":123,"liss":"135/133J","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"225/70R19.5","ply":14,"rimw":6.75,"secw":8.9,"diam":31.9,"td":17.6,"loadS_lbs":3968,"loadS_psi":110,"loadD_lbs":3748,"loadD_psi":110,"liss":"128/126M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"225/75R17.5","ply":16,"rimw":6.75,"secw":8.7,"diam":30.6,"td":16.4,"loadS_lbs":4079,"loadS_psi":120,"loadD_lbs":3858,"loadD_psi":120,"liss":"129/127M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"225/80R17.5","ply":14,"rimw":6.75,"secw":9.2,"diam":31.8,"td":18.9,"loadS_lbs":4079,"loadS_psi":110,"loadD_lbs":3858,"loadD_psi":110,"liss":"129/127L","smartway":"","ms":"\u2022","pmsf":""},{"size":"235/75R17.5","ply":16,"rimw":6.75,"secw":9.3,"diam":31.4,"td":16.4,"loadS_lbs":4409,"loadS_psi":112,"loadD_lbs":4189,"loadD_psi":112,"liss":"132/130M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"235/75R17.5","ply":18,"rimw":6.75,"secw":9.3,"diam":31.3,"td":16.4,"loadS_lbs":6008,"loadS_psi":120,"loadD_lbs":5677,"loadD_psi":120,"liss":"143/141J","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"245/70R17.5","ply":18,"rimw":7.5,"secw":9.9,"diam":31.3,"td":18.9,"loadS_lbs":4938,"loadS_psi":123,"loadD_lbs":4674,"loadD_psi":123,"liss":"136/134M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"275/70R22.5","ply":18,"rimw":8.25,"secw":11.1,"diam":38,"td":20.8,"loadS_lbs":6945,"loadS_psi":131,"loadD_lbs":6393,"loadD_psi":131,"liss":"148/145M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"285/70R19.5","ply":16,"rimw":8.25,"secw":11.1,"diam":35.1,"td":17.6,"loadS_lbs":6614,"loadS_psi":123,"loadD_lbs":6173,"loadD_psi":123,"liss":"146/144L","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"315/70R22.5","ply":18,"rimw":9,"secw":12.3,"diam":40.1,"td":19.5,"loadS_lbs":8818,"loadS_psi":131,"loadD_lbs":7385,"loadD_psi":131,"liss":"156/150L","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"315/80R22.5","ply":18,"rimw":9,"secw":12.4,"diam":42.7,"td":20.8,"loadS_lbs":9370,"loadS_psi":131,"loadD_lbs":7385,"loadD_psi":131,"liss":"158/150L","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"315/80R22.5","ply":20,"rimw":9,"secw":12.5,"diam":42.6,"td":20.8,"loadS_lbs":9370,"loadS_psi":131,"loadD_lbs":7385,"loadD_psi":131,"liss":"158/150K","smartway":"","ms":"\u2022","pmsf":""}],"bullets":["Steer position tire for small cargo vans operating in regional and urban applications","Longitudinal grooves improve wet and dry handling for increased driver comfort","Improved mileage with wider and deeper tread design","Four groove design provides excellent water evacuation, providing improved grip and adherence in wet conditions","Variable angle groove angle pitch design reduces stone retention, increasing retreadability","High silica tread compound improves adherence in a wide range of temperatures"],"category":"Premium Regional","subtitle":"Regional truck tire with zig-zag grooves, low rolling resistance, excellent mileage, durability.","tags":["Zig-Zag Grooves","Mileage","Durable","M+S","3PMSF"],"pos":"Steer","hero":"$hero-#","series":"Premium","segment":"Regional"},{"name":"Neo Allroads S+","sizes":[{"size":"385/65R22.5","ply":20,"rimw":11.75,"secw":15.1,"diam":42.2,"td":18.9,"loadS_lbs":11023,"loadS_psi":131,"loadD_lbs":"","loadD_psi":"","liss":"164K","smartway":"","ms":"\u2022","pmsf":"\u2022"}],"bullets":["Steer axle tire for regional applications","4 groove longitudinal design improves handling and reduces braking distances in low adherence conditions","Increased tread depth improves mileage, reducing operating costs","Variable pitch groove and stone ejectors reduce stone retention, increasing retreadability","Wide tread design and dual layer compound improves mileage, reducing operating costs"],"category":"Premium Regional","subtitle":"Truck tire with deep tread, Z-grooves, excellent handling, stone-resistant, long-lasting durability.","tags":["Deep Tread","Stone Resistant","Long Life","M+S","3PMSF"],"pos":"Steer","hero":"$hero-#","series":"Premium","segment":"Regional"},{"name":"Neo Allroads D","sizes":[{"size":"205/75R17.5","ply":14,"rimw":6,"secw":7.9,"diam":29.7,"td":17.6,"loadS_lbs":3527,"loadS_psi":110,"loadD_lbs":3307,"loadD_psi":110,"liss":"124/122M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"215/75R17.5","ply":16,"rimw":6,"secw":8.5,"diam":30.2,"td":18.9,"loadS_lbs":3748,"loadS_psi":102,"loadD_lbs":3527,"loadD_psi":102,"liss":"126/124M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"215/75R17.5","ply":18,"rimw":6,"secw":8.4,"diam":30.2,"td":18.9,"loadS_lbs":4806,"loadS_psi":123,"loadD_lbs":4542,"loadD_psi":123,"liss":"135/133J","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"225/70R19.5","ply":14,"rimw":6.75,"secw":8.9,"diam":31.9,"td":18.9,"loadS_lbs":3968,"loadS_psi":110,"loadD_lbs":3748,"loadD_psi":110,"liss":"128/126M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"225/75R17.5","ply":16,"rimw":6.75,"secw":8.8,"diam":30.6,"td":17.6,"loadS_lbs":4079,"loadS_psi":120,"loadD_lbs":3858,"loadD_psi":120,"liss":"129/127M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"225/80R17.5","ply":14,"rimw":6.75,"secw":9.2,"diam":31.8,"td":19.5,"loadS_lbs":3417,"loadS_psi":110,"loadD_lbs":3307,"loadD_psi":110,"liss":"123/122L","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"235/75R17.5","ply":16,"rimw":6.75,"secw":9.3,"diam":31.5,"td":20.2,"loadS_lbs":4409,"loadS_psi":112,"loadD_lbs":4189,"loadD_psi":112,"liss":"132/130M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"235/75R17.5","ply":18,"rimw":6.75,"secw":9.2,"diam":31.5,"td":20.2,"loadS_lbs":6008,"loadS_psi":127,"loadD_lbs":5677,"loadD_psi":127,"liss":"143/141J","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"245/70R17.5","ply":18,"rimw":7.5,"secw":9.9,"diam":31.2,"td":19.5,"loadS_lbs":4938,"loadS_psi":123,"loadD_lbs":4674,"loadD_psi":123,"liss":"136/134M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"245/70R19.5","ply":18,"rimw":7.5,"secw":9.8,"diam":33.7,"td":21.4,"loadS_lbs":6173,"loadS_psi":131,"loadD_lbs":5842,"loadD_psi":131,"liss":"144/142J","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"275/80R22.5","ply":18,"rimw":8.25,"secw":11,"diam":40.2,"td":22.7,"loadS_lbs":7606,"loadS_psi":131,"loadD_lbs":6945,"loadD_psi":131,"liss":"151/148J","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"285/70R19.5","ply":16,"rimw":8.25,"secw":11.1,"diam":35.3,"td":20.2,"loadS_lbs":6614,"loadS_psi":123,"loadD_lbs":6173,"loadD_psi":123,"liss":"146/144L","smartway":"","ms":"\u2022","pmsf":"\u2022"}],"bullets":["Drive position tire for small cargo vans operating in regional and urban applications","Special tread block pitch design for improved traction, increasing safety in poor weather","Buttressed block design and optimized shoulder design provides even wear, improving mileage and reducing operating costs","Variable tread block size reduces noise, increasing driver comfort","Dual layer compound improves mileage, reducing operating costs"],"category":"Premium Regional","subtitle":"Regional drive tire with deep traction, quiet rideand long-lasting Durable.","tags":["Traction","Long Life","Low Noise","M+S","3PMSF"],"pos":"Drive","hero":"$hero-#","series":"Premium","segment":"Regional"},{"name":"Neo Allroads D+","sizes":[{"size":"295/80R22.5","ply":18,"rimw":9,"secw":311,"diam":42.1,"td":27.7,"loadS_lbs":7810,"loadS_psi":123,"loadD_lbs":6930,"loadD_psi":123,"liss":"152/148M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"11R22.5","ply":16,"rimw":8.25,"secw":11,"diam":42,"td":28.3,"loadS_lbs":6614,"loadS_psi":120,"loadD_lbs":6008,"loadD_psi":120,"liss":"146/143L","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"295/60R22.5","ply":18,"rimw":9,"secw":11.5,"diam":36.5,"td":22.7,"loadS_lbs":7385,"loadS_psi":131,"loadD_lbs":6779,"loadD_psi":131,"liss":"150/147K ","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"315/60R22.5","ply":20,"rimw":9.75,"secw":12.6,"diam":38,"td":23.9,"loadS_lbs":7826,"loadS_psi":131,"loadD_lbs":6945,"loadD_psi":131,"liss":"152/148L","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"315/70R22.5","ply":18,"rimw":9,"secw":12.4,"diam":40.3,"td":26.5,"loadS_lbs":8267,"loadS_psi":131,"loadD_lbs":7385,"loadD_psi":131,"liss":"154/150L","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"315/80R22.5","ply":18,"rimw":9,"secw":12.4,"diam":42.9,"td":26.5,"loadS_lbs":8818,"loadS_psi":123,"loadD_lbs":7385,"loadD_psi":123,"liss":"156/150L","smartway":"","ms":"\u2022","pmsf":"\u2022"}],"bullets":["Drive position tire for regional applications","Wide directional tread pattern provides excellent mileage, reducing operating costs","Special 3D sipe design ensures tread block stability while also providing excellent wet weather traction","Robust belt package provides increased durability, improving retreadability","Dual tread compound and sipe design improves wear while reducing operating temperatures, extending casing life"],"category":"Premium Regional","subtitle":"Durable drive tire with strong traction, long lifespanand excellent handling.","tags":["Traction","Long Life","Wet Surface","Durable","M+S","3PMSF"],"pos":"Drive","hero":"$hero-#","series":"Premium","segment":"Regional"},{"name":"Neo Allroads T2","sizes":[{"size":"215/75R17.5","ply":18,"rimw":6,"secw":8.6,"diam":29.9,"td":15.7,"loadS_lbs":4938,"loadS_psi":123,"loadD_lbs":4674,"loadD_psi":123,"liss":"136/134J","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"235/75R17.5","ply":18,"rimw":6.75,"secw":9.3,"diam":31.2,"td":15.7,"loadS_lbs":6008,"loadS_psi":127,"loadD_lbs":5677,"loadD_psi":127,"liss":"143/141J","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"245/70R17.5","ply":18,"rimw":7.5,"secw":9.9,"diam":30.8,"td":13.9,"loadS_lbs":6008,"loadS_psi":127,"loadD_lbs":5677,"loadD_psi":127,"liss":"143/141J","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"285/70R19.5","ply":18,"rimw":8.25,"secw":11,"diam":35.1,"td":18.3,"loadS_lbs":7385,"loadS_psi":131,"loadD_lbs":6945,"loadD_psi":131,"liss":"150/148J","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"385/65R22.5","ply":20,"rimw":11.75,"secw":15.3,"diam":42.1,"td":20.8,"loadS_lbs":11023,"loadS_psi":131,"loadD_lbs":"","loadD_psi":"","liss":"164K","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"425/65R22.5","ply":20,"rimw":13,"secw":16.3,"diam":44.1,"td":20.8,"loadS_lbs":11354,"loadS_psi":120,"loadD_lbs":"","loadD_psi":"","liss":"165K","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"445/65R22.5","ply":20,"rimw":13,"secw":17.3,"diam":45.1,"td":20.8,"loadS_lbs":12787,"loadS_psi":131,"loadD_lbs":"","loadD_psi":"","liss":"169K","smartway":"","ms":"\u2022","pmsf":"\u2022"}],"bullets":["Trailer position tire designed for drop axle and smaller trailer applications in regional applications","Wide, deep tread provides excellent mileage, reducing operating costs","Variable tread block size reduces noise, increasing driver comfort","Variable pitch groove and stone ejectors reduce stone retention, increasing retreadability","High silica tread compound improves adherence in a wide range of temperatures"],"category":"Premium Regional","subtitle":"Regional trailer tire with long lifespan, quiet rideand reliable handling.","tags":["Deep Tread","Stone Resistant","Long Life","M+S","3PMSF"],"pos":"Trailer","hero":"$hero-#","series":"Premium","segment":"Regional"},{"name":"ASR79","sizes":[{"size":"10R22.5","ply":16,"rimw":7.5,"secw":9.8,"diam":40.2,"td":18.9,"loadS_lbs":6173,"loadS_psi":131,"loadD_lbs":5842,"loadD_psi":131,"liss":"144/142M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"11R22.5","ply":16,"rimw":8.25,"secw":11,"diam":41.4,"td":18.9,"loadS_lbs":6614,"loadS_psi":120,"loadD_lbs":6008,"loadD_psi":120,"liss":"146/143M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"12R22.5","ply":18,"rimw":9,"secw":11.9,"diam":42.7,"td":21.4,"loadS_lbs":7826,"loadS_psi":135,"loadD_lbs":7165,"loadD_psi":135,"liss":"152/149M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"255/70R22.5","ply":16,"rimw":7.5,"secw":10,"diam":36.6,"td":18.9,"loadS_lbs":5512,"loadS_psi":120,"loadD_lbs":5071,"loadD_psi":120,"liss":"140/137M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"275/70R22.5","ply":18,"rimw":8.25,"secw":10.8,"diam":38,"td":18.9,"loadS_lbs":6945,"loadS_psi":131,"loadD_lbs":6393,"loadD_psi":131,"liss":"148/145M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"275/80R22.5","ply":18,"rimw":8.25,"secw":11.1,"diam":40,"td":18.9,"loadS_lbs":7165,"loadS_psi":131,"loadD_lbs":6614,"loadD_psi":131,"liss":"149/146L","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"245/70R19.5","ply":18,"rimw":7.5,"secw":9.8,"diam":33.5,"td":18.9,"loadS_lbs":6173,"loadS_psi":131,"loadD_lbs":5842,"loadD_psi":131,"liss":"144/142J","smartway":"","ms":"\u2022","pmsf":"\u2022"}],"bullets":["Steer position tire for regional applications","4 groove longitudinal design improves handling and reduces braking distances in low adherence conditions","Shoulder rib design provides equal weight distribution across the contact patch, improving wear and reducing operating costs","Groove bottom stone ejectors reduce stone retention, increasing retreadability","Wide tread combined with functional sipes and deeper grooves improve mileage, reducing lowering costs","High silica tread compound improves adherence in a wide range of temperatures"],"category":"Premium Regional","subtitle":"Durable tire with strong grip, even wearand reliable performance in all conditions.","tags":["Mileage","Traction","Durable","M+S","3PMSF"],"pos":"Steer","hero":"$hero-#","series":"Premium","segment":"Regional"},{"name":"ASR79ii","sizes":[],"bullets":["Steer position tire for regional applications","4 groove longitudinal design improves handling and reduces braking distances in low adherence conditions","Groove bottom stone ejectors reduce stone retention, increasing retreadability","Wide tread combined with functional sipes and deeper grooves improve mileage, reducing lowering costs","High silica tread compound improves adherence in a wide range of temperatures"],"category":"Premium Regional","subtitle":"Enhanced tire with strong grip, even wearand reliable performance across conditions.","tags":["Mileage","Traction","Durable","M+S"],"pos":"Steer","hero":"$hero-#","series":"Premium","segment":"Regional"},{"name":"ADR78","sizes":[{"size":"12R22.5","ply":18,"rimw":9,"secw":11.9,"diam":43.1,"td":28.3,"loadS_lbs":7826,"loadS_psi":135,"loadD_lbs":7165,"loadD_psi":135,"liss":"152/149M","smartway":"","ms":"\u2022","pmsf":""},{"size":"245/70R19.5","ply":18,"rimw":7.5,"secw":9.8,"diam":33.7,"td":21.4,"loadS_lbs":6173,"loadS_psi":131,"loadD_lbs":5842,"loadD_psi":131,"liss":"144/142J","smartway":"","ms":"\u2022","pmsf":"\u2022"}],"bullets":["Drive position tire for small cargo vans operating in regional and urban applications","Buttressed block design and optimized shoulder design provides even wear, improving mileage and reducing operating costs","Variable tread block size reduces noise, increasing driver comfort","Optimized shoulder design provides even wear and increased mileage, reducing operating cost","Dual tread compound improves wear while reducing operating temperatures, extending casing life"],"category":"Premium Regional","subtitle":"Drive tire for regional and long haul with deep grooves, optimized tread, even wear, low noise.","tags":["M+S","3PMSF","Even Wear","Low Noise"],"pos":"Drive","hero":"$hero-#","series":"Premium","segment":"Regional"},{"name":"Neo Construct D","sizes":[{"size":"11R22.5","ply":16,"rimw":8.25,"secw":10.9,"diam":42,"td":28.3,"loadS_lbs":6614,"loadS_psi":120,"loadD_lbs":6008,"loadD_psi":120,"liss":"146/143M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"11R24.5","ply":16,"rimw":8.25,"secw":11.3,"diam":43.6,"td":28.3,"loadS_lbs":7165,"loadS_psi":120,"loadD_lbs":6614,"loadD_psi":120,"liss":"149/146M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"11R22.5","ply":16,"rimw":8.25,"secw":10.8,"diam":42.1,"td":30.9,"loadS_lbs":6614,"loadS_psi":120,"loadD_lbs":6008,"loadD_psi":120,"liss":"146/143L","smartway":"","ms":"\u2022","pmsf":""},{"size":"11R24.5","ply":16,"rimw":8.25,"secw":11.4,"diam":43.6,"td":29,"loadS_lbs":7165,"loadS_psi":120,"loadD_lbs":6614,"loadD_psi":120,"liss":"149/146L","smartway":"","ms":"\u2022","pmsf":""},{"size":"12R22.5","ply":18,"rimw":9,"secw":11.9,"diam":43.2,"td":29.6,"loadS_lbs":7826,"loadS_psi":135,"loadD_lbs":7165,"loadD_psi":135,"liss":"152/149L","smartway":"","ms":"\u2022","pmsf":""},{"size":"13R22.5","ply":18,"rimw":9.75,"secw":12.7,"diam":44.6,"td":27.7,"loadS_lbs":8818,"loadS_psi":127,"loadD_lbs":7385,"loadD_psi":127,"liss":"156/150K","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"315/80R22.5","ply":18,"rimw":9,"secw":12.4,"diam":43.1,"td":29,"loadS_lbs":8818,"loadS_psi":123,"loadD_lbs":7385,"loadD_psi":123,"liss":"156/150K","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"425/65R22.5","ply":20,"rimw":13,"secw":17,"diam":44.7,"td":30.2,"loadS_lbs":11354,"loadS_psi":120,"loadD_lbs":"","loadD_psi":"","liss":"165K","smartway":"","ms":"\u2022","pmsf":"\u2022"}],"bullets":["Drive tire for On/ Off road applications","Deep, open shoulder tread pattern provides excellent traction, improving productivity","Buttressed tread blocks ensure even wear, reducing operating costs","Cut and chip resistant compound reduces penetrations and down time, improving productivity","Increased load capacity when used in off road applications, increasing fleet efficiency","Dual tread compound improves wear while reducing operating temperatures, extending casing life"],"category":"Premium On/Off Road","subtitle":"Truck tire with self-cleaning pattern, deep grooves, heavy-load capability, uniform wear, long-lasting.","tags":["Self Cleaning","Heavy Load","Long LifevM+S","3PMSF"],"pos":"Drive","hero":"$hero-#","series":"Premium","segment":"Construction"},{"name":"Neo Construct G","sizes":[{"size":"11R22.5","ply":16,"rimw":8.25,"secw":10.8,"diam":41.7,"td":25.2,"loadS_lbs":6614,"loadS_psi":120,"loadD_lbs":6008,"loadD_psi":120,"liss":"146/143L","smartway":"","ms":"\u2022","pmsf":""},{"size":"11R24.5","ply":16,"rimw":8.25,"secw":11.4,"diam":43.3,"td":23.9,"loadS_lbs":7165,"loadS_psi":120,"loadD_lbs":6614,"loadD_psi":120,"liss":"149/146L","smartway":"","ms":"\u2022","pmsf":""},{"size":"13R22.5","ply":18,"rimw":9.75,"secw":12.7,"diam":44.3,"td":22.7,"loadS_lbs":8818,"loadS_psi":127,"loadD_lbs":7385,"loadD_psi":127,"liss":"156/150K ","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"315/80R22.5","ply":18,"rimw":9,"secw":12.5,"diam":42.7,"td":20.8,"loadS_lbs":9370,"loadS_psi":131,"loadD_lbs":7385,"loadD_psi":131,"liss":"158/150K","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"425/65R22.5","ply":20,"rimw":13,"secw":16.5,"diam":44.3,"td":23.9,"loadS_lbs":11354,"loadS_psi":120,"loadD_lbs":"","loadD_psi":"","liss":"165K","smartway":"","ms":"\u2022","pmsf":"\u2022"}],"bullets":["All position tire for On/ Off road applications","Variable angle grooves and bottom stone ejectors reduce stone retention, increasing retreadability","Cut and chip resistant compound reduces penetrations and down time, improving productivity","Special lateral block design offers better traction and avoids irregular wear, reducing operating cost","Wider tread with deeper grooves improves mileage, reducing operating costs","Increased load capacity when used in off road applications, increasing fleet efficiency","Dual tread compound improves wear while reducing operating temperatures, extending casing life"],"category":"Premium On/Off Road","subtitle":"Truck tire with interchanging pattern, deep transverse grooves, heavy-load support, uniform wear, long-lasting.","tags":["Self Cleaning","Heavy Load","Long Life","M+S","3PMSF"],"pos":"All Position","hero":"$hero-#","series":"Premium","segment":"Construction"},{"name":"Neo Winter S","sizes":[{"size":"275/70R22.5","ply":18,"rimw":8.25,"secw":11,"diam":37.7,"td":18.9,"loadS_lbs":7385,"loadS_psi":131,"loadD_lbs":6945,"loadD_psi":131,"liss":"150/148J","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"315/70R22.5","ply":18,"rimw":9,"secw":11.9,"diam":40,"td":20.8,"loadS_lbs":8818,"loadS_psi":131,"loadD_lbs":7385,"loadD_psi":131,"liss":"156/150L","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"315/80R22.5","ply":18,"rimw":9,"secw":12.4,"diam":42.6,"td":20.8,"loadS_lbs":9370,"loadS_psi":131,"loadD_lbs":7385,"loadD_psi":131,"liss":"158/150L","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"385/65R22.5","ply":20,"rimw":11.75,"secw":15.2,"diam":41.9,"td":20.8,"loadS_lbs":11023,"loadS_psi":131,"loadD_lbs":"","loadD_psi":"","liss":"164K","smartway":"","ms":"\u2022","pmsf":"\u2022"}],"bullets":["All position traction tire for regional transit applications","High density transverse 3D groove design for excellent grip in low traction conditions providing improved safety","Four groove tread design improves adherence in low traction conditions","Special tread compound designed to provide excellent traction in cold climates","High silica compound reduces rolling resistance, improving fuel efficiency","3PMS Designation "],"category":"Premium Winter","subtitle":"Enhanced winter performance with innovative tread, strong shouldersand 3PMS traction.","tags":["Traction","Durable","M+S","3PMSF"],"pos":"Steer","hero":"$hero-#","series":"Premium","segment":"Winter"},{"name":"Neo Allseason D","sizes":[{"size":"11R22.5","ply":16,"rimw":8.25,"secw":10.9,"diam":42,"td":28.3,"loadS_lbs":6614,"loadS_psi":120,"loadD_lbs":6008,"loadD_psi":120,"liss":"146/143M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"11R24.5","ply":16,"rimw":8.25,"secw":11.3,"diam":43.6,"td":28.3,"loadS_lbs":7165,"loadS_psi":120,"loadD_lbs":6614,"loadD_psi":120,"liss":"149/146M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"11R22.5","ply":16,"rimw":8.25,"secw":10.8,"diam":42.1,"td":30.9,"loadS_lbs":6614,"loadS_psi":120,"loadD_lbs":6008,"loadD_psi":120,"liss":"146/143L","smartway":"","ms":"\u2022","pmsf":""},{"size":"11R24.5","ply":16,"rimw":8.25,"secw":11.4,"diam":43.6,"td":29,"loadS_lbs":7165,"loadS_psi":120,"loadD_lbs":6614,"loadD_psi":120,"liss":"149/146L","smartway":"","ms":"\u2022","pmsf":""},{"size":"12R22.5","ply":18,"rimw":9,"secw":11.9,"diam":43.2,"td":29.6,"loadS_lbs":7826,"loadS_psi":135,"loadD_lbs":7165,"loadD_psi":135,"liss":"152/149L","smartway":"","ms":"\u2022","pmsf":""},{"size":"13R22.5","ply":18,"rimw":9.75,"secw":12.7,"diam":44.6,"td":27.7,"loadS_lbs":8818,"loadS_psi":127,"loadD_lbs":7385,"loadD_psi":127,"liss":"156/150K","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"315/80R22.5","ply":18,"rimw":9,"secw":12.4,"diam":43.1,"td":29,"loadS_lbs":8818,"loadS_psi":123,"loadD_lbs":7385,"loadD_psi":123,"liss":"156/150K","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"425/65R22.5","ply":20,"rimw":13,"secw":17,"diam":44.7,"td":30.2,"loadS_lbs":11354,"loadS_psi":120,"loadD_lbs":"","loadD_psi":"","liss":"165K","smartway":"","ms":"\u2022","pmsf":"\u2022"}],"bullets":["Drive axle tire for extreme regional winter conditions","High density transverse 3D groove design for excellent grip in low traction conditions providing improved safety","Special tread compound designed to provide excellent traction in cold climates","High silica compound reduces rolling resistance, improving fuel efficiency","3PMS Designation "],"category":"Premium Winter","subtitle":"Drive axle winter tire with 3D sipes, reinforced casing, high traction, long-lasting.","tags":["Long Life","Traction","Reinforced-casing","M+S","3PMSF"],"pos":"Drive","hero":"$hero-#","series":"Premium","segment":"Winter"},{"name":"Sailor AGB23","sizes":[],"bullets":["All position tire suitable for urban transit applications","Deep tread for improved mileage, reduces operating costs","Special S groove design reduces heat generation, extending casing life and improving retreadability","Specially designed sidewall reduces damage from curbing, extending casing life","High silica compound reduces rolling resistance, improving fuel efficiency"],"category":"Urban","subtitle":"All-wheel tire for urban and regional use, long-lasting, heat-resistant, low rolling resistance.","tags":["Long Life","Heat Resistant","3PMSF","M+S"],"pos":"All Position","hero":"$hero-#","series":"Standard","segment":"Urban"},{"name":"Neo Urban G","sizes":[{"size":"275/70R22.5","ply":18,"rimw":8.25,"secw":11.1,"diam":38,"td":22.7,"loadS_lbs":7385,"loadS_psi":131,"loadD_lbs":6945,"loadD_psi":131,"liss":"150/148J","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"305/70R22.5","ply":20,"rimw":9,"secw":12.1,"diam":39.3,"td":23.9,"loadS_lbs":7826,"loadS_psi":131,"loadD_lbs":7385,"loadD_psi":131,"liss":"152/150L","smartway":"","ms":"\u2022","pmsf":"\u2022"}],"bullets":["All position tire suitable for urban transit applications","Deep tread for improved mileage, reduces operating costs","4 groove tread pattern improves traction and adherence for increased safety","Special S groove design reduces heat generation, extending casing life and improving retreadability","Specially designed sidewall reduces damage from curbing, extending casing life","High silica compound reduces rolling resistance, improving fuel efficiency"],"category":"Premium Urban","subtitle":"High-mileage urban bus tire with strong casing, heat controland durability.","tags":["Mileage","Heat Discharge","M+S","3PMSF"],"pos":"Bus","hero":"$hero-#","series":"Premium","segment":"Urban"},{"name":"ASL06","sizes":[{"size":"10.00R20","ply":18,"rimw":7.5,"secw":10.9,"diam":41.4,"td":18.9,"loadS_lbs":7165,"loadS_psi":135,"loadD_lbs":6614,"loadD_psi":135,"liss":"149/146L","smartway":"","ms":"","pmsf":""},{"size":"11R22.5","ply":16,"rimw":8.25,"secw":10.9,"diam":41.4,"td":18.9,"loadS_lbs":6614,"loadS_psi":120,"loadD_lbs":6008,"loadD_psi":120,"liss":"146/143M","smartway":"","ms":"","pmsf":""},{"size":"9.00R20","ply":16,"rimw":7,"secw":10,"diam":40.1,"td":17.6,"loadS_lbs":6173,"loadS_psi":131,"loadD_lbs":5842,"loadD_psi":131,"liss":"144/142L","smartway":"","ms":"","pmsf":""}],"bullets":["Steer position tire for long haul applications","Deeper tread for improved mileage, reducing operating costs","4 groove tread pattern improves traction and adherence for increased safety","Special S groove design reduces heat generation, extending casing life and improving retreadability"],"category":"Standard Long Haul","subtitle":"Steer bus tire with heat-dissipating grooves, high silica, durable sidewall protection.","tags":["Bus&Coach","Sidewall Protection","Low Rolling Resistance"],"pos":"Steer","hero":"$hero-#","series":"Standard","segment":"Long Haul"},{"name":"ADL58","sizes":[{"size":"11R22.5","ply":16,"rimw":8.25,"secw":11,"diam":42,"td":26,"loadS_lbs":6614,"loadS_psi":120,"loadD_lbs":6008,"loadD_psi":120,"liss":"146/143L","smartway":"","ms":"\u2022","pmsf":""},{"size":"11R24.5","ply":16,"rimw":8.25,"secw":11.1,"diam":43.5,"td":26,"loadS_lbs":7165,"loadS_psi":120,"loadD_lbs":6614,"loadD_psi":120,"liss":"149/146L","smartway":"","ms":"\u2022","pmsf":""}],"bullets":["Drive position tire for long haul applications","5 rib design and optimized tread patter provide excellent mileage, reducing operating cost","Deep tread provides improved traction in wet conditions"],"category":"Standard Long Haul","subtitle":"Drive tire for long haul with excellent mileage, even wearand high retreadability performance.","tags":["M+S","Mileage","Retreadable"],"pos":"Drive","hero":"$hero-#","series":"Standard","segment":"Long Haul"},{"name":"ATL08","sizes":[{"size":"285/75R24.5","ply":14,"rimw":8.25,"secw":8.6,"diam":40.9,"td":13.9,"loadS_lbs":6173,"loadS_psi":110,"loadD_lbs":5677,"loadD_psi":110,"liss":"144/141M","smartway":"","ms":"","pmsf":""}],"bullets":["Shallow tread trailer tire for long haul applications","Provides excellent handling for increased driver comfort, reducing fatigue","Full depth longitudinal grooves for improved adherence, improving safety","Low rolling resistance tread design improves fuel economy, reducing operating cost"],"category":"Standard Long Haul","subtitle":"Shallow-tread trailer tire for long distances, excellent water evacuation, low noise, efficiency.","tags":["Shallow Tread","Low Rolling Resistance","Water Evacuation"],"pos":"Trailer","hero":"$hero-#","series":"Standard","segment":"Long Haul"},{"name":"ASR30","sizes":[{"size":"10.00R15","ply":18,"rimw":7.5,"secw":11.1,"diam":36.3,"td":17,"loadS_lbs":6945,"loadS_psi":125,"loadD_lbs":6393,"loadD_psi":125,"liss":"148/145K","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"11R22.5","ply":16,"rimw":8.25,"secw":11.1,"diam":41.6,"td":20.2,"loadS_lbs":6614,"loadS_psi":120,"loadD_lbs":6008,"loadD_psi":120,"liss":"146/143M","smartway":"","ms":"","pmsf":""},{"size":"255/70R22.5","ply":16,"rimw":7.5,"secw":10.1,"diam":36.5,"td":18.3,"loadS_lbs":5512,"loadS_psi":120,"loadD_lbs":5071,"loadD_psi":120,"liss":"140/137M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"275/70R22.5","ply":18,"rimw":8.25,"secw":10.7,"diam":37.9,"td":18.9,"loadS_lbs":6945,"loadS_psi":131,"loadD_lbs":6393,"loadD_psi":131,"liss":"148/145M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"8.25R15","ply":18,"rimw":6.5,"secw":9.3,"diam":32.9,"td":16.4,"loadS_lbs":5071,"loadS_psi":125,"loadD_lbs":4938,"loadD_psi":125,"liss":"137/136K","smartway":"","ms":"\u2022","pmsf":"\u2022"}],"bullets":["Suitable for steer and axle positions in regional applications","Low profile design for oversized and high volume loads for improved fleet efficiency","Deep tread design provides improved adherence in low traction conditions"],"category":"Standard Regional","subtitle":"Steer and trailer tire for regional use with excellent wet weather performance.","tags":["Wet Road","Traction","M+S","3PMSF"],"pos":"Steer/Trailer","hero":"$hero-#","series":"Standard","segment":"Regional"},{"name":"ASR35","sizes":[{"size":"205/75R17.5","ply":14,"rimw":6,"secw":8,"diam":29.6,"td":16.4,"loadS_lbs":3527,"loadS_psi":110,"loadD_lbs":3307,"loadD_psi":110,"liss":"124/122M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"215/75R17.5","ply":18,"rimw":6,"secw":8.4,"diam":30,"td":16.4,"loadS_lbs":4806,"loadS_psi":120,"loadD_lbs":4542,"loadD_psi":120,"liss":"135/133J","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"235/75R17.5","ply":18,"rimw":6.75,"secw":9.3,"diam":31.2,"td":16.4,"loadS_lbs":6008,"loadS_psi":120,"loadD_lbs":5677,"loadD_psi":120,"liss":"143/141J","smartway":"","ms":"\u2022","pmsf":"\u2022"}],"bullets":["Steer axle tire for regional applications","Designed for use on \u201cLast mile\u201d delivery vehicles","Excellent value and fully retreadable casing lowers operating costs"],"category":"Standard Regional","subtitle":"Steer tire for last-mile delivery, fully retreadable, cost-effective, reliable regional performance.","tags":["Delivery Vehicle","Retreadable","M+S","3PMSF"],"pos":"Steer","hero":"$hero-#","series":"Standard","segment":"Regional"},{"name":"ASR69","sizes":[{"size":"315/70R22.5","ply":18,"rimw":9,"secw":12.2,"diam":40,"td":20.8,"loadS_lbs":8818,"loadS_psi":120,"loadD_lbs":7385,"loadD_psi":120,"liss":"156/150L","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"315/80R22.5","ply":20,"rimw":9,"secw":8.5,"diam":42.5,"td":20.8,"loadS_lbs":9094,"loadS_psi":131,"loadD_lbs":8267,"loadD_psi":131,"liss":"157/154M","smartway":"","ms":"\u2022","pmsf":"\u2022"}],"bullets":["Steer axle tire for regional applications","Low rolling resistance tread pattern for improved fuel economy, reducing operating cost","Low heat generation compound improves casing life for increased retreadability","Provides excellent handling for increased driver comfort, reducing fatigue"],"category":"Standard Regional","subtitle":"Steer tire for regional use, low heat, improved casing life, excellent handling.","tags":["Low Heat","Long Life","M+S","3PMSF"],"pos":"Steer","hero":"$hero-#","series":"Standard","segment":"Regional"},{"name":"ADR24","sizes":[{"size":"12R24.5","ply":18,"rimw":9,"secw":11.9,"diam":44.7,"td":26,"loadS_lbs":8267,"loadS_psi":135,"loadD_lbs":7606,"loadD_psi":135,"liss":"154/151M","smartway":"","ms":"\u2022","pmsf":""}],"bullets":["Drive axle tire suitable for regional applications","M&S designation for improved traction in poor conditions, improving safety","Deep tread provides extended mileage, reducing operating cost"],"category":"Standard Regional","subtitle":"Drive tire for regional use with M+S pattern, good tractionand higher load capacity.","tags":["M+S","Traction","High Load"],"pos":"Drive","hero":"$hero-#","series":"Standard","segment":"Regional"},{"name":"ADR26","sizes":[{"size":"10.00R20","ply":18,"rimw":7.5,"secw":10.7,"diam":41.6,"td":22,"loadS_lbs":7165,"loadS_psi":135,"loadD_lbs":6614,"loadD_psi":135,"liss":"149/146K","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"11.00R20","ply":18,"rimw":8,"secw":11.3,"diam":43,"td":23.3,"loadS_lbs":7826,"loadS_psi":135,"loadD_lbs":7165,"loadD_psi":135,"liss":"152/149L","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"11R22.5","ply":16,"rimw":8.25,"secw":11,"diam":41.8,"td":26,"loadS_lbs":6945,"loadS_psi":120,"loadD_lbs":6173,"loadD_psi":120,"liss":"148/144M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"11R24.5","ply":16,"rimw":8.25,"secw":11.1,"diam":43.5,"td":26,"loadS_lbs":7165,"loadS_psi":120,"loadD_lbs":6614,"loadD_psi":120,"liss":"149/146L","smartway":"","ms":"\u2022","pmsf":""},{"size":"12.00R20","ply":22,"rimw":8.5,"secw":12.3,"diam":44.4,"td":23.9,"loadS_lbs":9370,"loadS_psi":141,"loadD_lbs":8543,"loadD_psi":141,"liss":"158/155J","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"9.00R20","ply":16,"rimw":7,"secw":10.2,"diam":40.4,"td":21.4,"loadS_lbs":6173,"loadS_psi":131,"loadD_lbs":5842,"loadD_psi":131,"liss":"144/142M","smartway":"","ms":"\u2022","pmsf":"\u2022"}],"bullets":["Drive tire for use in regional applications","Provides excellent handling for increased driver comfort, reducing fatigue","Open shoulder design provides excellent traction on mud and snow","Deep tread provides long mileage, reducing operating cost"],"category":"Standard Regional","subtitle":"Drive position tire for regional applications, providing high traction and safety in slippery road conditions.","tags":["M+S","3PMSF","Traction"],"pos":"Drive","hero":"$hero-#","series":"Standard","segment":"Regional"},{"name":"ADR35","sizes":[{"size":"205/75R17.5","ply":14,"rimw":6,"secw":8.2,"diam":29.8,"td":20.2,"loadS_lbs":3417,"loadS_psi":110,"loadD_lbs":3197,"loadD_psi":110,"liss":"124/122M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"215/75R17.5","ply":18,"rimw":6,"secw":8.4,"diam":30.3,"td":20.2,"loadS_lbs":4806,"loadS_psi":120,"loadD_lbs":4542,"loadD_psi":120,"liss":"135/133J","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"235/75R17.5","ply":18,"rimw":6.75,"secw":9.3,"diam":31.5,"td":21.4,"loadS_lbs":6008,"loadS_psi":131,"loadD_lbs":5677,"loadD_psi":131,"liss":"143/141J","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"245/70R17.5","ply":18,"rimw":7.5,"secw":9.9,"diam":31.2,"td":20.8,"loadS_lbs":4938,"loadS_psi":131,"loadD_lbs":4674,"loadD_psi":131,"liss":"136/134M","smartway":"","ms":"\u2022","pmsf":"\u2022"}],"bullets":["Drive axle tire for smaller delivery vehicles in regional applications","Provides excellent handling for increased driver comfort, reducing fatigue","M&S designation for improved traction in poor conditions, improving safety"],"category":"Standard Regional","subtitle":"Drive tire for highway, regional, urban use with 3PMS for winter traction on last-mile vehicles.","tags":["M+S","3PMSF","Delivery Vehicles"],"pos":"Drive","hero":"$hero-#","series":"Standard","segment":"Regional"},{"name":"ADR55","sizes":[{"size":"10R22.5","ply":16,"rimw":7.5,"secw":10.2,"diam":40.4,"td":19.5,"loadS_lbs":6173,"loadS_psi":131,"loadD_lbs":5842,"loadD_psi":131,"liss":"144/142M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"12R22.5","ply":18,"rimw":9,"secw":11.8,"diam":42.9,"td":29,"loadS_lbs":7826,"loadS_psi":135,"loadD_lbs":7165,"loadD_psi":135,"liss":"152/149M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"255/70R22.5","ply":16,"rimw":7.5,"secw":10,"diam":36.9,"td":25.2,"loadS_lbs":5512,"loadS_psi":120,"loadD_lbs":5071,"loadD_psi":120,"liss":"140/137M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"275/70R22.5","ply":18,"rimw":8.25,"secw":10.8,"diam":38.4,"td":25.2,"loadS_lbs":6945,"loadS_psi":131,"loadD_lbs":6393,"loadD_psi":131,"liss":"148/145M","smartway":"","ms":"\u2022","pmsf":"\u2022"}],"bullets":["Drive axle tire for regional applications","M&S designation for improved traction in poor conditions, improving safety","Provides excellent handling for increased driver comfort, reducing fatigue"],"category":"Standard Regional","subtitle":"Drive tire for regional use with 3PMS, excellent winter tractionand low heat for durability.","tags":["M+S","3PMSF","Durable"],"pos":"Drive","hero":"$hero-#","series":"Standard","segment":"Regional"},{"name":"ADR69","sizes":[{"size":"315/70R22.5","ply":18,"rimw":9,"secw":12.3,"diam":40.5,"td":29,"loadS_lbs":7606,"loadS_psi":120,"loadD_lbs":6945,"loadD_psi":120,"liss":"152/148M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"315/80R22.5","ply":20,"rimw":9,"secw":12.6,"diam":43.1,"td":29,"loadS_lbs":9094,"loadS_psi":131,"loadD_lbs":8267,"loadD_psi":131,"liss":"157/154M","smartway":"","ms":"\u2022","pmsf":"\u2022"}],"bullets":["Drive axle tire for regional applications","Provides excellent handling for increased driver comfort, reducing fatigue","M&S designation for improved traction in poor conditions, improving safety","Deep tread design provides increased mileage, reducing operating cost"],"category":"Standard Regional","subtitle":"Drive tire for regional use with 3PMS tread, excellent tractionand 20-ply load capacity.","tags":["M+S","Traction","High Load"],"pos":"Drive","hero":"$hero-#","series":"Standard","segment":"Regional"},{"name":"ADR57","sizes":[{"size":"11R22.5","ply":16,"rimw":8.25,"secw":10.9,"diam":41.9,"td":26,"loadS_lbs":6614,"loadS_psi":120,"loadD_lbs":6008,"loadD_psi":120,"liss":"146/143M","smartway":"","ms":"\u2022","pmsf":""},{"size":"11R24.5","ply":16,"rimw":8.25,"secw":11.1,"diam":43.5,"td":26,"loadS_lbs":7165,"loadS_psi":120,"loadD_lbs":6614,"loadD_psi":120,"liss":"149/146M","smartway":"","ms":"\u2022","pmsf":""}],"bullets":["Drive axle tire for regional applications","M&S designation for improved traction in poor conditions, improving safety","Provides excellent handling for increased driver comfort, reducing fatigue"],"category":"Standard Regional","subtitle":"Drive tire for regional use with improved slippery traction, low heatand high-speed performance.","tags":["M+S","Traction","Low Heat"],"pos":"Drive","hero":"$hero-#","series":"Standard","segment":"Regional"},{"name":"AGR26","sizes":[{"size":"11R22.5","ply":16,"rimw":8.25,"secw":10.9,"diam":41.6,"td":23.3,"loadS_lbs":6614,"loadS_psi":120,"loadD_lbs":6008,"loadD_psi":120,"liss":"146/143L","smartway":"","ms":"","pmsf":""},{"size":"11R24.5","ply":16,"rimw":8.25,"secw":11.4,"diam":43.3,"td":23.3,"loadS_lbs":7165,"loadS_psi":120,"loadD_lbs":6614,"loadD_psi":120,"liss":"149/146L","smartway":"","ms":"","pmsf":""},{"size":"315/80R22.5","ply":20,"rimw":9,"secw":12.6,"diam":42.5,"td":23.3,"loadS_lbs":10196,"loadS_psi":131,"loadD_lbs":8267,"loadD_psi":131,"liss":"161/154K","smartway":"","ms":"","pmsf":""}],"bullets":["All position tire for regional applications","Improved performance in high scrub trailer applications, extending service life and reducing operating cost","Deep tread provides improved mileage, reducing operating cost","Cut and chip resistant compound provides additional protection from punctures, reducing down time"],"category":"Standard Regional","subtitle":"All-position regional tire with chip-resistant compound, excellent retreadability, durable for trailers.","tags":["Chip Resistant","Cut Resistant","Retreadable"],"pos":"All Position","hero":"$hero-#","series":"Standard","segment":"Regional"},{"name":"ADC52","sizes":[{"size":"11R22.5","ply":16,"rimw":8.25,"secw":11,"diam":42,"td":30.2,"loadS_lbs":6614,"loadS_psi":120,"loadD_lbs":6008,"loadD_psi":120,"liss":"146/143K","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"13R22.5","ply":18,"rimw":9.75,"secw":12.4,"diam":44.9,"td":30.2,"loadS_lbs":8267,"loadS_psi":120,"loadD_lbs":7606,"loadD_psi":120,"liss":"154/151K","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"315/80R22.5","ply":20,"rimw":9,"secw":12.5,"diam":43.1,"td":29,"loadS_lbs":9094,"loadS_psi":131,"loadD_lbs":8267,"loadD_psi":131,"liss":"157/154K","smartway":"","ms":"\u2022","pmsf":"\u2022"}],"bullets":["Drive tire for On/ Off road applications","Large tread blocks and directional tread design provide excellent traction in adverse conditions","Open shoulder design helps to reduce operating temperatures, extending tire life","Reinforced casing and bead package provides improved protection and increased load carrying capacity in off road applications for improved productivity","Anti cut and chip compound  protects against punctures, reducing down time"],"category":"Standard On/Off","subtitle":"Heavy-duty drive tire with reinforced carcass, large blocks, cut-resistant compoundand improved traction.","tags":["M+S","3PMSF","Traction","Cut Resistant"],"pos":"Drive","hero":"$hero-#","series":"Standard","segment":"Construction"},{"name":"ADC53","sizes":[{"size":"11.00R20","ply":18,"rimw":8,"secw":11.3,"diam":42.9,"td":23.3,"loadS_lbs":7826,"loadS_psi":135,"loadD_lbs":7165,"loadD_psi":135,"liss":"152/149K","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"11R22.5","ply":16,"rimw":8.25,"secw":10.9,"diam":41.9,"td":28.3,"loadS_lbs":6614,"loadS_psi":120,"loadD_lbs":6008,"loadD_psi":120,"liss":"146/143L","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"11R24.5","ply":16,"rimw":8.25,"secw":11.4,"diam":43.5,"td":28.3,"loadS_lbs":7165,"loadS_psi":120,"loadD_lbs":6614,"loadD_psi":120,"liss":"149/146L","smartway":"","ms":"\u2022","pmsf":""},{"size":"12.00R20","ply":18,"rimw":8.5,"secw":12.3,"diam":44.5,"td":26,"loadS_lbs":8267,"loadS_psi":120,"loadD_lbs":7606,"loadD_psi":120,"liss":"154/151K","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"12.00R24","ply":20,"rimw":8.5,"secw":12.3,"diam":48.4,"td":26,"loadS_lbs":9921,"loadS_psi":131,"loadD_lbs":9094,"loadD_psi":131,"liss":"160/157K","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"12R22.5","ply":18,"rimw":9,"secw":11.9,"diam":42.6,"td":24.6,"loadS_lbs":7826,"loadS_psi":135,"loadD_lbs":7165,"loadD_psi":135,"liss":"152/149L","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"13R22.5","ply":18,"rimw":9.75,"secw":12.5,"diam":44.4,"td":26,"loadS_lbs":8267,"loadS_psi":120,"loadD_lbs":7606,"loadD_psi":120,"liss":"154/151K","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"275/70R22.5","ply":18,"rimw":8.25,"secw":10.8,"diam":38.3,"td":26,"loadS_lbs":6945,"loadS_psi":131,"loadD_lbs":6393,"loadD_psi":131,"liss":"148/145L","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"315/80R22.5","ply":18,"rimw":9,"secw":12.4,"diam":42.8,"td":24.6,"loadS_lbs":8267,"loadS_psi":120,"loadD_lbs":7606,"loadD_psi":120,"liss":"154/151M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"315/80R22.5","ply":20,"rimw":9,"secw":12.5,"diam":42.8,"td":24.6,"loadS_lbs":9094,"loadS_psi":131,"loadD_lbs":8267,"loadD_psi":131,"liss":"157/154M","smartway":"","ms":"\u2022","pmsf":"\u2022"}],"bullets":["Drive axle tire for use in extreme off road conditions","Reinforced bead design increases load capacity for improved productivity","Designed to be 30% stronger than a standard casing to allow for increased capacity, improving productivity.","Optimized tread design provides excellent grip in aggressive or low traction conditions"],"category":"Standard On/Off","subtitle":"Drive tire with reinforced bead, stronger carcass, optimized tread, excellent traction, even wear, water evacuation.","tags":["M+S","3PMSF","Traction"],"pos":"Drive","hero":"$hero-#","series":"Standard","segment":"Construction"},{"name":"ADC54","sizes":[],"bullets":["Drive position tire for On/ Off applications in extreme conditions","Suitable for low speed applications in forestry, mining and oil and gas applications","Extreme grip characteristics reduces down time, increasing productivity","Robust casing and belt package provides excellent protection from cuts, impacts and punctures, reducing down time and increasing productivity"],"category":"Standard On/Off","subtitle":"Drive tire for off-road mining, forestry, oil, with open block tread, high traction, puncture-resistant.","tags":["M+S","Mining","Traction","Puncture Resistant"],"pos":"Drive","hero":"$hero-#","series":"Standard","segment":"Construction"},{"name":"AGC08","sizes":[{"size":"10.00R20","ply":16,"rimw":7.5,"secw":10.7,"diam":41.4,"td":20.8,"loadS_lbs":6614,"loadS_psi":120,"loadD_lbs":6008,"loadD_psi":120,"liss":"146/143K","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"10.00R20","ply":18,"rimw":7.5,"secw":10.9,"diam":41.5,"td":20.8,"loadS_lbs":7165,"loadS_psi":135,"loadD_lbs":6614,"loadD_psi":135,"liss":"149/146K","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"11.00R20","ply":18,"rimw":8,"secw":11.4,"diam":42.8,"td":21.4,"loadS_lbs":7826,"loadS_psi":135,"loadD_lbs":7165,"loadD_psi":135,"liss":"152/149K","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"11.00R20","ply":16,"rimw":8,"secw":11.3,"diam":42.7,"td":21.4,"loadS_lbs":7385,"loadS_psi":120,"loadD_lbs":6779,"loadD_psi":120,"liss":"150/147K","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"11R22.5","ply":16,"rimw":8.25,"secw":10.9,"diam":41.5,"td":21.4,"loadS_lbs":6614,"loadS_psi":120,"loadD_lbs":6008,"loadD_psi":120,"liss":"146/143L","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"11R24.5","ply":16,"rimw":8.25,"secw":11.4,"diam":43.1,"td":20.8,"loadS_lbs":7165,"loadS_psi":120,"loadD_lbs":6614,"loadD_psi":120,"liss":"149/146L","smartway":"","ms":"","pmsf":""},{"size":"12.00R20","ply":20,"rimw":8.5,"secw":11.9,"diam":44.1,"td":22,"loadS_lbs":8818,"loadS_psi":131,"loadD_lbs":8047,"loadD_psi":131,"liss":"156/153K","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"12.00R24","ply":20,"rimw":8.5,"secw":12.4,"diam":48.1,"td":22,"loadS_lbs":9921,"loadS_psi":131,"loadD_lbs":9094,"loadD_psi":131,"liss":"160/157K","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"12R22.5","ply":18,"rimw":9,"secw":12.1,"diam":42.4,"td":21.4,"loadS_lbs":7826,"loadS_psi":135,"loadD_lbs":7165,"loadD_psi":135,"liss":"152/149L","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"12R24.5","ply":18,"rimw":9,"secw":11.9,"diam":44.4,"td":21.4,"loadS_lbs":8267,"loadS_psi":135,"loadD_lbs":7606,"loadD_psi":135,"liss":"154/151L","smartway":"","ms":"","pmsf":""},{"size":"315/80R22.5","ply":20,"rimw":9,"secw":12.6,"diam":42.5,"td":20.8,"loadS_lbs":10196,"loadS_psi":131,"loadD_lbs":8267,"loadD_psi":131,"liss":"161/154K","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"315/80R22.5","ply":22,"rimw":9,"secw":12.6,"diam":42.5,"td":20.8,"loadS_lbs":9998,"loadS_psi":131,"loadD_lbs":9094,"loadD_psi":131,"liss":"160/157L","smartway":"","ms":"\u2022","pmsf":""},{"size":"9.00R20","ply":16,"rimw":7,"secw":10.2,"diam":45.2,"td":19.5,"loadS_lbs":6173,"loadS_psi":131,"loadD_lbs":5842,"loadD_psi":131,"liss":"144/142K","smartway":"","ms":"\u2022","pmsf":"\u2022"}],"bullets":["All position tire best suited to steer and trailer applications in ON/ Off applications","Chip and cut compound provides added protection in poor road conditions, reducing down time"],"category":"Standard On/Off","subtitle":"All-position tire for on/off-road use, designed for poor road conditions.","tags":["Poor Road","Durable","M+S","3PMSF"],"pos":"Trailer","hero":"$hero-#","series":"Standard","segment":"Construction"},{"name":"AGC53","sizes":[],"bullets":["All position tire suitable for mixed road applications","Open block center with closed shoulder tread design offers a balance between off road traction and regional applications","Low heat generation provides improved casing life, improving retreadability"],"category":"Standard On/Off","subtitle":"Steer and trailer tire for mixed roads, high load capacity, durable performance.","tags":["Mixed Road","Poor Road","High Load","M+S"],"pos":"All Position","hero":"$hero-#","series":"Standard","segment":"Construction"},{"name":"AGM10","sizes":[{"size":"10.00R20","ply":18,"rimw":7.5,"secw":10.8,"diam":41.9,"td":27.7,"loadS_lbs":7165,"loadS_psi":135,"loadD_lbs":6614,"loadD_psi":135,"liss":"149/146F","smartway":"","ms":"","pmsf":""},{"size":"11R22.5","ply":16,"rimw":8.25,"secw":10.9,"diam":41.9,"td":27.7,"loadS_lbs":6614,"loadS_psi":120,"loadD_lbs":6008,"loadD_psi":120,"liss":"146/143G","smartway":"","ms":"","pmsf":""},{"size":"12.00R20","ply":20,"rimw":8.5,"secw":12,"diam":44.7,"td":27.1,"loadS_lbs":8818,"loadS_psi":131,"loadD_lbs":8047,"loadD_psi":131,"liss":"156/153F","smartway":"","ms":"","pmsf":""},{"size":"12.00R24","ply":20,"rimw":8.5,"secw":12.3,"diam":48.5,"td":29,"loadS_lbs":9921,"loadS_psi":131,"loadD_lbs":9094,"loadD_psi":131,"liss":"160/157F","smartway":"","ms":"","pmsf":""},{"size":"12R22.5","ply":18,"rimw":9,"secw":12,"diam":42.8,"td":27.1,"loadS_lbs":7826,"loadS_psi":135,"loadD_lbs":7165,"loadD_psi":135,"liss":"152/149G","smartway":"","ms":"","pmsf":""},{"size":"13R22.5","ply":18,"rimw":9.75,"secw":12.4,"diam":44.8,"td":28.3,"loadS_lbs":8267,"loadS_psi":120,"loadD_lbs":7606,"loadD_psi":120,"liss":"154/151G","smartway":"","ms":"","pmsf":""}],"bullets":["All position tire for Off road applications","Designed for poor road conditions","Large tread block and open groove design provides excellent traction in the most extreme conditions"],"category":"Standard Off Road","subtitle":"All-position tire for on/off-road use, open tread, excellent traction on poor surfaces.","tags":["Poor Road","Traction","ML"],"pos":"OTR","hero":"$hero-#","series":"Standard","segment":"Construction"},{"name":"AGM84","sizes":[{"size":"11R22.5","ply":16,"rimw":8.25,"secw":10.9,"diam":42.3,"td":32.8,"loadS_lbs":6614,"loadS_psi":120,"loadD_lbs":6008,"loadD_psi":120,"liss":"146/143G","smartway":"","ms":"ML","pmsf":""},{"size":"11R24.5","ply":16,"rimw":8.25,"secw":11.5,"diam":43.9,"td":32.8,"loadS_lbs":7165,"loadS_psi":120,"loadD_lbs":6614,"loadD_psi":120,"liss":"149/146G","smartway":"","ms":"ML","pmsf":""}],"bullets":["Drive and trailer tire for use in Off road applications","Wide tread provides improved wear, improving tread life","Large tread blocks with open design provides excellent traction in extreme off road conditions","Cut and chip resistant compound reduces punctures and penetrations, reducing down time"],"category":"Standard Off Road","subtitle":"Drive tire for off-road use, wide tread, puncture-resistant, high traction, long-lasting.","tags":["Wide Tread","Puncture Resistant","Traction","ML"],"pos":"OTR","hero":"$hero-#","series":"Standard","segment":"Construction"},{"name":"ADW80","sizes":[{"size":"315/70R22.5","ply":18,"rimw":9,"secw":12.4,"diam":40.7,"td":30.2,"loadS_lbs":7606,"loadS_psi":120,"loadD_lbs":6945,"loadD_psi":120,"liss":"152/148M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"315/80R22.5","ply":18,"rimw":9,"secw":12.6,"diam":43.2,"td":30.2,"loadS_lbs":8267,"loadS_psi":120,"loadD_lbs":7606,"loadD_psi":120,"liss":"154/151M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"315/80R22.5","ply":20,"rimw":9,"secw":12.6,"diam":43.2,"td":30.2,"loadS_lbs":9094,"loadS_psi":131,"loadD_lbs":8267,"loadD_psi":131,"liss":"157/154M","smartway":"","ms":"\u2022","pmsf":"\u2022"}],"bullets":["Regional winter drive tire suitable for inter city coaches and tractors","Multiple sipes in each tread block provide biting edges for excellent traction and braking performance","Special tread compound is designed for cold weather, assuring maximum grip","3PMS designation assure excellent winter traction, improving safety"],"category":"Standard Winter","subtitle":"Drive tire for winter with 3PMS, high-density grooves, low-temperature compoundand excellent snow traction.","tags":["M+S","3PMSF","Traction","Snow"],"pos":"Drive","hero":"$hero-#","series":"Standard","segment":"Winter"},{"name":"ADW81","sizes":[{"size":"11R22.5","ply":16,"rimw":8.25,"secw":10.9,"diam":41.9,"td":26.5,"loadS_lbs":6614,"loadS_psi":120,"loadD_lbs":6008,"loadD_psi":120,"liss":"146/143M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"11R24.5","ply":16,"rimw":8.25,"secw":11.4,"diam":43.5,"td":26.5,"loadS_lbs":7165,"loadS_psi":120,"loadD_lbs":6614,"loadD_psi":120,"liss":"149/146M","smartway":"","ms":"\u2022","pmsf":"\u2022"}],"bullets":["Regional winter drive tire for regional applications","Multiple sipes in each tread block provide biting edges for excellent traction and braking performance","Special tread compound is designed for cold weather, assuring maximum grip","3PMS designation assure excellent winter traction, improving safety"],"category":"Standard Winter","subtitle":"Drive tire for winter with 3PMS, low-temperature tread compound, high-density grooves, excellent snow traction.","tags":["M+S","3PMSF","Traction","Low Temp."],"pos":"Drive","hero":"$hero-#","series":"Standard","segment":"Winter"},{"name":"ADW82","sizes":[{"size":"225/70R19.5","ply":14,"rimw":6.75,"secw":8.9,"diam":32,"td":18.9,"loadS_lbs":3968,"loadS_psi":110,"loadD_lbs":3748,"loadD_psi":110,"liss":"128/126M","smartway":"","ms":"\u2022","pmsf":"\u2022"},{"size":"245/70R19.5","ply":16,"rimw":7.5,"secw":9.8,"diam":33.3,"td":19.5,"loadS_lbs":4938,"loadS_psi":120,"loadD_lbs":4674,"loadD_psi":120,"liss":"136/134M","smartway":"","ms":"\u2022","pmsf":"\u2022"}],"bullets":["Winter drive tire for use in regional and urban pick up and delivery applications","Multiple sipes in each tread block provide biting edges for excellent traction and braking performance","Special tread compound is designed for cold weather, assuring maximum grip","3PMS designation assure excellent winter traction, improving safety"],"category":"Standard Winter","subtitle":"Drive tire for winter and urban last-mile use with 3PMS, low-temperature compound, excellent traction.","tags":["M+S","3PMSF","Traction","Delivery Vehicles"],"pos":"Drive","hero":"$hero-#","series":"Standard","segment":"Winter"}];
+
+/* ---------- derive facet vocab ---------- */
+const SEGMENTS = ['Long Haul','Regional','Construction','Winter','Urban'];
+const POSITIONS = [...new Set(TIRES.map(t=>t.pos))].sort();
+const ALL_TAGS = [...new Set(TIRES.flatMap(t=>t.tags))].filter(t=>!['M+S','3PMSF','SmartWay','ML'].includes(t)).sort();
+
+const state = {
+  mode:'application',
+  search:'',
+  segment:new Set(),
+  pos:new Set(),
+  series:new Set(),
+  cert:new Set(),
+  tags:new Set(),
+  sizeWidth:'', sizeRatio:'', sizeRim:'',
+  sort:'name'
+};
+
+const checkSvg = '<svg viewBox="0 0 10 10"><path d="M1 5l3 3 5-6" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+/* ---------- size token parsing: e.g. 295/75R22.5 or 11R22.5 or 12.00R20 ---------- */
+function parseSize(s){
+  // forms: WIDTH/RATIO R RIM   or   WIDTH R RIM (no ratio, e.g. 11R22.5, 12.00R20)
+  let m = s.match(/^([\d.]+)\/(\d+)R([\d.]+)$/);
+  if(m) return {width:m[1], ratio:m[2], rim:m[3]};
+  m = s.match(/^([\d.]+)R([\d.]+)$/);
+  if(m) return {width:m[1], ratio:null, rim:m[2]};
+  return {width:null, ratio:null, rim:null};
+}
+const widthSet=new Set(), ratioSet=new Set(), rimSet=new Set();
+TIRES.forEach(t=>t.sizes.forEach(sz=>{
+  const p=parseSize(sz.size);
+  if(p.width) widthSet.add(p.width);
+  if(p.ratio) ratioSet.add(p.ratio);
+  if(p.rim) rimSet.add(p.rim);
+}));
+function numSort(set){return [...set].sort((a,b)=>parseFloat(a)-parseFloat(b));}
+
+/* ---------- build sidebar ---------- */
+function countFor(predicate){return TIRES.filter(predicate).length;}
+
+function buildSegmentFacet(){
+  const el=document.getElementById('facetSegment'); el.innerHTML='';
+  SEGMENTS.forEach(seg=>{
+    const c=countFor(t=>t.segment===seg);
+    const row=document.createElement('div');
+    row.className='chiprow'+(state.segment.has(seg)?' checked':'');
+    row.innerHTML=`<span class="box">${checkSvg}</span><span class="lbl">${seg}</span><span class="ct mono">${c}</span>`;
+    row.onclick=()=>{toggle(state.segment,seg); render();};
+    el.appendChild(row);
+  });
+}
+function buildPosFacet(){
+  const el=document.getElementById('facetPos'); el.innerHTML='';
+  POSITIONS.forEach(p=>{
+    const c=countFor(t=>t.pos===p);
+    const row=document.createElement('div');
+    row.className='chiprow'+(state.pos.has(p)?' checked':'');
+    row.innerHTML=`<span class="box">${checkSvg}</span><span class="lbl">${p}</span><span class="ct mono">${c}</span>`;
+    row.onclick=()=>{toggle(state.pos,p); render();};
+    el.appendChild(row);
+  });
+}
+function buildSeriesFacet(){
+  const el=document.getElementById('facetSeries'); el.innerHTML='';
+  ['Premium','Standard'].forEach(s=>{
+    const c=countFor(t=>t.series===s);
+    const row=document.createElement('div');
+    row.className='chiprow'+(state.series.has(s)?' checked':'');
+    row.innerHTML=`<span class="box">${checkSvg}</span><span class="lbl">${s} Series</span><span class="ct mono">${c}</span>`;
+    row.onclick=()=>{toggle(state.series,s); render();};
+    el.appendChild(row);
+  });
+}
+const CERT_KEY_MAP={'M+S':'ms','3PMSF':'pmsf','SmartWay':'smartway'};
+function buildCertFacet(){
+  const el=document.getElementById('facetCert'); el.innerHTML='';
+  const certs=[['M+S','M+S Rated'],['3PMSF','3PMSF Severe Snow'],['SmartWay','SmartWay Verified']];
+  certs.forEach(([key,label])=>{
+    const c=countFor(t=>t.sizes.some(s=>s[CERT_KEY_MAP[key]]));
+    const row=document.createElement('div');
+    row.className='chiprow'+(state.cert.has(key)?' checked':'');
+    row.innerHTML=`<span class="box">${checkSvg}</span><span class="lbl">${label}</span><span class="ct mono">${c}</span>`;
+    row.onclick=()=>{toggle(state.cert,key); render();};
+    el.appendChild(row);
+  });
+}
+function buildTagFacet(){
+  const el=document.getElementById('facetTags'); el.innerHTML='';
+  ALL_TAGS.forEach(tag=>{
+    const chip=document.createElement('button');
+    chip.className='tagchip'+(state.tags.has(tag)?' active':'');
+    chip.textContent=tag;
+    chip.onclick=()=>{toggle(state.tags,tag); render();};
+    el.appendChild(chip);
+  });
+}
+function buildSizeSelectors(){
+  const w=document.getElementById('selWidth'), r=document.getElementById('selRatio'), rim=document.getElementById('selRim');
+  w.innerHTML='<option value="">Width</option>'+numSort(widthSet).map(v=>`<option value="${v}">${v}</option>`).join('');
+  r.innerHTML='<option value="">Ratio</option>'+numSort(ratioSet).map(v=>`<option value="${v}">${v}</option>`).join('');
+  rim.innerHTML='<option value="">Rim (in)</option>'+numSort(rimSet).map(v=>`<option value="${v}">${v}</option>`).join('');
+  w.value=state.sizeWidth; r.value=state.sizeRatio; rim.value=state.sizeRim;
+  w.onchange=()=>{state.sizeWidth=w.value; render();};
+  r.onchange=()=>{state.sizeRatio=r.value; render();};
+  rim.onchange=()=>{state.sizeRim=rim.value; render();};
+}
+function toggle(set,val){ set.has(val)? set.delete(val): set.add(val); }
+
+/* ---------- filtering ---------- */
+function matchesSearch(t,q){
+  if(!q) return true;
+  q=q.toLowerCase();
+  if(t.name.toLowerCase().includes(q)) return true;
+  if(t.subtitle.toLowerCase().includes(q)) return true;
+  if(t.tags.some(tag=>tag.toLowerCase().includes(q))) return true;
+  if(t.sizes.some(s=>s.size.toLowerCase().includes(q.replace(/\s/g,'')))) return true;
+  if(t.segment.toLowerCase().includes(q)||t.pos.toLowerCase().includes(q)) return true;
+  return false;
+}
+function matchesSize(t){
+  if(!state.sizeWidth && !state.sizeRatio && !state.sizeRim) return true;
+  return t.sizes.some(sz=>{
+    const p=parseSize(sz.size);
+    if(state.sizeWidth && p.width!==state.sizeWidth) return false;
+    if(state.sizeRatio && p.ratio!==state.sizeRatio) return false;
+    if(state.sizeRim && p.rim!==state.sizeRim) return false;
+    return true;
+  });
+}
+function filteredTires(){
+  return TIRES.filter(t=>{
+    if(!matchesSearch(t,state.search)) return false;
+    if(state.mode==='size'){ if(!matchesSize(t)) return false; }
+    if(state.segment.size && !state.segment.has(t.segment)) return false;
+    if(state.pos.size && !state.pos.has(t.pos)) return false;
+    if(state.series.size && !state.series.has(t.series)) return false;
+    if(state.cert.size){
+      for(const c of state.cert){
+        const key=CERT_KEY_MAP[c];
+        if(!t.sizes.some(s=>s[key])) return false;
+      }
+    }
+    if(state.tags.size){
+      for(const tag of state.tags){ if(!t.tags.includes(tag)) return false; }
+    }
+    return true;
+  });
+}
+function sortTires(list){
+  const arr=[...list];
+  if(state.sort==='name') arr.sort((a,b)=>a.name.localeCompare(b.name));
+  if(state.sort==='series') arr.sort((a,b)=> (a.series===b.series?a.name.localeCompare(b.name): a.series==='Premium'?-1:1));
+  if(state.sort==='sizes') arr.sort((a,b)=> b.sizes.length-a.sizes.length || a.name.localeCompare(b.name));
+  return arr;
+}
+
+/* ---------- active filter chips ---------- */
+function buildActiveFilters(){
+  const el=document.getElementById('activeFilters'); el.innerHTML='';
+  const add=(label,onRemove)=>{
+    const chip=document.createElement('div'); chip.className='afchip';
+    chip.innerHTML=`<span>${label}</span>`;
+    const btn=document.createElement('button'); btn.textContent='×'; btn.onclick=()=>{onRemove(); render();};
+    chip.appendChild(btn); el.appendChild(chip);
+  };
+  state.segment.forEach(v=>add('App: '+v, ()=>state.segment.delete(v)));
+  state.pos.forEach(v=>add('Pos: '+v, ()=>state.pos.delete(v)));
+  state.series.forEach(v=>add(v, ()=>state.series.delete(v)));
+  state.cert.forEach(v=>add(v, ()=>state.cert.delete(v)));
+  state.tags.forEach(v=>add(v, ()=>state.tags.delete(v)));
+  if(state.sizeWidth) add('W: '+state.sizeWidth, ()=>state.sizeWidth='');
+  if(state.sizeRatio) add('Ratio: '+state.sizeRatio, ()=>state.sizeRatio='');
+  if(state.sizeRim) add('Rim: '+state.sizeRim+'"', ()=>state.sizeRim='');
+  if(state.search) add('"'+state.search+'"', ()=>{state.search=''; document.getElementById('searchInput').value='';});
+}
+
+function resetAll(){
+  state.segment.clear(); state.pos.clear(); state.series.clear(); state.cert.clear(); state.tags.clear();
+  state.sizeWidth=''; state.sizeRatio=''; state.sizeRim=''; state.search='';
+  document.getElementById('searchInput').value='';
+  render();
+}
+
+/* ---------- card rendering ---------- */
+function liveSizeRange(t){
+  if(!t.sizes.length) return null;
+  return t.sizes.length===1? t.sizes[0].size : t.sizes.length+' sizes';
+}
+function cardHtml(t){
+  const pillClass=t.series==='Premium'?'premium':'standard';
+  const hasMS=t.sizes.some(s=>s.ms), hasPMSF=t.sizes.some(s=>s.pmsf), hasSW=t.sizes.some(s=>s.smartway);
+  const sizesLabel = t.sizes.length ? `${t.sizes.length} size${t.sizes.length>1?'s':''}` : 'Spec sheet pending';
+  return `
+  <div class="card" data-name="${t.name}">
+    <span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+    <div class="card-top">
+      <span class="pill ${pillClass}">${t.series}</span>
+      <span class="posmark mono">${t.pos}</span>
+    </div>
+    <h3 class="card-name display">${t.name}</h3>
+    <p class="card-sub">${t.subtitle}</p>
+    <div class="card-tags">${t.tags.slice(0,4).map(tag=>`<span class="mini-tag">${tag}</span>`).join('')}</div>
+    <div class="card-bottom">
+      <div class="certs">
+        <span class="cert ${hasMS?'on':''}"><span class="dot"></span>M+S</span>
+        <span class="cert ${hasPMSF?'on':''}"><span class="dot"></span>3PMSF</span>
+        <span class="cert ${hasSW?'on':''}"><span class="dot"></span>SW</span>
+      </div>
+      <span class="sizecount ${t.sizes.length?'':'pending'} mono">${sizesLabel}</span>
+    </div>
+    <span class="viewlink">View specs</span>
+  </div>`;
+}
+
+function render(){
+  // toggle facet panels
+  document.getElementById('facetsApplication').style.display = state.mode==='application' ? '' : 'none';
+  document.getElementById('facetsSize').style.display = state.mode==='size' ? '' : 'none';
+  document.getElementById('tabApplication').classList.toggle('active', state.mode==='application');
+  document.getElementById('tabSize').classList.toggle('active', state.mode==='size');
+
+  buildSegmentFacet(); buildPosFacet(); buildSeriesFacet(); buildCertFacet(); buildTagFacet();
+  if(state.mode==='size') buildSizeSelectors();
+
+  buildActiveFilters();
+
+  const list=sortTires(filteredTires());
+  document.getElementById('resultCount').textContent=list.length;
+  document.querySelector('.fig').innerHTML = `FIG. 01 — SHOWING <b id="resultCount">${list.length}</b> OF 45 TIRES`;
+
+  const grid=document.getElementById('resultsGrid');
+  if(!list.length){
+    grid.innerHTML = `<div class="empty">
+      <p class="display">NO TIRES MATCH</p>
+      <p>Nothing in the 45-tire catalog fits this combination of filters. Loosen a constraint or reset to start over.</p>
+      <button id="emptyResetBtn">RESET ALL FILTERS</button>
+    </div>`;
+    document.getElementById('emptyResetBtn').onclick=resetAll;
+    return;
+  }
+  grid.innerHTML = list.map(cardHtml).join('');
+  grid.querySelectorAll('.card').forEach(card=>{
+    card.onclick=()=>openModal(card.dataset.name);
+  });
+}
+
+/* ---------- modal ---------- */
+function specRow(s){
+  const mark=(v)=> v ? '<span class="markyes">&#9679;</span>' : '<span class="markno">—</span>';
+  return `<tr>
+    <td>${s.size}</td>
+    <td class="dim">${s.ply||'—'}</td>
+    <td class="dim">${s.rimw||'—'}</td>
+    <td class="dim">${s.secw||'—'}</td>
+    <td class="dim">${s.diam||'—'}</td>
+    <td class="dim">${s.td||'—'}</td>
+    <td class="dim">${s.loadS_lbs?s.loadS_lbs+' / '+s.loadS_psi:'—'}</td>
+    <td class="dim">${s.loadD_lbs?s.loadD_lbs+' / '+s.loadD_psi:'—'}</td>
+    <td>${s.liss||'—'}</td>
+    <td class="markcol">${mark(s.ms)}</td>
+    <td class="markcol">${mark(s.pmsf)}</td>
+    <td class="markcol">${mark(s.smartway)}</td>
+  </tr>`;
+}
+function openModal(name){
+  const t=TIRES.find(x=>x.name===name);
+  if(!t) return;
+  document.getElementById('modalPill').className='pill '+(t.series==='Premium'?'premium':'standard');
+  document.getElementById('modalPill').textContent=t.series+' Series — '+t.segment;
+  document.getElementById('modalName').textContent=t.name;
+  document.getElementById('modalSub').textContent=t.subtitle;
+  document.getElementById('modalPosLabel').textContent='POSITION\n'+t.pos.toUpperCase();
+
+  let body = `<p class="modal-section-title">Design Highlights</p>
+    <ul class="bullets">${t.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>`;
+
+  body += `<p class="modal-section-title">FIG. 02 — Spec Chart</p>`;
+  if(t.sizes.length){
+    body += `<div class="spectable-wrap"><table class="spectable">
+      <thead><tr>
+        <th>Size</th><th>Ply</th><th>Rim&nbsp;W&nbsp;(in)</th><th>Sec.&nbsp;W</th><th>O.D.&nbsp;(in)</th><th>T.D.&nbsp;32nds</th>
+        <th>Max Load S (lbs/psi)</th><th>Max Load D (lbs/psi)</th><th>LI/SS</th><th>M+S</th><th>3PMSF</th><th>SmartWay</th>
+      </tr></thead>
+      <tbody>${t.sizes.map(specRow).join('')}</tbody>
+    </table></div>`;
+  } else {
+    body += `<div class="pending-note">Spec chart pending — this tire's size and load data has not yet been finalized in the master spec sheet. Contact product engineering for current availability.</div>`;
+  }
+  document.getElementById('modalBody').innerHTML = body;
+  document.getElementById('modalFooter').innerHTML = t.tags.map(tag=>`<span class="tagchip">${tag}</span>`).join('');
+
+  document.getElementById('overlay').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('overlay').classList.remove('show');
+  document.body.style.overflow='';
+}
+document.getElementById('modalClose').onclick=closeModal;
+document.getElementById('overlay').onclick=(e)=>{ if(e.target.id==='overlay') closeModal(); };
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+
+/* ---------- top-level controls ---------- */
+document.getElementById('tabApplication').onclick=()=>{state.mode='application'; render();};
+document.getElementById('tabSize').onclick=()=>{state.mode='size'; render();};
+document.getElementById('searchInput').addEventListener('input', e=>{ state.search=e.target.value; render(); });
+document.getElementById('clearSearchBtn').onclick=()=>{ state.search=''; document.getElementById('searchInput').value=''; render(); };
+document.getElementById('sortSelect').onchange=e=>{ state.sort=e.target.value; render(); };
+document.querySelectorAll('[data-reset]').forEach(btn=>{
+  btn.onclick=()=>{
+    const k=btn.dataset.reset;
+    if(k==='segment') state.segment.clear();
+    if(k==='pos') state.pos.clear();
+    if(k==='tags') state.tags.clear();
+    if(k==='size'){ state.sizeWidth=''; state.sizeRatio=''; state.sizeRim=''; }
+    render();
+  };
+});
+
+render();
+</script>
+</body>
+</html>

@@ -751,8 +751,8 @@ function specRow(s){
     <td>${s.size}</td>
     <td class="dim">${s.ply||dash}</td>
     <td class="dim">${s.rimw!=null?Number(s.rimw).toFixed(2):dash}</td>
-    <td class="dim">${s.secw||dash}</td>
-    <td class="dim">${s.diam||dash}</td>
+    <td class="dim">${s.secw!=null?Number(s.secw).toFixed(1):dash}</td>
+    <td class="dim">${s.diam!=null?Number(s.diam).toFixed(1):dash}</td>
     <td class="dim">${s.od_mm||dash}</td>
     <td class="dim">${s.td!=null?Number(s.td).toFixed(1):dash}</td>
     <td class="dim">${s.td_mm||dash}</td>
@@ -760,7 +760,7 @@ function specRow(s){
     <td class="dim">${s.loadS_kg?s.loadS_kg+'/'+s.loadS_kpa:dash}</td>
     <td class="dim">${s.loadD_lbs?s.loadD_lbs+'/'+s.loadD_psi:dash}</td>
     <td class="dim">${s.loadD_kg?s.loadD_kg+'/'+s.loadD_kpa:dash}</td>
-    <td>${s.liss||dash}</td>
+    <td class="dim">${s.liss||dash}</td>
     <td class="markcol">${mark(s.ms)}</td>
     <td class="markcol">${mark(s.pmsf)}</td>
     <td class="markcol">${mark(s.smartway)}</td>

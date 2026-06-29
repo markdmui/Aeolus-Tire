@@ -94,7 +94,8 @@ body{
 .searchrow .clearbtn:hover{color:var(--text);background:var(--panel);}
 
 /* ---------- Mode tabs ---------- */
-.modetabs{display:flex;gap:0;margin-top:18px;border-bottom:1px solid var(--line);}
+.modetabs{display:flex;align-items:center;justify-content:space-between;gap:0;margin-top:18px;border-bottom:1px solid var(--line);}
+.modetabs-left{display:flex;align-items:center;}
 .modetab{
   font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
   padding:12px 4px;margin-right:32px;color:var(--muted);background:none;border:none;cursor:pointer;
@@ -102,6 +103,11 @@ body{
 }
 .modetab.active{color:var(--text);border-bottom:2px solid var(--yellow);font-weight:600;}
 .modetab .count{color:var(--muted-2);margin-left:4px;}
+.size-inline{display:flex;gap:8px;align-items:center;padding-bottom:6px;}
+.size-inline select{
+  font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 8px;
+  border:1px solid var(--line-strong);background:var(--bg);color:var(--text);cursor:pointer;
+}
 
 /* ---------- Layout: sidebar + results ---------- */
 .layout{display:grid;grid-template-columns:268px 1fr;gap:40px;margin-top:30px;align-items:start;}
@@ -339,8 +345,15 @@ table.spectable td.markcol{text-align:center;}
   </div>
 
   <div class="modetabs">
-    <button class="modetab active" data-mode="application" id="tabApplication">By Application</button>
-    <button class="modetab" data-mode="size" id="tabSize">By Tire Size</button>
+    <div class="modetabs-left">
+      <button class="modetab active" data-mode="application" id="tabApplication">By Application</button>
+      <button class="modetab" data-mode="size" id="tabSize">By Tire Size</button>
+    </div>
+    <div class="size-inline">
+      <select id="selWidth"><option value="">Width</option></select>
+      <select id="selRatio"><option value="">Ratio</option></select>
+      <select id="selRim"><option value="">Rim (in)</option></select>
+    </div>
   </div>
 
   <div class="layout">
@@ -373,18 +386,6 @@ table.spectable td.markcol{text-align:center;}
 
       </div>
 
-      <!-- SIZE MODE FACETS -->
-      <div id="facetsSize" style="display:none;">
-        <div class="facet">
-          <p class="facet-title">Find by dimension <button class="resetlink" data-reset="size">reset</button></p>
-          <div class="sizegrid">
-            <select id="selWidth"><option value="">Width</option></select>
-            <select id="selRatio"><option value="">Ratio</option></select>
-            <select id="selRim"><option value="">Rim</option></select>
-          </div>
-          <p class="sizehint">Choose one or more dimensions, in any order — e.g. set Rim to 22.5 to see every Aeolus tire built on a 22.5&Prime; wheel.</p>
-        </div>
-      </div>
 
     </aside>
 
@@ -652,14 +653,12 @@ function cardHtml(t){
 }
 
 function render(){
-  // toggle facet panels
-  document.getElementById('facetsApplication').style.display = state.mode==='application' ? '' : 'none';
-  document.getElementById('facetsSize').style.display = state.mode==='size' ? '' : 'none';
+  // toggle tab highlight only
   document.getElementById('tabApplication').classList.toggle('active', state.mode==='application');
   document.getElementById('tabSize').classList.toggle('active', state.mode==='size');
 
   buildSegmentFacet(); buildPosFacet(); buildSeriesFacet(); buildCertFacet(); buildTagFacet();
-  if(state.mode==='size') buildSizeSelectors();
+  buildSizeSelectors();
 
   buildActiveFilters();
 

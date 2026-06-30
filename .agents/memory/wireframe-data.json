@@ -214,7 +214,7 @@
         2725,
         830,
         "146/143L",
-        "\u2022"
+        "•"
       ],
       [
         "11R24.5",
@@ -234,7 +234,7 @@
         3000,
         830,
         "149/146L",
-        "\u2022"
+        "•"
       ]
     ],
     "category": "Premium Long Haul",
@@ -399,7 +399,7 @@
         2725,
         720,
         "146/143M",
-        "\u2022"
+        "•"
       ]
     ],
     "category": "Premium Long Haul",
@@ -423,7 +423,7 @@
     "features": [
       {
         "title": "Full Rubberized Cord Construction",
-        "body": "The fully rubberized cord enhances carcass fatigue resistance, increases structural integrityand improves safety throughout the tire\u2019s lifecycle (supports quality retreading).",
+        "body": "The fully rubberized cord enhances carcass fatigue resistance, increases structural integrityand improves safety throughout the tire’s lifecycle (supports quality retreading).",
         "image": "Neo-Fuel-T3-f4"
       }
     ]
@@ -470,7 +470,7 @@
         2725,
         830,
         "146/143M",
-        "\u2022"
+        "•"
       ],
       [
         "11R24.5",
@@ -490,7 +490,7 @@
         3000,
         830,
         "149/146M",
-        "\u2022"
+        "•"
       ]
     ],
     "category": "Premium Long Haul",
@@ -866,7 +866,7 @@
     ],
     "features": [
       {
-        "title": "SATT \u2014 Spiral Advanced Truck Technology",
+        "title": "SATT — Spiral Advanced Truck Technology",
         "body": "Built with SATT (Spiral Advanced Truck Technology), this innovative structural reinforcement improves casing durability, structural integrityand retreadability, delivering reliable performance over multiple life cycles.",
         "image": "Neo-Allroads-S-f4"
       }
@@ -2402,30 +2402,6 @@
     ]
   },
   {
-    "name": "Sailor AGB23",
-    "alt": null,
-    "specs_table": [],
-    "category": "Urban",
-    "subtitle": "All-wheel tire for urban and regional use, long-lasting, heat-resistant, low rolling resistance.",
-    "tags": [
-      "Long Life",
-      "Heat Resistant",
-      "3PMSF",
-      "M+S"
-    ],
-    "pos": "All Postiion",
-    "hero_image": "$hero-#",
-    "bgtruck": "bg-$Seg-#",
-    "bullets": [
-      "All position tire suitable for urban transit applications",
-      "Deep tread for improved mileage, reduces operating costs",
-      "Special S groove design reduces heat generation, extending casing life and improving retreadability",
-      "Specially designed sidewall reduces damage from curbing, extending casing life",
-      "High silica compound reduces rolling resistance, improving fuel efficiency"
-    ],
-    "features": []
-  },
-  {
     "name": "Neo Urban G",
     "alt": null,
     "specs_table": [
@@ -2886,7 +2862,7 @@
     "bgtruck": "bg-$Seg-#",
     "bullets": [
       "Steer axle tire for regional applications",
-      "Designed for use on \u201cLast mile\u201d delivery vehicles",
+      "Designed for use on “Last mile” delivery vehicles",
       "Excellent value and fully retreadable casing lowers operating costs"
     ],
     "features": []
@@ -4162,28 +4138,6 @@
     "bullets": [
       "All position tire best suited to steer and trailer applications in ON/ Off applications",
       "Chip and cut compound provides added protection in poor road conditions, reducing down time"
-    ],
-    "features": []
-  },
-  {
-    "name": "AGC53",
-    "alt": null,
-    "specs_table": [],
-    "category": "Standard On/Off",
-    "subtitle": "Steer and trailer tire for mixed roads, high load capacity, durable performance.",
-    "tags": [
-      "Mixed Road",
-      "Poor Road",
-      "High Load",
-      "M+S"
-    ],
-    "pos": "All Position",
-    "hero_image": "$hero-#",
-    "bgtruck": "bg-$Seg-#",
-    "bullets": [
-      "All position tire suitable for mixed road applications",
-      "Open block center with closed shoulder tread design offers a balance between off road traction and regional applications",
-      "Low heat generation provides improved casing life, improving retreadability"
     ],
     "features": []
   },

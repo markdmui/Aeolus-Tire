@@ -73,7 +73,6 @@ const GROUPS: CategoryGroup[] = [
       { name: "Neo Winter S",     photo: "Neo-Winter-S.png",            labelYellow: "PREMIUM",  labelWhite: "WINTER",      slug: "neo-winter-s",      subtitle: "Winter steer tire with 3PMSF rating for severe snow conditions." },
       { name: "Neo Allseason D",  photo: "Neo-Allseason-D.png",         labelYellow: "PREMIUM",  labelWhite: "WINTER",      slug: "neo-allseason-d",   subtitle: "All-season drive tire for year-round performance in any weather." },
       // — Urban —
-      { name: "AGB23",            photo: "AGB23.png",                   labelYellow: "",         labelWhite: "URBAN",       slug: "agb23",             subtitle: "All-position bus tire for urban transit and coach applications." },
       { name: "Neo Urban G",      photo: "Neo-Urban-G.png",             labelYellow: "PREMIUM",  labelWhite: "URBAN",       slug: "neo-urban-g",       subtitle: "All-position urban tire for city transit and short-haul delivery." },
       // — Standard Long Haul —
       { name: "ASL06",            photo: "ASL06.png",                   labelYellow: "STANDARD", labelWhite: "LONG HAUL",   slug: "asl06",             subtitle: "Long haul steer tire for fuel efficiency and high-speed stability." },
@@ -95,7 +94,6 @@ const GROUPS: CategoryGroup[] = [
       { name: "ADC53",            photo: "ADC53.png",                   labelYellow: "STANDARD", labelWhite: "ON/OFF",      slug: "adc53",             subtitle: "Heavy-duty construction drive tire for tough terrain." },
       { name: "ADC54",            photo: "ADC54.png",                   labelYellow: "STANDARD", labelWhite: "ON/OFF",      slug: "adc54",             subtitle: "All-terrain construction drive tire for demanding job sites." },
       { name: "AGC08",            photo: "AGC08.png",                   labelYellow: "STANDARD", labelWhite: "ON/OFF",      slug: "agc08",             subtitle: "All-position construction tire for heavy-duty mixed terrain." },
-      { name: "AGC53",            photo: "AGC53.png",                   labelYellow: "STANDARD", labelWhite: "ON/OFF",      slug: "agc53",             subtitle: "Heavy-duty all-position tire for construction applications." },
       // — Standard Off Road —
       { name: "AGM10",            photo: "AGM10.png",                   labelYellow: "STANDARD", labelWhite: "OFF ROAD",    slug: "agm10",             subtitle: "All-position tire for demanding mixed service operations." },
       { name: "AGM84",            photo: "AGM84.png",                   labelYellow: "STANDARD", labelWhite: "OFF ROAD",    slug: "agm84",             subtitle: "All-position tire engineered for mixed regional and urban routes." },

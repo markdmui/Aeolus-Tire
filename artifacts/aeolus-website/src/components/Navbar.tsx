@@ -50,7 +50,6 @@ const TIRE_DROPDOWN = {
     {
       category: "NEO SERIES URBAN",
       tires: [
-        { label: "Sailor AGB23", href: DEMO },
         { label: "Neo Urban G", href: DEMO },
       ],
     },
@@ -86,7 +85,6 @@ const TIRE_DROPDOWN = {
         { label: "ADC53", href: DEMO },
         { label: "ADC54", href: DEMO },
         { label: "AGC08", href: DEMO },
-        { label: "AGC53", href: DEMO },
         { label: "AGM10", href: DEMO },
         { label: "AGM84", href: DEMO },
       ],

@@ -48,7 +48,7 @@ const SAMPLE_POINTS: Point[] = [
     title: "Anti-Deformation Groove Technology",
     bullets: ["Reduce friction energy and even wear", "High mileage"],
     x: 30,
-    y: -6,
+    y: -4,
   },
   {
     id: 5,

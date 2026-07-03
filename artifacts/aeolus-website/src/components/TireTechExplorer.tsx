@@ -67,13 +67,13 @@ const SAMPLE_POINTS: Point[] = [
       "Retreadability",
     ],
     x: 20,
-    y: 78,
+    y: 81,
   },
   {
     id: 7,
     title: "Spiral Technology",
     bullets: ["Enhanced even wear", "Extended tire life", "Retreadability", "Handling"],
-    x: 88,
+    x: 69,
     y: 22,
   },
 ];

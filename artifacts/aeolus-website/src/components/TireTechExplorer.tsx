@@ -30,7 +30,7 @@ const SAMPLE_POINTS: Point[] = [
     title: "Super High Tensile Belt",
     bullets: ["Handling", "Lower rolling resistance", "Improved retreadability"],
     x: 41,
-    y: 33,
+    y: 60,
   },
   {
     id: 3,

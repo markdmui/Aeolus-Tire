@@ -33,8 +33,8 @@ const SAMPLE_POINTS: Point[] = [
       "Lower rolling resistance reduces fuel consumption",
       "Increased retreadability",
     ],
-    x: 35,
-    y: 33,
+    x: 36,
+    y: 36,
   },
   {
     id: 3,

@@ -40,8 +40,8 @@ const SAMPLE_POINTS: Point[] = [
       "Improved belt integrity and retreadability",
       "Even wear over the life of the tire",
     ],
-    x: 68,
-    y: 8,
+    x: 59,
+    y: 0,
   },
   {
     id: 4,

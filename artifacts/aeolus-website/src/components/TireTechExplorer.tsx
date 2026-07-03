@@ -54,8 +54,8 @@ const SAMPLE_POINTS: Point[] = [
     id: 5,
     title: "3D-Side",
     bullets: ["Lower rolling resistance", "Enhance tractive grip"],
-    x: 55,
-    y: 45,
+    x: 44,
+    y: 12,
   },
   {
     id: 6,

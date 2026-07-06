@@ -2,3 +2,4 @@
 - [SpecsSection layout constants](specs-section-layout.md) — key layout values for the truck bg / specs overlap section; change these before touching inline styles.
 - [Tire photos catalog](tire-photos-catalog.md) — 48 hi-res PNGs at `/tires/Tire-Photos/<file>`; grouped by series.
 - [Wireframe data](wireframe-data.json) — 45 tires, full structured data (name, alt, pos, category, subtitle, tags, bullets, specs_table, features). Source: Wireframe-04. Three tires have `alt` field set (Neo Fuel D2, Neo Fuel T2, ADR78) — custom action TBD.
+- Brand-agnostic tire-site methodology extracted to skill `.agents/skills/truck-tire-website-methodology/SKILL.md` — reuse for any new/different tire brand's site; contains data model, cutaway component, tire-finder prototype, and naming conventions only, no Aeolus branding.

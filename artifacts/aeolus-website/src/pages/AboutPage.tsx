@@ -274,12 +274,12 @@ function History() {
               </div>
               <div
                 style={{
-                  fontSize: "clamp(2.4rem, 5vw, 3.4rem)",
+                  fontSize: "clamp(1.6rem, 3vw, 2rem)",
                   fontWeight: 400,
                   lineHeight: 1,
                   letterSpacing: "-0.02em",
-                  color: "var(--accent-yellow)",
-                  marginBottom: "1rem",
+                  color: "#fff",
+                  marginBottom: "0.75rem",
                 }}
               >
                 {year}

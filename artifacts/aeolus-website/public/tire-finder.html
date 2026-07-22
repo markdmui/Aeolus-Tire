@@ -121,9 +121,7 @@ a{color:inherit;}
 .card .name{font-size:15px;font-weight:700;margin-bottom:2px;}
 .card .subtitle{font-size:12px;color:var(--muted);margin-bottom:8px;min-height:32px;}
 .card .meta-row{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--label-grey);border-top:1px solid var(--hairline);padding-top:8px;}
-.card .certs{display:flex;gap:5px;align-items:center;}
-.card .certs .dot{width:9px;height:9px;background:var(--cert-off);display:inline-block;}
-.card .certs .dot.on{background:var(--cert-on);}
+.card .certs{display:flex;gap:6px;align-items:center;}
 .card .certs .cert-label{font-size:9px;color:var(--label-grey);}
 .empty-state{padding:60px 0;text-align:center;color:var(--muted);font-size:13px;grid-column:1/-1;}
 
@@ -448,9 +446,9 @@ function renderCards(list){
       +'<div class="meta-row">'
       +'<span>'+(n?n+' size'+(n!==1?'s':''):'Spec pending')+'</span>'
       +'<span class="certs">'
-      +'<span class="dot '+(hasMS?'on':'')+'"></span><span class="cert-label">M+S</span>'
-      +'<span class="dot '+(hasPMSF?'on':'')+'"></span><span class="cert-label">3PM</span>'
-      +'<span class="dot '+(hasSW?'on':'')+'"></span><span class="cert-label">SW</span>'
+      +(hasMS?'<span class="cert-label">M+S</span>':'')
+      +(hasPMSF?'<span class="cert-label">3PM</span>':'')
+      +(hasSW?'<span class="cert-label">SW</span>':'')
       +'</span></div></div>';
     card.onclick=()=>openModal(item.name);
     grid.appendChild(card);

@@ -36,12 +36,21 @@ a{color:inherit;}
 .site-nav-divider-wrap{max-width:1600px;margin:0 auto;padding:0 calc(4vw + 20px);}
 .site-nav-divider-line{height:1px;background:#666666;}
 .site-nav-logo img{height:26px;width:auto;display:block;}
-.site-nav-right{display:flex;align-items:center;gap:48px;}
+.site-nav-right{display:flex;align-items:center;gap:48px;position:relative;}
 .site-nav-links{display:flex;align-items:center;gap:40px;list-style:none;margin:0;padding:0;}
 .site-nav-links a{color:#ffffff;text-decoration:none;font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 .site-nav-links a:hover{color:#F2C94C;}
 .site-nav-search{display:inline-block;background:#F2C94C;color:#000000;border:none;cursor:pointer;font-weight:700;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;padding:10px 22px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;text-decoration:none;white-space:nowrap;}
 .site-nav-search:hover{background:#FFD700;}
+/* Tires dropdown */
+.tires-dd-wrap{position:relative;}
+.tires-dd-panel{display:none;position:absolute;top:calc(100% + 10px);right:-48px;background:#000;border:1px solid #2c2c2e;padding:1.5rem 1.75rem;display:none;grid-template-columns:1fr 1fr;gap:0 2.5rem;min-width:540px;z-index:200;box-shadow:0 8px 32px rgba(0,0,0,.6);}
+.tires-dd-panel.open{display:grid;}
+.tires-dd-cat{color:#fff;font-weight:700;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.3rem;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
+.tires-dd-cat .neo{color:#F2C94C;}
+.tires-dd-link{display:block;color:#aaa;text-decoration:none;font-size:.78rem;letter-spacing:.04em;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;padding:2px 0;line-height:1.6;}
+.tires-dd-link:hover{color:#fff;}
+.tires-dd-section{margin-bottom:.9rem;}
 @media(max-width:860px){.site-nav-links{display:none;}}
 
 /* ── Page head ── */
@@ -174,7 +183,26 @@ table.spec tbody tr:hover{background:var(--paper-grey);}
     <div class="site-nav-right">
       <ul class="site-nav-links">
         <li><a href="/">HOME</a></li>
-        <li><a href="/tires">TIRES</a></li>
+        <li class="tires-dd-wrap" id="tiresDdWrap">
+          <a href="/tires" class="nav-link">TIRES</a>
+          <div class="tires-dd-panel" id="tiresDdPanel">
+            <!-- Left column -->
+            <div>
+              <div class="tires-dd-section"><div class="tires-dd-cat"><span class="neo">NEO SERIES</span> LONG HAUL</div><a class="tires-dd-link" href="/tires/neo-fuel-x3">Neo Fuel S</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">NEO FUEL D</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">NEO FUEL D2</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">NEO FUEL D3</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">Neo Fuel T+</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">Neo Fuel T2</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">Neo Fuel T3</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">Neo Fuel G3</a></div>
+              <div class="tires-dd-section"><div class="tires-dd-cat"><span class="neo">NEO</span>/SAILOR SERIES REGIONAL</div><a class="tires-dd-link" href="/tires/neo-fuel-x3">Neo Allroads S</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">Neo Allroads S+</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">Neo Allroads D</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">Neo Allroads D+</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">Neo Allroads T2</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">Sailor ASR79</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">Sailor ASR79II</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">Sailor ADR78/ADR78 ii</a></div>
+              <div class="tires-dd-section"><div class="tires-dd-cat"><span class="neo">NEO SERIES</span> ON/OFF ROAD</div><a class="tires-dd-link" href="/tires/neo-fuel-x3">Neo Construct D</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">Neo Construct G</a></div>
+              <div class="tires-dd-section"><div class="tires-dd-cat"><span class="neo">NEO SERIES</span> WINTER</div><a class="tires-dd-link" href="/tires/neo-fuel-x3">Neo Winter S</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">Neo Allseason D</a></div>
+              <div class="tires-dd-section"><div class="tires-dd-cat"><span class="neo">NEO SERIES</span> URBAN</div><a class="tires-dd-link" href="/tires/neo-fuel-x3">Neo Urban G</a></div>
+            </div>
+            <!-- Right column -->
+            <div>
+              <div class="tires-dd-section"><div class="tires-dd-cat">STANDARD SERIES LONG HAUL</div><a class="tires-dd-link" href="/tires/neo-fuel-x3">ASL06</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">ADL58</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">ATL08</a></div>
+              <div class="tires-dd-section"><div class="tires-dd-cat">STANDARD SERIES REGIONAL</div><a class="tires-dd-link" href="/tires/neo-fuel-x3">ASR30</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">ASR35</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">ASR69</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">ADR24</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">ADR26</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">ADR35</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">ADR55</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">ADR69</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">ADR57</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">AGR26</a></div>
+              <div class="tires-dd-section"><div class="tires-dd-cat">STANDARD SERIES ON/OFF ROAD</div><a class="tires-dd-link" href="/tires/neo-fuel-x3">ADC52</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">ADC53</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">ADC54</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">AGC08</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">AGM10</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">AGM84</a></div>
+              <div class="tires-dd-section"><div class="tires-dd-cat">STANDARD SERIES WINTER</div><a class="tires-dd-link" href="/tires/neo-fuel-x3">ADW80</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">ADW81</a><a class="tires-dd-link" href="/tires/neo-fuel-x3">ADW82</a></div>
+            </div>
+          </div>
+        </li>
         <li><a href="#">ABOUT</a></li>
         <li><a href="#">MEDIA</a></li>
         <li><a href="#">CONTACT</a></li>
@@ -591,6 +619,19 @@ document.getElementById('searchInput').addEventListener('input',e=>{state.q=e.ta
 document.getElementById('clearSearchBtn').onclick=()=>{state.q='';document.getElementById('searchInput').value='';render();};
 
 render();
+
+/* ── Tires nav dropdown ── */
+(function(){
+  const wrap=document.getElementById('tiresDdWrap');
+  const panel=document.getElementById('tiresDdPanel');
+  let closeTimer=null;
+  const open=()=>{if(closeTimer){clearTimeout(closeTimer);closeTimer=null;}panel.classList.add('open');};
+  const close=()=>{closeTimer=setTimeout(()=>panel.classList.remove('open'),120);};
+  wrap.addEventListener('mouseenter',open);
+  wrap.addEventListener('mouseleave',close);
+  panel.addEventListener('mouseenter',open);
+  panel.addEventListener('mouseleave',close);
+})();
 
 </script>
 </body>

@@ -365,6 +365,21 @@ function closeSelect(id){
   const w=document.getElementById(id); if(w) w.querySelector('.cs-trigger')?.classList.remove('open');
 }
 function closeAllSelects(){Object.keys(csPanels).forEach(id=>closeSelect(id));}
+function buildPanelOptions(panel, placeholder, values, current, containerId, onChange){
+  panel.innerHTML='';
+  const clearOpt=document.createElement('div');
+  clearOpt.className='cs-option'+(current===''?' selected':'');
+  clearOpt.textContent=placeholder;
+  clearOpt.onclick=e=>{e.stopPropagation();onChange('');closeSelect(containerId);render();};
+  panel.appendChild(clearOpt);
+  values.forEach(v=>{
+    const opt=document.createElement('div');
+    opt.className='cs-option'+(v===current?' selected':'');
+    opt.textContent=v;
+    opt.onclick=e=>{e.stopPropagation();onChange(v);closeSelect(containerId);render();};
+    panel.appendChild(opt);
+  });
+}
 function renderCustomSelect(containerId, placeholder, values, current, onChange){
   const wrap=document.getElementById(containerId); wrap.innerHTML='';
   const btn=document.createElement('button');
@@ -372,6 +387,11 @@ function renderCustomSelect(containerId, placeholder, values, current, onChange)
   btn.className='cs-trigger'+(current?' has-value':'');
   btn.innerHTML='<span class="cs-label">'+escHtml(current||placeholder)+'</span>'
     +'<svg class="cs-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>';
+  /* If panel already open, refresh its options in-place (cascading) */
+  if(csPanels[containerId]){
+    buildPanelOptions(csPanels[containerId], placeholder, values, current, containerId, onChange);
+    btn.classList.add('open');
+  }
   btn.onclick=e=>{
     e.stopPropagation();
     if(csPanels[containerId]){closeSelect(containerId);return;}
@@ -380,18 +400,7 @@ function renderCustomSelect(containerId, placeholder, values, current, onChange)
     const panel=document.createElement('div');
     panel.className='cs-panel';
     panel.style.cssText='top:'+(r.bottom+2)+'px;left:'+r.left+'px;width:'+r.width+'px;';
-    const clearOpt=document.createElement('div');
-    clearOpt.className='cs-option'+(current===''?' selected':'');
-    clearOpt.textContent=placeholder;
-    clearOpt.onclick=e=>{e.stopPropagation();onChange('');closeSelect(containerId);render();};
-    panel.appendChild(clearOpt);
-    values.forEach(v=>{
-      const opt=document.createElement('div');
-      opt.className='cs-option'+(v===current?' selected':'');
-      opt.textContent=v;
-      opt.onclick=e=>{e.stopPropagation();onChange(v);closeSelect(containerId);render();};
-      panel.appendChild(opt);
-    });
+    buildPanelOptions(panel, placeholder, values, current, containerId, onChange);
     document.body.appendChild(panel);
     csPanels[containerId]=panel;
     btn.classList.add('open');

@@ -249,67 +249,42 @@ function History() {
           </p>
         </motion.div>
 
-        <div style={{ position: "relative", paddingLeft: "2.5rem" }}>
-          {/* vertical line */}
-          <div
-            style={{
-              position: "absolute",
-              left: "7px",
-              top: "12px",
-              bottom: "12px",
-              width: "1px",
-              backgroundColor: "#3a3a3a",
-            }}
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: "1px", backgroundColor: "var(--border-color)", border: "1px solid var(--border-color)" }}>
           {MILESTONES.map(({ label, year, text, current }, i) => (
             <motion.div
               key={`${year}-${label}`}
-              style={{ position: "relative", marginBottom: "3rem" }}
+              style={{
+                padding: "2rem 2rem 1.75rem",
+                backgroundColor: "#111112",
+                borderTop: current ? "2px solid var(--accent-yellow)" : "2px solid transparent",
+              }}
               {...fade(i * 0.04)}
             >
-              {/* dot */}
               <div
                 style={{
-                  position: "absolute",
-                  left: "-2.5rem",
-                  top: "8px",
-                  width: "15px",
-                  height: "15px",
-                  borderRadius: "50%",
-                  background: current ? "var(--accent-yellow)" : "#111112",
-                  border: `2px solid ${current ? "var(--accent-yellow)" : "#555"}`,
+                  fontSize: "0.68rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.09em",
+                  textTransform: "uppercase",
+                  color: "var(--accent-yellow)",
+                  marginBottom: "0.25rem",
                 }}
-              />
-              <div style={{ display: "flex", gap: "2rem", alignItems: "flex-start" }}>
-                <div style={{ flexShrink: 0, minWidth: "120px" }}>
-                  <div
-                    style={{
-                      fontSize: "0.7rem",
-                      fontWeight: 700,
-                      letterSpacing: "0.08em",
-                      textTransform: "uppercase",
-                      color: "var(--accent-yellow)",
-                      marginBottom: "2px",
-                    }}
-                  >
-                    {label}
-                  </div>
-                  <div
-                    style={{
-                      fontSize: "clamp(2rem, 4vw, 3rem)",
-                      fontWeight: 400,
-                      lineHeight: 1,
-                      letterSpacing: "-0.02em",
-                      color: "var(--accent-yellow)",
-                    }}
-                  >
-                    {year}
-                  </div>
-                </div>
-                <p style={{ color: "#b8b8b8", fontSize: "0.9375rem", lineHeight: 1.6, paddingTop: "10px", maxWidth: "52ch" }}>
-                  {text}
-                </p>
+              >
+                {label}
               </div>
+              <div
+                style={{
+                  fontSize: "clamp(2.4rem, 5vw, 3.4rem)",
+                  fontWeight: 400,
+                  lineHeight: 1,
+                  letterSpacing: "-0.02em",
+                  color: "var(--accent-yellow)",
+                  marginBottom: "1rem",
+                }}
+              >
+                {year}
+              </div>
+              <p style={{ color: "#b8b8b8", fontSize: "0.9rem", lineHeight: 1.6 }}>{text}</p>
             </motion.div>
           ))}
         </div>

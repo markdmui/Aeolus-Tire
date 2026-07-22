@@ -357,12 +357,14 @@ function renderFacetGroup(id, values, selected, onToggle){
 }
 
 /* ── CustomSelect (spec §9, vanilla JS portal) ── */
-let openSelectId=null, csPanel=null;
-function closeAllSelects(){
-  if(csPanel){csPanel.remove();csPanel=null;}
-  document.querySelectorAll('.cs-trigger.open').forEach(t=>t.classList.remove('open'));
-  openSelectId=null;
+/* Persistent mode: multiple panels can be open simultaneously.
+   Each panel stays open until the user clicks outside ALL size selects. */
+const csPanels={};
+function closeSelect(id){
+  if(csPanels[id]){csPanels[id].remove();delete csPanels[id];}
+  const w=document.getElementById(id); if(w) w.querySelector('.cs-trigger')?.classList.remove('open');
 }
+function closeAllSelects(){Object.keys(csPanels).forEach(id=>closeSelect(id));}
 function renderCustomSelect(containerId, placeholder, values, current, onChange){
   const wrap=document.getElementById(containerId); wrap.innerHTML='';
   const btn=document.createElement('button');
@@ -372,30 +374,37 @@ function renderCustomSelect(containerId, placeholder, values, current, onChange)
     +'<svg class="cs-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>';
   btn.onclick=e=>{
     e.stopPropagation();
-    if(openSelectId===containerId){closeAllSelects();return;}
-    closeAllSelects();
-    openSelectId=containerId; btn.classList.add('open');
+    if(csPanels[containerId]){closeSelect(containerId);return;}
+    /* Open this panel without closing siblings */
     const r=btn.getBoundingClientRect();
-    csPanel=document.createElement('div');
-    csPanel.className='cs-panel';
-    csPanel.style.cssText='top:'+(r.bottom+2)+'px;left:'+r.left+'px;width:'+r.width+'px;';
+    const panel=document.createElement('div');
+    panel.className='cs-panel';
+    panel.style.cssText='top:'+(r.bottom+2)+'px;left:'+r.left+'px;width:'+r.width+'px;';
     const clearOpt=document.createElement('div');
     clearOpt.className='cs-option'+(current===''?' selected':'');
     clearOpt.textContent=placeholder;
-    clearOpt.onclick=e=>{e.stopPropagation();onChange('');closeAllSelects();render();};
-    csPanel.appendChild(clearOpt);
+    clearOpt.onclick=e=>{e.stopPropagation();onChange('');closeSelect(containerId);render();};
+    panel.appendChild(clearOpt);
     values.forEach(v=>{
       const opt=document.createElement('div');
       opt.className='cs-option'+(v===current?' selected':'');
       opt.textContent=v;
-      opt.onclick=e=>{e.stopPropagation();onChange(v);closeAllSelects();render();};
-      csPanel.appendChild(opt);
+      opt.onclick=e=>{e.stopPropagation();onChange(v);closeSelect(containerId);render();};
+      panel.appendChild(opt);
     });
-    document.body.appendChild(csPanel);
+    document.body.appendChild(panel);
+    csPanels[containerId]=panel;
+    btn.classList.add('open');
   };
   wrap.appendChild(btn);
 }
-document.addEventListener('click',e=>{if(csPanel&&!csPanel.contains(e.target))closeAllSelects();});
+/* Close any panel whose trigger+panel area was not clicked */
+document.addEventListener('click',e=>{
+  Object.keys(csPanels).forEach(id=>{
+    const wrap=document.getElementById(id);
+    if(csPanels[id]&&!csPanels[id].contains(e.target)&&(!wrap||!wrap.contains(e.target))) closeSelect(id);
+  });
+});
 
 /* ── Card rendering (spec §13) ── */
 function renderCards(list){

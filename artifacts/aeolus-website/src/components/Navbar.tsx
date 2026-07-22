@@ -305,7 +305,7 @@ function NavLinks({ onTiresEnter }: { onTiresEnter: () => void }) {
       <li onMouseEnter={onTiresEnter}>
         <a href="/tires" className="nav-link">TIRES</a>
       </li>
-      <li><NavLink label="ABOUT" href="#" /></li>
+      <li><NavLink label="ABOUT" href="/about" /></li>
       <li><NavLink label="MEDIA" href="#" /></li>
       <li><NavLink label="CONTACT" href="#" /></li>
     </ul>
@@ -392,7 +392,7 @@ function MobileNavLinks({ onClose }: { onClose: () => void }) {
       </li>
 
       <li style={rowStyle}>
-        <NavLink label="ABOUT" href="#" mobile onClose={onClose} />
+        <NavLink label="ABOUT" href="/about" mobile onClose={onClose} />
       </li>
       <li style={rowStyle}>
         <NavLink label="MEDIA" href="#" mobile onClose={onClose} />

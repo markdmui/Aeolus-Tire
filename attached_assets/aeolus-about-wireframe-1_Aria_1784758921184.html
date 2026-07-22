@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Aeolus Canada | Global Tire Manufacturing Strength. Local Canadian Support.</title>
+<style>
+/* ============================================================
+   GENERIC 01 DESIGN SYSTEM, adapted for web
+   Swiss/International Typographic · 12-col grid · Helvetica regular
+   Neutral monochrome + single gold accent · hairline rules
+   Aeolus adaptation: accent #FFD700 on dark surfaces and fills,
+   darkened gold ink for accent text on white.
+   ============================================================ */
+:root {
+  --ink: #1a1a1a;
+  --paper: #ffffff;
+  --paper-grey: #f0f0f0;
+  --image-fill: #e8e8e8;
+  --hairline: #d6d6d6;
+  --body-text: #333333;
+  --label-grey: #888888;
+  --meta-grey: #999999;
+  --accent: #FFD700;
+  --accent-ink: #937b00;
+  --dark-bg: #141414;
+  --dark-paper: #f5f5f5;
+  --dark-image: #232323;
+  --dark-hairline: #3a3a3a;
+  --font: 'Liberation Sans', Helvetica, 'Helvetica Neue', Arial, sans-serif;
+  --max: 1120px;
+  --gutter: 24px;
+  --baseline: 8px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font); color: var(--ink); background: var(--paper);
+  line-height: 1.5; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-variant-numeric: tabular-nums;
+}
+
+.display { font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 400; line-height: 1.08; letter-spacing: -0.02em; }
+.headB { font-size: clamp(1.5rem, 3vw, 1.85rem); font-weight: 400; line-height: 1.15; letter-spacing: -0.01em; }
+.headC { font-size: 1.25rem; font-weight: 400; line-height: 1.25; }
+.label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+.body { font-size: 0.9375rem; line-height: 1.6; color: var(--body-text); }
+.caption { font-size: 0.8125rem; line-height: 1.45; color: var(--label-grey); }
+.meta { font-size: 0.75rem; color: var(--meta-grey); }
+.red { color: var(--accent-ink); }
+.hero .red, .eng-dark .red, .site-footer .red, .tl-wrap .red { color: var(--accent); }
+.kicker { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--accent-ink); }
+img { max-width: 100%; display: block; }
+
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+.section { padding: 96px 0; }
+.section-sm { padding: 64px 0; }
+.rule { border: none; border-top: 1px solid var(--ink); margin: 0; }
+.rule-thin { border: none; border-top: 1px solid var(--hairline); margin: 0; }
+.grid-12 { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+.col-span-3 { grid-column: span 3; } .col-span-4 { grid-column: span 4; }
+.col-span-5 { grid-column: span 5; } .col-span-6 { grid-column: span 6; }
+.col-span-7 { grid-column: span 7; } .col-span-8 { grid-column: span 8; }
+.col-span-12 { grid-column: span 12; }
+
+/* Header */
+.site-header { position: sticky; top: 0; z-index: 100; background: var(--paper); border-bottom: 1px solid var(--hairline); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; min-height: 64px; max-width: var(--max); margin: 0 auto; padding: 10px var(--gutter); }
+.logo { font-size: 1.125rem; font-weight: 700; letter-spacing: 0.12em; display: flex; align-items: baseline; gap: 10px; }
+.logo span { font-weight: 400; font-size: 0.7rem; letter-spacing: 0.04em; color: var(--label-grey); text-transform: uppercase; }
+.nav { display: flex; gap: 28px; align-items: center; }
+.nav a { font-size: 0.8125rem; font-weight: 400; letter-spacing: 0.01em; }
+.nav a:hover { color: var(--accent-ink); }
+.nav-cta { background: var(--ink); color: var(--paper) !important; padding: 8px 16px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+.nav-cta:hover { background: var(--accent); color: var(--ink) !important; }
+.nav-cta-stack { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.unverified-toggle { background: none; border: none; padding: 0; margin: 0; font-family: var(--font); font-size: 0.6875rem; font-weight: 400; letter-spacing: 0.01em; color: #b3b3ad; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+.unverified-toggle:hover { color: var(--accent-ink); }
+.unverified { transition: color 0.15s ease; }
+body.show-unverified .unverified { color: #79bcff !important; }
+
+/* Hero */
+.hero { background: var(--dark-bg); color: var(--dark-paper); padding: 120px 0 100px; position: relative; overflow: hidden; }
+.hero .kicker { color: var(--accent); margin-bottom: 20px; display: block; }
+.hero .display { max-width: 20ch; margin-bottom: 28px; }
+.hero .lead { font-size: 1.125rem; line-height: 1.55; color: #c6c6c6; max-width: 44ch; margin-bottom: 40px; }
+.hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; border: none; cursor: pointer; transition: all 0.15s ease; }
+.btn-primary { background: var(--accent); color: var(--ink); }
+.btn-primary:hover { background: #d9b700; color: var(--ink); }
+.btn-ghost { background: transparent; color: var(--dark-paper); border: 1px solid #555; }
+.btn-ghost:hover { border-color: var(--dark-paper); color: #fff; }
+.btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+.btn-outline:hover { background: var(--ink); color: #fff; }
+.hero-meta { margin-top: 64px; display: flex; gap: 48px; flex-wrap: wrap; border-top: 1px solid #3a3a3a; padding-top: 28px; }
+.hero-meta .stat-num { font-size: 1.75rem; font-weight: 400; letter-spacing: -0.02em; }
+.hero-meta .stat-cap { font-size: 0.75rem; color: #9a9a9a; margin-top: 4px; max-width: 22ch; }
+
+/* Image module */
+.imgmod { background: var(--image-fill); display: flex; align-items: center; justify-content: center; color: var(--meta-grey); font-size: 0.75rem; letter-spacing: 0.02em; text-align: center; padding: 16px; min-height: 220px; }
+.imgmod.dark { background: var(--dark-image); color: #666; }
+.imgmod.tall { min-height: 320px; }
+.imgmod.hero-img { min-height: 400px; }
+
+/* Cards */
+.card { border: 1px solid var(--hairline); background: var(--paper); transition: border-color 0.15s; display: flex; flex-direction: column; }
+.card:hover { border-color: var(--ink); }
+.card-body { padding: 24px; display: flex; flex-direction: column; flex: 1; }
+.card .label { margin-bottom: 8px; color: var(--label-grey); }
+.card h3 { font-size: 1.125rem; font-weight: 400; margin-bottom: 10px; }
+.card p { font-size: 0.875rem; color: var(--body-text); line-height: 1.55; }
+
+.family-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.family-grid.two { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 900px) { .family-grid, .family-grid.two { grid-template-columns: 1fr; } }
+
+/* Platform strip under family cards */
+.platform-strip { border: 1px solid var(--hairline); border-top: 3px solid var(--accent); display: grid; grid-template-columns: repeat(4,1fr); background: var(--paper); }
+.platform-strip .cell { padding: 22px 24px; border-left: 1px solid var(--hairline); }
+.platform-strip .cell:first-child { border-left: none; }
+.platform-strip .label { color: var(--accent-ink); margin-bottom: 8px; }
+@media (max-width: 900px) { .platform-strip { grid-template-columns: 1fr 1fr; } .platform-strip .cell:nth-child(3) { border-left:none; } }
+
+/* Full line map */
+.line-map { width: 100%; border-collapse: collapse; font-size: 0.8125rem; }
+.line-map th { text-align: left; font-weight: 700; font-size: 0.7rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--label-grey); padding: 12px 10px; border-bottom: 1px solid var(--ink); }
+.line-map td { padding: 12px 10px; border-bottom: 1px solid var(--hairline); vertical-align: top; }
+.line-map tr:hover td { background: var(--paper-grey); }
+.line-map .pos { font-weight: 700; color: var(--ink); white-space: nowrap; }
+.line-map .model { font-weight: 400; }
+.line-map .tag { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; padding: 2px 6px; border: 1px solid var(--hairline); margin-right: 4px; margin-top: 4px; }
+.line-map .tag.accent { border-color: var(--accent-ink); color: var(--accent-ink); }
+.line-map .dim { opacity: .25; }
+
+/* Filter pills */
+.filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+.pill { font-family: var(--font); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 8px 16px; border: 1px solid var(--hairline); background: transparent; color: var(--label-grey); cursor: pointer; }
+.pill.on { border-color: var(--accent-ink); color: var(--accent-ink); }
+
+/* Engineering, dark two-column, depth toggle */
+.eng-dark { background: var(--dark-bg); color: var(--dark-paper); }
+.eng-row { display: grid; grid-template-columns: 5fr 7fr; gap: 48px; margin-bottom: 72px; align-items: start; }
+.eng-row:last-child { margin-bottom: 0; }
+.eng-row .eyebrow { color: var(--accent); margin-bottom: 12px; }
+.eng-row .headC-lg { font-size: 1.75rem; font-weight: 400; margin-bottom: 20px; color: #fff; }
+.eng-stats-dark { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 28px; }
+.eng-stat-dark .num { font-size: 2.25rem; font-weight: 400; color: #fff; line-height: 1; }
+.eng-stat-dark .num sup { font-size: 0.5em; color: var(--accent); font-weight: 700; }
+.eng-stat-dark .cap { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; margin-top: 10px; color: #fff; }
+.eng-stat-dark .sub { font-size: 0.75rem; color: #9a9a9a; margin-top: 4px; max-width: 20ch; }
+.depth-toggle { display: inline-flex; border: 1px solid var(--dark-hairline); margin-bottom: 24px; }
+.depth-toggle button { font-family: var(--font); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 11px 20px; background: transparent; color: #9a9a9a; border: none; cursor: pointer; }
+.depth-toggle button.on { background: var(--accent); color: var(--ink); }
+.depth-copy p { font-size: 0.9375rem; line-height: 1.65; color: #c9c9c9; max-width: 60ch; margin-bottom: 16px; }
+.depth-copy .cite { font-size: 0.75rem; color: #8a8a8a; margin-top: 4px; border-left: 2px solid var(--accent); padding-left: 14px; max-width: 58ch; }
+
+/* Timeline */
+.tl-wrap { background: var(--dark-bg); color: var(--dark-paper); }
+.timeline { position: relative; padding-left: 40px; }
+.timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px; background: var(--dark-hairline); }
+.tl-item { position: relative; margin-bottom: 52px; }
+.tl-item:last-child { margin-bottom: 0; }
+.tl-item::before { content: ''; position: absolute; left: -40px; top: 8px; width: 15px; height: 15px; border-radius: 50%; background: var(--dark-bg); border: 2px solid #555; }
+.tl-item.current::before { background: var(--accent); border-color: var(--accent); }
+.tl-item h4 { font-size: 1.0625rem; font-weight: 400; margin-bottom: 14px; color: var(--dark-paper); }
+.tl-item-row { display: flex; gap: 32px; align-items: flex-start; }
+.tl-item .year-wrap { flex: 0 0 auto; min-width: 130px; }
+.tl-item .year-label { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 2px; }
+.tl-item .year { font-size: 3.2rem; font-weight: 400; line-height: 1; letter-spacing: -0.02em; color: var(--accent); }
+.tl-item p { font-size: 0.9375rem; color: #b8b8b8; max-width: 48ch; padding-top: 10px; }
+@media (max-width: 640px) {
+  .tl-item-row { flex-direction: column; gap: 8px; }
+  .tl-item .year { font-size: 2.4rem; }
+}
+
+/* Stats row */
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); padding: 40px 0; }
+.stat-block .num { font-size: 2.5rem; font-weight: 400; letter-spacing: -0.03em; line-height: 1; }
+.stat-block .cap { font-size: 0.8125rem; color: var(--label-grey); margin-top: 8px; max-width: 18ch; }
+
+/* Spec library */
+.lib-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+.lib-table th { text-align: left; font-weight: 700; font-size: 0.7rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--label-grey); padding: 12px 10px; border-bottom: 1px solid var(--ink); }
+.lib-table td { padding: 16px 10px; border-bottom: 1px solid var(--hairline); }
+.lib-table .v { color: var(--label-grey); font-size: 0.8125rem; }
+.badge-live { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--accent-ink); margin-right: 8px; }
+
+/* Lifecycle rings */
+.rings { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; }
+.ring { width: 148px; height: 148px; border: 1px solid var(--ink); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.ring.accent { border-color: var(--accent-ink); color: var(--accent-ink); }
+.ring .n { font-size: 2.75rem; line-height: 1; font-weight: 400; }
+.ring .t { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 8px; color: var(--label-grey); }
+.ring.accent .t { color: var(--accent-ink); }
+
+/* Who makes: fact grid + Q&A */
+.who-dark { background: var(--dark-bg); color: var(--dark-paper); }
+.who-dark .kicker { color: var(--accent); }
+.fact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px 48px; }
+.fact-item h4 { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #9a9a9a; margin-bottom: 8px; }
+.fact-item p { font-size: 0.9375rem; line-height: 1.55; color: var(--dark-paper); }
+.qa-block { border-top: 1px solid var(--dark-hairline); margin-top: 48px; }
+.qa-row { display: grid; grid-template-columns: 5fr 7fr; gap: 40px; padding: 26px 0; border-bottom: 1px solid var(--dark-hairline); }
+.qa-row .q { font-size: 1.0625rem; color: var(--dark-paper); }
+.qa-row .a { font-size: 0.9375rem; color: #bfbfbf; line-height: 1.6; }
+
+/* Spec finder band */
+.finder-band { background: var(--paper-grey); }
+.finder-grid { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 16px; align-items: end; }
+.finder-grid label.field-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--label-grey); display: block; margin-bottom: 8px; }
+.finder-grid select { width: 100%; font-family: var(--font); font-size: 0.875rem; padding: 12px; border: 1px solid var(--hairline); background: var(--paper); color: var(--ink); }
+
+/* Spec table (product cards) */
+table.spec { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+table.spec td { padding: 10px 0; border-top: 1px solid var(--hairline); }
+table.spec tr:first-child td { border-top: 1px solid var(--ink); font-weight: 700; padding-bottom: 12px; }
+table.spec td.k { color: var(--label-grey); width: 42%; }
+table.spec td.v { text-align: right; }
+
+/* Tier panels (built from card + platform-strip logic) */
+.tier-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 900px) { .tier-grid { grid-template-columns: 1fr; } }
+.tier-panel { border: 1px solid var(--hairline); background: var(--paper); display: flex; flex-direction: column; }
+.tier-panel.premium { border-top: 4px solid var(--accent); }
+.tier-panel.standard { border-top: 4px solid var(--ink); }
+.tier-panel .tier-head { padding: 28px 28px 0; }
+.tier-panel .tier-body { padding: 20px 28px 28px; display: flex; flex-direction: column; flex: 1; }
+.tier-panel h3 { font-size: 1.35rem; font-weight: 400; margin-bottom: 6px; }
+
+/* Footer */
+.site-footer { background: var(--dark-bg); color: var(--dark-paper); padding: 80px 0 40px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 64px; }
+.footer-grid h4 { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #888; margin-bottom: 16px; }
+.footer-grid ul { list-style: none; }
+.footer-grid li { margin-bottom: 10px; }
+.footer-grid a { font-size: 0.875rem; color: #ccc; }
+.footer-grid a:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid #3a3a3a; padding-top: 24px; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #777; flex-wrap: wrap; gap: 12px; }
+
+.mb-8{margin-bottom:8px;} .mb-12{margin-bottom:12px;} .mb-16{margin-bottom:16px;} .mb-24{margin-bottom:24px;}
+.mb-32{margin-bottom:32px;} .mb-40{margin-bottom:40px;} .mb-48{margin-bottom:48px;}
+.mt-12{margin-top:12px;} .mt-16{margin-top:16px;} .mt-24{margin-top:24px;} .mt-32{margin-top:32px;} .mt-48{margin-top:48px;}
+.text-center{text-align:center;} .flex{display:flex;} .gap-16{gap:16px;} .gap-24{gap:24px;}
+.items-start{align-items:flex-start;} .justify-between{justify-content:space-between;} .w-full{width:100%;}
+
+@media (max-width: 768px) {
+  .nav { display: none; }
+  .family-grid, .stats-row, .fact-grid, .footer-grid, .platform-strip { grid-template-columns: 1fr; }
+  .grid-12 { grid-template-columns: 1fr; }
+  .col-span-3, .col-span-4, .col-span-5, .col-span-6, .col-span-7, .col-span-8 { grid-column: span 1; }
+  .hero { padding: 80px 0 64px; }
+  .section { padding: 64px 0; }
+  .qa-row, .finder-grid { grid-template-columns: 1fr; }
+  .eng-row { grid-template-columns: 1fr; gap: 28px; }
+  .platform-strip .cell { border-left: none; border-top: 1px solid var(--hairline); }
+  .platform-strip .cell:first-child { border-top: none; }
+}
+</style>
+<style>
+/* ============ ABOUT PAGE ADDITIONS ============ */
+.about-dark { background: var(--dark-bg); color: var(--dark-paper); }
+.about-dark .headB { color: #fff; }
+.about-dark .body { color: #b8b8b8; }
+.net-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--hairline); border-top: 3px solid var(--accent); background: var(--paper); }
+.net-grid .cell { padding: 26px 24px; border-left: 1px solid var(--hairline); }
+.net-grid .cell:first-child { border-left: none; }
+.net-grid .cell .label { color: var(--accent-ink); margin-bottom: 8px; }
+.net-grid .cell h4 { font-size: 1.25rem; font-weight: 400; margin-bottom: 6px; }
+.net-grid .cell p { font-size: 0.8125rem; color: var(--body-text); line-height: 1.5; }
+.prov-row { display: flex; gap: 0; border: 1px solid var(--hairline); margin-top: 24px; background: var(--paper); }
+.prov-row .prov { flex: 1; padding: 18px 24px; border-left: 1px solid var(--hairline); }
+.prov-row .prov:first-child { border-left: none; }
+.prov-row .prov .label { color: var(--label-grey); font-size: 0.6875rem; margin-bottom: 4px; display: block; }
+.prov-row .prov .name { font-size: 0.9375rem; }
+.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+@media (max-width: 900px) { .why-grid, .net-grid { grid-template-columns: 1fr; } .net-grid .cell { border-left: none; border-top: 1px solid var(--hairline); } .prov-row { flex-wrap: wrap; } .prov-row .prov { flex: 1 1 50%; } }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="aeolus-homepage-wireframe.html" class="logo">AEOLUS <span>Tire North America</span></a>
+    <nav class="nav">
+      <a href="aeolus-homepage-wireframe.html#the-line">The Line</a>
+      <a href="aeolus-homepage-wireframe.html#two-tiers">Two Tiers</a>
+      <a href="aeolus-homepage-wireframe.html#engineering">Engineering</a>
+      <a href="#" style="color: var(--accent-ink); font-weight: 700;">About</a>
+      <a href="aeolus-homepage-wireframe.html#finder" class="nav-cta">Find Your Tire</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO (dark) ============ -->
+<section class="hero">
+  <div class="wrap">
+    <span class="kicker">Why Aeolus Canada</span>
+    <h1 class="display">Global tire manufacturing strength. Local Canadian support.</h1>
+    <p class="lead">Aeolus Tire (Canada) Inc. was established on January 1, 2024, to bring Aeolus' global tire manufacturing expertise, product quality, and commercial tire capabilities closer to the Canadian market.</p>
+    <div class="hero-meta">
+      <div><div class="stat-num">1965</div><div class="stat-cap">Dedicated to tire manufacturing for six decades</div></div>
+      <div><div class="stat-num">150+</div><div class="stat-cap">Countries with an Aeolus presence through local distributors</div></div>
+      <div><div class="stat-num">3</div><div class="stat-cap">Canadian warehouses: Montreal, Toronto, and Edmonton</div></div>
+      <div><div class="stat-num">4</div><div class="stat-cap">Provinces with dedicated sales coverage</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY AEOLUS CANADA (white) ============ -->
+<section class="section">
+  <div class="wrap">
+    <div class="grid-12 items-start">
+      <div class="col-span-6">
+        <span class="kicker red mb-16" style="display:block;">Why Aeolus Canada</span>
+        <h2 class="headB mb-24">Built in Oakville. Backed by a global network.</h2>
+        <p class="body mb-16">Based in Oakville, Ontario, Aeolus Canada is building a dedicated team of sales, marketing, and logistics professionals focused on responsive service, reliable product availability, and long-term dealer support.</p>
+        <p class="body mb-16">With sales representatives currently located in Ontario, Quebec, British Columbia, and Alberta, Aeolus Canada continues to expand its national presence across key commercial tire markets. Our logistics team manages container movement across global supply chains and supports local warehouse operations in Montreal, Toronto, and Edmonton, helping improve product accessibility and distribution efficiency for dealers across Canada.</p>
+        <p class="body">As part of the global Aeolus network, Aeolus Canada combines decades of tire manufacturing experience with local market knowledge. Our experienced sales team works with our Canadian dealer network to support commercial tire customers across TBR and OTR applications, including long haul, regional haul, construction, quarry, mining, industrial, and mixed-service operations.</p>
+      </div>
+      <div class="col-span-6">
+        <div class="imgmod hero-img">[ IMG: Aeolus Canada Oakville office exterior or team at work, natural light, editorial not stock ]</div>
+        <p class="caption mt-12">Aeolus Tire (Canada) Inc., Oakville, Ontario.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT AEOLUS (tint) ============ -->
+<section class="section" style="background: var(--paper-grey);">
+  <div class="wrap">
+    <div class="grid-12 items-start">
+      <div class="col-span-6">
+        <div class="imgmod hero-img">[ IMG: Aeolus manufacturing plant floor, giant OTR tire in curing press or final inspection, scale visible ]</div>
+        <p class="caption mt-12">Aeolus has manufactured tires continuously since 1965.</p>
+      </div>
+      <div class="col-span-6">
+        <span class="kicker red mb-16" style="display:block;">About Aeolus</span>
+        <h2 class="headB mb-24">Six decades of tire manufacturing.</h2>
+        <p class="body mb-16">Aeolus has been dedicated to tire manufacturing since 1965. Founded as Henan Tire Factory, Aeolus has grown into a global tire manufacturer with strong expertise in OTR and TBR tire segments.</p>
+        <p class="body mb-16">Over the years, Aeolus has expanded its international presence, developed advanced tire technologies, and built partnerships with major equipment manufacturers around the world. In the early 2000s, Aeolus entered a new stage of growth, working with local distributors to grow our presence in more than 150 countries, and was listed on the Shanghai Stock Exchange.</p>
+        <p class="body">Today, Aeolus continues to focus on tire innovation, manufacturing quality, and sustainable development, supporting global customers through reliable products, advanced engineering, and strong supply capabilities.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OUR HISTORY (dark timeline) ============ -->
+<section class="section tl-wrap">
+  <div class="wrap">
+    <span class="kicker mb-16" style="display:block; color: var(--accent);">Our History</span>
+    <h2 class="headB mb-16" style="color:#fff;">A long history of tire manufacturing innovation.</h2>
+    <p class="body mb-48" style="color:#b8b8b8; max-width: 62ch;">Aeolus has a long history of tire manufacturing innovation, technical development, and global growth. Key milestones include:</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-item-row">
+          <div class="year-wrap"><span class="year-label">Founded</span><div class="year">1965</div></div>
+          <p>The Henan Tire Factory is founded, beginning six decades of continuous tire manufacturing.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-item-row">
+          <div class="year-wrap"><span class="year-label">First in China</span><div class="year">1987</div></div>
+          <p>Produces China's first bias giant OTR tire, the 36.00-51.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-item-row">
+          <div class="year-wrap"><span class="year-label">Tubeless Giant</span><div class="year">1998</div></div>
+          <p>Produces China's first bias giant OTR tubeless tire, the 36.00-51.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-item-row">
+          <div class="year-wrap"><span class="year-label">Public Listing</span><div class="year">2003</div></div>
+          <p>Renamed Aeolus Tyre Co., Ltd. and listed on the Shanghai Stock Exchange.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-item-row">
+          <div class="year-wrap"><span class="year-label">Radial OTR</span><div class="year">2007</div></div>
+          <p>Aeolus radial OTR tires launch to the market.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-item-row">
+          <div class="year-wrap"><span class="year-label">Capacity</span><div class="year">2011</div></div>
+          <p>Annual radial OTR production capacity reaches 240,000 pieces.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-item-row">
+          <div class="year-wrap"><span class="year-label">OEM Partnership</span><div class="year">2012</div></div>
+          <p>Cooperation begins with SANY.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-item-row">
+          <div class="year-wrap"><span class="year-label">OEM Supply</span><div class="year">2013</div></div>
+          <p>Agreement signed with Volvo, supplying tires to its factory in Sweden.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-item-row">
+          <div class="year-wrap"><span class="year-label">Technology License</span><div class="year">2016</div></div>
+          <p>Technology license contract signed with Pirelli for the industrial segment. The 46/90R57 enters the market.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-item-row">
+          <div class="year-wrap"><span class="year-label">OEM Partnership</span><div class="year">2021</div></div>
+          <p>Cooperation begins with Develon.</p>
+        </div>
+      </div>
+      <div class="tl-item current">
+        <div class="tl-item-row">
+          <div class="year-wrap"><span class="year-label">Capacity</span><div class="year">2023</div></div>
+          <p>Annual radial OTR production capacity reaches 320,000 pieces.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OUR TECHNOLOGY (white) ============ -->
+<section class="section">
+  <div class="wrap">
+    <div class="grid-12 items-start">
+      <div class="col-span-6">
+        <span class="kicker red mb-16" style="display:block;">Our Technology</span>
+        <h2 class="headB mb-24">Built for demanding commercial applications.</h2>
+        <p class="body mb-16">Aeolus tires are developed with a focus on durability, performance, and reliability in demanding commercial applications.</p>
+        <p class="body mb-16">Through advanced manufacturing technology, robust materials, optimized tread designs, and high-quality compounds, Aeolus delivers tire solutions built to support long service life, dependable performance, and consistent product quality across a wide range of operating conditions.</p>
+        <p class="body">Aeolus also continues to advance sustainable manufacturing practices, supporting the development of high-performance tire products with greater responsibility toward the environment.</p>
+      </div>
+      <div class="col-span-6">
+        <div class="imgmod hero-img">[ IMG: tread pattern macro or tire development lab, compound testing detail, technical not glossy ]</div>
+        <p class="caption mt-12">Materials, casing design, tread patterns, and manufacturing processes developed for real operating conditions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OUR CANADIAN NETWORK (tint) ============ -->
+<section class="section" style="background: var(--paper-grey);">
+  <div class="wrap">
+    <span class="kicker red mb-16" style="display:block;">Our Canadian Network</span>
+    <h2 class="headB mb-16">Global capability. Canadian coverage.</h2>
+    <p class="body mb-16" style="max-width: 68ch;">Aeolus Canada connects global tire manufacturing capability with a growing Canadian distribution and dealer support network.</p>
+    <p class="body mb-16" style="max-width: 68ch;">With warehouse operations in Montreal, Toronto, and Edmonton, Aeolus Canada is working to improve product accessibility, delivery efficiency, and customer support across key Canadian markets. Combined with sales coverage in Ontario, Quebec, British Columbia, and Alberta, our network helps us better support commercial tire dealers and the fleet, construction, mining, and industrial customers they serve.</p>
+    <p class="body mb-40" style="max-width: 68ch;">As our presence in Canada continues to grow, Aeolus Canada remains focused on expanding national coverage, strengthening dealer support, and building long-term relationships across the Canadian commercial tire market.</p>
+
+    <div class="net-grid">
+      <div class="cell"><div class="label">Warehouse</div><h4>Montreal</h4><p>Warehouse operations supporting product availability and efficient distribution.</p></div>
+      <div class="cell"><div class="label">Warehouse</div><h4>Toronto</h4><p>Warehouse operations supporting product availability and efficient distribution.</p></div>
+      <div class="cell"><div class="label">Warehouse</div><h4>Edmonton</h4><p>Warehouse operations supporting product availability and efficient distribution.</p></div>
+    </div>
+    <div class="prov-row">
+      <div class="prov"><span class="label">Sales Coverage</span><span class="name">Ontario</span></div>
+      <div class="prov"><span class="label">Sales Coverage</span><span class="name">Quebec</span></div>
+      <div class="prov"><span class="label">Sales Coverage</span><span class="name">British Columbia</span></div>
+      <div class="prov"><span class="label">Sales Coverage</span><span class="name">Alberta</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY CHOOSE AEOLUS CANADA (white) ============ -->
+<section class="section">
+  <div class="wrap">
+    <span class="kicker red mb-16" style="display:block;">Why Choose Aeolus Canada</span>
+    <h2 class="headB mb-40">Six reasons dealers work with us.</h2>
+    <div class="why-grid">
+      <div class="card"><div class="card-body">
+        <div class="label">01</div>
+        <h3>Global Manufacturing Experience</h3>
+        <p>Backed by decades of tire manufacturing, technology development, and international market experience, Aeolus brings proven production capability to the Canadian commercial tire market.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="label">02</div>
+        <h3>Local Canadian Support</h3>
+        <p>Our Canadian team provides dedicated sales, marketing, logistics, and customer support, with sales coverage in Ontario, Quebec, British Columbia, and Alberta.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="label">03</div>
+        <h3>Reliable Logistics and Warehousing</h3>
+        <p>Warehouse operations in Montreal, Toronto, and Edmonton help support product availability and efficient distribution for dealers across Canada.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="label">04</div>
+        <h3>Commercial Tire Expertise</h3>
+        <p>Aeolus offers TBR and OTR tire solutions for demanding commercial applications, including long haul, regional haul, construction, quarry, mining, industrial, and mixed-service operations.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="label">05</div>
+        <h3>Application-Focused Product Development</h3>
+        <p>Our tire technology is supported by ongoing development in materials, casing design, tread patterns, and manufacturing processes to meet the needs of real operating conditions.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="label">06</div>
+        <h3>Dealer-Focused Service</h3>
+        <p>As a B2B commercial tire brand, Aeolus Canada is committed to supporting dealers with responsive communication, practical product information, and long-term partnership support.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="color:#fff; margin-bottom:16px;">AEOLUS <span style="color:#888;">Tire North America</span></div>
+        <p class="body" style="color:#9a9a9a; max-width:34ch;">Two honestly labeled tiers of the same factory discipline, with the complete specification record published openly.</p>
+      </div>
+      <div>
+        <h4>The Line</h4>
+        <ul>
+          <li><a href="aeolus-homepage-wireframe.html#the-line">Neo Generation (Premium)</a></li>
+          <li><a href="aeolus-homepage-wireframe.html#the-line">Standard Series</a></li>
+          <li><a href="aeolus-homepage-wireframe.html#the-line">OTR Range</a></li>
+          <li><a href="aeolus-homepage-wireframe.html#finder">Tire Finder</a></li>
+          <li><a href="aeolus-homepage-wireframe.html#casing">Spec Sheet Library</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="aeolus-homepage-wireframe.html#two-tiers">Two Tiers</a></li>
+          <li><a href="aeolus-homepage-wireframe.html#engineering">Engineering</a></li>
+          <li><a href="aeolus-homepage-wireframe.html#casing">Casing &amp; Lifecycle</a></li>
+          <li><a href="aeolus-homepage-wireframe.html#who-makes">Who Makes Aeolus</a></li>
+          <li><a href="#">Newsroom &amp; Insights</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Dealers &amp; Fleets</h4>
+        <ul>
+          <li><a href="aeolus-homepage-wireframe.html#finder">Dealer Locator (EN / FR)</a></li>
+          <li><a href="#">Dealer Hub</a></li>
+          <li><a href="#">Fleet Program Contact</a></li>
+          <li><a href="#">Warranty in Full</a></li>
+          <li><a href="#">Corrections Log</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2026 Aeolus Tire (Canada) Inc. &middot; 2010 Winston Park Drive, Oakville, Ontario</div>
+      <div>Every figure on this site cites its test method. DOC. AE-WEB-0726 / REV. 2026</div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

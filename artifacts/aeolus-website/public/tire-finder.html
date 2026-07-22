@@ -54,8 +54,8 @@ a{color:inherit;}
 .searchrow .searchicon{display:flex;align-items:center;padding:0 16px;border-right:1px solid var(--hairline);color:var(--label-grey);}
 .searchrow input[type="text"]{flex:1;border:none;outline:none;background:transparent;font-family:var(--font);font-size:15px;padding:14px 16px;color:var(--ink);}
 .searchrow input[type="text"]::placeholder{color:var(--label-grey);}
-.searchrow .clearbtn{border:none;border-left:1px solid var(--hairline);background:none;padding:0 20px;font-family:var(--font);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);cursor:pointer;white-space:nowrap;}
-.searchrow .clearbtn:hover{background:var(--surface-hover);}
+.searchrow .clearbtn{border:none;border-left:1px solid var(--hairline);background:none;padding:0 20px;font-family:var(--font);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#666;cursor:pointer;white-space:nowrap;}
+.searchrow .clearbtn:hover{color:#000;background:var(--paper-grey);}
 
 /* ── Layout ── */
 .layout{display:flex;align-items:flex-start;gap:32px;padding:20px calc(4vw + 20px) 60px;max-width:1600px;margin:0 auto;}
@@ -438,7 +438,7 @@ function renderCards(list){
     const card=document.createElement('div');
     card.className='card';
     card.innerHTML=
-      '<div class="swatch">'+escHtml(item.name.slice(0,5))+'</div>'
+      '<div class="swatch"></div>'
       +'<div class="body">'
       +'<div class="seg-line">'+escHtml(item.segment)+' · '+escHtml(item.pos)+'</div>'
       +'<div class="name">'+escHtml(item.name)+'</div>'

@@ -88,7 +88,7 @@ a{color:inherit;}
 #facetTags .facet-opt.checked .tag-text{color:var(--ink);font-weight:700;background:var(--surface-hover);text-decoration:underline;text-decoration-color:var(--accent);}
 
 /* ── CustomSelect (cascading size dropdowns) ── */
-.size-row{display:flex;gap:6px;}
+
 .customselect{flex:1;position:relative;}
 .cs-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;gap:4px;font-family:var(--font);font-size:12px;padding:6px 8px;border:1px solid var(--hairline);color:var(--ink);background:var(--paper);cursor:pointer;}
 .cs-trigger:focus,.cs-trigger.open{outline:none;border-color:var(--accent);}
@@ -102,7 +102,7 @@ a{color:inherit;}
 
 /* ── Results ── */
 .main{flex:1;min-width:0;}
-#resultsCountRow{font-size:12px;color:var(--muted);margin-bottom:-15px;}
+#resultsCountRow{font-size:12px;color:var(--muted);margin-bottom:0;display:flex;align-items:center;justify-content:space-between;gap:16px;}.size-inline-row{display:flex;align-items:center;gap:8px;flex-shrink:0;}.size-inline-label{font-size:10px;font-weight:700;letter-spacing:.06em;color:var(--muted);text-transform:uppercase;margin-right:2px;}.size-inline-reset{font-family:var(--font);font-size:10px;color:#755d00;background:none;border:none;cursor:pointer;padding:0;text-decoration:underline;}.size-inline-reset:hover{color:#5a4600;}.size-inline-row .customselect{flex:none;width:84px;}
 #resultsCountRow b{color:var(--ink);}
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:24px;}
 
@@ -215,17 +215,7 @@ table.spec tbody tr:hover{background:var(--surface-hover);}
       <div id="facetCert"></div>
     </div>
 
-    <div class="facet">
-      <div class="facet-head">
-        <span class="label">Size</span>
-        <button onclick="resetAll()">Reset</button>
-      </div>
-      <div class="size-row">
-        <div class="customselect" id="csWidth"></div>
-        <div class="customselect" id="csRatio"></div>
-        <div class="customselect" id="csRim"></div>
-      </div>
-    </div>
+
 
     <div class="facet">
       <div class="facet-head">
@@ -238,7 +228,7 @@ table.spec tbody tr:hover{background:var(--surface-hover);}
   </aside>
 
   <main class="main">
-    <div id="resultsCountRow">Showing <b id="resultCount">0</b> of 45 tires</div>
+    <div id="resultsCountRow"><span>Showing <b id="resultCount">0</b> of 45 tires</span><div class="size-inline-row"><span class="size-inline-label">SIZE</span><button class="size-inline-reset" onclick="resetSizeFilters()">Reset</button><div class="customselect" id="csWidth"></div><div class="customselect" id="csRatio"></div><div class="customselect" id="csRim"></div></div></div>
     <div class="grid" id="resultsGrid"></div>
   </main>
 
@@ -351,6 +341,7 @@ function resetAll(){
   state.sizeWidth=''; state.sizeRatio=''; state.sizeRim='';
   render();
 }
+function resetSizeFilters(){ state.sizeWidth=''; state.sizeRatio=''; state.sizeRim=''; render(); }
 function toggleInSet(set,val){ set.has(val)?set.delete(val):set.add(val); }
 
 /* ── FacetGroup (spec §10, vanilla JS) ── */

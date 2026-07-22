@@ -73,8 +73,8 @@ a{color:inherit;}
 .facet-2col{display:grid;grid-template-columns:1fr 1fr;gap:2px 4px;}
 .facet-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
 .facet-head .label{font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--label-grey);}
-.facet-head button{font-family:var(--font);font-size:10px;color:#755d00;background:none;border:none;cursor:pointer;padding:2px 4px;margin:-2px -4px;}
-.facet-head button:hover{color:var(--ink);background:var(--surface-hover);}
+.facet-head button{font-family:var(--font);font-size:10px;color:#755d00;background:none;border:none;cursor:pointer;padding:2px 4px;margin:-2px -4px;text-decoration:none;}
+.facet-head button:hover{color:var(--ink);background:var(--surface-hover);text-decoration:underline;}
 
 /* ── Checkbox facet opts ── */
 .facet-opt{display:flex;align-items:center;gap:7px;font-size:12.5px;padding:3px 0;cursor:pointer;color:var(--ink);user-select:none;}
@@ -108,7 +108,7 @@ a{color:inherit;}
 
 /* ── Results ── */
 .main{flex:1;min-width:0;}
-#resultsCountRow{font-size:12px;color:var(--muted);margin-bottom:0;display:flex;align-items:center;justify-content:space-between;gap:16px;}.size-inline-row{display:flex;align-items:center;gap:8px;flex-shrink:0;}.size-inline-label{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--muted);text-transform:uppercase;margin-right:2px;}.size-inline-reset{font-family:var(--font);font-size:12px;color:#755d00;background:none;border:none;cursor:pointer;padding:0;text-decoration:underline;}.size-inline-reset:hover{color:#5a4600;}.size-inline-row .customselect{flex:none;width:100px;}
+#resultsCountRow{font-size:12px;color:var(--muted);margin-bottom:0;display:flex;align-items:center;justify-content:space-between;gap:16px;}.size-inline-row{display:flex;align-items:center;gap:8px;flex-shrink:0;}.size-inline-label{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--muted);text-transform:uppercase;margin-right:2px;}.size-inline-reset{font-family:var(--font);font-size:12px;color:#755d00;background:none;border:none;cursor:pointer;padding:2px 4px;text-decoration:none;}.size-inline-reset:hover{color:#5a4600;background:var(--surface-hover);text-decoration:underline;}.size-inline-row .customselect{flex:none;width:100px;}
 #resultsCountRow b{color:var(--ink);}
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:24px;}
 

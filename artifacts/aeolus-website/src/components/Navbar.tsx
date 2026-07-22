@@ -170,7 +170,7 @@ export default function Navbar() {
           onMouseLeave={closeTires}
         >
           <NavLinks onTiresEnter={openTires} />
-          <Link href="#" className="btn-primary" style={{ display: "inline-block" }}>
+          <Link href="/find" className="btn-primary" style={{ display: "inline-block" }}>
             SEARCH
           </Link>
 
@@ -285,7 +285,7 @@ export default function Navbar() {
         >
           <MobileNavLinks onClose={() => setMenuOpen(false)} />
           <Link
-            href="#"
+            href="/find"
             className="btn-primary"
             style={{ display: "inline-block", marginTop: "1.5rem" }}
             onClick={() => setMenuOpen(false)}

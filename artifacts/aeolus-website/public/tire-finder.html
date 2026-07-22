@@ -32,11 +32,11 @@ a{color:inherit;}
 
 /* ── Dark site nav (preserved) ── */
 .site-nav-wrap{position:sticky;top:0;z-index:50;background:#000000;}
-.site-topbar{height:6px;background:#FFD700;}
 .site-nav{display:flex;justify-content:space-between;align-items:center;padding:10px calc(4vw + 20px);max-width:1600px;margin:0 auto;}
 .site-nav-divider-wrap{max-width:1600px;margin:0 auto;padding:0 calc(4vw + 20px);}
 .site-nav-divider-line{height:1px;background:#666666;}
 .site-nav-logo img{height:26px;width:auto;display:block;}
+.site-nav-right{display:flex;align-items:center;gap:48px;}
 .site-nav-links{display:flex;align-items:center;gap:40px;list-style:none;margin:0;padding:0;}
 .site-nav-links a{color:#ffffff;text-decoration:none;font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 .site-nav-links a:hover{color:#F2C94C;}
@@ -167,19 +167,20 @@ table.spec tbody tr:hover{background:var(--paper-grey);}
 <body>
 
 <div class="site-nav-wrap">
-  <div class="site-topbar"></div>
   <nav class="site-nav">
     <a href="/" class="site-nav-logo">
       <img src="/aeolus-logo.png" alt="Aeolus">
     </a>
-    <ul class="site-nav-links">
-      <li><a href="/">HOME</a></li>
-      <li><a href="/tires">TIRES</a></li>
-      <li><a href="#">ABOUT</a></li>
-      <li><a href="#">MEDIA</a></li>
-      <li><a href="#">CONTACT</a></li>
-    </ul>
-    <a href="/tire-finder.html" class="site-nav-search">SEARCH</a>
+    <div class="site-nav-right">
+      <ul class="site-nav-links">
+        <li><a href="/">HOME</a></li>
+        <li><a href="/tires">TIRES</a></li>
+        <li><a href="#">ABOUT</a></li>
+        <li><a href="#">MEDIA</a></li>
+        <li><a href="#">CONTACT</a></li>
+      </ul>
+      <a href="/tire-finder.html" class="site-nav-search">SEARCH</a>
+    </div>
   </nav>
   <div class="site-nav-divider-wrap"><div class="site-nav-divider-line"></div></div>
 </div>

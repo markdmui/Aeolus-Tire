@@ -30,3 +30,9 @@ id = "OaL9ekqdQBKjBmMYGnN0B"
 uri = "file://.agents/skills/truck-tire-website-methodology/SKILL.md"
 type = "text"
 title = "Truck Tire Website Methodology (brand-agnostic skill)"
+
+[[outputs]]
+id = "LUwE6l6xRFmtiEYh-NEYt"
+uri = "file://aeolus-design-system.md"
+type = "text"
+title = "Aeolus Design System"

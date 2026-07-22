@@ -494,21 +494,53 @@ function openModal(name){
   body+='<div class="modal-section"><h3>Size &amp; Spec Chart</h3>';
   if(t.sizes.length){
     const dash='—';
-    body+='<div class="spectable-wrap"><table class="spec"><thead><tr>'
-      +'<th>Size</th><th>LI/SS</th><th>Ply</th><th>T.D. (32nds)</th><th>Rim (in)</th>'
-      +'<th>O.D. (in)</th><th>S.W. (in)</th><th>Load 1× lbs/psi</th><th>Load 2× lbs/psi</th>'
-      +'</tr></thead><tbody>'
+    const showSW=t.sizes.some(s=>s.smartway);
+    const showMS=t.sizes.some(s=>s.ms);
+    const showPMSF=t.sizes.some(s=>s.pmsf);
+    body+='<div class="spectable-wrap"><table class="spec"><thead>'
+      +'<tr>'
+      +'<th rowspan="2">Size</th>'
+      +'<th rowspan="2">Ply</th>'
+      +'<th rowspan="2">Rim<br>Width</th>'
+      +'<th rowspan="2">Section<br>Width</th>'
+      +'<th colspan="2">Overall<br>Diameter</th>'
+      +'<th colspan="2">Tread<br>Depth</th>'
+      +'<th colspan="4">Max. Load<br>(Single)</th>'
+      +'<th colspan="4">Max. Load<br>(Dual)</th>'
+      +'<th rowspan="2">LI/SS</th>'
+      +(showSW?'<th rowspan="2">SmartWay</th>':'')
+      +(showMS?'<th rowspan="2">M+S</th>':'')
+      +(showPMSF?'<th rowspan="2">3PMSF</th>':'')
+      +'</tr>'
+      +'<tr>'
+      +'<th>in</th><th>mm</th>'
+      +'<th>mm</th><th>32nds</th>'
+      +'<th>lbs</th><th>psi</th><th>kg</th><th>kPa</th>'
+      +'<th>lbs</th><th>psi</th><th>kg</th><th>kPa</th>'
+      +'</tr>'
+      +'</thead><tbody>'
       +t.sizes.map(s=>
         '<tr>'
         +'<td>'+escHtml(s.size)+'</td>'
-        +'<td>'+(s.liss||dash)+'</td>'
         +'<td>'+(s.ply||dash)+'</td>'
-        +'<td>'+(s.td!=null?Number(s.td).toFixed(1):dash)+'</td>'
         +'<td>'+(s.rimw!=null?Number(s.rimw).toFixed(2):dash)+'</td>'
-        +'<td>'+(s.diam!=null?Number(s.diam).toFixed(1):dash)+'</td>'
         +'<td>'+(s.secw!=null?Number(s.secw).toFixed(1):dash)+'</td>'
-        +'<td>'+(s.loadS_lbs?s.loadS_lbs+' / '+s.loadS_psi:dash)+'</td>'
-        +'<td>'+(s.loadD_lbs?s.loadD_lbs+' / '+s.loadD_psi:dash)+'</td>'
+        +'<td>'+(s.diam!=null?Number(s.diam).toFixed(1):dash)+'</td>'
+        +'<td>'+(s.od_mm||dash)+'</td>'
+        +'<td>'+(s.td_mm||dash)+'</td>'
+        +'<td>'+(s.td!=null?Number(s.td).toFixed(1):dash)+'</td>'
+        +'<td>'+(s.loadS_lbs||dash)+'</td>'
+        +'<td>'+(s.loadS_psi||dash)+'</td>'
+        +'<td>'+(s.loadS_kg||dash)+'</td>'
+        +'<td>'+(s.loadS_kpa||dash)+'</td>'
+        +'<td>'+(s.loadD_lbs||dash)+'</td>'
+        +'<td>'+(s.loadD_psi||dash)+'</td>'
+        +'<td>'+(s.loadD_kg||dash)+'</td>'
+        +'<td>'+(s.loadD_kpa||dash)+'</td>'
+        +'<td>'+(s.liss||dash)+'</td>'
+        +(showSW?'<td style="text-align:center">'+(s.smartway?'✓':dash)+'</td>':'')
+        +(showMS?'<td style="text-align:center">'+(s.ms?'✓':dash)+'</td>':'')
+        +(showPMSF?'<td style="text-align:center">'+(s.pmsf?'✓':dash)+'</td>':'')
         +'</tr>'
       ).join('')
       +'</tbody></table></div>';

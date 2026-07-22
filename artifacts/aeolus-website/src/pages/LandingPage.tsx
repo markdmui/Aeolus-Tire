@@ -74,7 +74,7 @@ function Hero() {
         paddingTop: "110px",
         backgroundImage: `url('${heroBg}')`,
         backgroundSize: "cover",
-        backgroundPosition: "center right",
+        backgroundPosition: "top right",
         backgroundRepeat: "no-repeat",
       }}
     >

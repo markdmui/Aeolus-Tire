@@ -11,9 +11,9 @@ const TIRE_DROPDOWN = {
       category: "NEO SERIES LONG HAUL",
       tires: [
         { label: "Neo Fuel S", href: DEMO },
-        { label: "NEO FUEL D", href: DEMO },
-        { label: "NEO FUEL D2", href: DEMO },
-        { label: "NEO FUEL D3", href: DEMO },
+        { label: "Neo Fuel D", href: DEMO },
+        { label: "Neo Fuel D2", href: DEMO },
+        { label: "Neo Fuel D3", href: DEMO },
         { label: "Neo Fuel T+", href: DEMO },
         { label: "Neo Fuel T2", href: DEMO },
         { label: "Neo Fuel T3", href: DEMO },

@@ -441,7 +441,6 @@ function renderCards(list){
 /* ── Modal (spec §14, with our richer spec table) ── */
 function openModal(name){
   const t=TIRES.find(x=>x.name===name); if(!t) return;
-  const slug=t.name.toLowerCase().replace(/\s+/g,'-');
   const badges=[];
   if(t.sizes.some(s=>s.ms)) badges.push('M+S Rated');
   if(t.sizes.some(s=>s.pmsf)) badges.push('3PMSF Severe Snow');
@@ -455,7 +454,7 @@ function openModal(name){
     +'</div>'
     +'<div class="modal-head-actions">'
     +'<button class="modal-close" onclick="closeModal()">&times;</button>'
-    +'<a href="/tires/'+slug+'" class="modal-product-btn">View Product Page</a>'
+    +'<a href="/tires/neo-fuel-x3" class="modal-product-btn">View Product Page</a>'
     +'</div>';
 
   let body='';

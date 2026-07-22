@@ -365,9 +365,13 @@ function renderFacetGroup(id, values, selected, onToggle){
 /* Persistent mode: multiple panels can be open simultaneously.
    Each panel stays open until the user clicks outside ALL size selects. */
 const csPanels={};
+function updateScrollLock(){
+  document.body.style.overflow=Object.keys(csPanels).length>0?'hidden':'';
+}
 function closeSelect(id){
   if(csPanels[id]){csPanels[id].remove();delete csPanels[id];}
   const w=document.getElementById(id); if(w) w.querySelector('.cs-trigger')?.classList.remove('open');
+  updateScrollLock();
 }
 function closeAllSelects(){Object.keys(csPanels).forEach(id=>closeSelect(id));}
 function buildPanelOptions(panel, placeholder, values, current, containerId, onChange){
@@ -409,6 +413,7 @@ function renderCustomSelect(containerId, placeholder, values, current, onChange)
     document.body.appendChild(panel);
     csPanels[containerId]=panel;
     btn.classList.add('open');
+    updateScrollLock();
   };
   wrap.appendChild(btn);
 }

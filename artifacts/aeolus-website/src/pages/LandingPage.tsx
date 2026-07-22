@@ -13,6 +13,10 @@ const HERO_IMAGES = [
   "/hero-bg-6.jpg",
 ];
 
+const HERO_BG_POSITION: Record<string, string> = {
+  "/hero-bg-6.jpg": "top right",
+};
+
 const MOBILE_EXCLUDED = ["/hero-bg-6.jpg"];
 
 const VP = { once: true, margin: "-80px" };
@@ -74,7 +78,7 @@ function Hero() {
         paddingTop: "110px",
         backgroundImage: `url('${heroBg}')`,
         backgroundSize: "cover",
-        backgroundPosition: "center right",
+        backgroundPosition: HERO_BG_POSITION[heroBg] ?? "center right",
         backgroundRepeat: "no-repeat",
       }}
     >

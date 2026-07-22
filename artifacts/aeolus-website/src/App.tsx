@@ -4,7 +4,6 @@ import { Toaster } from "@/components/ui/toaster";
 import LandingPage from "@/pages/LandingPage";
 import TirePage from "@/pages/TirePage";
 import TireProductPage from "@/pages/TireProductPage";
-import TireFinderPage from "@/pages/TireFinderPage";
 import NotFound from "@/pages/not-found";
 
 function ScrollToTop() {
@@ -19,7 +18,6 @@ function Router() {
       <ScrollToTop />
       <Switch>
         <Route path="/" component={LandingPage} />
-        <Route path="/find" component={TireFinderPage} />
         <Route path="/tires" component={TirePage} />
         <Route path="/tires/:slug" component={TireProductPage} />
         <Route component={NotFound} />

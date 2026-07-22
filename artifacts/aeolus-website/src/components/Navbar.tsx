@@ -170,9 +170,9 @@ export default function Navbar() {
           onMouseLeave={closeTires}
         >
           <NavLinks onTiresEnter={openTires} />
-          <Link href="/find" className="btn-primary" style={{ display: "inline-block" }}>
+          <a href="/tire-finder.html" className="btn-primary" style={{ display: "inline-block" }}>
             SEARCH
-          </Link>
+          </a>
 
           {/* Dropdown panel — right:0 aligns with SEARCH button's right edge */}
           <AnimatePresence>
@@ -284,14 +284,14 @@ export default function Navbar() {
           }}
         >
           <MobileNavLinks onClose={() => setMenuOpen(false)} />
-          <Link
-            href="/find"
+          <a
+            href="/tire-finder.html"
             className="btn-primary"
             style={{ display: "inline-block", marginTop: "1.5rem" }}
             onClick={() => setMenuOpen(false)}
           >
             SEARCH
-          </Link>
+          </a>
         </div>
       )}
     </div>

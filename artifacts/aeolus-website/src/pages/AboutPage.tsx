@@ -293,7 +293,7 @@ function History() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: "1px", backgroundColor: "var(--border-color)", border: "1px solid var(--border-color)" }}>
+        <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: "1px", backgroundColor: "var(--bg-dark)", border: "1px solid var(--border-color)" }}>
           {MILESTONES.map(({ label, year, text, current }, i) => (
             <motion.div
               key={`${year}-${label}`}

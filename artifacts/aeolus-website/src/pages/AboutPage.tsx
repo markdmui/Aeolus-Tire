@@ -52,6 +52,24 @@ function BodyText({ children, style }: { children: React.ReactNode; style?: Reac
   );
 }
 
+function ImgPlaceholder({ caption, style }: { caption?: string; style?: React.CSSProperties }) {
+  return (
+    <div>
+      <div
+        style={{
+          backgroundColor: "transparent", /* #1a1a1b — restore to bring back placeholder color */
+          width: "100%",
+          minHeight: "320px",
+          ...style,
+        }}
+      />
+      {caption && (
+        <p style={{ fontSize: "0.8rem", color: "#666", marginTop: "0.6rem", lineHeight: 1.45 }}>{caption}</p>
+      )}
+    </div>
+  );
+}
+
 /* ─── HERO ─────────────────────────────────────────────────── */
 function Hero() {
   const stats = [
@@ -64,10 +82,11 @@ function Hero() {
     <section
       className="hero-section about-hero flex flex-col justify-center pb-16 md:pb-24"
       style={{
-        minHeight: "680px",
+        minHeight: "520px",
+        height: "760px",
         marginTop: "-46px",
         paddingTop: "110px",
-        backgroundImage: "url('/about-bg-01.jpg')",
+        backgroundImage: "url('/about-hero.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "top right",
         backgroundRepeat: "no-repeat",
@@ -106,10 +125,12 @@ function Hero() {
         </motion.p>
 
         <div
-          className="stats-row"
           style={{
             borderTop: "1px solid #3a3a3a",
             paddingTop: "2rem",
+            display: "flex",
+            gap: "3.5rem",
+            flexWrap: "wrap",
           }}
         >
           {stats.map(({ num, cap }, i) => (
@@ -140,10 +161,7 @@ function WhyAeolusCanada() {
   return (
     <section style={{ backgroundColor: "#333", borderTop: "1px solid var(--border-color)" }}>
       <div className="container">
-        <div
-          className="flex flex-col md:flex-row"
-          style={{ minHeight: "440px", gap: "3rem", alignItems: "stretch" }}
-        >
+        <div className="flex flex-col md:flex-row" style={{ minHeight: "440px", gap: "3rem", alignItems: "stretch" }}>
           <motion.div
             {...fade(0)}
             className="flex flex-col justify-center"
@@ -171,22 +189,12 @@ function WhyAeolusCanada() {
           </motion.div>
           <motion.div
             {...fade(0.1)}
-            style={{
-              flex: "0 0 40%",
-              minHeight: "320px",
-              overflow: "hidden",
-            }}
+            style={{ flex: "0 0 40%", minHeight: "320px", overflow: "hidden", borderRadius: "4px" }}
           >
             <img
               src="/about-1.jpg"
               alt="Aeolus tire close-up"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                objectPosition: "top left",
-                display: "block",
-              }}
+              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top left", display: "block" }}
             />
           </motion.div>
         </div>
@@ -202,15 +210,14 @@ function AboutAeolus() {
       className="py-20"
       style={{
         borderTop: "1px solid var(--border-color)",
-        backgroundImage:
-          "linear-gradient(to right, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.65) 40%, rgba(0,0,0,0) 100%), url('/about-2.jpg')",
+        backgroundImage: "url('/about-2.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center right",
         backgroundRepeat: "no-repeat",
       }}
     >
       <div className="container">
-        <motion.div {...fade(0)} style={{ maxWidth: "50ch" }}>
+        <motion.div {...fade(0)} style={{ maxWidth: "62ch" }}>
           <Kicker>About Aeolus</Kicker>
           <SectionHeading style={{ color: "#fff" }}>Six decades of tire manufacturing.</SectionHeading>
           <BodyText>
@@ -233,6 +240,309 @@ function AboutAeolus() {
   );
 }
 
+/* ─── HISTORY TIMELINE ───────────────────────────────────────── */
+const MILESTONES = [
+  { label: "Founded", year: "1965", text: "The Henan Tire Factory is founded, beginning six decades of continuous tire manufacturing." },
+  { label: "First in China", year: "1987", text: "Produces China's first bias giant OTR tire, the 36.00-51." },
+  { label: "Tubeless Giant", year: "1998", text: "Produces China's first bias giant OTR tubeless tire, the 36.00-51." },
+  { label: "Public Listing", year: "2003", text: "Renamed Aeolus Tyre Co., Ltd. and listed on the Shanghai Stock Exchange." },
+  { label: "Radial OTR", year: "2007", text: "Aeolus radial OTR tires launch to the market." },
+  { label: "Capacity", year: "2011", text: "Annual radial OTR production capacity reaches 240,000 pieces." },
+  { label: "OEM Partnership", year: "2012", text: "Cooperation begins with SANY." },
+  { label: "OEM Supply", year: "2013", text: "Agreement signed with Volvo, supplying tires to its factory in Sweden." },
+  { label: "Technology License", year: "2016", text: "Technology license contract signed with Pirelli for the industrial segment. The 46/90R57 enters the market." },
+  { label: "OEM Partnership", year: "2021", text: "Cooperation begins with Develon." },
+  { label: "Capacity", year: "2023", text: "Annual radial OTR production capacity reaches 320,000 pieces.", current: true },
+];
+
+function History() {
+  return (
+    <section className="py-20" style={{ backgroundColor: "var(--bg-dark)", borderTop: "1px solid var(--border-color)" }}>
+      <div className="container">
+        <motion.div {...fade(0)}>
+          <Kicker>Our History</Kicker>
+          <SectionHeading style={{ color: "#fff" }}>A long history of tire manufacturing innovation.</SectionHeading>
+          <p style={{ color: "var(--text-muted)", fontSize: "0.9375rem", lineHeight: 1.6, maxWidth: "60ch", marginBottom: "3rem" }}>
+            Aeolus has a long history of tire manufacturing innovation, technical development, and global growth. Key
+            milestones include:
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: "1px", backgroundColor: "var(--border-color)", border: "1px solid var(--border-color)" }}>
+          {MILESTONES.map(({ label, year, text, current }, i) => (
+            <motion.div
+              key={`${year}-${label}`}
+              className="history-card"
+              style={{
+                padding: "2rem 2rem 1.75rem",
+                backgroundColor: "var(--bg-dark)",
+                borderTop: "2px solid transparent",
+              }}
+              {...fade(i * 0.04)}
+            >
+              <div
+                style={{
+                  fontSize: "0.68rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.09em",
+                  textTransform: "uppercase",
+                  color: "var(--accent-yellow)",
+                  marginBottom: "0.25rem",
+                }}
+              >
+                {label}
+              </div>
+              <div
+                style={{
+                  fontSize: "clamp(1.6rem, 3vw, 2rem)",
+                  fontWeight: 400,
+                  lineHeight: 1,
+                  letterSpacing: "-0.02em",
+                  color: "#fff",
+                  marginBottom: "0.75rem",
+                }}
+              >
+                {year}
+              </div>
+              <p style={{ color: "#b8b8b8", fontSize: "0.9rem", lineHeight: 1.6 }}>{text}</p>
+            </motion.div>
+          ))}
+          <div style={{ backgroundColor: "var(--bg-dark)" }} />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── OUR TECHNOLOGY ─────────────────────────────────────────── */
+function OurTechnology() {
+  return (
+    <section className="py-20" style={{ backgroundColor: "#111112", borderTop: "1px solid var(--border-color)" }}>
+      <div className="container">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16" style={{ alignItems: "start" }}>
+          <motion.div {...fade(0)}>
+            <Kicker>Our Technology</Kicker>
+            <SectionHeading style={{ color: "#fff" }}>Built for demanding commercial applications.</SectionHeading>
+            <BodyText>
+              Aeolus tires are developed with a focus on durability, performance, and reliability in demanding commercial
+              applications.
+            </BodyText>
+            <BodyText>
+              Through advanced manufacturing technology, robust materials, optimized tread designs, and high-quality
+              compounds, Aeolus delivers tire solutions built to support long service life, dependable performance, and
+              consistent product quality across a wide range of operating conditions.
+            </BodyText>
+            <BodyText>
+              Aeolus also continues to advance sustainable manufacturing practices, supporting the development of
+              high-performance tire products with greater responsibility toward the environment.
+            </BodyText>
+          </motion.div>
+          <motion.div {...fade(0.1)}>
+            <ImgPlaceholder />
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── CANADIAN NETWORK ───────────────────────────────────────── */
+const WAREHOUSES = [
+  { name: "Montreal", desc: "Warehouse operations supporting product availability and efficient distribution." },
+  { name: "Toronto", desc: "Warehouse operations supporting product availability and efficient distribution." },
+  { name: "Edmonton", desc: "Warehouse operations supporting product availability and efficient distribution." },
+];
+const PROVINCES = ["Ontario", "Quebec", "British Columbia", "Alberta"];
+
+function CanadianNetwork() {
+  return (
+    <section className="py-20" style={{ backgroundColor: "var(--bg-dark)", borderTop: "1px solid var(--border-color)" }}>
+      <div className="container">
+        <motion.div {...fade(0)}>
+          <Kicker>Our Canadian Network</Kicker>
+          <SectionHeading style={{ color: "#fff" }}>Global capability. Canadian coverage.</SectionHeading>
+          <BodyText style={{ maxWidth: "68ch" }}>
+            Aeolus Canada connects global tire manufacturing capability with a growing Canadian distribution and dealer
+            support network.
+          </BodyText>
+          <BodyText style={{ maxWidth: "68ch" }}>
+            With warehouse operations in Montreal, Toronto, and Edmonton, Aeolus Canada is working to improve product
+            accessibility, delivery efficiency, and customer support across key Canadian markets. Combined with sales
+            coverage in Ontario, Quebec, British Columbia, and Alberta, our network helps us better support commercial
+            tire dealers and the fleet, construction, mining, and industrial customers they serve.
+          </BodyText>
+          <BodyText style={{ maxWidth: "68ch", marginBottom: "2.5rem" }}>
+            As our presence in Canada continues to grow, Aeolus Canada remains focused on expanding national coverage,
+            strengthening dealer support, and building long-term relationships across the Canadian commercial tire market.
+          </BodyText>
+        </motion.div>
+
+        {/* Warehouse cells */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3"
+          style={{
+            border: "1px solid var(--border-color)",
+            borderTop: "3px solid var(--accent-yellow)",
+          }}
+          {...fade(0.08)}
+        >
+          {WAREHOUSES.map(({ name, desc }, i) => (
+            <div
+              key={name}
+              style={{
+                padding: "2.25rem 1.5rem",
+                borderLeft: i === 0 ? "none" : "1px solid var(--border-color)",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: "0.68rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  color: "var(--accent-yellow)",
+                  marginBottom: "0.5rem",
+                }}
+              >
+                Warehouse
+              </div>
+              <div style={{ fontSize: "1.6rem", fontWeight: 400, color: "#fff", marginBottom: "0.4rem" }}>{name}</div>
+              <p style={{ fontSize: "0.8125rem", color: "var(--text-muted)", lineHeight: 1.5 }}>{desc}</p>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Province cells */}
+        <motion.div
+          className="grid grid-cols-2 md:grid-cols-4"
+          style={{
+            border: "1px solid var(--border-color)",
+            borderTop: "none",
+            marginTop: 0,
+          }}
+          {...fade(0.14)}
+        >
+          {PROVINCES.map((prov, i) => (
+            <div
+              key={prov}
+              style={{
+                padding: "2rem 1.5rem",
+                borderLeft: i === 0 ? "none" : "1px solid var(--border-color)",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: "0.65rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.07em",
+                  textTransform: "uppercase",
+                  color: "#666",
+                  marginBottom: "0.25rem",
+                }}
+              >
+                Sales Coverage
+              </div>
+              <div style={{ fontSize: "1.4rem", color: "#fff" }}>{prov}</div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── WHY CHOOSE ─────────────────────────────────────────────── */
+const REASONS = [
+  {
+    num: "01",
+    title: "Global Manufacturing Experience",
+    body: "Backed by decades of tire manufacturing, technology development, and international market experience, Aeolus brings proven production capability to the Canadian commercial tire market.",
+  },
+  {
+    num: "02",
+    title: "Local Canadian Support",
+    body: "Our Canadian team provides dedicated sales, marketing, logistics, and customer support, with sales coverage in Ontario, Quebec, British Columbia, and Alberta.",
+  },
+  {
+    num: "03",
+    title: "Reliable Logistics and Warehousing",
+    body: "Warehouse operations in Montreal, Toronto, and Edmonton help support product availability and efficient distribution for dealers across Canada.",
+  },
+  {
+    num: "04",
+    title: "Commercial Tire Expertise",
+    body: "Aeolus offers TBR and OTR tire solutions for demanding commercial applications, including long haul, regional haul, construction, quarry, mining, industrial, and mixed-service operations.",
+  },
+  {
+    num: "05",
+    title: "Application-Focused Product Development",
+    body: "Our tire technology is supported by ongoing development in materials, casing design, tread patterns, and manufacturing processes to meet the needs of real operating conditions.",
+  },
+  {
+    num: "06",
+    title: "Dealer-Focused Service",
+    body: "As a B2B commercial tire brand, Aeolus Canada is committed to supporting dealers with responsive communication, practical product information, and long-term partnership support.",
+  },
+];
+
+function WhyChoose() {
+  return (
+    <section className="py-20" style={{ backgroundColor: "#111112", borderTop: "1px solid var(--border-color)" }}>
+      <div className="container">
+        <motion.div {...fade(0)} className="mb-10">
+          <Kicker>Why Choose Aeolus Canada</Kicker>
+          <SectionHeading style={{ color: "#fff" }}>6 reasons dealers work with us.</SectionHeading>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {REASONS.map(({ num, title, body }, i) => (
+            <motion.div
+              key={num}
+              className="choose-card"
+              style={{
+                border: "1px solid var(--border-color)",
+                backgroundColor: "#111112",
+                padding: "1.75rem",
+                display: "flex",
+                flexDirection: "column",
+                transition: "border-color 0.2s ease",
+              }}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLDivElement).style.borderColor = "#fff")}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLDivElement).style.borderColor = "var(--border-color)")}
+              {...fade(i * 0.06)}
+            >
+              <div
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "1.25rem",
+                  fontWeight: 300,
+                  letterSpacing: "0.04em",
+                  color: "var(--accent-yellow)",
+                  marginBottom: "0.75rem",
+                }}
+              >
+                {num}
+              </div>
+              <h3
+                style={{
+                  fontSize: "1.0625rem",
+                  fontWeight: 400,
+                  color: "#fff",
+                  marginBottom: "0.75rem",
+                  lineHeight: 1.3,
+                }}
+              >
+                {title}
+              </h3>
+              <p style={{ fontSize: "0.875rem", color: "var(--text-muted)", lineHeight: 1.6 }}>{body}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ─── PAGE ───────────────────────────────────────────────────── */
 export default function AboutPage() {
   return (
@@ -244,6 +554,10 @@ export default function AboutPage() {
       <Hero />
       <WhyAeolusCanada />
       <AboutAeolus />
+      <History />
+      <OurTechnology />
+      <CanadianNetwork />
+      <WhyChoose />
       <Footer />
     </div>
   );

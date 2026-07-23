@@ -391,7 +391,7 @@ function CanadianNetwork() {
               >
                 Warehouse
               </div>
-              <div style={{ fontSize: "1.2rem", fontWeight: 400, color: "#fff", marginBottom: "0.4rem" }}>{name}</div>
+              <div style={{ fontSize: "1.6rem", fontWeight: 400, color: "#fff", marginBottom: "0.4rem" }}>{name}</div>
               <p style={{ fontSize: "0.8125rem", color: "var(--text-muted)", lineHeight: 1.5 }}>{desc}</p>
             </div>
           ))}

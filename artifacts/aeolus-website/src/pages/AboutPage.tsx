@@ -205,16 +205,18 @@ function WhyAeolusCanada() {
 function AboutAeolus() {
   return (
     <section
-      className="py-20 about-aeolus-section"
       style={{
         borderTop: "1px solid var(--border-color)",
-        backgroundImage: "url('/about-2.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center right",
-        backgroundRepeat: "no-repeat",
+        backgroundColor: "var(--bg-dark)",
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "stretch",
       }}
     >
-      <div className="container">
+      <div
+        className="flex flex-col justify-center"
+        style={{ flex: "1 1 0", minWidth: 0, padding: "5rem 4rem 5rem max(calc((100vw - 1600px) / 2 + 4vw + 20px), calc(4vw + 20px))" }}
+      >
         <motion.div {...fade(0)} style={{ maxWidth: "62ch" }}>
           <Kicker>About Aeolus</Kicker>
           <SectionHeading style={{ color: "#fff" }}>Six decades of tire manufacturing.</SectionHeading>
@@ -234,6 +236,13 @@ function AboutAeolus() {
           </BodyText>
         </motion.div>
       </div>
+      <motion.div {...fade(0.1)} style={{ flex: "0 0 auto", display: "flex", alignItems: "flex-end" }}>
+        <img
+          src="/about-2.jpg"
+          alt="Aeolus truck on the road"
+          style={{ display: "block", width: "640px", height: "auto" }}
+        />
+      </motion.div>
     </section>
   );
 }

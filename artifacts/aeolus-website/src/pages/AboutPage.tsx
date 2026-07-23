@@ -199,9 +199,6 @@ function AboutAeolus() {
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16" style={{ alignItems: "start" }}>
           <motion.div {...fade(0)}>
-            <ImgPlaceholder />
-          </motion.div>
-          <motion.div {...fade(0.1)}>
             <Kicker>About Aeolus</Kicker>
             <SectionHeading style={{ color: "#fff" }}>Six decades of tire manufacturing.</SectionHeading>
             <BodyText>
@@ -218,6 +215,9 @@ function AboutAeolus() {
               Today, Aeolus continues to focus on tire innovation, manufacturing quality, and sustainable development,
               supporting global customers through reliable products, advanced engineering, and strong supply capabilities.
             </BodyText>
+          </motion.div>
+          <motion.div {...fade(0.1)}>
+            <ImgPlaceholder />
           </motion.div>
         </div>
       </div>

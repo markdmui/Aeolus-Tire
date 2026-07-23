@@ -395,7 +395,7 @@ function AboutAeolus() {
     <section
       className="about-stats-section"
       style={{
-        backgroundImage: "url('/about-bg.jpg')",
+        backgroundImage: "url('/index-1.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "left center",
         backgroundRepeat: "no-repeat",

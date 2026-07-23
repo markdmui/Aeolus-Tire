@@ -254,7 +254,7 @@ function AboutAeolus() {
             position: "relative",
             zIndex: 2,
             borderTop: "2px solid var(--accent-yellow)",
-            marginTop: "64px",
+            marginTop: "94px",
           }}
         />
       </div>

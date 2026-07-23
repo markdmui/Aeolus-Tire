@@ -497,10 +497,10 @@ function WhyChoose() {
             >
               <div
                 style={{
-                  fontSize: "0.7rem",
+                  fontSize: "1.25rem",
                   fontWeight: 700,
-                  letterSpacing: "0.06em",
-                  color: "var(--text-muted)",
+                  letterSpacing: "0.04em",
+                  color: "var(--accent-yellow)",
                   marginBottom: "0.75rem",
                 }}
               >

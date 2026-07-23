@@ -38,10 +38,21 @@ export default function LandingPage() {
       </div>
       <div className="container">
         <ProductGrid />
-        <EngineeringCapabilities />
       </div>
-      <AboutAeolus />
-      <EngineeringApproach />
+
+      {/* Layered Background Image — index-1.jpg spans all three sections below */}
+      <div style={{ position: "relative", overflow: "hidden", backgroundColor: "#0a0a0a" }}>
+        <div style={{ position: "absolute", inset: 0, backgroundImage: "url('/index-1.jpg')", backgroundSize: "cover", backgroundPosition: "left center" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(10,10,10,0.18) 0%, rgba(10,10,10,0.62) 52%, rgba(10,10,10,0.92) 100%)" }} />
+        <div style={{ position: "relative", zIndex: 2 }}>
+          <div className="container">
+            <EngineeringCapabilities />
+          </div>
+          <AboutAeolus />
+          <EngineeringApproach />
+        </div>
+      </div>
+
       <Footer />
     </div>
   );
@@ -394,12 +405,7 @@ function AboutAeolus() {
   return (
     <section
       className="about-stats-section"
-      style={{
-        backgroundImage: "url('/index-1.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "left center",
-        backgroundRepeat: "no-repeat",
-      }}
+      style={{ backgroundColor: "transparent" }}
     >
       <div
         className="container"
@@ -482,7 +488,7 @@ function AboutAeolus() {
 
 function EngineeringApproach() {
   return (
-    <section className="engineering-approach pb-16 md:pb-24 mt-4" style={{ backgroundColor: "var(--bg-dark)" }}>
+    <section className="engineering-approach pb-16 md:pb-24 mt-4" style={{ backgroundColor: "transparent" }}>
       <div className="container">
         <motion.div
           className="relative flex flex-col justify-between"

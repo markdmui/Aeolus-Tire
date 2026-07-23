@@ -86,7 +86,7 @@ function Hero() {
         height: "760px",
         marginTop: "-46px",
         paddingTop: "110px",
-        backgroundImage: "url('/about-bg-01.jpg')",
+        backgroundImage: "url('/about-hero.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "top right",
         backgroundRepeat: "no-repeat",
@@ -159,7 +159,7 @@ function Hero() {
 /* ─── WHY AEOLUS CANADA ──────────────────────────────────────── */
 function WhyAeolusCanada() {
   return (
-    <section className="py-20" style={{ backgroundColor: "var(--bg-dark)" }}>
+    <section className="py-20" style={{ backgroundColor: "#111112" }}>
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16" style={{ alignItems: "start" }}>
           <motion.div {...fade(0)}>
@@ -195,7 +195,7 @@ function WhyAeolusCanada() {
 /* ─── ABOUT AEOLUS ───────────────────────────────────────────── */
 function AboutAeolus() {
   return (
-    <section className="py-20" style={{ backgroundColor: "#111112", borderTop: "1px solid var(--border-color)" }}>
+    <section className="py-20" style={{ backgroundColor: "var(--bg-dark)", borderTop: "1px solid var(--border-color)" }}>
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16" style={{ alignItems: "start" }}>
           <motion.div {...fade(0)}>

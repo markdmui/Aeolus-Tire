@@ -259,8 +259,8 @@ function AboutAeolus() {
         />
       </div>
 
-      {/* Tail — extra height so the truck image extends below the rule */}
-      <div style={{ height: "520px", position: "relative", zIndex: 1 }} />
+      {/* Tail — truck image visible below the rule, History section overlaps this */}
+      <div style={{ height: "260px", position: "relative", zIndex: 1 }} />
     </section>
   );
 }
@@ -282,7 +282,7 @@ const MILESTONES = [
 
 function History() {
   return (
-    <section className="py-20" style={{ backgroundColor: "var(--bg-dark)", borderTop: "1px solid var(--border-color)" }}>
+    <section className="py-20" style={{ backgroundColor: "var(--bg-dark)", borderTop: "1px solid var(--border-color)", position: "relative", zIndex: 2, marginTop: "-180px" }}>
       <div className="container">
         <motion.div {...fade(0)}>
           <Kicker>Our History</Kicker>

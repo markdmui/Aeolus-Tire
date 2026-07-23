@@ -375,7 +375,7 @@ function CanadianNetwork() {
             <div
               key={name}
               style={{
-                padding: "1.5rem",
+                padding: "2.25rem 1.5rem",
                 borderLeft: i === 0 ? "none" : "1px solid var(--border-color)",
               }}
             >
@@ -411,7 +411,7 @@ function CanadianNetwork() {
             <div
               key={prov}
               style={{
-                padding: "1.1rem 1.5rem",
+                padding: "2rem 1.5rem",
                 borderLeft: i === 0 ? "none" : "1px solid var(--border-color)",
               }}
             >

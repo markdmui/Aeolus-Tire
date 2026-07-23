@@ -272,6 +272,7 @@ function History() {
           {MILESTONES.map(({ label, year, text, current }, i) => (
             <motion.div
               key={`${year}-${label}`}
+              className="history-card"
               style={{
                 padding: "2rem 2rem 1.75rem",
                 backgroundColor: "var(--bg-dark)",

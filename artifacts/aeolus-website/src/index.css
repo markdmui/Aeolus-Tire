@@ -509,3 +509,20 @@ html {
     line-height: 1.45;
   }
 }
+
+/* ─── HISTORY CARDS ──────────────────────────────────────────── */
+.history-card p {
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+.history-card {
+  transition: outline 0.15s ease;
+  outline: 1px solid transparent;
+  outline-offset: -1px;
+}
+.history-card:hover {
+  outline-color: #fff;
+}
+.history-card:hover p {
+  opacity: 1;
+}

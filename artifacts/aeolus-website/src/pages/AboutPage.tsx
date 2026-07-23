@@ -164,7 +164,7 @@ function WhyAeolusCanada() {
         <motion.div
           {...fade(0)}
           className="flex flex-col justify-center"
-          style={{ flex: "0 0 60%", padding: "5rem 4rem 5rem 4vw" }}
+          style={{ flex: "0 0 60%", padding: "5rem 4rem 5rem calc(4vw + 20px)" }}
         >
           <Kicker>Why Aeolus Canada</Kicker>
           <SectionHeading style={{ color: "#fff" }}>Built in Oakville. Backed by a global network.</SectionHeading>

@@ -36,3 +36,9 @@ id = "LUwE6l6xRFmtiEYh-NEYt"
 uri = "file://aeolus-design-system.md"
 type = "text"
 title = "Aeolus Design System"
+
+[[outputs]]
+id = "SBPVmbxbaQH0z7GJWH7Fq"
+uri = "file://screenshots/about-page-preview.jpg"
+type = "image"
+title = "About page — current design"

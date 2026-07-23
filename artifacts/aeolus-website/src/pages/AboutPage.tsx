@@ -160,7 +160,7 @@ function Hero() {
 function WhyAeolusCanada() {
   return (
     <section style={{ backgroundColor: "#333", borderTop: "1px solid var(--border-color)" }}>
-      <div className="flex flex-col md:flex-row" style={{ minHeight: "500px" }}>
+      <div className="flex flex-col md:flex-row" style={{ minHeight: "500px", maxHeight: "620px" }}>
         <motion.div
           {...fade(0)}
           className="flex flex-col justify-center"

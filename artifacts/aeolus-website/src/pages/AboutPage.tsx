@@ -282,7 +282,7 @@ const MILESTONES = [
 
 function History() {
   return (
-    <section className="py-20" style={{ backgroundColor: "transparent", position: "relative", zIndex: 2, marginTop: "-200px" }}>
+    <section className="py-20" style={{ backgroundColor: "transparent", position: "relative", zIndex: 2, marginTop: "-220px" }}>
       <div className="container">
         <motion.div {...fade(0)}>
           <Kicker>Our History</Kicker>

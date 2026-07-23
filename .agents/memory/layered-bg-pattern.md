@@ -1,9 +1,9 @@
 ---
-name: Layered Background Pattern
+name: Layered Background Images
 description: Full-bleed image section that visually bleeds behind the next content block — creates depth and connects separate sections.
 ---
 
-# Layered Background Pattern
+# Layered Background Images
 
 A section whose background image extends below its own content, and the following section overlaps it with a transparent background. Creates a layered, editorial depth effect.
 

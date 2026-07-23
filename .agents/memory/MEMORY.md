@@ -5,4 +5,4 @@
 - Brand-agnostic tire-site methodology extracted to skill `.agents/skills/truck-tire-website-methodology/SKILL.md` — reuse for any new/different tire brand's site; contains data model, cutaway component, tire-finder prototype, and naming conventions only, no Aeolus branding.
 - [Tire Finder Nav & Dropdown CSS Lessons](tire-finder-nav-css-lessons.md) — scope nav selectors with `>li>a`; dropdown anchors to `.site-nav-right` not `<li>`; spec table header structure for popup.
 - [Tire Finder Migration Plan](tire-finder-migration-plan.md) — agreed: keep tire-finder.html as-is until finalized wireframe delivered, then convert to React + shared data file in one pass.
-- [Layered Background Pattern](layered-bg-pattern.md) — full-bleed image bleeds behind the next section; transparent bg + negative marginTop on the following section creates editorial depth.
+- [Layered Background Images](layered-bg-pattern.md) — full-bleed image bleeds behind the next section; transparent bg + negative marginTop on the following section creates editorial depth.

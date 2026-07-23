@@ -8,7 +8,7 @@ const fade = (delay = 0) => ({
   initial: { opacity: 0, y: 32 },
   whileInView: { opacity: 1, y: 0 },
   viewport: VP,
-  transition: { duration: 0.26, delay, ease: "easeOut" as const },
+  transition: { duration: 6, delay, ease: "easeOut" as const },
 });
 
 function Kicker({ children }: { children: React.ReactNode }) {

@@ -57,7 +57,7 @@ function ImgPlaceholder({ caption, style }: { caption?: string; style?: React.CS
     <div>
       <div
         style={{
-          backgroundColor: "#1a1a1b",
+          backgroundColor: "transparent", /* #1a1a1b — restore to bring back placeholder color */
           width: "100%",
           minHeight: "320px",
           ...style,

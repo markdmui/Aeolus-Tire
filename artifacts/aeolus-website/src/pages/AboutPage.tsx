@@ -497,8 +497,9 @@ function WhyChoose() {
             >
               <div
                 style={{
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "1.25rem",
-                  fontWeight: 700,
+                  fontWeight: 400,
                   letterSpacing: "0.04em",
                   color: "var(--accent-yellow)",
                   marginBottom: "0.75rem",

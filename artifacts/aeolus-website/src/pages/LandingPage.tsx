@@ -346,15 +346,15 @@ function EngineeringCapabilities() {
       {/* LBI — full-bleed background */}
       <div style={{
         position: "absolute", inset: 0,
-        backgroundImage: "url('/about-1.jpg')",
+        backgroundImage: "url('/eng-bg.jpg')",
         backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundPosition: "left center",
         backgroundRepeat: "no-repeat",
       }} />
-      {/* Dark overlay so cards stay readable */}
+      {/* Light overlay — image is already dark, just enough to keep cards readable */}
       <div style={{
         position: "absolute", inset: 0,
-        backgroundColor: "rgba(10,10,10,0.72)",
+        backgroundColor: "rgba(10,10,10,0.45)",
       }} />
 
       {/* Content */}

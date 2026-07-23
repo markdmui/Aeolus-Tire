@@ -193,7 +193,7 @@ function WhyAeolusCanada() {
           <img
             src="/about-1.jpg"
             alt="Aeolus tire close-up"
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top left", display: "block" }}
           />
         </motion.div>
       </div>

@@ -86,7 +86,7 @@ function Hero() {
         height: "760px",
         marginTop: "-46px",
         paddingTop: "110px",
-        backgroundImage: "url('/about-hero.jpg')",
+        backgroundImage: "url('/about-bg-01.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "top right",
         backgroundRepeat: "no-repeat",

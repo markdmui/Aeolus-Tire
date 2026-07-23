@@ -499,7 +499,7 @@ function WhyChoose() {
                 style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "1.25rem",
-                  fontWeight: 400,
+                  fontWeight: 300,
                   letterSpacing: "0.04em",
                   color: "var(--accent-yellow)",
                   marginBottom: "0.75rem",

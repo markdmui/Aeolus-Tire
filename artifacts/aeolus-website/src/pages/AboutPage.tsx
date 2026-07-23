@@ -255,7 +255,7 @@ function History() {
               key={`${year}-${label}`}
               style={{
                 padding: "2rem 2rem 1.75rem",
-                backgroundColor: "#111112",
+                backgroundColor: "var(--bg-dark)",
                 borderTop: "2px solid transparent",
               }}
               {...fade(i * 0.04)}

@@ -159,34 +159,43 @@ function Hero() {
 /* ─── WHY AEOLUS CANADA ──────────────────────────────────────── */
 function WhyAeolusCanada() {
   return (
-    <section className="py-20" style={{ backgroundColor: "var(--bg-dark)" }}>
-      <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16" style={{ alignItems: "start" }}>
-          <motion.div {...fade(0)}>
-            <Kicker>Why Aeolus Canada</Kicker>
-            <SectionHeading style={{ color: "#fff" }}>Built in Oakville. Backed by a global network.</SectionHeading>
-            <BodyText>
-              Based in Oakville, Ontario, Aeolus Canada is building a dedicated team of sales, marketing, and logistics
-              professionals focused on responsive service, reliable product availability, and long-term dealer support.
-            </BodyText>
-            <BodyText>
-              With sales representatives currently located in Ontario, Quebec, British Columbia, and Alberta, Aeolus
-              Canada continues to expand its national presence across key commercial tire markets. Our logistics team
-              manages container movement across global supply chains and supports local warehouse operations in Montreal,
-              Toronto, and Edmonton, helping improve product accessibility and distribution efficiency for dealers across
-              Canada.
-            </BodyText>
-            <BodyText>
-              As part of the global Aeolus network, Aeolus Canada combines decades of tire manufacturing experience with
-              local market knowledge. Our experienced sales team works with our Canadian dealer network to support
-              commercial tire customers across TBR and OTR applications, including long haul, regional haul,
-              construction, quarry, mining, industrial, and mixed-service operations.
-            </BodyText>
-          </motion.div>
-          <motion.div {...fade(0.1)}>
-            <ImgPlaceholder />
-          </motion.div>
-        </div>
+    <section style={{ backgroundColor: "#333", borderTop: "1px solid var(--border-color)" }}>
+      <div className="flex flex-col md:flex-row" style={{ minHeight: "500px" }}>
+        <motion.div
+          {...fade(0)}
+          className="flex flex-col justify-center"
+          style={{ flex: "0 0 50%", padding: "5rem 4rem 5rem 4vw" }}
+        >
+          <Kicker>Why Aeolus Canada</Kicker>
+          <SectionHeading style={{ color: "#fff" }}>Built in Oakville. Backed by a global network.</SectionHeading>
+          <BodyText>
+            Based in Oakville, Ontario, Aeolus Canada is building a dedicated team of sales, marketing, and logistics
+            professionals focused on responsive service, reliable product availability, and long-term dealer support.
+          </BodyText>
+          <BodyText>
+            With sales representatives currently located in Ontario, Quebec, British Columbia, and Alberta, Aeolus
+            Canada continues to expand its national presence across key commercial tire markets. Our logistics team
+            manages container movement across global supply chains and supports local warehouse operations in Montreal,
+            Toronto, and Edmonton, helping improve product accessibility and distribution efficiency for dealers across
+            Canada.
+          </BodyText>
+          <BodyText>
+            As part of the global Aeolus network, Aeolus Canada combines decades of tire manufacturing experience with
+            local market knowledge. Our experienced sales team works with our Canadian dealer network to support
+            commercial tire customers across TBR and OTR applications, including long haul, regional haul,
+            construction, quarry, mining, industrial, and mixed-service operations.
+          </BodyText>
+        </motion.div>
+        <motion.div
+          {...fade(0.1)}
+          style={{ flex: "0 0 50%", minHeight: "320px", overflow: "hidden" }}
+        >
+          <img
+            src="/about-1.jpg"
+            alt="Aeolus tire close-up"
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          />
+        </motion.div>
       </div>
     </section>
   );
@@ -195,31 +204,35 @@ function WhyAeolusCanada() {
 /* ─── ABOUT AEOLUS ───────────────────────────────────────────── */
 function AboutAeolus() {
   return (
-    <section className="py-20" style={{ backgroundColor: "var(--bg-dark)", borderTop: "1px solid var(--border-color)" }}>
+    <section
+      className="py-20"
+      style={{
+        borderTop: "1px solid var(--border-color)",
+        backgroundImage: "url('/about-2.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center right",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16" style={{ alignItems: "start" }}>
-          <motion.div {...fade(0)}>
-            <Kicker>About Aeolus</Kicker>
-            <SectionHeading style={{ color: "#fff" }}>Six decades of tire manufacturing.</SectionHeading>
-            <BodyText>
-              Aeolus has been dedicated to tire manufacturing since 1965. Founded as Henan Tire Factory, Aeolus has
-              grown into a global tire manufacturer with strong expertise in OTR and TBR tire segments.
-            </BodyText>
-            <BodyText>
-              Over the years, Aeolus has expanded its international presence, developed advanced tire technologies, and
-              built partnerships with major equipment manufacturers around the world. In the early 2000s, Aeolus entered
-              a new stage of growth, working with local distributors to grow our presence in more than 150 countries,
-              and was listed on the Shanghai Stock Exchange.
-            </BodyText>
-            <BodyText>
-              Today, Aeolus continues to focus on tire innovation, manufacturing quality, and sustainable development,
-              supporting global customers through reliable products, advanced engineering, and strong supply capabilities.
-            </BodyText>
-          </motion.div>
-          <motion.div {...fade(0.1)}>
-            <ImgPlaceholder />
-          </motion.div>
-        </div>
+        <motion.div {...fade(0)} style={{ maxWidth: "48ch" }}>
+          <Kicker>About Aeolus</Kicker>
+          <SectionHeading style={{ color: "#fff" }}>Six decades of tire manufacturing.</SectionHeading>
+          <BodyText>
+            Aeolus has been dedicated to tire manufacturing since 1965. Founded as Henan Tire Factory, Aeolus has
+            grown into a global tire manufacturer with strong expertise in OTR and TBR tire segments.
+          </BodyText>
+          <BodyText>
+            Over the years, Aeolus has expanded its international presence, developed advanced tire technologies, and
+            built partnerships with major equipment manufacturers around the world. In the early 2000s, Aeolus entered
+            a new stage of growth, working with local distributors to grow our presence in more than 150 countries,
+            and was listed on the Shanghai Stock Exchange.
+          </BodyText>
+          <BodyText>
+            Today, Aeolus continues to focus on tire innovation, manufacturing quality, and sustainable development,
+            supporting global customers through reliable products, advanced engineering, and strong supply capabilities.
+          </BodyText>
+        </motion.div>
       </div>
     </section>
   );

@@ -38,8 +38,8 @@ export default function LandingPage() {
       </div>
       <div className="container">
         <ProductGrid />
+        <EngineeringCapabilities />
       </div>
-      <EngineeringCapabilities />
       <AboutAeolus />
       <EngineeringApproach />
       <Footer />
@@ -342,61 +342,41 @@ function EngineeringCapabilities() {
   ];
 
   return (
-    <section style={{ position: "relative", backgroundColor: "#0a0a0a", overflow: "hidden", borderTop: "1px solid var(--border-color)" }}>
-      {/* LBI — full-bleed background */}
-      <div style={{
-        position: "absolute", inset: 0,
-        backgroundImage: "url('/eng-bg.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "left center",
-        backgroundRepeat: "no-repeat",
-      }} />
-      {/* Light overlay — image is already dark, just enough to keep cards readable */}
-      <div style={{
-        position: "absolute", inset: 0,
-        backgroundColor: "rgba(10,10,10,0.45)",
-      }} />
-
-      {/* Content */}
-      <div className="container" style={{ position: "relative", zIndex: 2 }}>
-        <div className="pt-16 md:pt-20 pb-16 md:pb-20 grid grid-cols-1 md:grid-cols-2 gap-6">
-          {panels.map((p, i) => (
-            <motion.div
-              key={p.title}
-              className="flex flex-col"
-              style={{
-                backgroundColor: "#111112",
-                border: "1px solid var(--border-color)",
-                borderTop: "2px solid var(--accent-yellow)",
-              }}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={VP}
-              transition={{ duration: 0.25, delay: i * 0.07, ease: "easeOut" }}
-            >
-              <div className="p-8 md:p-10 flex-1">
-                <h3
-                  className="uppercase mb-4"
-                  style={{ fontSize: "0.95rem", fontWeight: 600, letterSpacing: "0.02em" }}
-                >
-                  {p.title}
-                </h3>
-                <div
-                  className="mb-5"
-                  style={{ width: "2rem", height: "2px", backgroundColor: "var(--accent-yellow)" }}
-                />
-                <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", lineHeight: 1.6 }}>
-                  {p.body}
-                </p>
-              </div>
-              <div className="w-full" style={{ backgroundColor: "#1a1a1b", height: "12rem" }} />
-            </motion.div>
-          ))}
-        </div>
+    <section className="pb-16 md:pb-20" style={{ borderTop: "1px solid var(--border-color)" }}>
+      <div className="pt-16 md:pt-20 grid grid-cols-1 md:grid-cols-2 gap-6">
+        {panels.map((p, i) => (
+          <motion.div
+            key={p.title}
+            className="flex flex-col"
+            style={{
+              backgroundColor: "#111112",
+              border: "1px solid var(--border-color)",
+              borderTop: "2px solid var(--accent-yellow)",
+            }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={VP}
+            transition={{ duration: 0.25, delay: i * 0.07, ease: "easeOut" }}
+          >
+            <div className="p-8 md:p-10 flex-1">
+              <h3
+                className="uppercase mb-4"
+                style={{ fontSize: "0.95rem", fontWeight: 600, letterSpacing: "0.02em" }}
+              >
+                {p.title}
+              </h3>
+              <div
+                className="mb-5"
+                style={{ width: "2rem", height: "2px", backgroundColor: "var(--accent-yellow)" }}
+              />
+              <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", lineHeight: 1.6 }}>
+                {p.body}
+              </p>
+            </div>
+            <div className="w-full" style={{ backgroundColor: "#1a1a1b", height: "12rem" }} />
+          </motion.div>
+        ))}
       </div>
-
-      {/* Tail — extends past AboutAeolus so about-1.jpg shows behind EngineeringApproach too */}
-      <div style={{ height: "650px", position: "relative", zIndex: 1 }} />
     </section>
   );
 }
@@ -419,8 +399,6 @@ function AboutAeolus() {
         backgroundSize: "cover",
         backgroundPosition: "left center",
         backgroundRepeat: "no-repeat",
-        position: "relative",
-        zIndex: 2,
       }}
     >
       <div
@@ -504,7 +482,7 @@ function AboutAeolus() {
 
 function EngineeringApproach() {
   return (
-    <section className="engineering-approach pb-16 md:pb-24" style={{ backgroundColor: "transparent", position: "relative", zIndex: 2, marginTop: "-160px" }}>
+    <section className="engineering-approach pb-16 md:pb-24 mt-4" style={{ backgroundColor: "var(--bg-dark)" }}>
       <div className="container">
         <motion.div
           className="relative flex flex-col justify-between"

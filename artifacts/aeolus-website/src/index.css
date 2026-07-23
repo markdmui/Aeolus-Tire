@@ -283,7 +283,7 @@ html {
 @media (min-width: 1536px) {
   .lineup-grid { grid-template-columns: repeat(8, 1fr); }
   .about-hero { height: 910px !important; }
-  .about-aeolus-section { background-size: 80%; }
+  .about-aeolus-section { background-size: auto 80%; }
 }
 @media (max-width: 1023px) {
   .lineup-grid { grid-template-columns: repeat(4, 1fr); }

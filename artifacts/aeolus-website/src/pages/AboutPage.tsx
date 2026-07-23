@@ -205,11 +205,11 @@ function WhyAeolusCanada() {
 function AboutAeolus() {
   return (
     <section
-      className="py-20 about-aeolus-section"
+      className="py-20"
       style={{
         borderTop: "1px solid var(--border-color)",
         backgroundImage: "url('/about-2.jpg')",
-        backgroundSize: "auto 80%",
+        backgroundSize: "cover",
         backgroundPosition: "center right",
         backgroundRepeat: "no-repeat",
       }}

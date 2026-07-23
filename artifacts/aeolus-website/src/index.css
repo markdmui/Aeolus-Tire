@@ -510,6 +510,15 @@ html {
   }
 }
 
+/* ─── WHY CHOOSE CARDS ───────────────────────────────────────── */
+.choose-card p {
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+.choose-card:hover p {
+  opacity: 1;
+}
+
 /* ─── HISTORY CARDS ──────────────────────────────────────────── */
 .history-card p {
   opacity: 0.8;

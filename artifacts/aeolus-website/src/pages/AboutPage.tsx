@@ -498,6 +498,7 @@ function WhyChoose() {
           {REASONS.map(({ num, title, body }, i) => (
             <motion.div
               key={num}
+              className="choose-card"
               style={{
                 border: "1px solid var(--border-color)",
                 backgroundColor: "#111112",

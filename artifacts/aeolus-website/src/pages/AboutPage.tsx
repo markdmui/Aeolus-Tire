@@ -209,7 +209,7 @@ function AboutAeolus() {
       style={{
         borderTop: "1px solid var(--border-color)",
         backgroundImage: "url('/about-2.jpg')",
-        backgroundSize: "cover",
+        backgroundSize: "auto 80%",
         backgroundPosition: "center right",
         backgroundRepeat: "no-repeat",
       }}

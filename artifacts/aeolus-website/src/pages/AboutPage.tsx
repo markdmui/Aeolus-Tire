@@ -215,7 +215,7 @@ function AboutAeolus() {
       }}
     >
       <div className="container">
-        <motion.div {...fade(0)} style={{ maxWidth: "48ch" }}>
+        <motion.div {...fade(0)} style={{ maxWidth: "62ch" }}>
           <Kicker>About Aeolus</Kicker>
           <SectionHeading style={{ color: "#fff" }}>Six decades of tire manufacturing.</SectionHeading>
           <BodyText>

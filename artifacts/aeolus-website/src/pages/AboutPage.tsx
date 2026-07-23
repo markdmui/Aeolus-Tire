@@ -8,7 +8,7 @@ const fade = (delay = 0) => ({
   initial: { opacity: 0, y: 32 },
   whileInView: { opacity: 1, y: 0 },
   viewport: VP,
-  transition: { duration: 6, delay, ease: "easeOut" as const },
+  transition: { duration: 0.26, delay, ease: "easeOut" as const },
 });
 
 function Kicker({ children }: { children: React.ReactNode }) {
@@ -300,7 +300,7 @@ function History() {
               className="history-card"
               style={{
                 padding: "2rem 2rem 1.75rem",
-                backgroundColor: "var(--bg-dark)",
+                backgroundColor: "#000000",
                 borderTop: "2px solid transparent",
               }}
               {...fade(i * 0.04)}

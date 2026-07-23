@@ -159,7 +159,7 @@ function Hero() {
 /* ─── WHY AEOLUS CANADA ──────────────────────────────────────── */
 function WhyAeolusCanada() {
   return (
-    <section className="py-20" style={{ backgroundColor: "#111112" }}>
+    <section className="py-20" style={{ backgroundColor: "var(--bg-dark)" }}>
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16" style={{ alignItems: "start" }}>
           <motion.div {...fade(0)}>
@@ -242,7 +242,7 @@ const MILESTONES = [
 
 function History() {
   return (
-    <section className="py-20" style={{ backgroundColor: "#111112", borderTop: "1px solid var(--border-color)" }}>
+    <section className="py-20" style={{ backgroundColor: "var(--bg-dark)", borderTop: "1px solid var(--border-color)" }}>
       <div className="container">
         <motion.div {...fade(0)}>
           <Kicker>Our History</Kicker>
@@ -301,7 +301,7 @@ function History() {
 /* ─── OUR TECHNOLOGY ─────────────────────────────────────────── */
 function OurTechnology() {
   return (
-    <section className="py-20" style={{ backgroundColor: "var(--bg-dark)", borderTop: "1px solid var(--border-color)" }}>
+    <section className="py-20" style={{ backgroundColor: "#111112", borderTop: "1px solid var(--border-color)" }}>
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16" style={{ alignItems: "start" }}>
           <motion.div {...fade(0)}>
@@ -340,7 +340,7 @@ const PROVINCES = ["Ontario", "Quebec", "British Columbia", "Alberta"];
 
 function CanadianNetwork() {
   return (
-    <section className="py-20" style={{ backgroundColor: "#111112", borderTop: "1px solid var(--border-color)" }}>
+    <section className="py-20" style={{ backgroundColor: "var(--bg-dark)", borderTop: "1px solid var(--border-color)" }}>
       <div className="container">
         <motion.div {...fade(0)}>
           <Kicker>Our Canadian Network</Kicker>
@@ -471,7 +471,7 @@ const REASONS = [
 
 function WhyChoose() {
   return (
-    <section className="py-20" style={{ backgroundColor: "var(--bg-dark)", borderTop: "1px solid var(--border-color)" }}>
+    <section className="py-20" style={{ backgroundColor: "#111112", borderTop: "1px solid var(--border-color)" }}>
       <div className="container">
         <motion.div {...fade(0)} className="mb-10">
           <Kicker>Why Choose Aeolus Canada</Kicker>

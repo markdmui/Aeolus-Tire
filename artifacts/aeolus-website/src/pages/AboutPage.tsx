@@ -256,7 +256,7 @@ function History() {
               style={{
                 padding: "2rem 2rem 1.75rem",
                 backgroundColor: "#111112",
-                borderTop: current ? "2px solid var(--accent-yellow)" : "2px solid transparent",
+                borderTop: "2px solid transparent",
               }}
               {...fade(i * 0.04)}
             >
@@ -287,6 +287,7 @@ function History() {
               <p style={{ color: "#b8b8b8", fontSize: "0.9rem", lineHeight: 1.6 }}>{text}</p>
             </motion.div>
           ))}
+          <div style={{ backgroundColor: "var(--bg-dark)" }} />
         </div>
       </div>
     </section>

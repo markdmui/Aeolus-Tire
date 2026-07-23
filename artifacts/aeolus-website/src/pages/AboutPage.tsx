@@ -81,14 +81,19 @@ function Hero() {
   ];
   return (
     <section
-      className="pb-20"
+      className="hero-section flex flex-col justify-center pb-16 md:pb-24"
       style={{
-        backgroundColor: "var(--bg-dark)",
+        minHeight: "520px",
+        height: "720px",
         marginTop: "-46px",
-        paddingTop: "calc(110px + 46px)",
+        paddingTop: "110px",
+        backgroundImage: "url('/about-hero.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center right",
+        backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="container">
+      <div className="container w-full" style={{ position: "relative", zIndex: 1 }}>
         <motion.div {...fade(0)}>
           <Kicker>Why Aeolus Canada</Kicker>
         </motion.div>

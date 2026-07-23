@@ -427,7 +427,7 @@ function CanadianNetwork() {
               >
                 Sales Coverage
               </div>
-              <div style={{ fontSize: "0.9375rem", color: "#fff" }}>{prov}</div>
+              <div style={{ fontSize: "1.4rem", color: "#fff" }}>{prov}</div>
             </div>
           ))}
         </motion.div>

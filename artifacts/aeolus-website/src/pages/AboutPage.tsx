@@ -159,7 +159,7 @@ function Hero() {
 /* ─── WHY AEOLUS CANADA ──────────────────────────────────────── */
 function WhyAeolusCanada() {
   return (
-    <section className="py-20" style={{ backgroundColor: "#333", borderTop: "1px solid var(--border-color)" }}>
+    <section style={{ backgroundColor: "#333", borderTop: "1px solid var(--border-color)" }}>
       <div className="container">
         <div className="flex flex-col md:flex-row" style={{ minHeight: "440px", gap: "3rem", alignItems: "stretch" }}>
           <motion.div

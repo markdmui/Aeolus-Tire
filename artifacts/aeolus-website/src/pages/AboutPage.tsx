@@ -185,7 +185,7 @@ function WhyAeolusCanada() {
             </BodyText>
           </motion.div>
           <motion.div {...fade(0.1)}>
-            <ImgPlaceholder caption="Aeolus Tire (Canada) Inc., Oakville, Ontario." />
+            <ImgPlaceholder />
           </motion.div>
         </div>
       </div>
@@ -200,7 +200,7 @@ function AboutAeolus() {
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16" style={{ alignItems: "start" }}>
           <motion.div {...fade(0)}>
-            <ImgPlaceholder caption="Aeolus has manufactured tires continuously since 1965." />
+            <ImgPlaceholder />
           </motion.div>
           <motion.div {...fade(0.1)}>
             <Kicker>About Aeolus</Kicker>
@@ -323,7 +323,7 @@ function OurTechnology() {
             </BodyText>
           </motion.div>
           <motion.div {...fade(0.1)}>
-            <ImgPlaceholder caption="Materials, casing design, tread patterns, and manufacturing processes developed for real operating conditions." />
+            <ImgPlaceholder />
           </motion.div>
         </div>
       </div>

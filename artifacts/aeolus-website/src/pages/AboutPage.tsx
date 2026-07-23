@@ -159,43 +159,45 @@ function Hero() {
 /* ─── WHY AEOLUS CANADA ──────────────────────────────────────── */
 function WhyAeolusCanada() {
   return (
-    <section style={{ backgroundColor: "#333", borderTop: "1px solid var(--border-color)" }}>
-      <div className="flex flex-col md:flex-row" style={{ minHeight: "500px", maxHeight: "620px" }}>
-        <motion.div
-          {...fade(0)}
-          className="flex flex-col justify-center"
-          style={{ flex: "0 0 60%", padding: "5rem 4rem 5rem max(calc((100vw - 1600px) / 2 + 4vw + 20px), calc(4vw + 20px))" }}
-        >
-          <Kicker>Why Aeolus Canada</Kicker>
-          <SectionHeading style={{ color: "#fff" }}>Built in Oakville. Backed by a global network.</SectionHeading>
-          <BodyText>
-            Based in Oakville, Ontario, Aeolus Canada is building a dedicated team of sales, marketing, and logistics
-            professionals focused on responsive service, reliable product availability, and long-term dealer support.
-          </BodyText>
-          <BodyText>
-            With sales representatives currently located in Ontario, Quebec, British Columbia, and Alberta, Aeolus
-            Canada continues to expand its national presence across key commercial tire markets. Our logistics team
-            manages container movement across global supply chains and supports local warehouse operations in Montreal,
-            Toronto, and Edmonton, helping improve product accessibility and distribution efficiency for dealers across
-            Canada.
-          </BodyText>
-          <BodyText>
-            As part of the global Aeolus network, Aeolus Canada combines decades of tire manufacturing experience with
-            local market knowledge. Our experienced sales team works with our Canadian dealer network to support
-            commercial tire customers across TBR and OTR applications, including long haul, regional haul,
-            construction, quarry, mining, industrial, and mixed-service operations.
-          </BodyText>
-        </motion.div>
-        <motion.div
-          {...fade(0.1)}
-          style={{ flex: "0 0 40%", minHeight: "320px", overflow: "hidden" }}
-        >
-          <img
-            src="/about-1.jpg"
-            alt="Aeolus tire close-up"
-            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top left", display: "block" }}
-          />
-        </motion.div>
+    <section className="py-20" style={{ backgroundColor: "#333", borderTop: "1px solid var(--border-color)" }}>
+      <div className="container">
+        <div className="flex flex-col md:flex-row" style={{ minHeight: "440px", gap: "3rem", alignItems: "stretch" }}>
+          <motion.div
+            {...fade(0)}
+            className="flex flex-col justify-center"
+            style={{ flex: "0 0 60%" }}
+          >
+            <Kicker>Why Aeolus Canada</Kicker>
+            <SectionHeading style={{ color: "#fff" }}>Built in Oakville. Backed by a global network.</SectionHeading>
+            <BodyText>
+              Based in Oakville, Ontario, Aeolus Canada is building a dedicated team of sales, marketing, and logistics
+              professionals focused on responsive service, reliable product availability, and long-term dealer support.
+            </BodyText>
+            <BodyText>
+              With sales representatives currently located in Ontario, Quebec, British Columbia, and Alberta, Aeolus
+              Canada continues to expand its national presence across key commercial tire markets. Our logistics team
+              manages container movement across global supply chains and supports local warehouse operations in Montreal,
+              Toronto, and Edmonton, helping improve product accessibility and distribution efficiency for dealers across
+              Canada.
+            </BodyText>
+            <BodyText>
+              As part of the global Aeolus network, Aeolus Canada combines decades of tire manufacturing experience with
+              local market knowledge. Our experienced sales team works with our Canadian dealer network to support
+              commercial tire customers across TBR and OTR applications, including long haul, regional haul,
+              construction, quarry, mining, industrial, and mixed-service operations.
+            </BodyText>
+          </motion.div>
+          <motion.div
+            {...fade(0.1)}
+            style={{ flex: "0 0 40%", minHeight: "320px", overflow: "hidden", borderRadius: "4px" }}
+          >
+            <img
+              src="/about-1.jpg"
+              alt="Aeolus tire close-up"
+              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top left", display: "block" }}
+            />
+          </motion.div>
+        </div>
       </div>
     </section>
   );

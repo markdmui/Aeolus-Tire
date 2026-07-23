@@ -207,11 +207,10 @@ function AboutAeolus() {
     <section
       className="py-20"
       style={{
+        position: "relative",
+        zIndex: 1,
+        backgroundColor: "transparent",
         borderTop: "1px solid var(--border-color)",
-        backgroundImage: "url('/about-2.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center right",
-        backgroundRepeat: "no-repeat",
       }}
     >
       <div className="container">
@@ -255,7 +254,7 @@ const MILESTONES = [
 
 function History() {
   return (
-    <section className="py-20" style={{ backgroundColor: "var(--bg-dark)", borderTop: "1px solid var(--border-color)" }}>
+    <section className="py-20" style={{ position: "relative", zIndex: 1, backgroundColor: "transparent", borderTop: "1px solid var(--border-color)" }}>
       <div className="container">
         <motion.div {...fade(0)}>
           <Kicker>Our History</Kicker>
@@ -549,8 +548,26 @@ export default function AboutPage() {
       <Navbar />
       <Hero />
       <WhyAeolusCanada />
-      <AboutAeolus />
-      <History />
+      <div style={{ position: "relative", backgroundColor: "var(--bg-dark)" }}>
+        <img
+          src="/about-2.jpg"
+          alt=""
+          aria-hidden={true}
+          style={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            width: "55%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center right",
+            pointerEvents: "none",
+            zIndex: 0,
+          }}
+        />
+        <AboutAeolus />
+        <History />
+      </div>
       <OurTechnology />
       <CanadianNetwork />
       <WhyChoose />

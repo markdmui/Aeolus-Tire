@@ -206,20 +206,32 @@ function WhyAeolusCanada() {
 /* ─── ABOUT AEOLUS ───────────────────────────────────────────── */
 function AboutAeolus() {
   return (
-    <section
-      className="py-20"
-      style={{
-        borderTop: "1px solid var(--border-color)",
-        backgroundImage: "url('/about-2.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center right",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      <div className="container">
-        <motion.div {...fade(0)} style={{ maxWidth: "62ch" }}>
+    <section style={{ position: "relative", backgroundColor: "#0a0a0a", overflow: "hidden" }}>
+      {/* Full-bleed background image */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: "url('/about-2.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center right",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
+      {/* Gradient overlay — fades image out left→right so text is readable */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "linear-gradient(90deg, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.75) 38%, rgba(10,10,10,0.20) 72%, rgba(10,10,10,0.04) 100%)",
+        }}
+      />
+
+      {/* Content */}
+      <div className="container" style={{ position: "relative", zIndex: 2, paddingTop: "92px" }}>
+        <motion.div {...fade(0)} style={{ maxWidth: "500px" }}>
           <Kicker>About Aeolus</Kicker>
-          <SectionHeading style={{ color: "#fff" }}>Six decades of tire manufacturing.</SectionHeading>
+          <SectionHeading style={{ color: "#f2f2f2" }}>Six decades of tire manufacturing.</SectionHeading>
           <BodyText>
             Aeolus has been dedicated to tire manufacturing since 1965. Founded as Henan Tire Factory, Aeolus has
             grown into a global tire manufacturer with strong expertise in OTR and TBR tire segments.
@@ -235,7 +247,20 @@ function AboutAeolus() {
             supporting global customers through reliable products, advanced engineering, and strong supply capabilities.
           </BodyText>
         </motion.div>
+
+        {/* Yellow rule — separates content from the image tail below */}
+        <div
+          style={{
+            position: "relative",
+            zIndex: 2,
+            borderTop: "2px solid var(--accent-yellow)",
+            marginTop: "64px",
+          }}
+        />
       </div>
+
+      {/* Tail — extra height so the truck image extends below the rule */}
+      <div style={{ height: "520px", position: "relative", zIndex: 1 }} />
     </section>
   );
 }

@@ -476,7 +476,7 @@ function WhyChoose() {
       <div className="container">
         <motion.div {...fade(0)} className="mb-10">
           <Kicker>Why Choose Aeolus Canada</Kicker>
-          <SectionHeading style={{ color: "#fff" }}>Six reasons dealers work with us.</SectionHeading>
+          <SectionHeading style={{ color: "#fff" }}>6 reasons dealers work with us.</SectionHeading>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">

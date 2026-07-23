@@ -58,7 +58,6 @@ function ImgPlaceholder({ caption, style }: { caption?: string; style?: React.CS
       <div
         style={{
           backgroundColor: "#1a1a1b",
-          border: "1px solid var(--border-color)",
           width: "100%",
           minHeight: "320px",
           ...style,

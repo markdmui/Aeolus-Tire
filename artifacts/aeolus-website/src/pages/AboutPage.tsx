@@ -100,7 +100,7 @@ function Hero() {
         <motion.h1
           className="mb-6"
           style={{
-            fontSize: "clamp(1.96rem, 4.43vw, 3.06rem)",
+            fontSize: "clamp(1.76rem, 3.99vw, 2.75rem)",
             fontWeight: 400,
             lineHeight: 1.08,
             letterSpacing: "-0.02em",

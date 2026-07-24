@@ -141,7 +141,7 @@ export default function Navbar() {
       className="sticky top-0 z-50"
       style={{
         transition: "background-color 0.3s ease",
-        backgroundColor: scrolled || menuOpen ? "rgba(0,0,0,0.7)" : "transparent",
+        backgroundColor: "rgba(0,0,0,0.8)",
       }}
     >
       <nav

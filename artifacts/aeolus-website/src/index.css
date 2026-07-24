@@ -509,6 +509,25 @@ html {
   }
 }
 
+/* ─── ABOUT PAGE — MOBILE OVERRIDES ─────────────────────────── */
+@media (max-width: 767px) {
+  /* Hero: shift background image down 200px */
+  .about-hero {
+    background-position-y: 200px !important;
+  }
+  /* Why Aeolus CB: more breathing room */
+  .why-aeolus-cb {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  /* about-1 img: break out of container padding → full-bleed */
+  .about-1-img-wrap {
+    margin-left: calc(-1 * (4vw + 20px));
+    margin-right: calc(-1 * (4vw + 20px));
+    border-radius: 0;
+  }
+}
+
 /* ─── SITE NAV TOP BAR ───────────────────────────────────────── */
 .site-nav-wrapper {
   border-top: 6px solid #FFD700 !important;

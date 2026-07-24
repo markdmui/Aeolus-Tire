@@ -159,7 +159,7 @@ function Hero() {
 /* ─── WHY AEOLUS CANADA ──────────────────────────────────────── */
 function WhyAeolusCanada() {
   return (
-    <section style={{ backgroundColor: "#333", borderTop: "1px solid var(--border-color)" }}>
+    <section className="why-aeolus-cb" style={{ backgroundColor: "#333", borderTop: "1px solid var(--border-color)" }}>
       <div className="container">
         <div className="flex flex-col md:flex-row" style={{ minHeight: "440px", gap: "3rem", alignItems: "stretch" }}>
           <motion.div
@@ -189,6 +189,7 @@ function WhyAeolusCanada() {
           </motion.div>
           <motion.div
             {...fade(0.1)}
+            className="about-1-img-wrap"
             style={{ flex: "0 0 40%", minHeight: "320px", overflow: "hidden", borderRadius: "4px" }}
           >
             <img

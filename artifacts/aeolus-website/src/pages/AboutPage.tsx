@@ -231,7 +231,7 @@ function AboutAeolus() {
       <div className="container" style={{ position: "relative", zIndex: 2, paddingTop: "92px" }}>
         <motion.div {...fade(0)} style={{ maxWidth: "500px" }}>
           <Kicker>About Aeolus</Kicker>
-          <SectionHeading style={{ color: "#f2f2f2" }}>Six decades of tire manufacturing.</SectionHeading>
+          <SectionHeading style={{ color: "#f2f2f2" }}>6 decades of tire manufacturing.</SectionHeading>
           <BodyText>
             Aeolus has been dedicated to tire manufacturing since 1965. Founded as Henan Tire Factory, Aeolus has
             grown into a global tire manufacturer with strong expertise in OTR and TBR tire segments.

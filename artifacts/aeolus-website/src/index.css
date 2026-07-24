@@ -521,7 +521,7 @@ html {
     display: grid !important;
     grid-template-columns: auto auto;
     justify-content: start;
-    gap: 0rem 3rem;
+    gap: 0rem 3rem !important;
   }
 
   /* Hero: text pinned to top, image fills the bottom */

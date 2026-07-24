@@ -519,11 +519,14 @@ html {
     gap: 1.75rem 3rem;
   }
 
-  /* Hero: use about-bg-01, anchored to center bottom, full width */
+  /* Hero: text pinned to top, image fills the bottom */
   .about-hero {
     background-image: url('/about-bg-01.jpg') !important;
     background-position: center bottom !important;
     background-size: 100% auto !important;
+    justify-content: flex-start !important;
+    padding-top: 50px !important;
+    height: 820px !important;
   }
   /* Why Aeolus CB: more breathing room; clip full-bleed img on all sides */
   .why-aeolus-cb {

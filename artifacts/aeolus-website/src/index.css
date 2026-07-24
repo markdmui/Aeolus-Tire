@@ -515,10 +515,11 @@ html {
   .about-hero {
     background-position-y: 200px !important;
   }
-  /* Why Aeolus CB: more breathing room */
+  /* Why Aeolus CB: more breathing room; clip the full-bleed img overflow */
   .why-aeolus-cb {
     padding-top: 3rem;
     padding-bottom: 3rem;
+    overflow-x: hidden;
   }
   /* about-1 img: break out of container padding → full-bleed */
   .about-1-img-wrap {

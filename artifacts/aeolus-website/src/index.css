@@ -514,8 +514,9 @@ html {
   /* Stats: 2x2 grid on mobile */
   .about-hero-stats {
     display: grid !important;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.75rem 1.5rem;
+    grid-template-columns: auto auto;
+    justify-content: start;
+    gap: 1.75rem 3rem;
   }
 
   /* Hero: use about-bg-01, anchored to center bottom, full width */

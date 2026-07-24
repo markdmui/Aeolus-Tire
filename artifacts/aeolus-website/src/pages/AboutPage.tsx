@@ -125,12 +125,13 @@ function Hero() {
         </motion.p>
 
         <div
+          className="about-hero-stats"
           style={{
             borderTop: "1px solid #3a3a3a",
             paddingTop: "2rem",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "1.75rem 3.5rem",
+            display: "flex",
+            gap: "3.5rem",
+            flexWrap: "wrap",
           }}
         >
           {stats.map(({ num, cap }, i) => (

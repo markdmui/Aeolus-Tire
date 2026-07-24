@@ -511,6 +511,13 @@ html {
 
 /* ─── ABOUT PAGE — MOBILE OVERRIDES ─────────────────────────── */
 @media (max-width: 767px) {
+  /* Stats: 2x2 grid on mobile */
+  .about-hero-stats {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.75rem 3.5rem;
+  }
+
   /* Hero: shift background image down 200px */
   .about-hero {
     background-position-y: 200px !important;

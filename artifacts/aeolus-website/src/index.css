@@ -518,9 +518,11 @@ html {
     gap: 1.75rem 3.5rem;
   }
 
-  /* Hero: shift background image down 200px */
+  /* Hero: use about-bg-01, anchored to center bottom, full width */
   .about-hero {
-    background-position-y: 200px !important;
+    background-image: url('/about-bg-01.jpg') !important;
+    background-position: center bottom !important;
+    background-size: 100% auto !important;
   }
   /* Why Aeolus CB: more breathing room; clip full-bleed img on all sides */
   .why-aeolus-cb {

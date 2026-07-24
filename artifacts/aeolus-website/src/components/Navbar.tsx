@@ -141,10 +141,9 @@ export default function Navbar() {
       className="sticky top-0 z-50"
       style={{
         backgroundColor: "rgba(0,0,0,0.8)",
+        borderTop: "6px solid #FFD700",
       }}
     >
-      {/* Yellow bar — child of sticky wrapper, paints over the dark background */}
-      <div style={{ height: "6px", backgroundColor: "#FFD700" }} />
       <nav
         className="flex justify-between items-center"
         style={{

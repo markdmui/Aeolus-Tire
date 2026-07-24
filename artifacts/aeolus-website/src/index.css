@@ -521,7 +521,7 @@ html {
 
   /* Hero: use about-bg-01, anchored to center bottom, full width */
   .about-hero {
-    background-image: none !important;
+    background-image: url('/about-bg-01.jpg') !important;
     background-position: center bottom !important;
     background-size: 100% auto !important;
   }

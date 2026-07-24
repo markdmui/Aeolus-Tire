@@ -513,7 +513,7 @@ html {
 @media (max-width: 767px) {
   /* Hero h1: larger + bold on mobile */
   .about-hero h1 {
-    font-size: clamp(2.4rem, 9vw, 3rem) !important;
+    font-size: clamp(2.1rem, 8vw, 2.6rem) !important;
     font-weight: 400 !important;
     line-height: 1.12 !important;
   }

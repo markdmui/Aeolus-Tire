@@ -546,6 +546,36 @@ html {
     padding-bottom: 3rem;
     overflow: hidden;
   }
+  /* About Aeolus: truck bg pulled below text, full-bleed like about-1 */
+  .about-aeolus-section {
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: visible !important;
+  }
+  .about-aeolus-bg {
+    position: relative !important;
+    inset: auto !important;
+    order: 2;
+    height: 300px;
+    flex-shrink: 0;
+    background-position: center center !important;
+    margin-bottom: -220px;
+  }
+  .about-aeolus-gradient {
+    display: none !important;
+  }
+  .about-aeolus-content {
+    order: 1;
+    position: relative !important;
+  }
+  .about-aeolus-tail {
+    display: none !important;
+  }
+  /* History: cancel the desktop negative margin-top on mobile */
+  .about-history-section {
+    margin-top: 0 !important;
+  }
+
   /* about-1 img: break out of container padding → full-bleed; crop 275px from bottom */
   .about-1-img-wrap {
     margin-left: calc(-1 * (4vw + 20px));

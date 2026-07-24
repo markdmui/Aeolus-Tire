@@ -208,9 +208,10 @@ function WhyAeolusCanada() {
 /* ─── ABOUT AEOLUS ───────────────────────────────────────────── */
 function AboutAeolus() {
   return (
-    <section style={{ position: "relative", backgroundColor: "#0a0a0a", overflow: "hidden" }}>
+    <section className="about-aeolus-section" style={{ position: "relative", backgroundColor: "#0a0a0a", overflow: "hidden" }}>
       {/* Full-bleed background image */}
       <div
+        className="about-aeolus-bg"
         style={{
           position: "absolute",
           inset: 0,
@@ -222,6 +223,7 @@ function AboutAeolus() {
       />
       {/* Gradient overlay — fades image out left→right so text is readable */}
       <div
+        className="about-aeolus-gradient"
         style={{
           position: "absolute",
           inset: 0,
@@ -230,7 +232,7 @@ function AboutAeolus() {
       />
 
       {/* Content */}
-      <div className="container" style={{ position: "relative", zIndex: 2, paddingTop: "92px" }}>
+      <div className="about-aeolus-content container" style={{ position: "relative", zIndex: 2, paddingTop: "92px" }}>
         <motion.div {...fade(0)} style={{ maxWidth: "500px" }}>
           <Kicker>About Aeolus</Kicker>
           <SectionHeading style={{ color: "#f2f2f2" }}>6 decades of tire manufacturing.</SectionHeading>
@@ -262,7 +264,7 @@ function AboutAeolus() {
       </div>
 
       {/* Tail — truck image visible below the rule, History section overlaps this */}
-      <div style={{ height: "260px", position: "relative", zIndex: 1 }} />
+      <div className="about-aeolus-tail" style={{ height: "260px", position: "relative", zIndex: 1 }} />
     </section>
   );
 }
@@ -284,7 +286,7 @@ const MILESTONES = [
 
 function History() {
   return (
-    <section className="py-20" style={{ backgroundColor: "transparent", position: "relative", zIndex: 2, marginTop: "-220px" }}>
+    <section className="py-20 about-history-section" style={{ backgroundColor: "transparent", position: "relative", zIndex: 2, marginTop: "-220px" }}>
       <div className="container">
         <motion.div {...fade(0)}>
           <Kicker>Our History</Kicker>

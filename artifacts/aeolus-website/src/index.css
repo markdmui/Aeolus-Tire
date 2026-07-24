@@ -546,6 +546,14 @@ html {
     padding-bottom: 3rem;
     overflow: hidden;
   }
+  /* Why Choose: 2-column grid + reduced padding on mobile */
+  .choose-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .choose-card {
+    padding: 1rem !important;
+  }
+
   /* History: 2-column grid on mobile */
   .history-grid {
     grid-template-columns: 1fr 1fr !important;

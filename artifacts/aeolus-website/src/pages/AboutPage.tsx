@@ -523,7 +523,7 @@ function WhyChoose() {
           <SectionHeading style={{ color: "#fff" }}>6 reasons dealers work with us.</SectionHeading>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 choose-grid">
           {REASONS.map(({ num, title, body }, i) => (
             <motion.div
               key={num}

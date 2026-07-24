@@ -550,6 +550,9 @@ html {
   .history-grid {
     grid-template-columns: 1fr 1fr !important;
   }
+  .history-card {
+    padding: 1rem 1rem 0.875rem !important;
+  }
 
   /* About Aeolus: truck bg pulled below text, full-bleed like about-1 */
   .about-aeolus-section {

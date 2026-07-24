@@ -2,7 +2,6 @@
 @import "tw-animate-css";
 
 html {
-  border-top: 6px solid #FFD700;
 }
 
 @custom-variant dark (&:is(.dark *));

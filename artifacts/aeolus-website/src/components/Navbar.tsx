@@ -137,9 +137,13 @@ export default function Navbar() {
 
 
   return (
+    <>
+    {/* Fixed yellow bar — always on top, unaffected by nav opacity */}
+    <div style={{ position: "fixed", top: 0, left: 0, right: 0, height: "6px", backgroundColor: "#FFD700", zIndex: 1000 }} />
     <div
-      className="sticky top-0 z-50"
+      className="sticky z-50"
       style={{
+        top: "6px",
         transition: "background-color 0.3s ease",
         backgroundColor: "rgba(0,0,0,0.8)",
       }}
@@ -295,6 +299,7 @@ export default function Navbar() {
         </div>
       )}
     </div>
+    </>
   );
 }
 

@@ -527,7 +527,7 @@ html {
   /* Hero: text pinned to top, image fills the bottom */
   .about-hero {
     background-image: url('/about-bg-01.jpg') !important;
-    background-position: center calc(100% + 75px) !important;
+    background-position: center calc(100% + 95px) !important;
     background-size: 135% auto !important;
     justify-content: flex-start !important;
     padding-top: 50px !important;

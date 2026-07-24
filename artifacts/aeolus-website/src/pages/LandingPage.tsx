@@ -42,7 +42,7 @@ export default function LandingPage() {
 
       {/* Layered Background Image — index-1.jpg spans all three sections below */}
       <div style={{ position: "relative", overflow: "hidden", backgroundColor: "#0a0a0a" }}>
-        <div style={{ position: "absolute", inset: 0, backgroundImage: "url('/index-1.jpg')", backgroundSize: "cover", backgroundPosition: "left center" }} />
+        <div style={{ position: "absolute", inset: 0, backgroundImage: "url('/index-1.jpg')", backgroundSize: "75%", backgroundPosition: "left center", backgroundRepeat: "no-repeat" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(10,10,10,0.18) 0%, rgba(10,10,10,0.62) 52%, rgba(10,10,10,0.92) 100%)" }} />
         <div style={{ position: "relative", zIndex: 2 }}>
           <div className="container">

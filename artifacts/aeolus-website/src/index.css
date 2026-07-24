@@ -511,6 +511,11 @@ html {
 
 /* ─── ABOUT PAGE — MOBILE OVERRIDES ─────────────────────────── */
 @media (max-width: 767px) {
+  /* Hero h1: slightly smaller on mobile */
+  .about-hero h1 {
+    font-size: 1.45rem !important;
+  }
+
   /* Stats captions: slightly larger on mobile */
   .about-hero-stats > div > div:last-child {
     font-size: 0.9rem !important;

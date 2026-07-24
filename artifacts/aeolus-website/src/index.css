@@ -523,7 +523,7 @@ html {
   .about-hero {
     background-image: url('/about-bg-01.jpg') !important;
     background-position: center bottom !important;
-    background-size: 100% auto !important;
+    background-size: 125% auto !important;
     justify-content: flex-start !important;
     padding-top: 50px !important;
     height: 820px !important;

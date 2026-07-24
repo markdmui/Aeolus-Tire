@@ -537,7 +537,7 @@ html {
     background-position: center calc(100% + 95px) !important;
     background-size: 135% auto !important;
     justify-content: flex-start !important;
-    padding-top: 50px !important;
+    padding-top: 80px !important;
     height: 820px !important;
   }
   /* Why Aeolus CB: more breathing room; clip full-bleed img on all sides */

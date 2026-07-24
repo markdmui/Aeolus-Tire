@@ -509,6 +509,12 @@ html {
   }
 }
 
+/* ─── SITE NAV TOP BAR ───────────────────────────────────────── */
+.site-nav-wrapper {
+  border-top: 6px solid #FFD700 !important;
+  border-top-color: #FFD700 !important;
+}
+
 /* ─── WHY CHOOSE CARDS ───────────────────────────────────────── */
 .choose-card p {
   opacity: 0.8;

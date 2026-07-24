@@ -138,10 +138,9 @@ export default function Navbar() {
 
   return (
     <div
-      className="sticky top-0 z-50"
+      className="sticky top-0 z-50 site-nav-wrapper"
       style={{
-        backgroundColor: "rgba(0,0,0,0.8)",
-        borderTop: "6px solid #FFD700",
+        backgroundColor: "#000000",
       }}
     >
       <nav

@@ -546,6 +546,11 @@ html {
     padding-bottom: 3rem;
     overflow: hidden;
   }
+  /* History: 2-column grid on mobile */
+  .history-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
   /* About Aeolus: truck bg pulled below text, full-bleed like about-1 */
   .about-aeolus-section {
     display: flex !important;

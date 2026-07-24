@@ -515,7 +515,7 @@ html {
   .about-hero-stats {
     display: grid !important;
     grid-template-columns: 1fr 1fr;
-    gap: 1.75rem 3.5rem;
+    gap: 1.75rem 1.5rem;
   }
 
   /* Hero: use about-bg-01, anchored to center bottom, full width */

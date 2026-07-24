@@ -128,9 +128,9 @@ function Hero() {
           style={{
             borderTop: "1px solid #3a3a3a",
             paddingTop: "2rem",
-            display: "flex",
-            gap: "3.5rem",
-            flexWrap: "wrap",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "1.75rem 3.5rem",
           }}
         >
           {stats.map(({ num, cap }, i) => (

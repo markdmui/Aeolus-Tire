@@ -344,7 +344,7 @@ html {
 }
 @media (max-width: 767px) {
   .contact-hero-bg {
-    background-position: right -70px center;
+    background-position: right -100px center;
   }
 }
 .contact-email-link {

@@ -97,9 +97,9 @@ function Hero() {
 
   return (
     <section
-      className="hero-section contact-hero flex flex-col justify-center pb-12 md:pb-16"
+      className="hero-section flex flex-col justify-center pb-12 md:pb-16"
       style={{
-        minHeight: "360px", height: "480px", marginTop: "-46px", paddingTop: "110px",
+        minHeight: "420px", height: "540px", marginTop: "-46px", paddingTop: "110px",
         backgroundImage: `url('${bg}')`,
         backgroundSize: "cover", backgroundPosition: "right calc(50% + 46px)", backgroundRepeat: "no-repeat",
       }}

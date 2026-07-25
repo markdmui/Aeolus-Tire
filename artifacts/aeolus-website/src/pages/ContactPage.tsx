@@ -109,12 +109,12 @@ function Hero() {
         background: "transparent",
       }}
     >
-      {/* Full-bleed background image */}
+      {/* Full-bleed background image — bottom: -260px extends it through the tail */}
       <div
         className="contact-hero-bg"
         style={{
           position: "absolute",
-          inset: 0,
+          top: 0, left: 0, right: 0, bottom: "-260px",
           backgroundImage: `url('${bg}')`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
@@ -122,10 +122,10 @@ function Hero() {
         }}
       />
 
-      {/* Left-to-right gradient — keeps text readable */}
+      {/* Left-to-right gradient — kept in sync with image */}
       <div style={{
         position: "absolute",
-        inset: 0,
+        top: 0, left: 0, right: 0, bottom: "-260px",
         background: "linear-gradient(90deg, rgba(10,10,10,0.93) 0%, rgba(10,10,10,0.76) 38%, rgba(10,10,10,0.22) 72%, rgba(10,10,10,0.04) 100%)",
         zIndex: 1,
       }} />

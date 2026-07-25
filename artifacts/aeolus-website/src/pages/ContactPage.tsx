@@ -284,7 +284,7 @@ function ContactMethods() {
 /* ─── SEND A MESSAGE ────────────────────────────────────────── */
 const inputStyle: React.CSSProperties = {
   width: "100%",
-  backgroundColor: "transparent",
+  backgroundColor: "#000",
   border: "1px solid var(--border-color)",
   padding: "0.875rem 1rem",
   fontSize: "0.875rem",
@@ -305,7 +305,7 @@ const labelStyle: React.CSSProperties = {
 
 function SendMessage() {
   return (
-    <section className="py-20" style={{ borderTop: "1px solid var(--border-color)" }}>
+    <section className="py-20" style={{ borderTop: "1px solid var(--border-color)", backgroundColor: "#111112" }}>
       <div className="container">
         <motion.div {...fade(0)} className="mb-10">
           <Kicker>Send a Message</Kicker>

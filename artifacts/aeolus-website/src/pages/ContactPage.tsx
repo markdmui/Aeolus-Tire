@@ -317,7 +317,7 @@ function SendMessage() {
         >
           <h3 style={{ fontSize: "1.25rem", fontWeight: 600, color: "#fff", marginBottom: "0.4rem" }}>General Inquiry</h3>
           <p style={{ fontSize: "0.875rem", color: "var(--text-muted)", marginBottom: "2rem", lineHeight: 1.6 }}>
-            This is a mockup of the contact form, shown to demonstrate the page structure — not a live form.
+            Fill out the form below and we'll get back to you within one business day. For faster service, use the department contacts above.
           </p>
 
           <form onSubmit={e => e.preventDefault()}>

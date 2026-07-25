@@ -197,6 +197,10 @@ html {
     justify-content: flex-start !important;
     padding-top: 90px !important;
   }
+  /* Contact page: override the hero-section tablet shift */
+  .hero-section.contact-hero {
+    background-position: center right !important;
+  }
 }
 
 /* ============================================================
@@ -333,20 +337,7 @@ html {
   transform: scale(0.97);
 }
 
-/* Contact hero: background position by breakpoint */
-.contact-hero {
-  background-position: right calc(50% + 46px); /* desktop default */
-}
-@media (max-width: 767px) {
-  .contact-hero {
-    background-position: center right;
-  }
-}
-@media (min-width: 768px) and (max-width: 1023px) {
-  .contact-hero {
-    background-position: center right;
-  }
-}
+/* Contact hero: desktop default (no override needed — inline style handles it) */
 .contact-email-link {
   transition: color 0.2s ease, text-decoration-color 0.2s ease;
   text-decoration: none;
@@ -479,6 +470,10 @@ html {
 @media (max-width: 767px) {
   .hero-section {
     background-position: calc(100% + 300px) calc(50% + 60px) !important;
+  }
+  /* Contact page: override the hero-section mobile shift */
+  .hero-section.contact-hero {
+    background-position: center right !important;
   }
 
   /* Stats section: shift truck to bottom, stats to top so they don't overlap */

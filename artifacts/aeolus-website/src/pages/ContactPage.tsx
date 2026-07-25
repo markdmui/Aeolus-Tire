@@ -21,7 +21,11 @@ function CTALink({ href, label, onClick, hovered, dir }: {
     <a
       href={href}
       className="link-accent"
-      style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.08em" }}
+      style={{
+        fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.08em",
+        color: hovered ? "var(--accent-yellow)" : undefined,
+        left: hovered ? "3px" : "0px",
+      }}
       onClick={onClick}
     >
       {label}

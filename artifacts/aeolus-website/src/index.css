@@ -316,6 +316,13 @@ html {
   left: 3px;
 }
 
+.contact-self-serve-card {
+  transition: background-color 0.2s ease;
+}
+.contact-self-serve-card:hover {
+  background-color: #1e1e1e !important;
+}
+
 /* Spec table row hover */
 .spec-row {
   transition: background-color 0.15s ease;

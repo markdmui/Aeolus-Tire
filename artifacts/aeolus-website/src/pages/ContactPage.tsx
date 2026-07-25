@@ -129,6 +129,7 @@ function BeforeYouReachOut() {
             <motion.div
               key={tag}
               {...fade(i * 0.08)}
+              className="contact-self-serve-card"
               style={{
                 backgroundColor: "var(--bg-dark)",
                 padding: "2rem",

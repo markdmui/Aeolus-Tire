@@ -333,11 +333,9 @@ html {
   transform: scale(0.97);
 }
 
-/* All heroes — mobile-only background alignment */
+/* Contact hero — mobile-only background alignment */
 @media (max-width: 767px) {
-  .hero-section,
-  .contact-hero,
-  .tire-product-hero {
+  .contact-hero {
     background-position: center right !important;
   }
 }

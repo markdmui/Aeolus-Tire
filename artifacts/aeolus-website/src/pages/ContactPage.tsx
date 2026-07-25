@@ -1,5 +1,5 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -26,32 +26,24 @@ function Kicker({ children }: { children: React.ReactNode }) {
 
 /* ─── HERO ─────────────────────────────────────────────────── */
 function Hero() {
-  const [idx, setIdx] = useState(0);
-
-  useEffect(() => {
-    const id = setInterval(() => setIdx(i => (i + 1) % CONTACT_BGS.length), 5000);
-    return () => clearInterval(id);
-  }, []);
+  const [bg] = useState(() => {
+    const stored = localStorage.getItem("contactBgIndex");
+    const next = stored === null
+      ? Math.floor(Math.random() * CONTACT_BGS.length)
+      : (parseInt(stored, 10) + 1) % CONTACT_BGS.length;
+    localStorage.setItem("contactBgIndex", String(next));
+    return CONTACT_BGS[next];
+  });
 
   return (
     <section
-      className="hero-section flex flex-col justify-center pb-16 md:pb-24"
-      style={{ minHeight: "520px", height: "720px", marginTop: "-46px", paddingTop: "110px", position: "relative", overflow: "hidden" }}
+      className="hero-section flex flex-col justify-center pb-12 md:pb-16"
+      style={{
+        minHeight: "420px", height: "540px", marginTop: "-46px", paddingTop: "110px",
+        backgroundImage: `url('${bg}')`,
+        backgroundSize: "cover", backgroundPosition: "center right", backgroundRepeat: "no-repeat",
+      }}
     >
-      <AnimatePresence mode="sync">
-        <motion.div
-          key={idx}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.4, ease: "easeInOut" }}
-          style={{
-            position: "absolute", inset: 0,
-            backgroundImage: `url('${CONTACT_BGS[idx]}')`,
-            backgroundSize: "cover", backgroundPosition: "center right", backgroundRepeat: "no-repeat",
-          }}
-        />
-      </AnimatePresence>
 
       <div className="container w-full" style={{ position: "relative", zIndex: 1 }}>
         <motion.div

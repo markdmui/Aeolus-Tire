@@ -316,6 +316,16 @@ html {
   left: 3px;
 }
 
+.contact-email-link {
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  text-decoration: none;
+}
+.contact-email-link:hover {
+  color: var(--accent-yellow) !important;
+  text-decoration: underline;
+  text-decoration-color: var(--accent-yellow);
+}
+
 .contact-self-serve-card {
   transition: background-color 0.2s ease;
 }

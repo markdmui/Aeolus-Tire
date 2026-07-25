@@ -270,7 +270,7 @@ function ContactMethods() {
               <h3 style={{ fontSize: "1.0625rem", fontWeight: 600, color: "#fff", lineHeight: 1.3, marginBottom: "0.5rem" }}>{title}</h3>
               <p style={{ fontSize: "0.875rem", color: "var(--text-muted)", lineHeight: 1.55, flex: 1 }}>{body}</p>
               <div style={{ marginTop: "1.25rem", display: "flex", flexDirection: "column", gap: "0.2rem" }}>
-                <a href={`mailto:${email}`} style={{ fontSize: "0.875rem", color: "#fff", textDecoration: "none" }}>{email}</a>
+                <a href={`mailto:${email}`} className="contact-email-link" style={{ fontSize: "0.875rem", color: "#fff", textDecoration: "none" }}>{email}</a>
                 <span style={{ fontSize: "0.875rem", color: "var(--text-muted)" }}>{phone}</span>
               </div>
             </motion.div>

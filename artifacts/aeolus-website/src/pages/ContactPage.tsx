@@ -51,7 +51,7 @@ function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.25, delay: 0.07, ease: "easeOut" }}
         >
-          <Kicker>Contact</Kicker>
+          <Kicker>Contact Us</Kicker>
           <h1
             className="mb-6"
             style={{

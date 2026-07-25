@@ -305,7 +305,7 @@ const labelStyle: React.CSSProperties = {
 
 function SendMessage() {
   return (
-    <section className="py-20" style={{ borderTop: "1px solid var(--border-color)", backgroundColor: "#111112" }}>
+    <section className="py-20" style={{ borderTop: "1px solid var(--border-color)", backgroundColor: "#000" }}>
       <div className="container">
         <motion.div {...fade(0)} className="mb-10">
           <Kicker>Send a Message</Kicker>
@@ -313,7 +313,7 @@ function SendMessage() {
 
         <motion.div
           {...fade(0.08)}
-          style={{ border: "1px solid var(--border-color)", padding: "2.5rem", maxWidth: "820px" }}
+          style={{ border: "1px solid var(--border-color)", padding: "2.5rem", maxWidth: "820px", backgroundColor: "#111112" }}
         >
           <h3 style={{ fontSize: "1.25rem", fontWeight: 600, color: "#fff", marginBottom: "0.4rem" }}>General Inquiry</h3>
           <p style={{ fontSize: "0.875rem", color: "var(--text-muted)", marginBottom: "2rem", lineHeight: 1.6 }}>

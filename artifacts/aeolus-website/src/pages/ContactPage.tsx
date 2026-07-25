@@ -305,7 +305,7 @@ const labelStyle: React.CSSProperties = {
 
 function SendMessage() {
   return (
-    <section className="py-20" style={{ borderTop: "1px solid var(--border-color)", backgroundColor: "#0a0a0a" }}>
+    <section className="py-20" style={{ borderTop: "1px solid var(--border-color)", backgroundColor: "#141414" }}>
       <div className="container">
         <motion.div {...fade(0)} className="mb-10">
           <Kicker>Send a Message</Kicker>

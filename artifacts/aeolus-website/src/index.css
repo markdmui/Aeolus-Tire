@@ -471,9 +471,10 @@ html {
   .hero-section {
     background-position: calc(100% + 300px) calc(50% + 60px) !important;
   }
-  /* Contact page: override the hero-section mobile shift */
+  /* Contact page: override the hero-section mobile shift; scale image to 80% */
   .hero-section.contact-hero {
     background-position: center right !important;
+    background-size: 80% !important;
   }
 
   /* Stats section: shift truck to bottom, stats to top so they don't overlap */

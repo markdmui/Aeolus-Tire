@@ -41,7 +41,7 @@ function Hero() {
       style={{
         minHeight: "420px", height: "540px", marginTop: "-46px", paddingTop: "110px",
         backgroundImage: `url('${bg}')`,
-        backgroundSize: "cover", backgroundPosition: "center right", backgroundRepeat: "no-repeat",
+        backgroundSize: "cover", backgroundPosition: "right 46px", backgroundRepeat: "no-repeat",
       }}
     >
 

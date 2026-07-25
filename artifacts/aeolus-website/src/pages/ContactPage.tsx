@@ -97,7 +97,7 @@ function Hero() {
 
   return (
     <section
-      className="hero-section flex flex-col justify-center pb-12 md:pb-16"
+      className="hero-section contact-hero flex flex-col justify-center pb-12 md:pb-16"
       style={{
         minHeight: "420px", height: "540px", marginTop: "-46px", paddingTop: "110px",
         backgroundImage: `url('${bg}')`,

@@ -1,9 +1,46 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { ArrowSquareRight } from "@phosphor-icons/react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const CONTACT_BGS = ["/contact-bg-1.jpg", "/contact-bg-2.jpg", "/contact-bg-3.jpg"];
+
+const iconVariants = {
+  initial: (dir: number) => ({ opacity: 0, y: dir > 0 ? -8 : 8 }),
+  animate: { opacity: 1, y: 0 },
+  exit:    (dir: number) => ({ opacity: 0, y: dir > 0 ? 8 : -8 }),
+};
+
+function CTALink({ href, label, onClick }: { href: string; label: string; onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void }) {
+  const [hovered, setHovered] = useState(false);
+  const [dir, setDir] = useState(1);
+  return (
+    <a
+      href={href}
+      className="link-accent"
+      style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.08em" }}
+      onClick={onClick}
+      onMouseEnter={() => { setDir(1); setHovered(true); }}
+      onMouseLeave={() => { setDir(-1); setHovered(false); }}
+    >
+      {label}
+      <span style={{ position: "relative", display: "inline-flex", width: 20, height: 20, marginLeft: "0.5rem", overflow: "hidden" }}>
+        <AnimatePresence mode="wait" custom={dir}>
+          {!hovered ? (
+            <motion.span key="yellow" custom={dir} variants={iconVariants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.18, ease: "easeOut" }} style={{ position: "absolute", display: "flex", color: "var(--accent-yellow)" }}>
+              <ArrowSquareRight size={20} />
+            </motion.span>
+          ) : (
+            <motion.span key="white" custom={dir} variants={iconVariants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.18, ease: "easeOut" }} style={{ position: "absolute", display: "flex", color: "#ffffff" }}>
+              <ArrowSquareRight size={20} />
+            </motion.span>
+          )}
+        </AnimatePresence>
+      </span>
+    </a>
+  );
+}
 
 const VP = { once: true, margin: "-80px" };
 const fade = (delay = 0) => ({
@@ -143,9 +180,7 @@ function BeforeYouReachOut() {
               </div>
               <h3 style={{ fontSize: "1.0625rem", fontWeight: 600, color: "#fff", lineHeight: 1.3 }}>{title}</h3>
               <p style={{ fontSize: "0.875rem", color: "var(--text-muted)", lineHeight: 1.6, flex: 1 }}>{body}</p>
-              <a href={href} className="link-accent" style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.08em" }} onClick={href === "#" ? e => e.preventDefault() : undefined}>
-                {cta} →
-              </a>
+              <CTALink href={href} label={cta} onClick={href === "#" ? e => e.preventDefault() : undefined} />
             </motion.div>
           ))}
         </div>

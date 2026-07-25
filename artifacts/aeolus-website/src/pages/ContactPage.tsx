@@ -12,17 +12,17 @@ const iconVariants = {
   exit:    (dir: number) => ({ opacity: 0, y: dir > 0 ? 8 : -8 }),
 };
 
-function CTALink({ href, label, onClick }: { href: string; label: string; onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void }) {
-  const [hovered, setHovered] = useState(false);
-  const [dir, setDir] = useState(1);
+function CTALink({ href, label, onClick, hovered, dir }: {
+  href: string; label: string;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  hovered: boolean; dir: number;
+}) {
   return (
     <a
       href={href}
       className="link-accent"
       style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.08em" }}
       onClick={onClick}
-      onMouseEnter={() => { setDir(1); setHovered(true); }}
-      onMouseLeave={() => { setDir(-1); setHovered(false); }}
     >
       {label}
       <span style={{ position: "relative", display: "inline-flex", width: 20, height: 20, marginLeft: "0.5rem", overflow: "hidden" }}>
@@ -39,6 +39,25 @@ function CTALink({ href, label, onClick }: { href: string; label: string; onClic
         </AnimatePresence>
       </span>
     </a>
+  );
+}
+
+function SelfServeCard({ tag, title, body, cta, href, delay }: { tag: string; title: string; body: string; cta: string; href: string; delay: number }) {
+  const [hovered, setHovered] = useState(false);
+  const [dir, setDir] = useState(1);
+  return (
+    <motion.div
+      {...fade(delay)}
+      className="contact-self-serve-card"
+      style={{ backgroundColor: "var(--bg-dark)", padding: "2rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}
+      onMouseEnter={() => { setDir(1); setHovered(true); }}
+      onMouseLeave={() => { setDir(-1); setHovered(false); }}
+    >
+      <div style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--accent-yellow)" }}>{tag}</div>
+      <h3 style={{ fontSize: "1.0625rem", fontWeight: 600, color: "#fff", lineHeight: 1.3 }}>{title}</h3>
+      <p style={{ fontSize: "0.875rem", color: "var(--text-muted)", lineHeight: 1.6, flex: 1 }}>{body}</p>
+      <CTALink href={href} label={cta} hovered={hovered} dir={dir} onClick={href === "#" ? e => e.preventDefault() : undefined} />
+    </motion.div>
   );
 }
 
@@ -163,25 +182,7 @@ function BeforeYouReachOut() {
           style={{ gap: "1px", backgroundColor: "var(--border-color)", border: "1px solid var(--border-color)" }}
         >
           {SELF_SERVE.map(({ tag, title, body, cta, href }, i) => (
-            <motion.div
-              key={tag}
-              {...fade(i * 0.08)}
-              className="contact-self-serve-card"
-              style={{
-                backgroundColor: "var(--bg-dark)",
-                padding: "2rem",
-                display: "flex",
-                flexDirection: "column",
-                gap: "0.75rem",
-              }}
-            >
-              <div style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--accent-yellow)" }}>
-                {tag}
-              </div>
-              <h3 style={{ fontSize: "1.0625rem", fontWeight: 600, color: "#fff", lineHeight: 1.3 }}>{title}</h3>
-              <p style={{ fontSize: "0.875rem", color: "var(--text-muted)", lineHeight: 1.6, flex: 1 }}>{body}</p>
-              <CTALink href={href} label={cta} onClick={href === "#" ? e => e.preventDefault() : undefined} />
-            </motion.div>
+            <SelfServeCard key={tag} tag={tag} title={title} body={body} cta={cta} href={href} delay={i * 0.08} />
           ))}
         </div>
       </div>

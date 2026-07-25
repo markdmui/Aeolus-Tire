@@ -206,7 +206,7 @@ function BeforeYouReachOut() {
               maxWidth: "48ch",
             }}
           >
-            things people usually email us about — already answered.
+            Our 3 most common requests
           </h2>
         </motion.div>
 

@@ -97,15 +97,41 @@ function Hero() {
 
   return (
     <section
-      className="hero-section contact-hero flex flex-col justify-center pb-12 md:pb-16"
+      className="hero-section contact-hero flex flex-col justify-center"
       style={{
-        minHeight: "420px", height: "540px", marginTop: "-46px", paddingTop: "110px",
-        backgroundImage: `url('${bg}')`,
-        backgroundSize: "cover", backgroundRepeat: "no-repeat",
+        position: "relative",
+        overflow: "visible",
+        minHeight: "420px",
+        height: "540px",
+        marginTop: "-46px",
+        paddingTop: "110px",
+        paddingBottom: "3rem",
+        background: "transparent",
       }}
     >
+      {/* Full-bleed background image */}
+      <div
+        className="contact-hero-bg"
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: `url('${bg}')`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          zIndex: 0,
+        }}
+      />
 
-      <div className="container w-full" style={{ position: "relative", zIndex: 1 }}>
+      {/* Left-to-right gradient — keeps text readable */}
+      <div style={{
+        position: "absolute",
+        inset: 0,
+        background: "linear-gradient(90deg, rgba(10,10,10,0.93) 0%, rgba(10,10,10,0.76) 38%, rgba(10,10,10,0.22) 72%, rgba(10,10,10,0.04) 100%)",
+        zIndex: 1,
+      }} />
+
+      {/* Content */}
+      <div className="container w-full" style={{ position: "relative", zIndex: 2 }}>
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
@@ -132,6 +158,9 @@ function Hero() {
           </p>
         </motion.div>
       </div>
+
+      {/* Tail — image bleeds into BeforeYouReachOut */}
+      <div style={{ height: "260px", position: "relative", zIndex: 0 }} />
     </section>
   );
 }
@@ -163,7 +192,7 @@ const SELF_SERVE = [
 
 function BeforeYouReachOut() {
   return (
-    <section className="py-20" style={{ borderTop: "1px solid var(--border-color)" }}>
+    <section className="py-20" style={{ backgroundColor: "transparent", position: "relative", zIndex: 2, marginTop: "-220px" }}>
       <div className="container">
         <motion.div {...fade(0)} className="mb-10">
           <Kicker>Before You Reach Out</Kicker>

@@ -293,6 +293,7 @@ const inputStyle: React.CSSProperties = {
   borderRadius: 0,
   fontFamily: "inherit",
 };
+const inputClass = "contact-form-input";
 const labelStyle: React.CSSProperties = {
   fontSize: "0.68rem",
   fontWeight: 700,
@@ -322,23 +323,24 @@ function SendMessage() {
 
           <form onSubmit={e => e.preventDefault()}>
             <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: "1rem", marginBottom: "1rem" }}>
-              <div><label style={labelStyle}>Name</label><input type="text" style={inputStyle} /></div>
-              <div><label style={labelStyle}>Company</label><input type="text" style={inputStyle} /></div>
+              <div><label style={labelStyle}>Name</label><input type="text" className={inputClass} style={inputStyle} /></div>
+              <div><label style={labelStyle}>Company</label><input type="text" className={inputClass} style={inputStyle} /></div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: "1rem", marginBottom: "1rem" }}>
-              <div><label style={labelStyle}>Email</label><input type="email" style={inputStyle} /></div>
-              <div><label style={labelStyle}>Phone</label><input type="tel" style={inputStyle} /></div>
+              <div><label style={labelStyle}>Email</label><input type="email" className={inputClass} style={inputStyle} /></div>
+              <div><label style={labelStyle}>Phone</label><input type="tel" className={inputClass} style={inputStyle} /></div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: "1rem", marginBottom: "1rem" }}>
-              <div><label style={labelStyle}>I'm getting in touch about</label><input type="text" style={inputStyle} /></div>
-              <div><label style={labelStyle}>Region</label><input type="text" style={inputStyle} /></div>
+              <div><label style={labelStyle}>I'm getting in touch about</label><input type="text" className={inputClass} style={inputStyle} /></div>
+              <div><label style={labelStyle}>Region</label><input type="text" className={inputClass} style={inputStyle} /></div>
             </div>
             <div style={{ marginBottom: "1.5rem" }}>
               <label style={labelStyle}>Message</label>
-              <textarea rows={5} style={{ ...inputStyle, resize: "vertical" as const }} />
+              <textarea rows={5} className={inputClass} style={{ ...inputStyle, resize: "vertical" as const }} />
             </div>
             <button
               type="submit"
+              className="contact-submit-btn"
               style={{
                 backgroundColor: "var(--accent-yellow)",
                 color: "#000",

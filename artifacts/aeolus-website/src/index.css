@@ -316,6 +316,23 @@ html {
   left: 3px;
 }
 
+.contact-form-input:hover,
+.contact-form-input:focus {
+  border-color: var(--accent-yellow) !important;
+  outline: none;
+}
+
+.contact-submit-btn {
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+.contact-submit-btn:hover {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+.contact-submit-btn:active {
+  transform: scale(0.97);
+}
+
 .contact-email-link {
   transition: color 0.2s ease, text-decoration-color 0.2s ease;
   text-decoration: none;

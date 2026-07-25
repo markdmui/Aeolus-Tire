@@ -303,7 +303,7 @@ html {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   border-bottom: 2px solid var(--accent-yellow);
-  padding-bottom: 8px;
+  padding-bottom: 16px;
   display: inline-flex;
   align-items: center;
   position: relative;

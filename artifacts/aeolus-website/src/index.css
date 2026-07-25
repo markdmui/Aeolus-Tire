@@ -333,6 +333,13 @@ html {
   transform: scale(0.97);
 }
 
+/* Contact hero — tablet-only background alignment */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .contact-hero {
+    background-position: center right !important;
+  }
+}
+
 .contact-email-link {
   transition: color 0.2s ease, text-decoration-color 0.2s ease;
   text-decoration: none;

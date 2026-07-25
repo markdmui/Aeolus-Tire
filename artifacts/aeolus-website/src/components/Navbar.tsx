@@ -212,6 +212,7 @@ export default function Navbar() {
                         tire.href === "#" ? (
                           <motion.a
                             key={tire.label} href="#" className="dropdown-tire-link"
+                            onClick={e => e.preventDefault()}
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.2, delay: (si * 4 + ti) * 0.015, ease: "easeOut" }}
@@ -364,7 +365,7 @@ function MobileNavLinks({ onClose }: { onClose: () => void }) {
                   </div>
                   {section.tires.map((tire) =>
                     tire.href === "#" ? (
-                      <a key={tire.label} href="#" className="dropdown-tire-link">{tire.label}</a>
+                      <a key={tire.label} href="#" className="dropdown-tire-link" onClick={e => e.preventDefault()}>{tire.label}</a>
                     ) : (
                       <Link key={tire.label} href={tire.href} className="dropdown-tire-link" onClick={onClose}>{tire.label}</Link>
                     )
@@ -425,7 +426,7 @@ function NavLink({
 
   if (href === "#") {
     return (
-      <a href="#" className="nav-link" style={mobile ? mobileStyle : undefined} onClick={onClose}>
+      <a href="#" className="nav-link" style={mobile ? mobileStyle : undefined} onClick={e => { e.preventDefault(); onClose?.(); }}>
         {label}
       </a>
     );

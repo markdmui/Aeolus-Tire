@@ -73,7 +73,7 @@ function FooterLinks({ items }: { items: { label: string; href: string }[] }) {
       {items.map(({ label, href }) => (
         <li key={label}>
           {href === "#" ? (
-            <a href="#" className="footer-link" style={{ color: "var(--text-muted)", fontSize: "0.85rem" }}>
+            <a href="#" className="footer-link" style={{ color: "var(--text-muted)", fontSize: "0.85rem" }} onClick={e => e.preventDefault()}>
               {label}
             </a>
           ) : (

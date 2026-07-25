@@ -63,8 +63,8 @@ function Hero() {
               maxWidth: "22ch",
             }}
           >
-            Most questions have{" "}
-            <span style={{ color: "var(--accent-yellow)", fontWeight: 600 }}>faster answers below.</span>
+            Got questions?<br />
+            <span style={{ color: "var(--accent-yellow)" }}>We have answers.</span>
           </h1>
           <p style={{ color: "rgba(255,255,255,0.72)", fontSize: "clamp(0.9rem, 2vw, 1.0625rem)", maxWidth: "46ch", lineHeight: 1.65 }}>
             If one of the routes below covers it, you'll get there quicker than waiting on a reply.

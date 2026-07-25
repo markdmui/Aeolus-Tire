@@ -333,16 +333,18 @@ html {
   transform: scale(0.97);
 }
 
-/* Contact hero: mobile-only background position override */
+/* Contact hero: background position by breakpoint */
+.contact-hero {
+  background-position: right calc(50% + 46px); /* desktop default */
+}
 @media (max-width: 767px) {
   .contact-hero {
-    background-position: center right !important;
+    background-position: center right;
   }
 }
-/* Contact hero: tablet-only background position override */
 @media (min-width: 768px) and (max-width: 1023px) {
   .contact-hero {
-    background-position: center right !important;
+    background-position: center right;
   }
 }
 .contact-email-link {

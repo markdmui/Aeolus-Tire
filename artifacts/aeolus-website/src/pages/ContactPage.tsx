@@ -142,7 +142,7 @@ function BeforeYouReachOut() {
               </div>
               <h3 style={{ fontSize: "1.0625rem", fontWeight: 600, color: "#fff", lineHeight: 1.3 }}>{title}</h3>
               <p style={{ fontSize: "0.875rem", color: "var(--text-muted)", lineHeight: 1.6, flex: 1 }}>{body}</p>
-              <a href={href} className="link-accent" style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.08em" }}>
+              <a href={href} className="link-accent" style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.08em" }} onClick={href === "#" ? e => e.preventDefault() : undefined}>
                 {cta} →
               </a>
             </motion.div>

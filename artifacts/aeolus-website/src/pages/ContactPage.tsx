@@ -250,7 +250,7 @@ function ContactMethods() {
         </motion.div>
 
         <div
-          className="grid grid-cols-1 md:grid-cols-4"
+          className="grid grid-cols-1 md:grid-cols-2"
           style={{ gap: "1px", backgroundColor: "var(--border-color)", border: "1px solid var(--border-color)" }}
         >
           {METHODS.map(({ tag, title, body, email, phone }, i) => (

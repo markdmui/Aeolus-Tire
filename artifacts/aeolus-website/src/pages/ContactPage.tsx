@@ -271,9 +271,9 @@ function ContactMethods() {
               marginBottom: "0.75rem",
             }}
           >
-            Everything else, sorted to the right desk.
+            Contact our main departments directly
           </h2>
-          <p style={{ fontSize: "0.9375rem", color: "var(--text-muted)", lineHeight: 1.6, maxWidth: "56ch" }}>
+          <p style={{ fontSize: "0.9375rem", color: "var(--text-muted)", lineHeight: 1.6, whiteSpace: "nowrap" }}>
             Each of these gets a faster, more specific answer than one general inbox would.
           </p>
         </motion.div>

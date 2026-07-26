@@ -353,7 +353,7 @@ html {
 }
 .contact-email-link:hover {
   color: var(--accent-yellow) !important;
-  text-decoration: underline;
+  text-decoration: underline !important;
   text-decoration-color: var(--accent-yellow);
 }
 

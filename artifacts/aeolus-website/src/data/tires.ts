@@ -6,6 +6,7 @@ import heroBgImg from "@assets/tire-hero-bg-1_1782515680443.jpg";
 import bgTruckImg from "@assets/bg-long-haul_1782519244050.jpg";
 import cutawayImg from "@assets/3d-cutaway-V2_1783092089703.png";
 
+
 export type TirePosition = "Drive" | "Steer" | "Trailer" | "All Position" | "OTR" | "Bus";
 
 export interface TireSpecRow {

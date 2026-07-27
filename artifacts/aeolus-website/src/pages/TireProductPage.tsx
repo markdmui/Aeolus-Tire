@@ -205,7 +205,7 @@ function HeroSection({ tire, onOpen }: { tire: TireData; onOpen: (src: string) =
           <ul className="tire-hero-bullets" style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column" }}>
             {tire.bullets.map((point, i) => (
               <motion.li
-                key={point}
+                key={i}
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.20, delay: 0.38 + i * 0.09, ease: "easeOut" }}
@@ -411,21 +411,25 @@ function FeatureSection({ tire, onOpen }: { tire: TireData; onOpen: (src: string
               {f.body}
             </motion.p>
 
-            {/* Feature image */}
-            <motion.img
-              src={f.image}
-              alt={f.title}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.26, delay: i * 0.12 + 0.12, ease: "easeOut" }}
-              style={{
-                width: "100%",
-                display: "block",
-                aspectRatio: "16 / 9",
-                objectFit: "cover",
-              }}
-            />
+            {/* Feature image — only render if src is non-empty */}
+            {f.image ? (
+              <motion.img
+                src={f.image}
+                alt={f.title}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.26, delay: i * 0.12 + 0.12, ease: "easeOut" }}
+                style={{
+                  width: "100%",
+                  display: "block",
+                  aspectRatio: "16 / 9",
+                  objectFit: "cover",
+                }}
+              />
+            ) : (
+              <div style={{ width: "100%", aspectRatio: "16 / 9" }} />
+            )}
           </motion.div>
         ))}
       </div>

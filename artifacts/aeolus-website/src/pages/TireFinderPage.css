@@ -291,9 +291,9 @@
 }
 .tf-card .tf-swatch img {
   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
   height: 500%;
   width: auto;
   display: block;

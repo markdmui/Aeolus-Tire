@@ -51,7 +51,7 @@ export const TIRES: TireData[] = [
   // ─── Neo Fuel X3 (demo / template page with mock data) ───────────
   {
     slug:     "neo-fuel-x3",
-    name:     "Neo Fuel X3",
+    name:     "DEMO X1",
     segment:  "Premium Long Haul",
     position: "Drive" as TirePosition,
     subtitle: "Engineered for long-distance journeys ensuring high-speed stability, fuel efficiency, and endurance mile after mile.",

@@ -14,7 +14,7 @@ function ScrollToTop() {
   return null;
 }
 
-// Dev shortcut: Ctrl+X then 3 → /tires/neo-fuel-x3
+// Dev shortcut: Ctrl+X then 1 → /tires/neo-fuel-x3
 function KeyboardShortcuts() {
   const [, navigate] = useLocation();
   const ctrlXArmed = useRef(false);
@@ -31,7 +31,7 @@ function KeyboardShortcuts() {
         return;
       }
       // Fire on 3 if armed
-      if (ctrlXArmed.current && e.key === "3") {
+      if (ctrlXArmed.current && e.key === "1") {
         ctrlXArmed.current = false;
         if (armTimer.current) clearTimeout(armTimer.current);
         navigate("/tires/neo-fuel-x3");

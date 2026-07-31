@@ -34,7 +34,7 @@ function KeyboardShortcuts() {
       if (ctrlXArmed.current && e.key === "1") {
         ctrlXArmed.current = false;
         if (armTimer.current) clearTimeout(armTimer.current);
-        navigate("/tires/neo-fuel-x3");
+        navigate("/tires/demo-x1");
       }
     }
     window.addEventListener("keydown", onKeyDown);

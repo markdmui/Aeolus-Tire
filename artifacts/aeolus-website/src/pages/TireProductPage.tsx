@@ -95,17 +95,21 @@ export default function TireProductPage() {
             backgroundPosition: "center calc(40% + 300px)",
             backgroundRepeat: "no-repeat",
           }} />
-          {tire.slug !== "demo-x2" && (
+          {tire.slug === "demo-x2" ? (
+            <div style={{ position: "relative", zIndex: 1, marginTop: "-20px" }}>
+              <TireTechExplorer imageSrc={tire.cutawayImage} />
+            </div>
+          ) : (
             <div style={{ position: "relative", zIndex: 1, marginTop: "-20px" }}>
               <FeatureSection tire={tire} onOpen={setActiveImg} layeredBg />
             </div>
           )}
-          <div style={{ position: "relative", zIndex: 1, marginTop: tire.slug === "demo-x2" ? "-20px" : "-110px" }}>
+          <div style={{ position: "relative", zIndex: 1, marginTop: "-110px" }}>
             <SpecsSection tire={tire} layeredBg />
           </div>
         </div>
       </div>
-      <TireTechExplorer imageSrc={tire.cutawayImage} />
+      {tire.slug !== "demo-x2" && <TireTechExplorer imageSrc={tire.cutawayImage} />}
       <Footer />
       <AnimatePresence>
         {activeImg && (

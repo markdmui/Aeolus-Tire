@@ -14,7 +14,7 @@ function ScrollToTop() {
   return null;
 }
 
-// Dev shortcuts: Ctrl+X then 1 → /tires/demo-x1, Ctrl+X then 2 → /tires/demo-x2
+// Dev shortcuts: Ctrl+Shift+X then 1 → /tires/demo-x1, Ctrl+Shift+X then 2 → /tires/demo-x2
 function KeyboardShortcuts() {
   const [, navigate] = useLocation();
   const ctrlXArmed = useRef(false);
@@ -23,7 +23,7 @@ function KeyboardShortcuts() {
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
       // Arm on Ctrl+X (ignore when typing in inputs)
-      if (e.ctrlKey && e.key.toLowerCase() === "x" && !(e.target instanceof HTMLInputElement) && !(e.target instanceof HTMLTextAreaElement)) {
+      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "x" && !(e.target instanceof HTMLInputElement) && !(e.target instanceof HTMLTextAreaElement)) {
         e.preventDefault();
         ctrlXArmed.current = true;
         if (armTimer.current) clearTimeout(armTimer.current);

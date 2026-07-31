@@ -419,7 +419,7 @@ export const TIRES: TireData[] = [
     features: [
       { title:"Zig-Zag Grooves & Shoulder Contour Design", body:"Zig-zag grooves with robust longitudinal ribs and an optimized shoulder tread contour ensure balanced footprint pressure, providing shorter braking distance, excellent water expulsion, precise steering controland extended mileage with even wear.", image:"/tires/Feature-Images/Neo-Allroads-Splus-f1.jpg" },
       { title:"Full-Depth 3D Sipes", body:"Advanced full-depth 3D sipes improve traction and handling in both dry and wet conditions, while lowering rolling resistance and reducing road noise for a smoother, quieter ride.", image:"/tires/Feature-Images/Neo-Allroads-Splus-f2.jpg" },
-      { title:"Dual-Layer Tread Compound", body:"The dual-layer tread compound design enhances heat dissipation and wear resistance, offering longer mileage and stable performance over extended regional operations.", image:"" },
+      { title:"Dual-Layer Tread Compound", body:"The dual-layer tread compound design enhances heat dissipation and wear resistance, offering longer mileage and stable performance over extended regional operations.", image:"/tires/Feature-Images/compound-img.jpg" },
     ],
     specRows: [
         { size:"385/65R22.5", ply:"20", rimW:"11.75", secW:"15.1", odIn:"42.2", odMm:"1072", td32:"15", tdMm:"19", mlSlbs:"11023", mlSpsi:"131", mlSkg:"5000", mlSkpa:"900", mlDlbs:"", mlDpsi:"", mlDkg:"", mlDkpa:"", liss:"164K", smartway:false, ms:true, "3PMSF":true },
@@ -561,7 +561,7 @@ export const TIRES: TireData[] = [
     features: [
       { title:"Wider Zig-Zag Grooves with Deeper Tread", body:"The wider zig-zag groove design with deep tread enhances mileage, tractionand stone rejection while providing superior tear resistance and water evacuation for consistent regional performance.", image:"/tires/Feature-Images/Neo-Allroads-T2-f1.jpg" },
       { title:"Optimized Pitch Design", body:"An optimized tread pitch layout minimizes road noise, improves driving comfortand promotes even wear across the tread surface, extending tire life and ride quality.", image:"/tires/Feature-Images/Neo-Allroads-T2-f2.jpg" },
-      { title:"High-Silica Compound with Full Rubberized Cord", body:"The high-silica tread compound combined with a fully rubberized cord structure reduces rolling resistance and heat generation, delivering better structural integrity, fatigue resistanceand long-term durability.", image:"" },
+      { title:"High-Silica Compound with Full Rubberized Cord", body:"The high-silica tread compound combined with a fully rubberized cord structure reduces rolling resistance and heat generation, delivering better structural integrity, fatigue resistanceand long-term durability.", image:"/tires/Feature-Images/compound-img.jpg" },
     ],
     specRows: [
         { size:"215/75R17.5", ply:"18", rimW:"6", secW:"8.6", odIn:"29.9", odMm:"760", td32:"13", tdMm:"16", mlSlbs:"4806", mlSpsi:"123", mlSkg:"2180", mlSkpa:"850", mlDlbs:"4542", mlDpsi:"123", mlDkg:"2060", mlDkpa:"850", liss:"136/134J", smartway:false, ms:true, "3PMSF":true },
@@ -714,7 +714,7 @@ export const TIRES: TireData[] = [
     features: [
       { title:"Non-Directional Tread Design", body:"A newly developed tread block pitch sequence with wider zig-zag grooves delivers longer mileage, even wearand strong traction. It also enhances water evacuation, stone rejectionand handling stability without compromising grip.", image:"/tires/Feature-Images/Neo-Construct-D-f1.jpg" },
       { title:"Optimized Footprint & Shoulder", body:"Balanced footprint and reinforced shoulder structure enhance wear resistance, promote even wearand improve driving stability under heavy loads.", image:"/tires/Feature-Images/Neo-Construct-D-f2.jpg" },
-      { title:"On/Off-Road Compound", body:"Specially formulated tread compound enhances puncture resistance and durability, ensuring consistent performance and reliability across construction and off-road environments.", image:"" },
+      { title:"On/Off-Road Compound", body:"Specially formulated tread compound enhances puncture resistance and durability, ensuring consistent performance and reliability across construction and off-road environments.", image:"/tires/Feature-Images/on-off-road-compound.jpg" },
     ],
     specRows: [
         { size:"11R22.5", ply:"16", rimW:"8.25", secW:"10.8", odIn:"42.1", odMm:"1068", td32:"25", tdMm:"31", mlSlbs:"6614", mlSpsi:"120", mlSkg:"3000", mlSkpa:"830", mlDlbs:"6008", mlDpsi:"120", mlDkg:"2725", mlDkpa:"830", liss:"146/143L", smartway:false, ms:true, "3PMSF":false },
@@ -757,7 +757,7 @@ export const TIRES: TireData[] = [
     features: [
       { title:"Non-Directional Tread Design", body:"A newly developed tread block pitch sequence with wider zig-zag grooves delivers longer mileage, even wearand strong traction. It also enhances water evacuation, stone rejectionand handling stability without compromising grip.", image:"/tires/Feature-Images/Neo-Construct-G-f1.jpg" },
       { title:"Reinforced Structure", body:"The new reinforcement design supports higher load capacity, providing greater structural strength and improved driving safety under demanding working conditions.", image:"/tires/Feature-Images/Neo-Construct-G-f2.jpg" },
-      { title:"On/Off-Road Compound", body:"Specially formulated tread compound enhances puncture resistance and durability, ensuring consistent performance and reliability across construction and off-road environments.", image:"" },
+      { title:"On/Off-Road Compound", body:"Specially formulated tread compound enhances puncture resistance and durability, ensuring consistent performance and reliability across construction and off-road environments.", image:"/tires/Feature-Images/on-off-road-compound.jpg" },
     ],
     specRows: [
         { size:"11R22.5", ply:"16", rimW:"8.25", secW:"10.8", odIn:"41.7", odMm:"1058", td32:"20", tdMm:"25", mlSlbs:"6614", mlSpsi:"120", mlSkg:"3000", mlSkpa:"830", mlDlbs:"6008", mlDpsi:"120", mlDkg:"2725", mlDkpa:"830", liss:"146/143L", smartway:false, ms:true, "3PMSF":false },
@@ -871,7 +871,7 @@ export const TIRES: TireData[] = [
     ],
     features: [
       { title:"Optimized Tread Depth with 3D Groove Design", body:"An optimized tread depth combined with a high-density transverse 3D groove pattern delivers excellent grip on snowy and wet roads while reducing road noise for a smoother, quieter ride.", image:"/tires/Feature-Images/Neo-Allseason-D-f1.jpg" },
-      { title:"High-Silica All-Season Compound", body:"The unique tread compound with high silica content maintains flexibility at low temperatures, ensuring reliable traction, lower rolling resistanceand enhanced tread integrity throughout the seasons.", image:"" },
+      { title:"High-Silica All-Season Compound", body:"The unique tread compound with high silica content maintains flexibility at low temperatures, ensuring reliable traction, lower rolling resistanceand enhanced tread integrity throughout the seasons.", image:"/tires/Feature-Images/compound-img.jpg" },
       { title:"Reinforced Steel Cord & High-Strength Carcass", body:"A fully rubberized steel cord structure and high-strength carcass wire improve puncture resistance, durabilityand overall driving safety under regional operating conditions.", image:"/tires/Feature-Images/Neo-Allseason-D-f3.jpg" },
     ],
     specRows: [

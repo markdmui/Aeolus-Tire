@@ -1,7 +1,7 @@
 - [Tire image workflow](tire-image-workflow.md) — print (300 DPI) vs web (72 DPI) split per tire; Pillow already installed; public/ path, not Vite import.
 - [SpecsSection layout constants](specs-section-layout.md) — key layout values for the truck bg / specs overlap section; change these before touching inline styles.
 - [Tire photos catalog](tire-photos-catalog.md) — 48 hi-res PNGs at `/tires/Tire-Photos/<file>`; grouped by series.
-- [Wireframe data](wireframe-data.json) — 45 tires, full structured data (name, alt, pos, category, subtitle, tags, bullets, specs_table, features). Source: Wireframe-04. Three tires have `alt` field set (Neo Fuel D2, Neo Fuel T2, ADR78) — custom action TBD.
+- [Wireframe data](wireframe-data.json) — 43 tires, full structured data (name, alt, pos, category, subtitle, tags, bullets, specs_table, features). Source: WF6 (final bible). Three tires have `alt` field set (Neo Fuel D2, Neo Fuel T2, ADR78) — custom action TBD. WF4/WF5 xlsx files deleted — data lives in tires.ts.
 - Brand-agnostic tire-site methodology extracted to skill `.agents/skills/truck-tire-website-methodology/SKILL.md` — reuse for any new/different tire brand's site; contains data model, cutaway component, tire-finder prototype, and naming conventions only, no Aeolus branding.
 - [Tire Finder Nav & Dropdown CSS Lessons](tire-finder-nav-css-lessons.md) — scope nav selectors with `>li>a`; dropdown anchors to `.site-nav-right` not `<li>`; spec table header structure for popup.
 - [Tire Finder — migrated to React](tire-finder-migration-plan.md) — DONE: TireFinderPage.tsx at /tire-finder reads from tires.ts; tire-finder.html kept as archive only.

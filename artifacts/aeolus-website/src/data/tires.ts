@@ -44,6 +44,7 @@ export interface TireData {
   bgTruck: string;
   cutawayImage: string;
   downloads: { catalog: string; productSheet: string; warranty: string; tirePhoto: string; };
+  tags?: string[];
 }
 
 export const TIRES: TireData[] = [
@@ -157,6 +158,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Fuel Efficient", "Long Life", "Durable", "M+S"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -221,6 +223,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Long Haul", "Mileage", "Fuel Efficient", "Traction", "M+S", "3PMSF"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -255,6 +258,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Long Haul", "Traction", "Durable", "M+S", "3PMSF"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -290,6 +294,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Mileage", "Fuel Efficient", "Durable", "Traction", "SmartWay", "M+S"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -322,6 +327,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Fuel Efficient", "Durable", "Traction", "M+S"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -355,6 +361,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Long Haul", "Fuel Efficient", "Multi-Groove", "M+S"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -389,6 +396,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Traction", "Long Life", "Mileage", "SmartWay", "M+S"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -424,6 +432,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Fuel Efficient", "Long Life", "Durable", "SmartWay", "M+S"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -474,6 +483,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Zig-Zag Grooves", "Mileage", "Durable", "M+S", "3PMSF"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -508,6 +518,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Deep Tread", "Stone Resistant", "Long Life", "M+S", "3PMSF"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -553,6 +564,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Traction", "Long Life", "Low Noise", "M+S", "3PMSF"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -592,6 +604,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Traction", "Long Life", "Wet Surface", "Durable", "M+S", "3PMSF"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -662,6 +675,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Deep Tread", "Stone Resistant", "Long Life", "M+S", "3PMSF"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -737,6 +751,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Mileage", "Traction", "Durable", "M+S", "3PMSF"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -769,6 +784,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Mileage", "Traction", "Durable", "M+S"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -804,6 +820,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["M+S", "3PMSF", "Even Wear", "Low Noise"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -846,6 +863,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Self Cleaning", "Heavy Load", "Long Life", "3PMSF"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -886,6 +904,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Self Cleaning", "Heavy Load", "Long Life", "M+S", "3PMSF"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -959,6 +978,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Traction", "Durable", "M+S", "3PMSF"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -1000,6 +1020,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Long Life", "Traction", "Reinforced Casing", "M+S", "3PMSF"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -1072,6 +1093,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Mileage", "Heat Discharge", "M+S", "3PMSF"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -1142,6 +1164,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Sidewall Protection", "Low Rolling Res."],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -1204,6 +1227,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["M+S", "Mileage", "Retreadable"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -1237,6 +1261,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Shallow Tread", "Low Rolling Res.", "Water Evacuation"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -1308,6 +1333,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Wet Surface", "Traction", "M+S", "3PMSF"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -1342,6 +1368,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Delivery Vehicle", "Retreadable", "M+S", "3PMSF"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -1376,6 +1403,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Low Heat", "Long Life", "M+S", "3PMSF"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -1443,6 +1471,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["M+S", "Traction", "High Load"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -1481,6 +1510,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["M+S", "3PMSF", "Traction"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -1516,6 +1546,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["M+S", "3PMSF", "Delivery Vehicle"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -1551,6 +1582,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["M+S", "3PMSF", "Durable"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -1585,6 +1617,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["M+S", "Traction", "High Load"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -1618,6 +1651,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["M+S", "Traction", "Low Heat"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -1653,6 +1687,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Chip Resistant", "Cut Resistant", "Retreadable"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -1724,6 +1759,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["M+S", "3PMSF", "Traction", "Cut Resistant"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -1766,6 +1802,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["M+S", "3PMSF", "Traction"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -1797,6 +1834,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["M+S", "Mining", "Traction", "Puncture Resistant"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -1840,6 +1878,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Poor Road", "Durable", "M+S", "3PMSF"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -1914,6 +1953,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Poor Road", "Traction", "ML"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -1948,6 +1988,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["Wide Tread", "Puncture Resistant", "Traction", "ML"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -1983,6 +2024,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["M+S", "3PMSF", "Traction", "Snow"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -2017,6 +2059,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["M+S", "3PMSF", "Traction", "Low Temp."],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
@@ -2051,6 +2094,7 @@ export const TIRES: TireData[] = [
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
+    tags: ["M+S", "3PMSF", "Traction", "Delivery Vehicle"],
     downloads: {
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",

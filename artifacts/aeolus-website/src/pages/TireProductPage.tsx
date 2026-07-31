@@ -351,7 +351,7 @@ function FeatureSection({ tire, onOpen }: { tire: TireData; onOpen: (src: string
       >
         {tire.features.map((f, i) => (
           <motion.div
-            key={f.title}
+            key={i}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-40px" }}

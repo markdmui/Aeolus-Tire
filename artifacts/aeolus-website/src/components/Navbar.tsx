@@ -3,54 +3,52 @@ import { Link, useRoute } from "wouter";
 import { List, X } from "@phosphor-icons/react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const DEMO = "/tires/neo-fuel-x3";
-
 const TIRE_DROPDOWN = {
   left: [
     {
       category: "NEO SERIES LONG HAUL",
       tires: [
-        { label: "Neo Fuel S", href: DEMO },
-        { label: "Neo Fuel D", href: DEMO },
-        { label: "Neo Fuel D2", href: DEMO },
-        { label: "Neo Fuel D3", href: DEMO },
-        { label: "Neo Fuel T+", href: DEMO },
-        { label: "Neo Fuel T2", href: DEMO },
-        { label: "Neo Fuel T3", href: DEMO },
-        { label: "Neo Fuel G3", href: DEMO },
+        { label: "Neo Fuel S",  href: "/tires/neo-fuel-s" },
+        { label: "Neo Fuel D",  href: "/tires/neo-fuel-d" },
+        { label: "Neo Fuel D2", href: "/tires/neo-fuel-d2" },
+        { label: "Neo Fuel D3", href: "/tires/neo-fuel-d3" },
+        { label: "Neo Fuel T+", href: "/tires/neo-fuel-t-plus" },
+        { label: "Neo Fuel T2", href: "/tires/neo-fuel-t2" },
+        { label: "Neo Fuel T3", href: "/tires/neo-fuel-t3" },
+        { label: "Neo Fuel G3", href: "/tires/neo-fuel-g3" },
       ],
     },
     {
       category: "NEO/SAILOR SERIES REGIONAL",
       tires: [
-        { label: "Neo Allroads S", href: DEMO },
-        { label: "Neo Allroads S+", href: DEMO },
-        { label: "Neo Allroads D", href: DEMO },
-        { label: "Neo Allroads D+", href: DEMO },
-        { label: "Neo Allroads T2", href: DEMO },
-        { label: "Sailor ASR79", href: DEMO },
-        { label: "Sailor ASR79II", href: DEMO },
-        { label: "Sailor ADR78/ADR78 ii", href: DEMO },
+        { label: "Neo Allroads S",        href: "/tires/neo-allroads-s" },
+        { label: "Neo Allroads S+",       href: "/tires/neo-allroads-s-plus" },
+        { label: "Neo Allroads D",        href: "/tires/neo-allroads-d" },
+        { label: "Neo Allroads D+",       href: "/tires/neo-allroads-d-plus" },
+        { label: "Neo Allroads T2",       href: "/tires/neo-allroads-t2" },
+        { label: "Sailor ASR79",          href: "/tires/asr79" },
+        { label: "Sailor ASR79II",        href: "/tires/asr79" },
+        { label: "Sailor ADR78/ADR78 ii", href: "/tires/adr78" },
       ],
     },
     {
       category: "NEO SERIES ON/OFF ROAD",
       tires: [
-        { label: "Neo Construct D", href: DEMO },
-        { label: "Neo Construct G", href: DEMO },
+        { label: "Neo Construct D", href: "/tires/neo-construct-d" },
+        { label: "Neo Construct G", href: "/tires/neo-construct-g" },
       ],
     },
     {
       category: "NEO SERIES WINTER",
       tires: [
-        { label: "Neo Winter S", href: DEMO },
-        { label: "Neo Allseason D", href: DEMO },
+        { label: "Neo Winter S",   href: "/tires/neo-winter-s" },
+        { label: "Neo Allseason D", href: "/tires/neo-allseason-d" },
       ],
     },
     {
       category: "NEO SERIES URBAN",
       tires: [
-        { label: "Neo Urban G", href: DEMO },
+        { label: "Neo Urban G", href: "/tires/neo-urban-g" },
       ],
     },
   ],
@@ -58,43 +56,43 @@ const TIRE_DROPDOWN = {
     {
       category: "STANDARD SERIES LONG HAUL",
       tires: [
-        { label: "ASL06", href: DEMO },
-        { label: "ADL58", href: DEMO },
-        { label: "ATL08", href: DEMO },
+        { label: "ASL06", href: "/tires/asl06" },
+        { label: "ADL58", href: "/tires/adl58" },
+        { label: "ATL08", href: "/tires/atl08" },
       ],
     },
     {
       category: "STANDARD SERIES REGIONAL",
       tires: [
-        { label: "ASR30", href: DEMO },
-        { label: "ASR35", href: DEMO },
-        { label: "ASR69", href: DEMO },
-        { label: "ADR24", href: DEMO },
-        { label: "ADR26", href: DEMO },
-        { label: "ADR35", href: DEMO },
-        { label: "ADR55", href: DEMO },
-        { label: "ADR69", href: DEMO },
-        { label: "ADR57", href: DEMO },
-        { label: "AGR26", href: DEMO },
+        { label: "ASR30", href: "/tires/asr30" },
+        { label: "ASR35", href: "/tires/asr35" },
+        { label: "ASR69", href: "/tires/asr69" },
+        { label: "ADR24", href: "/tires/adr24" },
+        { label: "ADR26", href: "/tires/adr26" },
+        { label: "ADR35", href: "/tires/adr35" },
+        { label: "ADR55", href: "/tires/adr55" },
+        { label: "ADR69", href: "/tires/adr69" },
+        { label: "ADR57", href: "/tires/adr57" },
+        { label: "AGR26", href: "/tires/agr26" },
       ],
     },
     {
       category: "STANDARD SERIES ON/OFF ROAD",
       tires: [
-        { label: "ADC52", href: DEMO },
-        { label: "ADC53", href: DEMO },
-        { label: "ADC54", href: DEMO },
-        { label: "AGC08", href: DEMO },
-        { label: "AGM10", href: DEMO },
-        { label: "AGM84", href: DEMO },
+        { label: "ADC52", href: "/tires/adc52" },
+        { label: "ADC53", href: "/tires/adc53" },
+        { label: "ADC54", href: "#" },
+        { label: "AGC08", href: "/tires/agc08" },
+        { label: "AGM10", href: "/tires/agm10" },
+        { label: "AGM84", href: "/tires/agm84" },
       ],
     },
     {
       category: "STANDARD SERIES WINTER",
       tires: [
-        { label: "ADW80", href: DEMO },
-        { label: "ADW81", href: DEMO },
-        { label: "ADW82", href: DEMO },
+        { label: "ADW80", href: "/tires/adw80" },
+        { label: "ADW81", href: "/tires/adw81" },
+        { label: "ADW82", href: "/tires/adw82" },
       ],
     },
   ],
@@ -243,12 +241,17 @@ export default function Navbar() {
                         <CategoryHeader text={section.category} />
                       </motion.div>
                       {section.tires.map((tire, ti) => (
-                        <motion.a
-                          key={tire.label} href={tire.href} className="dropdown-tire-link"
+                        <motion.div
+                          key={tire.label}
                           initial={{ opacity: 0, x: 20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.2, delay: (si * 4 + ti) * 0.015 + 0.05, ease: "easeOut" }}
-                        >{tire.label}</motion.a>
+                        >
+                          {tire.href === "#"
+                            ? <a href="#" className="dropdown-tire-link" onClick={e => e.preventDefault()}>{tire.label}</a>
+                            : <Link href={tire.href} className="dropdown-tire-link">{tire.label}</Link>
+                          }
+                        </motion.div>
                       ))}
                     </div>
                   ))}

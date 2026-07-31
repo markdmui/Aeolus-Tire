@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo, useId } from "react";
 import { Link } from "wouter";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -72,7 +72,9 @@ const FINDER_TIRES: FinderTire[] = TIRES.flatMap(t => {
 const SEGMENTS   = ["Long Haul", "Regional", "Construction", "Winter", "Urban", "Other"];
 const ACTIVE_SEGS = Array.from(new Set(FINDER_TIRES.map(t => t.finderSegment)))
   .sort((a, b) => SEGMENTS.indexOf(a) - SEGMENTS.indexOf(b));
-const POSITIONS  = Array.from(new Set(FINDER_TIRES.map(t => t.pos))).sort();
+// Tires whose wireframe block has no position yet contribute no facet —
+// otherwise the list renders a blank, unlabelled checkbox.
+const POSITIONS  = Array.from(new Set(FINDER_TIRES.map(t => t.pos).filter(Boolean))).sort();
 const SERIES_OPTS = ["Premium", "Standard"];
 
 const CERTS = [
@@ -140,6 +142,46 @@ function emptyFilters(): FilterState {
   };
 }
 
+// ── URL <-> filter state ─────────────────────────────────────────────────────
+// Filters live in the query string so a filtered view can be bookmarked or sent
+// to a dealer. Written with replaceState, so Back leaves the page rather than
+// unwinding one checkbox at a time.
+
+const SET_PARAMS: [keyof FilterState, string][] = [
+  ["series", "series"], ["segment", "cat"], ["pos", "pos"],
+  ["cert", "cert"], ["tags", "tag"],
+];
+const STR_PARAMS: [keyof FilterState, string][] = [
+  ["sizeWidth", "w"], ["sizeRatio", "r"], ["sizeRim", "rim"], ["q", "q"],
+];
+
+function filtersToSearch(fs: FilterState): string {
+  const p = new URLSearchParams();
+  for (const [key, param] of SET_PARAMS) {
+    const set = fs[key] as Set<string>;
+    if (set.size) p.set(param, Array.from(set).join("~"));
+  }
+  for (const [key, param] of STR_PARAMS) {
+    const v = fs[key] as string;
+    if (v) p.set(param, v);
+  }
+  const s = p.toString();
+  return s ? "?" + s : "";
+}
+
+function filtersFromSearch(search: string): FilterState {
+  const p = new URLSearchParams(search);
+  const fs = emptyFilters();
+  for (const [key, param] of SET_PARAMS) {
+    const raw = p.get(param);
+    if (raw) (fs[key] as Set<string>) = new Set(raw.split("~").filter(Boolean));
+  }
+  for (const [key, param] of STR_PARAMS) {
+    (fs[key] as string) = p.get(param) ?? "";
+  }
+  return fs;
+}
+
 // ── Filter logic ─────────────────────────────────────────────────────────────
 
 function filteredTires(fs: FilterState): FinderTire[] {
@@ -184,6 +226,26 @@ function filteredTires(fs: FilterState): FinderTire[] {
 
 // ── Sub-components ───────────────────────────────────────────────────────────
 
+/** One filter option. A real checkbox so it is focusable and announced. */
+function FacetOption({
+  value, checked, onToggle, hideBox,
+}: {
+  value: string; checked: boolean; onToggle: (v: string) => void; hideBox?: boolean;
+}) {
+  return (
+    <label className={`tf-facet-opt${checked ? " tf-checked" : ""}`}>
+      <input
+        type="checkbox"
+        className="tf-facet-input"
+        checked={checked}
+        onChange={() => onToggle(value)}
+      />
+      {!hideBox && <span className="tf-box" aria-hidden="true" />}
+      <span className="tf-tag-text">{value}</span>
+    </label>
+  );
+}
+
 function FacetGroup({
   label, values, selected, onToggle, twoCol, isTags, onReset,
 }: {
@@ -191,35 +253,40 @@ function FacetGroup({
   onToggle: (v: string) => void; twoCol?: boolean; isTags?: boolean; onReset?: () => void;
 }) {
   return (
-    <div className="tf-facet">
+    <fieldset className="tf-facet">
       <div className="tf-facet-head">
-        <span className="tf-label">{label}</span>
-        {onReset && <button onClick={onReset}>Reset</button>}
+        <legend className="tf-label">{label}</legend>
+        {onReset && <button type="button" onClick={onReset}>Reset</button>}
       </div>
       <div className={isTags ? "tf-facet-tags" : twoCol ? "tf-facet-2col" : undefined}>
         {values.map(v => (
-          <div
+          <FacetOption
             key={v}
-            className={`tf-facet-opt${selected.has(v) ? " tf-checked" : ""}`}
-            onClick={() => onToggle(v)}
-          >
-            {!isTags && <span className="tf-box" />}
-            <span className="tf-tag-text">{v}</span>
-          </div>
+            value={v}
+            checked={selected.has(v)}
+            onToggle={onToggle}
+            hideBox={isTags}
+          />
         ))}
       </div>
-    </div>
+    </fieldset>
   );
 }
 
 function SizeSelect({
-  id, placeholder, options, value, onChange,
+  placeholder, options, value, onChange,
 }: {
-  id: string; placeholder: string; options: string[]; value: string;
+  placeholder: string; options: string[]; value: string;
   onChange: (v: string) => void;
 }) {
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const listId = useId();
+
+  // "" (the clear option) sits at index 0, so the option list is offset by one.
+  const items = ["", ...options];
 
   useEffect(() => {
     if (!open) return;
@@ -230,35 +297,76 @@ function SizeSelect({
     return () => document.removeEventListener("mousedown", onDown);
   }, [open]);
 
+  useEffect(() => {
+    if (open) setActive(Math.max(0, items.indexOf(value)));
+  }, [open]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  function commit(v: string) {
+    onChange(v);
+    setOpen(false);
+    triggerRef.current?.focus();
+  }
+
+  function onKeyDown(e: React.KeyboardEvent) {
+    if (!open) {
+      if (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        setOpen(true);
+      }
+      return;
+    }
+    if (e.key === "Escape") {
+      e.preventDefault();
+      setOpen(false);
+      triggerRef.current?.focus();
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setActive(i => Math.min(i + 1, items.length - 1));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActive(i => Math.max(i - 1, 0));
+    } else if (e.key === "Home") {
+      e.preventDefault(); setActive(0);
+    } else if (e.key === "End") {
+      e.preventDefault(); setActive(items.length - 1);
+    } else if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      commit(items[active]);
+    }
+  }
+
   const hasVal = value !== "";
 
   return (
-    <div className="tf-cs" ref={ref}>
+    <div className="tf-cs" ref={ref} onKeyDown={onKeyDown}>
       <button
+        ref={triggerRef}
         className={`tf-cs-trigger${open ? " tf-open" : ""}${hasVal ? " tf-has-value" : ""}`}
         onClick={() => setOpen(o => !o)}
         type="button"
+        role="combobox"
+        aria-expanded={open}
+        aria-controls={listId}
+        aria-haspopup="listbox"
+        aria-label={`${placeholder}${hasVal ? `: ${value}` : ""}`}
       >
         <span>{hasVal ? value : placeholder}</span>
-        <svg className="tf-cs-caret" viewBox="0 0 9 9" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <svg className="tf-cs-caret" viewBox="0 0 9 9" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
           <polyline points="1,3 4.5,6.5 8,3" />
         </svg>
       </button>
       {open && (
-        <div className="tf-cs-panel">
-          <div
-            className={`tf-cs-option${value === "" ? " tf-selected" : ""}`}
-            onClick={() => { onChange(""); setOpen(false); }}
-          >
-            {placeholder}
-          </div>
-          {options.map(opt => (
+        <div className="tf-cs-panel" id={listId} role="listbox" aria-label={placeholder}>
+          {items.map((opt, i) => (
             <div
-              key={opt}
-              className={`tf-cs-option${opt === value ? " tf-selected" : ""}`}
-              onClick={() => { onChange(opt); setOpen(false); }}
+              key={opt || "__any"}
+              role="option"
+              aria-selected={opt === value}
+              className={`tf-cs-option${opt === value ? " tf-selected" : ""}${i === active ? " tf-active" : ""}`}
+              onMouseEnter={() => setActive(i)}
+              onClick={() => commit(opt)}
             >
-              {opt}
+              {opt || placeholder}
             </div>
           ))}
         </div>
@@ -274,7 +382,8 @@ function TireCard({ tire, onClick }: { tire: FinderTire; onClick: () => void }) 
   const n       = tire.sizes.length;
 
   return (
-    <div className="tf-card" onClick={onClick}>
+    <button type="button" className="tf-card" onClick={onClick}
+            aria-label={`${tire.name} — view size and spec chart`}>
       <div className="tf-swatch">
         <img
           src={`${BASE}${tire.tireImage}`}
@@ -295,7 +404,7 @@ function TireCard({ tire, onClick }: { tire: FinderTire; onClick: () => void }) 
           </span>
         </div>
       </div>
-    </div>
+    </button>
   );
 }
 
@@ -310,6 +419,33 @@ function SpecModal({ tire, onClose }: { tire: FinderTire; onClose: () => void })
   const showPMSF = tire.sizes.some(s => s.pmsf);
   const D = "—";
 
+  const modalRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const titleId = useId();
+
+  // Move focus in on open, hand it back to whatever opened the modal on close.
+  useEffect(() => {
+    const opener = document.activeElement as HTMLElement | null;
+    closeRef.current?.focus();
+    return () => opener?.focus?.();
+  }, []);
+
+  // Keep Tab inside the dialog.
+  function onKeyDown(e: React.KeyboardEvent) {
+    if (e.key !== "Tab" || !modalRef.current) return;
+    const focusable = modalRef.current.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault(); last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault(); first.focus();
+    }
+  }
+
   // close on overlay click
   function onOverlayClick(e: React.MouseEvent<HTMLDivElement>) {
     if (e.target === e.currentTarget) onClose();
@@ -317,16 +453,23 @@ function SpecModal({ tire, onClose }: { tire: FinderTire; onClose: () => void })
 
   return (
     <div className="tf-modal-overlay tf-open" onClick={onOverlayClick}>
-      <div className="tf-modal">
+      <div
+        className="tf-modal"
+        ref={modalRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        onKeyDown={onKeyDown}
+      >
         {/* Head */}
         <div className="tf-modal-head">
           <div>
             <div className="tf-seg-line">{tire.finderSegment} · {tire.pos}</div>
-            <h2>{tire.name}</h2>
+            <h2 id={titleId}>{tire.name}</h2>
             <div className="tf-modal-subtitle">{tire.subtitle}</div>
           </div>
           <div className="tf-modal-head-actions">
-            <button className="tf-modal-close" onClick={onClose}>×</button>
+            <button ref={closeRef} className="tf-modal-close" onClick={onClose} aria-label="Close">×</button>
             <Link href={`/tires/${tire.slug}`} className="tf-modal-product-btn">
               View Product Page
             </Link>
@@ -436,8 +579,18 @@ function SpecModal({ tire, onClose }: { tire: FinderTire; onClose: () => void })
 // ── Main page ────────────────────────────────────────────────────────────────
 
 export default function TireFinderPage() {
-  const [fs, setFs] = useState<FilterState>(emptyFilters);
+  const [fs, setFs] = useState<FilterState>(() =>
+    filtersFromSearch(typeof window === "undefined" ? "" : window.location.search));
   const [modalTire, setModalTire] = useState<FinderTire | null>(null);
+  const [filtersOpen, setFiltersOpen] = useState(false);
+
+  // Mirror filters into the query string so the view is shareable.
+  useEffect(() => {
+    const search = filtersToSearch(fs);
+    if (search !== window.location.search) {
+      window.history.replaceState(null, "", window.location.pathname + search);
+    }
+  }, [fs]);
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -475,8 +628,16 @@ export default function TireFinderPage() {
     sizeRim:   availRims.includes(fs.sizeRim)     ? fs.sizeRim   : "",
   };
 
-  const results = filteredTires(adjFs);
-  const total   = FINDER_TIRES.length;
+  const results = useMemo(
+    () => filteredTires(adjFs),
+    [adjFs.segment, adjFs.pos, adjFs.series, adjFs.cert, adjFs.tags,
+     adjFs.sizeWidth, adjFs.sizeRatio, adjFs.sizeRim, adjFs.q]
+  );
+  const total = FINDER_TIRES.length;
+
+  const activeCount =
+    fs.segment.size + fs.pos.size + fs.series.size + fs.cert.size + fs.tags.size +
+    (fs.sizeWidth ? 1 : 0) + (fs.sizeRatio ? 1 : 0) + (fs.sizeRim ? 1 : 0);
 
   return (
     <>
@@ -489,75 +650,80 @@ export default function TireFinderPage() {
           Find Your <span className="tf-accent">Tire</span>
         </h1>
         <div className="tf-searchrow">
-          <span className="tf-searchicon">
+          <span className="tf-searchicon" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
               <circle cx="6.5" cy="6.5" r="5" />
               <line x1="10.5" y1="10.5" x2="14" y2="14" />
             </svg>
           </span>
+          <label className="tf-visually-hidden" htmlFor="searchInput">
+            Search tires by name, size or feature
+          </label>
           <input
             id="searchInput"
-            type="text"
+            type="search"
             placeholder="Search by name, size or feature…"
             autoComplete="off"
             value={fs.q}
             onChange={e => setFs(p => ({ ...p, q: e.target.value }))}
           />
           {fs.q && (
-            <button className="tf-clearbtn" onClick={() => setFs(p => ({ ...p, q: "" }))}>×</button>
+            <button type="button" className="tf-clearbtn" aria-label="Clear search"
+                    onClick={() => setFs(p => ({ ...p, q: "" }))}>×</button>
           )}
         </div>
       </div>
+
+      {/* Mobile-only filter toggle — the sidebar is ~1.5 screens tall on a phone. */}
+      <button
+        type="button"
+        className="tf-filter-toggle"
+        aria-expanded={filtersOpen}
+        aria-controls="tf-sidebar"
+        onClick={() => setFiltersOpen(o => !o)}
+      >
+        {filtersOpen ? "Hide filters" : "Filters"}
+        {activeCount > 0 && <span className="tf-filter-count">{activeCount}</span>}
+      </button>
 
       {/* Layout */}
       <div className="tf-layout">
 
         {/* ── Sidebar ── */}
-        <aside className="tf-sidebar">
+        <aside
+          className={`tf-sidebar${filtersOpen ? " tf-sidebar-open" : ""}`}
+          id="tf-sidebar"
+          aria-label="Tire filters"
+        >
 
-          <div className="tf-facet">
+          <fieldset className="tf-facet">
             <div className="tf-facet-head">
-              <span className="tf-label">Series</span>
-              <button onClick={resetAll}>Reset all</button>
+              <legend className="tf-label">Series</legend>
+              <button type="button" onClick={resetAll}>Reset all</button>
             </div>
             <div className="tf-facet-2col">
               {SERIES_OPTS.map(v => (
-                <div
-                  key={v}
-                  className={`tf-facet-opt${fs.series.has(v) ? " tf-checked" : ""}`}
-                  onClick={() => toggleSet("series", v)}
-                >
-                  <span className="tf-box" /><span className="tf-tag-text">{v}</span>
-                </div>
+                <FacetOption key={v} value={v} checked={fs.series.has(v)}
+                             onToggle={x => toggleSet("series", x)} />
               ))}
             </div>
-          </div>
+          </fieldset>
 
           <div className="tf-facet tf-facet-pair">
-            <div className="tf-facet-col">
-              <div className="tf-facet-head"><span className="tf-label">Category</span></div>
+            <fieldset className="tf-facet-col">
+              <div className="tf-facet-head"><legend className="tf-label">Category</legend></div>
               {ACTIVE_SEGS.map(v => (
-                <div
-                  key={v}
-                  className={`tf-facet-opt${fs.segment.has(v) ? " tf-checked" : ""}`}
-                  onClick={() => toggleSet("segment", v)}
-                >
-                  <span className="tf-box" /><span className="tf-tag-text">{v}</span>
-                </div>
+                <FacetOption key={v} value={v} checked={fs.segment.has(v)}
+                             onToggle={x => toggleSet("segment", x)} />
               ))}
-            </div>
-            <div className="tf-facet-col">
-              <div className="tf-facet-head"><span className="tf-label">Position</span></div>
+            </fieldset>
+            <fieldset className="tf-facet-col">
+              <div className="tf-facet-head"><legend className="tf-label">Position</legend></div>
               {POSITIONS.map(v => (
-                <div
-                  key={v}
-                  className={`tf-facet-opt${fs.pos.has(v) ? " tf-checked" : ""}`}
-                  onClick={() => toggleSet("pos", v)}
-                >
-                  <span className="tf-box" /><span className="tf-tag-text">{v}</span>
-                </div>
+                <FacetOption key={v} value={v} checked={fs.pos.has(v)}
+                             onToggle={x => toggleSet("pos", x)} />
               ))}
-            </div>
+            </fieldset>
           </div>
 
           <FacetGroup
@@ -581,26 +747,23 @@ export default function TireFinderPage() {
         {/* ── Main ── */}
         <main className="tf-main">
           <div className="tf-results-count-row">
-            <span>Showing <b>{results.length}</b> of {total} tires</span>
+            <span aria-live="polite">Showing <b>{results.length}</b> of {total} tires</span>
             <div className="tf-size-inline-row">
-              <span className="tf-size-inline-label">SIZE</span>
-              <button className="tf-size-inline-reset" onClick={resetSize}>Reset</button>
+              <span className="tf-size-inline-label" id="tf-size-label">SIZE</span>
+              <button type="button" className="tf-size-inline-reset" onClick={resetSize}>Reset</button>
               <SizeSelect
-                id="csWidth"
                 placeholder="Width"
                 options={availWidths}
                 value={adjFs.sizeWidth}
                 onChange={v => setFs(p => ({ ...p, sizeWidth: v }))}
               />
               <SizeSelect
-                id="csRatio"
                 placeholder="Ratio"
                 options={availRatios}
                 value={adjFs.sizeRatio}
                 onChange={v => setFs(p => ({ ...p, sizeRatio: v }))}
               />
               <SizeSelect
-                id="csRim"
                 placeholder="Rim"
                 options={availRims}
                 value={adjFs.sizeRim}

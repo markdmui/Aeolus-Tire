@@ -2,101 +2,23 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useRoute } from "wouter";
 import { List, X } from "@phosphor-icons/react";
 import { motion, AnimatePresence } from "framer-motion";
+import { NAV_SECTIONS } from "../data/tires";
 
+// Derived from the catalog — see src/data/tires.ts. Adding a tire to the
+// wireframe and regenerating puts it in this dropdown automatically.
 const TIRE_DROPDOWN = {
-  left: [
-    {
-      category: "NEO SERIES LONG HAUL",
-      tires: [
-        { label: "Neo Fuel S",   href: "/tires/neo-fuel-s" },
-        { label: "Neo Fuel D",  href: "/tires/neo-fuel-d" },
-        { label: "Neo Fuel D2", href: "/tires/neo-fuel-d2" },
-        { label: "Neo Fuel D3", href: "/tires/neo-fuel-d3" },
-        { label: "Neo Fuel T+", href: "/tires/neo-fuel-t-plus" },
-        { label: "Neo Fuel T2", href: "/tires/neo-fuel-t2" },
-        { label: "Neo Fuel T3", href: "/tires/neo-fuel-t3" },
-        { label: "Neo Fuel G3", href: "/tires/neo-fuel-g3" },
-      ],
-    },
-    {
-      category: "NEO/SAILOR SERIES REGIONAL",
-      tires: [
-        { label: "Neo Allroads S",        href: "/tires/neo-allroads-s" },
-        { label: "Neo Allroads S+",       href: "/tires/neo-allroads-s-plus" },
-        { label: "Neo Allroads D",        href: "/tires/neo-allroads-d" },
-        { label: "Neo Allroads D+",       href: "/tires/neo-allroads-d-plus" },
-        { label: "Neo Allroads T2",       href: "/tires/neo-allroads-t2" },
-        { label: "Sailor ASR79",          href: "/tires/asr79" },
-        { label: "Sailor ASR79ii",        href: "/tires/asr79ii" },
-        { label: "Sailor ADR78/ADR78 ii", href: "/tires/adr78" },
-      ],
-    },
-    {
-      category: "NEO SERIES ON/OFF ROAD",
-      tires: [
-        { label: "Neo Construct D", href: "/tires/neo-construct-d" },
-        { label: "Neo Construct G", href: "/tires/neo-construct-g" },
-      ],
-    },
-    {
-      category: "NEO SERIES WINTER",
-      tires: [
-        { label: "Neo Winter S",    href: "/tires/neo-winter-s" },
-        { label: "Neo Allseason D", href: "/tires/neo-allseason-d" },
-      ],
-    },
-    {
-      category: "NEO SERIES URBAN",
-      tires: [
-        { label: "Neo Urban G", href: "/tires/neo-urban-g" },
-      ],
-    },
-  ],
-  right: [
-    {
-      category: "STANDARD SERIES LONG HAUL",
-      tires: [
-        { label: "ASL06", href: "/tires/asl06" },
-        { label: "ADL58", href: "/tires/adl58" },
-        { label: "ATL08", href: "/tires/atl08" },
-      ],
-    },
-    {
-      category: "STANDARD SERIES REGIONAL",
-      tires: [
-        { label: "ASR30", href: "/tires/asr30" },
-        { label: "ASR35", href: "/tires/asr35" },
-        { label: "ASR69", href: "/tires/asr69" },
-        { label: "ADR24", href: "/tires/adr24" },
-        { label: "ADR26", href: "/tires/adr26" },
-        { label: "ADR35", href: "/tires/adr35" },
-        { label: "ADR55", href: "/tires/adr55" },
-        { label: "ADR69", href: "/tires/adr69" },
-        { label: "ADR57", href: "/tires/adr57" },
-        { label: "AGR26", href: "/tires/agr26" },
-      ],
-    },
-    {
-      category: "STANDARD SERIES ON/OFF ROAD",
-      tires: [
-        { label: "ADC52", href: "/tires/adc52" },
-        { label: "ADC53", href: "/tires/adc53" },
-        { label: "ADC54", href: "/tires/adc54" },
-        { label: "AGC08", href: "/tires/agc08" },
-        { label: "AGM10", href: "/tires/agm10" },
-        { label: "AGM84", href: "/tires/agm84" },
-      ],
-    },
-    {
-      category: "STANDARD SERIES WINTER",
-      tires: [
-        { label: "ADW80", href: "/tires/adw80" },
-        { label: "ADW81", href: "/tires/adw81" },
-        { label: "ADW82", href: "/tires/adw82" },
-      ],
-    },
-  ],
+  left:  NAV_SECTIONS.filter(s => !s.category.startsWith("STANDARD")),
+  right: NAV_SECTIONS.filter(s =>  s.category.startsWith("STANDARD")),
 };
+
+// The wireframe names these plainly; the dropdown has always shown the
+// Sailor branding. Display-only — slugs and page content are unaffected.
+const NAV_LABEL_OVERRIDES: Record<string, string> = {
+  asr79: "Sailor ASR79",
+  adr78: "Sailor ADR78/ADR78 ii",
+};
+
+const navLabel = (slug: string, name: string) => NAV_LABEL_OVERRIDES[slug] ?? name;
 
 function CategoryHeader({ text }: { text: string }) {
   const parts = text.split(/(NEO SERIES|NEO)/);
@@ -206,26 +128,18 @@ export default function Navbar() {
                       >
                         <CategoryHeader text={section.category} />
                       </motion.div>
-                      {section.tires.map((tire, ti) =>
-                        tire.href === "#" ? (
-                          <motion.a
-                            key={tire.label} href="#" className="dropdown-tire-link"
-                            onClick={e => e.preventDefault()}
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.2, delay: (si * 4 + ti) * 0.015, ease: "easeOut" }}
-                          >{tire.label}</motion.a>
-                        ) : (
-                          <motion.div
-                            key={tire.label}
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.2, delay: (si * 4 + ti) * 0.015, ease: "easeOut" }}
-                          >
-                            <Link href={tire.href} className="dropdown-tire-link">{tire.label}</Link>
-                          </motion.div>
-                        )
-                      )}
+                      {section.tires.map((tire, ti) => (
+                        <motion.div
+                          key={tire.slug}
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.2, delay: (si * 4 + ti) * 0.015, ease: "easeOut" }}
+                        >
+                          <Link href={`/tires/${tire.slug}`} className="dropdown-tire-link">
+                            {navLabel(tire.slug, tire.name)}
+                          </Link>
+                        </motion.div>
+                      ))}
                     </div>
                   ))}
                 </div>
@@ -242,15 +156,14 @@ export default function Navbar() {
                       </motion.div>
                       {section.tires.map((tire, ti) => (
                         <motion.div
-                          key={tire.label}
+                          key={tire.slug}
                           initial={{ opacity: 0, x: 20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.2, delay: (si * 4 + ti) * 0.015 + 0.05, ease: "easeOut" }}
                         >
-                          {tire.href === "#"
-                            ? <a href="#" className="dropdown-tire-link" onClick={e => e.preventDefault()}>{tire.label}</a>
-                            : <Link href={tire.href} className="dropdown-tire-link">{tire.label}</Link>
-                          }
+                          <Link href={`/tires/${tire.slug}`} className="dropdown-tire-link">
+                            {navLabel(tire.slug, tire.name)}
+                          </Link>
                         </motion.div>
                       ))}
                     </div>
@@ -366,13 +279,16 @@ function MobileNavLinks({ onClose }: { onClose: () => void }) {
                   <div style={{ color: "#ffffff", fontWeight: 700, fontSize: "0.62rem", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.3rem", fontFamily: "var(--font-body)" }}>
                     <CategoryHeader text={section.category} />
                   </div>
-                  {section.tires.map((tire) =>
-                    tire.href === "#" ? (
-                      <a key={tire.label} href="#" className="dropdown-tire-link" onClick={e => e.preventDefault()}>{tire.label}</a>
-                    ) : (
-                      <Link key={tire.label} href={tire.href} className="dropdown-tire-link" onClick={onClose}>{tire.label}</Link>
-                    )
-                  )}
+                  {section.tires.map((tire) => (
+                    <Link
+                      key={tire.slug}
+                      href={`/tires/${tire.slug}`}
+                      className="dropdown-tire-link"
+                      onClick={onClose}
+                    >
+                      {navLabel(tire.slug, tire.name)}
+                    </Link>
+                  ))}
                 </div>
               ))}
             </div>
@@ -385,7 +301,14 @@ function MobileNavLinks({ onClose }: { onClose: () => void }) {
                     <CategoryHeader text={section.category} />
                   </div>
                   {section.tires.map((tire) => (
-                    <a key={tire.label} href={tire.href} className="dropdown-tire-link">{tire.label}</a>
+                    <Link
+                      key={tire.slug}
+                      href={`/tires/${tire.slug}`}
+                      className="dropdown-tire-link"
+                      onClick={onClose}
+                    >
+                      {navLabel(tire.slug, tire.name)}
+                    </Link>
                   ))}
                 </div>
               ))}

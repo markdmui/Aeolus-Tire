@@ -1,25 +1,13 @@
-import { Link } from "wouter";
+﻿import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { CATALOG_TIRES, TireData } from "../data/tires";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
-const PHOTO = (f: string) => `${BASE}/tires/Tire-Photos/${f}`;
 
-interface TireEntry {
-  name: string;
-  photo: string;
-  labelYellow: string;
-  labelWhite: string;
-  subtitle: string;
-  slug: string;
-  hasAlt?: boolean;
-}
-
-interface CategoryGroup {
-  tires: TireEntry[];
-}
+type TireEntry = TireData;
 
 function splitName(name: string): [string, string] {
   const u = name.toUpperCase();
@@ -37,74 +25,17 @@ function matchesFilter(tire: TireEntry, filter: Filter | null): boolean {
   if (!filter) return true;
   switch (filter) {
     case "Neo Series":  return tire.name.toLowerCase().startsWith("neo");
-    case "Standard":   return tire.labelYellow === "STANDARD";
-    case "Long Haul":  return tire.labelWhite === "LONG HAUL";
-    case "Regional":   return tire.labelWhite === "REGIONAL";
-    case "On/Off Road":return tire.labelWhite.includes("OFF ROAD") || tire.labelWhite.includes("ON/OFF");
-    case "Winter":     return tire.labelWhite === "WINTER";
-    case "Urban":      return tire.labelWhite === "URBAN";
+    case "Standard":    return tire.seriesLabel === "STANDARD";
+    case "Long Haul":   return tire.categoryLabel === "LONG HAUL";
+    case "Regional":    return tire.categoryLabel === "REGIONAL";
+    case "On/Off Road": return tire.categoryLabel.includes("OFF ROAD") || tire.categoryLabel.includes("ON/OFF");
+    case "Winter":      return tire.categoryLabel === "WINTER";
+    case "Urban":       return tire.categoryLabel === "URBAN";
   }
 }
 
-const GROUPS: CategoryGroup[] = [
-  {
-    tires: [
-      // — Premium Long Haul —
-      { name: "Neo Fuel S",       photo: "Neo-Fuel-S.png",              labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-s",        subtitle: "Long haul steer tire engineered for fuel efficiency, stability, and even wear." },
-      { name: "Neo Fuel D",       photo: "Neo-Fuel-D.png",              labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-d",        subtitle: "Long haul drive tire with low rolling resistance and superior durability." },
-      { name: "Neo Fuel D2",      photo: "Neo-Fuel-D2.png",             labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-d2",       subtitle: "Drive tire optimized for long haul routes with an enhanced tread compound.",  hasAlt: true },
-      { name: "Neo Fuel D3",      photo: "Neo-Fuel-D3.png",             labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-d3",       subtitle: "Third-generation long haul drive tire for maximum mileage and fuel savings." },
-      { name: "Neo Fuel G3",      photo: "Neo-Fuel-G3.png",             labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-g3",       subtitle: "All-position tire for regional and mixed service operations." },
-      { name: "Neo Fuel T2",      photo: "Neo-Fuel-T2.png",             labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-t2",       subtitle: "Long haul trailer tire for low rolling resistance and high-speed stability." },
-      { name: "Neo Fuel T3",      photo: "Neo-Fuel-T3.png",             labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-t3",       subtitle: "Trailer tire engineered for demanding long haul applications." },
-      { name: "Neo Fuel T+",      photo: "Neo-Fuel-T+.png",             labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-t-plus",   subtitle: "Premium long haul trailer tire for heavy loads and extended service life." },
-      // — Premium Regional —
-      { name: "Neo Allroads S",   photo: "Neo-Allroads-S.png",          labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "neo-allroads-s",    subtitle: "All-roads steer tire for reliable performance on mixed terrain." },
-      { name: "Neo Allroads S+",  photo: "Neo-Allroads-S+.png",         labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "neo-allroads-s-plus",subtitle: "Enhanced all-roads steer tire with superior wet grip and handling." },
-      { name: "Neo Allroads D",   photo: "Neo-Allroads-D.png",          labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "neo-allroads-d",    subtitle: "All-roads drive tire for regional and mixed service applications." },
-      { name: "Neo Allroads D+",  photo: "Neo-Allroads-D+.png",         labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "neo-allroads-d-plus",subtitle: "Premium all-roads drive tire with advanced traction on all surfaces." },
-      { name: "Neo Allroads T2",  photo: "Neo-Allroads-T2.png",         labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "neo-allroads-t2",   subtitle: "All-roads trailer tire for versatile regional operation.",               hasAlt: true },
-      { name: "ASR79",            photo: "ASR79.png",                   labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "asr79",             subtitle: "Premium regional steer tire for demanding mixed service.",               hasAlt: true },
-      { name: "ASR79ii",          photo: "ASR79.png",                   labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "asr79ii",           subtitle: "Enhanced regional steer tire with strong grip, even wear and reliable performance across conditions." },
-      { name: "ADR78",            photo: "ADR78.png",                   labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "adr78",             subtitle: "Versatile drive tire for regional and mixed service operations.",          hasAlt: true },
-      // — Premium On/Off Road —
-      { name: "Neo Construct D",  photo: "Neo-Construct-D.png",         labelYellow: "PREMIUM",  labelWhite: "ON/OFF ROAD", slug: "neo-construct-d",   subtitle: "Construction drive tire built for off-road durability and traction." },
-      { name: "Neo Construct G",  photo: "Aeolus-Neo-Construct-G.png",  labelYellow: "PREMIUM",  labelWhite: "ON/OFF ROAD", slug: "neo-construct-g",   subtitle: "All-position construction tire for heavy-duty off-road applications." },
-      // — Premium Winter —
-      { name: "Neo Winter S",     photo: "Neo-Winter-S.png",            labelYellow: "PREMIUM",  labelWhite: "WINTER",      slug: "neo-winter-s",      subtitle: "Winter steer tire with 3PMSF rating for severe snow conditions." },
-      { name: "Neo Allseason D",  photo: "Neo-Allseason-D.png",         labelYellow: "PREMIUM",  labelWhite: "WINTER",      slug: "neo-allseason-d",   subtitle: "All-season drive tire for year-round performance in any weather." },
-      // — Urban —
-      { name: "Neo Urban G",      photo: "Neo-Urban-G.png",             labelYellow: "PREMIUM",  labelWhite: "URBAN",       slug: "neo-urban-g",       subtitle: "All-position urban tire for city transit and short-haul delivery." },
-      // — Standard Long Haul —
-      { name: "ASL06",            photo: "ASL06.png",                   labelYellow: "STANDARD", labelWhite: "LONG HAUL",   slug: "asl06",             subtitle: "Long haul steer tire for fuel efficiency and high-speed stability." },
-      { name: "ADL58",            photo: "ADL58.png",                   labelYellow: "STANDARD", labelWhite: "LONG HAUL",   slug: "adl58",             subtitle: "Long haul drive tire for high mileage and consistent performance." },
-      { name: "ATL08",            photo: "ATL08.png",                   labelYellow: "STANDARD", labelWhite: "LONG HAUL",   slug: "atl08",             subtitle: "Long haul trailer tire with low rolling resistance and stability." },
-      // — Standard Regional —
-      { name: "ASR30",            photo: "ASR30.png",                   labelYellow: "STANDARD", labelWhite: "REGIONAL",    slug: "asr30",             subtitle: "Regional steer tire for reliable performance on mixed service routes." },
-      { name: "ASR35",            photo: "ASR35.png",                   labelYellow: "STANDARD", labelWhite: "REGIONAL",    slug: "asr35",             subtitle: "Steer tire with superior wet grip for regional applications." },
-      { name: "ASR69",            photo: "ASR69.png",                   labelYellow: "STANDARD", labelWhite: "REGIONAL",    slug: "asr69",             subtitle: "High-mileage regional steer tire for consistent performance." },
-      { name: "ADR24",            photo: "ADR24.png",                   labelYellow: "STANDARD", labelWhite: "REGIONAL",    slug: "adr24",             subtitle: "Regional drive tire for mixed service roads with reliable traction." },
-      { name: "ADR26",            photo: "ADR26.png",                   labelYellow: "STANDARD", labelWhite: "REGIONAL",    slug: "adr26",             subtitle: "Drive tire for regional routes with enhanced wear and durability." },
-      { name: "ADR35",            photo: "ADR35.png",                   labelYellow: "STANDARD", labelWhite: "REGIONAL",    slug: "adr35",             subtitle: "Drive tire for regional and urban mixed service applications." },
-      { name: "ADR55",            photo: "ADR55.png",                   labelYellow: "STANDARD", labelWhite: "REGIONAL",    slug: "adr55",             subtitle: "Heavy-duty regional drive tire for demanding mixed terrain." },
-      { name: "ADR69",            photo: "ADR69.png",                   labelYellow: "STANDARD", labelWhite: "REGIONAL",    slug: "adr69",             subtitle: "High-capacity regional drive tire for long service life." },
-      { name: "ADR57",            photo: "ADR57.png",                   labelYellow: "STANDARD", labelWhite: "REGIONAL",    slug: "adr57",             subtitle: "Drive tire for mixed regional routes with superior fuel efficiency." },
-      { name: "AGR26",            photo: "AGR26.png",                   labelYellow: "STANDARD", labelWhite: "REGIONAL",    slug: "agr26",             subtitle: "All-position regional tire for versatile mixed service." },
-      // — Standard On/Off Road —
-      { name: "ADC52",            photo: "ADC52.png",                   labelYellow: "STANDARD", labelWhite: "ON/OFF",      slug: "adc52",             subtitle: "Construction drive tire for mixed on/off-road applications." },
-      { name: "ADC53",            photo: "ADC53.png",                   labelYellow: "STANDARD", labelWhite: "ON/OFF",      slug: "adc53",             subtitle: "Heavy-duty construction drive tire for tough terrain." },
-      { name: "ADC54",            photo: "ADC53.png",                   labelYellow: "STANDARD", labelWhite: "ON/OFF",      slug: "adc54",             subtitle: "Drive tire for off-road mining, forestry and oil with open block tread and puncture resistance." },
-      { name: "AGC08",            photo: "AGC08.png",                   labelYellow: "STANDARD", labelWhite: "ON/OFF",      slug: "agc08",             subtitle: "All-position construction tire for heavy-duty mixed terrain." },
-      // — Standard Off Road —
-      { name: "AGM10",            photo: "AGM10.png",                   labelYellow: "STANDARD", labelWhite: "OFF ROAD",    slug: "agm10",             subtitle: "All-position tire for demanding mixed service operations." },
-      { name: "AGM84",            photo: "AGM84.png",                   labelYellow: "STANDARD", labelWhite: "OFF ROAD",    slug: "agm84",             subtitle: "All-position tire engineered for mixed regional and urban routes." },
-      // — Standard Winter —
-      { name: "ADW80",            photo: "ADW80.png",                   labelYellow: "STANDARD", labelWhite: "WINTER",      slug: "adw80",             subtitle: "Wide-base drive tire for long haul operations with fuel savings." },
-      { name: "ADW81",            photo: "ADW81.png",                   labelYellow: "STANDARD", labelWhite: "WINTER",      slug: "adw81",             subtitle: "Wide-base tire with superior load capacity and wear resistance." },
-      { name: "ADW82",            photo: "ADW82.png",                   labelYellow: "STANDARD", labelWhite: "WINTER",      slug: "adw82",             subtitle: "Premium wide-base drive tire for maximum fuel efficiency." },
-    ],
-  },
-];
+// The tire grid is the catalog, in wireframe order — see src/data/tires.ts.
+const GROUPS: { tires: TireEntry[] }[] = [{ tires: CATALOG_TIRES }];
 
 export default function TirePage() {
   const [activeFilter, setActiveFilter] = useState<Filter | null>(null);
@@ -144,7 +75,7 @@ export default function TirePage() {
             transition={{ duration: 0.25, delay: 0.15, ease: "easeOut" }}
             style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap", flex: 1 }}
           >
-            {/* All Tires — disabled (no hover) when active */}
+            {/* All Tires â€” disabled (no hover) when active */}
             <button
               onClick={isFiltered ? () => setActiveFilter(null) : undefined}
               className={isFiltered ? "filter-btn" : undefined}
@@ -166,7 +97,7 @@ export default function TirePage() {
               All Tires
             </button>
 
-            {/* Category filters — always interactive */}
+            {/* Category filters â€” always interactive */}
             {FILTERS.map(f => {
               const active = activeFilter === f;
               return (
@@ -200,7 +131,7 @@ export default function TirePage() {
       <section style={{ paddingBottom: "5rem" }}>
         <div className="container" style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
           {GROUPS.map((group, gi) => (
-            <GroupSection key={gi} group={group} groupIndex={gi} activeFilter={activeFilter} />
+            <GroupSection key={gi} group={group} activeFilter={activeFilter} />
           ))}
         </div>
       </section>
@@ -210,7 +141,7 @@ export default function TirePage() {
   );
 }
 
-function GroupSection({ group, groupIndex, activeFilter }: { group: CategoryGroup; groupIndex: number; activeFilter: Filter | null }) {
+function GroupSection({ group, activeFilter }: { group: { tires: TireEntry[] }; activeFilter: Filter | null }) {
   const visible = group.tires.filter(t => matchesFilter(t, activeFilter));
   return (
     <motion.div
@@ -259,7 +190,7 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
             }}
           >
             <img
-              src={PHOTO(tire.photo)}
+              src={`${BASE}${tire.tireImage}`}
               alt={tire.name}
               loading="lazy"
               style={{
@@ -301,7 +232,7 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
                 transition: "color 0.18s ease",
               }}
             >
-              {[tire.labelYellow, tire.labelWhite].filter(Boolean).join(" ")}
+              {[tire.seriesLabel, tire.categoryLabel].filter(Boolean).join(" ")}
             </p>
           </div>
         </div>

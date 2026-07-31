@@ -369,7 +369,9 @@ function FeatureSection({ tire, onOpen, layeredBg }: { tire: TireData; onOpen: (
       style={{ background: layeredBg ? "transparent" : FEATURE_SECTION_BG }}
     >
       <div
-        className="container grid grid-cols-1 md:grid-cols-3"
+        className={`container grid grid-cols-1 ${
+          tire.features.length >= 4 ? "md:grid-cols-2 lg:grid-cols-4" : "md:grid-cols-3"
+        }`}
         style={{ gap: "var(--col-gap)", gridTemplateRows: "auto auto auto" }}
       >
         {tire.features.map((f, i) => (
@@ -632,7 +634,7 @@ function SpecsSection({ tire, layeredBg }: { tire: TireData; layeredBg?: boolean
             <tbody onMouseLeave={() => setHoveredCol(null)}>
               {tire.specRows.map((row, i) => (
                 <tr
-                  key={row.size}
+                  key={`${row.size}-${row.ply}-${i}`}
                   className="spec-row"
                   style={{
                     borderBottom: i < tire.specRows.length - 1 ? "1px solid var(--border-color)" : "none",
@@ -645,8 +647,8 @@ function SpecsSection({ tire, layeredBg }: { tire: TireData; layeredBg?: boolean
                   <td style={tdStyle} {...col(3)}>{row.secW}</td>
                   <td style={tdStyle} {...col(4)}>{row.odIn}</td>
                   <td style={tdStyle} {...col(5)}>{row.odMm}</td>
-                  <td style={tdStyle} {...col(6)}>{row.td32}</td>
-                  <td style={tdStyle} {...col(7)}>{row.tdMm}</td>
+                  <td style={tdStyle} {...col(6)}>{row.tdMm}</td>
+                  <td style={tdStyle} {...col(7)}>{row.td32}</td>
                   <td style={tdStyle} {...col(8)}>{row.mlSlbs}</td>
                   <td style={tdStyle} {...col(9)}>{row.mlSpsi}</td>
                   <td style={tdStyle} {...col(10)}>{row.mlSkg}</td>

@@ -50,3 +50,13 @@ Thumbs.db
 
 # Conversation assets — screenshots/images uploaded during chat sessions
 attached_assets/
+
+# Generated audit/report deliverables — kept locally, not part of the site source
+Aeolus-Code-Audit-*.docx
+
+# Staging folder for incoming client artwork. Once wired up, the images live in
+# artifacts/aeolus-website/public/tires/ — this is just the drop point.
+/imgs/
+
+# Machine-local Claude Code permissions (absolute paths, per-developer)
+.claude/settings.local.json

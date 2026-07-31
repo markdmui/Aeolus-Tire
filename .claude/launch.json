@@ -1,0 +1,14 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "aeolus-website",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": [
+        "/c",
+        "set PATH=C:\\Program Files\\Git\\usr\\bin;%PATH% && set PORT=5173 && set BASE_PATH=/ && pnpm --filter @workspace/aeolus-website run dev"
+      ],
+      "port": 5173
+    }
+  ]
+}

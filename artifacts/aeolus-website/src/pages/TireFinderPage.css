@@ -286,15 +286,16 @@
 .tf-card .tf-swatch {
   background: var(--tf-paper-grey);
   height: 130px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
   overflow: hidden;
 }
 .tf-card .tf-swatch img {
-  height: 110px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 400%;
   width: auto;
-  object-fit: contain;
   display: block;
 }
 .tf-card .tf-card-body { padding: 12px 14px 14px; }

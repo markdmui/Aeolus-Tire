@@ -8,7 +8,8 @@ const TIRE_DROPDOWN = {
     {
       category: "NEO SERIES LONG HAUL",
       tires: [
-        { label: "Neo Fuel S",  href: "/tires/neo-fuel-s" },
+        { label: "Neo Fuel S",   href: "/tires/neo-fuel-s" },
+        { label: "Neo Fuel S+",  href: "/tires/neo-fuel-s-plus" },
         { label: "Neo Fuel D",  href: "/tires/neo-fuel-d" },
         { label: "Neo Fuel D2", href: "/tires/neo-fuel-d2" },
         { label: "Neo Fuel D3", href: "/tires/neo-fuel-d3" },
@@ -26,6 +27,7 @@ const TIRE_DROPDOWN = {
         { label: "Neo Allroads D",        href: "/tires/neo-allroads-d" },
         { label: "Neo Allroads D+",       href: "/tires/neo-allroads-d-plus" },
         { label: "Neo Allroads T2",       href: "/tires/neo-allroads-t2" },
+        { label: "Neo Allroads T3",       href: "/tires/neo-allroads-t3" },
         { label: "Sailor ASR79",          href: "/tires/asr79" },
         { label: "Sailor ASR79II",        href: "/tires/asr79" },
         { label: "Sailor ADR78/ADR78 ii", href: "/tires/adr78" },
@@ -41,14 +43,17 @@ const TIRE_DROPDOWN = {
     {
       category: "NEO SERIES WINTER",
       tires: [
-        { label: "Neo Winter S",   href: "/tires/neo-winter-s" },
+        { label: "Neo Winter D",    href: "/tires/neo-winter-d" },
+        { label: "Neo Winter S",    href: "/tires/neo-winter-s" },
         { label: "Neo Allseason D", href: "/tires/neo-allseason-d" },
+        { label: "Neo Icedrive",    href: "/tires/neo-icedrive" },
       ],
     },
     {
       category: "NEO SERIES URBAN",
       tires: [
         { label: "Neo Urban G", href: "/tires/neo-urban-g" },
+        { label: "Neo Urban D", href: "/tires/neo-urban-d" },
       ],
     },
   ],
@@ -59,6 +64,7 @@ const TIRE_DROPDOWN = {
         { label: "ASL06", href: "/tires/asl06" },
         { label: "ADL58", href: "/tires/adl58" },
         { label: "ATL08", href: "/tires/atl08" },
+        { label: "ATR65", href: "/tires/atr65" },
       ],
     },
     {
@@ -66,6 +72,7 @@ const TIRE_DROPDOWN = {
       tires: [
         { label: "ASR30", href: "/tires/asr30" },
         { label: "ASR35", href: "/tires/asr35" },
+        { label: "ASR65", href: "/tires/asr65" },
         { label: "ASR69", href: "/tires/asr69" },
         { label: "ADR24", href: "/tires/adr24" },
         { label: "ADR26", href: "/tires/adr26" },

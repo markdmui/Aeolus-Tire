@@ -85,35 +85,23 @@ export default function TireProductPage() {
       <div style={{ position: "relative" }}>
         <HeroSection tire={tire} onOpen={setActiveImg} />
 
-        {tire.slug === "neo-fuel-x3" ? (
-          /* ── X3 only: bg-long-haul spans features + specs ── */
-          <div style={{ position: "relative" }}>
-            {/* Full-bleed bg image anchored behind both sections */}
-            <div style={{
-              position: "absolute",
-              inset: 0,
-              backgroundImage: `url(${tire.bgTruck})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center calc(40% + 300px)",
-              backgroundRepeat: "no-repeat",
-            }} />
-            <div style={{ position: "relative", zIndex: 1, marginTop: "-20px" }}>
-              <FeatureSection tire={tire} onOpen={setActiveImg} layeredBg />
-            </div>
-            <div style={{ position: "relative", zIndex: 1, marginTop: "-110px" }}>
-              <SpecsSection tire={tire} layeredBg />
-            </div>
+        {/* bg-long-haul spans features + specs on all tire pages */}
+        <div style={{ position: "relative" }}>
+          <div style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: `url(${tire.bgTruck})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center calc(40% + 300px)",
+            backgroundRepeat: "no-repeat",
+          }} />
+          <div style={{ position: "relative", zIndex: 1, marginTop: "-20px" }}>
+            <FeatureSection tire={tire} onOpen={setActiveImg} layeredBg />
           </div>
-        ) : (
-          <>
-            <div style={{ position: "relative", zIndex: 1, marginTop: "-20px" }}>
-              <FeatureSection tire={tire} onOpen={setActiveImg} />
-            </div>
-            <div style={{ position: "relative", marginTop: "-110px" }}>
-              <SpecsSection tire={tire} />
-            </div>
-          </>
-        )}
+          <div style={{ position: "relative", zIndex: 1, marginTop: "-110px" }}>
+            <SpecsSection tire={tire} layeredBg />
+          </div>
+        </div>
       </div>
       <TireTechExplorer imageSrc={tire.cutawayImage} />
       <Footer />

@@ -691,4 +691,7 @@ html {
   .download-btn-group {
     padding-top: calc(3rem + 170px) !important; /* base 130px + 40px push-down on mobile */
   }
+  .tire-bg-truck-layered--x2 {
+    background-position: right calc(40% + 500px) !important; /* 720px - 220px for demo-x2 */
+  }
 }

@@ -169,7 +169,7 @@ function WhyAeolusCanada() {
             style={{ flex: "0 0 60%" }}
           >
             <Kicker>Why Aeolus Canada</Kicker>
-            <SectionHeading style={{ color: "#fff" }}>Built in Oakville. Backed by a global network.</SectionHeading>
+            <SectionHeading style={{ color: "#fff" }}>Oakville Headquartered. Globally Backed.</SectionHeading>
             <BodyText>
               Based in Oakville, Ontario, Aeolus Canada is building a dedicated team of sales, marketing, and logistics
               professionals focused on responsive service, reliable product availability, and long-term dealer support.

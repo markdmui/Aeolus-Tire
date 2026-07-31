@@ -88,6 +88,7 @@ const TIRE_DROPDOWN = {
       tires: [
         { label: "ADC52", href: "/tires/adc52" },
         { label: "ADC53", href: "/tires/adc53" },
+        { label: "ADC54", href: "/tires/adc54" },
         { label: "AGC08", href: "/tires/agc08" },
         { label: "AGM10", href: "/tires/agm10" },
         { label: "AGM84", href: "/tires/agm84" },

@@ -100,6 +100,7 @@ const GROUPS: CategoryGroup[] = [
       // — Standard On/Off Road —
       { name: "ADC52",            photo: "ADC52.png",                   labelYellow: "STANDARD", labelWhite: "ON/OFF",      slug: "adc52",             subtitle: "Construction drive tire for mixed on/off-road applications." },
       { name: "ADC53",            photo: "ADC53.png",                   labelYellow: "STANDARD", labelWhite: "ON/OFF",      slug: "adc53",             subtitle: "Heavy-duty construction drive tire for tough terrain." },
+      { name: "ADC54",            photo: "ADC53.png",                   labelYellow: "STANDARD", labelWhite: "ON/OFF",      slug: "adc54",             subtitle: "Drive tire for off-road mining, forestry and oil with open block tread and puncture resistance." },
       { name: "AGC08",            photo: "AGC08.png",                   labelYellow: "STANDARD", labelWhite: "ON/OFF",      slug: "agc08",             subtitle: "All-position construction tire for heavy-duty mixed terrain." },
       // — Standard Off Road —
       { name: "AGM10",            photo: "AGM10.png",                   labelYellow: "STANDARD", labelWhite: "OFF ROAD",    slug: "agm10",             subtitle: "All-position tire for demanding mixed service operations." },

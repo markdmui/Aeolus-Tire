@@ -57,12 +57,12 @@ const GROUPS: CategoryGroup[] = [
       { name: "Neo Fuel G3",      photo: "Neo-Fuel-G3.png",             labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-g3",       subtitle: "All-position tire for regional and mixed service operations." },
       { name: "Neo Fuel T2",      photo: "Neo-Fuel-T2.png",             labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-t2",       subtitle: "Long haul trailer tire for low rolling resistance and high-speed stability." },
       { name: "Neo Fuel T3",      photo: "Neo-Fuel-T3.png",             labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-t3",       subtitle: "Trailer tire engineered for demanding long haul applications." },
-      { name: "Neo Fuel T+",      photo: "Neo-Fuel-T+.png",             labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-tplus",    subtitle: "Premium long haul trailer tire for heavy loads and extended service life." },
+      { name: "Neo Fuel T+",      photo: "Neo-Fuel-T+.png",             labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-t-plus",   subtitle: "Premium long haul trailer tire for heavy loads and extended service life." },
       // — Premium Regional —
       { name: "Neo Allroads S",   photo: "Neo-Allroads-S.png",          labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "neo-allroads-s",    subtitle: "All-roads steer tire for reliable performance on mixed terrain." },
-      { name: "Neo Allroads S+",  photo: "Neo-Allroads-S+.png",         labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "neo-allroads-splus",subtitle: "Enhanced all-roads steer tire with superior wet grip and handling." },
+      { name: "Neo Allroads S+",  photo: "Neo-Allroads-S+.png",         labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "neo-allroads-s-plus",subtitle: "Enhanced all-roads steer tire with superior wet grip and handling." },
       { name: "Neo Allroads D",   photo: "Neo-Allroads-D.png",          labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "neo-allroads-d",    subtitle: "All-roads drive tire for regional and mixed service applications." },
-      { name: "Neo Allroads D+",  photo: "Neo-Allroads-D+.png",         labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "neo-allroads-dplus",subtitle: "Premium all-roads drive tire with advanced traction on all surfaces." },
+      { name: "Neo Allroads D+",  photo: "Neo-Allroads-D+.png",         labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "neo-allroads-d-plus",subtitle: "Premium all-roads drive tire with advanced traction on all surfaces." },
       { name: "Neo Allroads T2",  photo: "Neo-Allroads-T2.png",         labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "neo-allroads-t2",   subtitle: "All-roads trailer tire for versatile regional operation.",               hasAlt: true },
       { name: "ASR79",            photo: "ASR79.png",                   labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "asr79",             subtitle: "Premium regional steer tire for demanding mixed service.",               hasAlt: true },
       { name: "ADR78",            photo: "ADR78.png",                   labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "adr78",             subtitle: "Versatile drive tire for regional and mixed service operations.",          hasAlt: true },
@@ -244,7 +244,7 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
       style={{ backgroundColor: hovered ? "#1e1e1e" : "transparent", position: "relative" }}
       className="lineup-card"
     >
-      <Link href="/tires/neo-fuel-x3" style={{ display: "block", textDecoration: "none", color: "inherit", height: "100%" }}>
+      <Link href={`/tires/${tire.slug}`} style={{ display: "block", textDecoration: "none", color: "inherit", height: "100%" }}>
         <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
           <div
             style={{

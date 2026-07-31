@@ -531,7 +531,7 @@ function SpecsSection({ tire, layeredBg }: { tire: TireData; layeredBg?: boolean
         }}
       >
         {/* Download buttons */}
-        <div className="container" style={{ position: "relative", zIndex: 1, paddingTop: DOWNLOAD_BTN_PT }}>
+        <div className="container download-btn-group" style={{ position: "relative", zIndex: 1, paddingTop: DOWNLOAD_BTN_PT }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", width: "fit-content" }}>
             {downloadItems.map(({ icon, label, href, download }, i) => (
               <motion.a

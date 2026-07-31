@@ -688,4 +688,7 @@ html {
   .specs-section-wrapper {
     margin-top: -190px !important; /* -110px base + 80px pull-up on mobile */
   }
+  .download-btn-group {
+    padding-top: calc(3rem + 170px) !important; /* base 130px + 40px push-down on mobile */
+  }
 }

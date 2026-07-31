@@ -48,6 +48,41 @@ export interface TireData {
 
 export const TIRES: TireData[] = [
 
+  // ─── Neo Fuel X3 (template / shortcut alias) ───────────
+  {
+    slug:     "neo-fuel-x3",
+    name:     "Neo Fuel S",
+    segment:  "Premium Long Haul",
+    position: "Steer" as TirePosition,
+    subtitle: "Fuel-efficient steer tire with strong casing, uniform wearand excellent handling.",
+    bullets: [
+      "Steer tire designed for long haul and super regional applications",
+      "Four groove tread design provides excellent water evacuation, providing improved grip and adherence in wet conditions",
+      "Innovative sipe design combined with low heat generation compound improves cooling, extending tread and casing life",
+      "Grove bottom S design stone ejectors prevent stone retention, improving casing retreadability",
+    ],
+    features: [
+      { title:"", body:"", image:"" },
+      { title:"", body:"", image:"" },
+      { title:"", body:"", image:"" },
+    ],
+    specRows: [
+      { size:"295/60R22.5", ply:"18", rimW:"9", secW:"11.4", odIn:"36.1", odMm:"916",  td32:"15", tdMm:"18.3", mlSlbs:"7385", mlSpsi:"131", mlSkg:"3350", mlSkpa:"900", mlDlbs:"6779", mlDpsi:"131", mlDkg:"3075", mlDkpa:"900", liss:"150/147K", smartway:false, ms:true, "3PMSF":true },
+      { size:"315/70R22.5", ply:"18", rimW:"9", secW:"12.4", odIn:"40.2", odMm:"1020", td32:"15", tdMm:"18.3", mlSlbs:"8818", mlSpsi:"131", mlSkg:"4000", mlSkpa:"900", mlDlbs:"7385", mlDpsi:"131", mlDkg:"3350", mlDkpa:"900", liss:"156/150L", smartway:false, ms:true, "3PMSF":true },
+      { size:"315/80R22.5", ply:"18", rimW:"9", secW:"12.3", odIn:"42.5", odMm:"1081", td32:"15", tdMm:"18.3", mlSlbs:"9370", mlSpsi:"131", mlSkg:"4250", mlSkpa:"900", mlDlbs:"7385", mlDpsi:"131", mlDkg:"3350", mlDkpa:"900", liss:"158/150L", smartway:false, ms:true, "3PMSF":true },
+    ],
+    tireImage:    "/tires/Tire-Photos/Neo-Fuel-S.png",
+    heroBg:       heroBgImg,
+    bgTruck:      bgTruckImg,
+    cutawayImage: cutawayImg,
+    downloads: {
+      catalog:      "/Aeolus-TBR-catalog.pdf",
+      productSheet: "/template.pdf",
+      warranty:     "/Aeolus-TBR-Warranty.pdf",
+      tirePhoto:    "/tires/Tire-Photos/Neo-Fuel-S.png",
+    },
+  },
+
   // ─── Neo Fuel S ────────────────────────────────────────
   {
     slug:     "neo-fuel-s",

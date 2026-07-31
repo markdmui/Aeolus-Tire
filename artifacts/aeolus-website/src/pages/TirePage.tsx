@@ -51,7 +51,6 @@ const GROUPS: CategoryGroup[] = [
     tires: [
       // — Premium Long Haul —
       { name: "Neo Fuel S",       photo: "Neo-Fuel-S.png",              labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-s",        subtitle: "Long haul steer tire engineered for fuel efficiency, stability, and even wear." },
-      { name: "Neo Fuel S+",      photo: "Neo-Fuel-S.png",              labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-s-plus",   subtitle: "Wide-base steer tire delivering maximum fuel savings, 3PMS-rated all-season capability." },
       { name: "Neo Fuel D",       photo: "Neo-Fuel-D.png",              labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-d",        subtitle: "Long haul drive tire with low rolling resistance and superior durability." },
       { name: "Neo Fuel D2",      photo: "Neo-Fuel-D2.png",             labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-d2",       subtitle: "Drive tire optimized for long haul routes with an enhanced tread compound.",  hasAlt: true },
       { name: "Neo Fuel D3",      photo: "Neo-Fuel-D3.png",             labelYellow: "PREMIUM",  labelWhite: "LONG HAUL",   slug: "neo-fuel-d3",       subtitle: "Third-generation long haul drive tire for maximum mileage and fuel savings." },
@@ -65,7 +64,6 @@ const GROUPS: CategoryGroup[] = [
       { name: "Neo Allroads D",   photo: "Neo-Allroads-D.png",          labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "neo-allroads-d",    subtitle: "All-roads drive tire for regional and mixed service applications." },
       { name: "Neo Allroads D+",  photo: "Neo-Allroads-D+.png",         labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "neo-allroads-d-plus",subtitle: "Premium all-roads drive tire with advanced traction on all surfaces." },
       { name: "Neo Allroads T2",  photo: "Neo-Allroads-T2.png",         labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "neo-allroads-t2",   subtitle: "All-roads trailer tire for versatile regional operation.",               hasAlt: true },
-      { name: "Neo Allroads T3",  photo: "Neo-Allroads-T2.png",         labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "neo-allroads-t3",   subtitle: "Third-generation all-roads trailer tire for long service life and consistent regional performance." },
       { name: "ASR79",            photo: "ASR79.png",                   labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "asr79",             subtitle: "Premium regional steer tire for demanding mixed service.",               hasAlt: true },
       { name: "ASR79ii",          photo: "ASR79.png",                   labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "asr79ii",           subtitle: "Enhanced regional steer tire with strong grip, even wear and reliable performance across conditions." },
       { name: "ADR78",            photo: "ADR78.png",                   labelYellow: "PREMIUM",  labelWhite: "REGIONAL",    slug: "adr78",             subtitle: "Versatile drive tire for regional and mixed service operations.",          hasAlt: true },
@@ -73,22 +71,17 @@ const GROUPS: CategoryGroup[] = [
       { name: "Neo Construct D",  photo: "Neo-Construct-D.png",         labelYellow: "PREMIUM",  labelWhite: "ON/OFF ROAD", slug: "neo-construct-d",   subtitle: "Construction drive tire built for off-road durability and traction." },
       { name: "Neo Construct G",  photo: "Aeolus-Neo-Construct-G.png",  labelYellow: "PREMIUM",  labelWhite: "ON/OFF ROAD", slug: "neo-construct-g",   subtitle: "All-position construction tire for heavy-duty off-road applications." },
       // — Premium Winter —
-      { name: "Neo Winter D",     photo: "Neo-Winter-S.png",            labelYellow: "PREMIUM",  labelWhite: "WINTER",      slug: "neo-winter-d",      subtitle: "Drive axle winter tire with deep 3D sipe tread, 3PMS-rated for severe snow conditions." },
       { name: "Neo Winter S",     photo: "Neo-Winter-S.png",            labelYellow: "PREMIUM",  labelWhite: "WINTER",      slug: "neo-winter-s",      subtitle: "Winter steer tire with 3PMSF rating for severe snow conditions." },
       { name: "Neo Allseason D",  photo: "Neo-Allseason-D.png",         labelYellow: "PREMIUM",  labelWhite: "WINTER",      slug: "neo-allseason-d",   subtitle: "All-season drive tire for year-round performance in any weather." },
-      { name: "Neo Icedrive",     photo: "Neo-Winter-S.png",            labelYellow: "PREMIUM",  labelWhite: "WINTER",      slug: "neo-icedrive",      subtitle: "Dedicated ice and winter drive tire with deep sipe density and 3PMS certification." },
       // — Urban —
       { name: "Neo Urban G",      photo: "Neo-Urban-G.png",             labelYellow: "PREMIUM",  labelWhite: "URBAN",       slug: "neo-urban-g",       subtitle: "All-position urban tire for city transit and short-haul delivery." },
-      { name: "Neo Urban D",      photo: "Neo-Urban-G.png",             labelYellow: "PREMIUM",  labelWhite: "URBAN",       slug: "neo-urban-d",       subtitle: "Urban drive tire with deep tread, 3PMS rating and superior traction for city fleets." },
       // — Standard Long Haul —
       { name: "ASL06",            photo: "ASL06.png",                   labelYellow: "STANDARD", labelWhite: "LONG HAUL",   slug: "asl06",             subtitle: "Long haul steer tire for fuel efficiency and high-speed stability." },
       { name: "ADL58",            photo: "ADL58.png",                   labelYellow: "STANDARD", labelWhite: "LONG HAUL",   slug: "adl58",             subtitle: "Long haul drive tire for high mileage and consistent performance." },
       { name: "ATL08",            photo: "ATL08.png",                   labelYellow: "STANDARD", labelWhite: "LONG HAUL",   slug: "atl08",             subtitle: "Long haul trailer tire with low rolling resistance and stability." },
-      { name: "ATR65",            photo: "ATL08.png",                   labelYellow: "STANDARD", labelWhite: "REGIONAL",    slug: "atr65",             subtitle: "Wide-base trailer tire with 3PMS rating for regional and super-regional fleets." },
       // — Standard Regional —
       { name: "ASR30",            photo: "ASR30.png",                   labelYellow: "STANDARD", labelWhite: "REGIONAL",    slug: "asr30",             subtitle: "Regional steer tire for reliable performance on mixed service routes." },
       { name: "ASR35",            photo: "ASR35.png",                   labelYellow: "STANDARD", labelWhite: "REGIONAL",    slug: "asr35",             subtitle: "Steer tire with superior wet grip for regional applications." },
-      { name: "ASR65",            photo: "ASR69.png",                   labelYellow: "STANDARD", labelWhite: "REGIONAL",    slug: "asr65",             subtitle: "Regional steer tire with high mileage, M+S traction and durable, retreadable casing." },
       { name: "ASR69",            photo: "ASR69.png",                   labelYellow: "STANDARD", labelWhite: "REGIONAL",    slug: "asr69",             subtitle: "High-mileage regional steer tire for consistent performance." },
       { name: "ADR24",            photo: "ADR24.png",                   labelYellow: "STANDARD", labelWhite: "REGIONAL",    slug: "adr24",             subtitle: "Regional drive tire for mixed service roads with reliable traction." },
       { name: "ADR26",            photo: "ADR26.png",                   labelYellow: "STANDARD", labelWhite: "REGIONAL",    slug: "adr26",             subtitle: "Drive tire for regional routes with enhanced wear and durability." },

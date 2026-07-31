@@ -168,38 +168,6 @@ export const TIRES: TireData[] = [
   },
 
   // ─── Neo Fuel S+ ───────────────────────────────────────
-  {
-    slug:     "neo-fuel-s-plus",
-    name:     "Neo Fuel S+",
-    segment:  "Premium Long Haul",
-    position: "Steer" as TirePosition,
-    subtitle: "Wide-base steer tire delivering maximum fuel savings, 3PMS-rated all-season capability.",
-    bullets: [
-      "Wide-base steer tire for long haul and super regional fleets seeking maximum fuel efficiency",
-      "Low rolling resistance compound combined with optimized tread geometry reduces fuel consumption",
-      "3PMS designation ensures reliable traction in winter conditions",
-      "M+S rated for year-round performance on varied road surfaces",
-      "Groove bottom stone ejectors protect casing retreadability",
-    ],
-    features: [
-      { title:"", body:"", image:"" },
-      { title:"", body:"", image:"" },
-      { title:"", body:"", image:"" },
-    ],
-    specRows: [
-      { size:"315/60R22.5", ply:"20", rimW:"9.75", secW:"12.2", odIn:"37.2", odMm:"944", td32:"14", tdMm:"17.6", mlSlbs:"8267", mlSpsi:"131", mlSkg:"3750", mlSkpa:"900", mlDlbs:"6945", mlDpsi:"131", mlDkg:"3150", mlDkpa:"900", liss:"154/148L", smartway:false, ms:true, "3PMSF":true },
-    ],
-    tireImage:    placeholderPhoto,
-    heroBg:       heroBgImg,
-    bgTruck:      bgTruckImg,
-    cutawayImage: cutawayImg,
-    downloads: {
-      catalog:      "/Aeolus-TBR-catalog.pdf",
-      productSheet: "/template.pdf",
-      warranty:     "/Aeolus-TBR-Warranty.pdf",
-      tirePhoto:    placeholderPhoto,
-    },
-  },
 
   // ─── Neo Fuel D ────────────────────────────────────────
   {
@@ -614,34 +582,6 @@ export const TIRES: TireData[] = [
   },
 
   // ─── Neo Allroads D3 ───────────────────────────────────
-  {
-    slug:     "neo-allroads-d3",
-    name:     "Neo Allroads D3",
-    segment:  "Premium Regional",
-    position: "Drive" as TirePosition,
-    subtitle: "Durable drive tire for heavy trucks offering high mileage and strong performance.",
-    bullets: [
-    ],
-    features: [
-      { title:"", body:"", image:"" },
-      { title:"", body:"", image:"" },
-      { title:"", body:"", image:"" },
-    ],
-    specRows: [
-        { size:"11R24.5", ply:"16", rimW:"8.25", secW:"11.5", odIn:"43.6", odMm:"1107", td32:"23", tdMm:"29", mlSlbs:"7165", mlSpsi:"120", mlSkg:"3250", mlSkpa:"830", mlDlbs:"6614", mlDpsi:"120", mlDkg:"3000", mlDkpa:"830", liss:"149/146L", smartway:false, ms:true, "3PMSF":false },
-        { size:"11R22.5", ply:"16", rimW:"7.5", secW:"11.1", odIn:"42", odMm:"1068", td32:"23", tdMm:"28", mlSlbs:"6614", mlSpsi:"120", mlSkg:"3000", mlSkpa:"830", mlDlbs:"6008", mlDpsi:"120", mlDkg:"2725", mlDkpa:"830", liss:"148/145L", smartway:false, ms:true, "3PMSF":false },
-    ],
-    tireImage:    placeholderPhoto,
-    heroBg:       heroBgImg,
-    bgTruck:      bgTruckImg,
-    cutawayImage: cutawayImg,
-    downloads: {
-      catalog:      "/Aeolus-TBR-catalog.pdf",
-      productSheet: "/template.pdf",
-      warranty:     "/Aeolus-TBR-Warranty.pdf",
-      tirePhoto:    placeholderPhoto,
-    },
-  },
 
   // ─── Neo Allroads T2 ───────────────────────────────────
   {
@@ -685,38 +625,6 @@ export const TIRES: TireData[] = [
   },
 
   // ─── Neo Allroads T3 ───────────────────────────────────
-  {
-    slug:     "neo-allroads-t3",
-    name:     "Neo Allroads T3",
-    segment:  "Premium Regional",
-    position: "Trailer" as TirePosition,
-    subtitle: "Third-generation all-roads trailer tire for long service life and consistent regional performance.",
-    bullets: [
-      "Trailer position tire for regional mixed-service applications",
-      "Wide, deep tread design maximises mileage, reducing total cost of ownership",
-      "Zig-zag groove pattern with stone ejectors prevents stone retention and improves casing retreadability",
-      "M+S rated tread compound provides reliable traction across a range of road and weather conditions",
-      "High silica compound lowers rolling resistance for improved fuel economy",
-    ],
-    features: [
-      { title:"", body:"", image:"" },
-      { title:"", body:"", image:"" },
-      { title:"", body:"", image:"" },
-    ],
-    specRows: [
-      { size:"11R22.5", ply:"16", rimW:"8.25", secW:"10.9", odIn:"41.3", odMm:"1050", td32:"15", tdMm:"19", mlSlbs:"6614", mlSpsi:"120", mlSkg:"3000", mlSkpa:"830", mlDlbs:"6008", mlDpsi:"120", mlDkg:"2725", mlDkpa:"830", liss:"148/145L", smartway:false, ms:true, "3PMSF":false },
-    ],
-    tireImage:    placeholderPhoto,
-    heroBg:       heroBgImg,
-    bgTruck:      bgTruckImg,
-    cutawayImage: cutawayImg,
-    downloads: {
-      catalog:      "/Aeolus-TBR-catalog.pdf",
-      productSheet: "/template.pdf",
-      warranty:     "/Aeolus-TBR-Warranty.pdf",
-      tirePhoto:    placeholderPhoto,
-    },
-  },
 
   // ─── ASR79 ─────────────────────────────────────────────
   {
@@ -914,39 +822,6 @@ export const TIRES: TireData[] = [
   },
 
   // ─── Neo Winter D ──────────────────────────────────────
-  {
-    slug:     "neo-winter-d",
-    name:     "Neo Winter D",
-    segment:  "Premium Winter",
-    position: "Drive" as TirePosition,
-    subtitle: "Drive axle winter tire with deep 3D sipe tread, 3PMS-rated for severe snow conditions.",
-    bullets: [
-      "Drive axle tire engineered for severe winter and mixed regional service",
-      "High-density transverse 3D groove design delivers excellent grip in snow and low-traction conditions",
-      "Special winter compound maintains flexibility in cold temperatures for consistent braking and traction",
-      "3PMS designation for severe snow service",
-      "High silica content reduces rolling resistance, improving fuel efficiency",
-    ],
-    features: [
-      { title:"", body:"", image:"" },
-      { title:"", body:"", image:"" },
-      { title:"", body:"", image:"" },
-    ],
-    specRows: [
-      { size:"245/70R19.5", ply:"18", rimW:"7.5", secW:"9.9", odIn:"33.7", odMm:"857", td32:"17", tdMm:"21", mlSlbs:"6173", mlSpsi:"131", mlSkg:"2800", mlSkpa:"900", mlDlbs:"5842", mlDpsi:"131", mlDkg:"2650", mlDkpa:"900", liss:"144/142J", smartway:false, ms:true, "3PMSF":true },
-      { size:"315/70R22.5", ply:"18", rimW:"9", secW:"12.3", odIn:"40.4", odMm:"1027", td32:"22", tdMm:"27.7", mlSlbs:"8267", mlSpsi:"131", mlSkg:"3750", mlSkpa:"900", mlDlbs:"7385", mlDpsi:"131", mlDkg:"3350", mlDkpa:"900", liss:"154/150L", smartway:false, ms:true, "3PMSF":true },
-    ],
-    tireImage:    placeholderPhoto,
-    heroBg:       heroBgImg,
-    bgTruck:      bgTruckImg,
-    cutawayImage: cutawayImg,
-    downloads: {
-      catalog:      "/Aeolus-TBR-catalog.pdf",
-      productSheet: "/template.pdf",
-      warranty:     "/Aeolus-TBR-Warranty.pdf",
-      tirePhoto:    placeholderPhoto,
-    },
-  },
 
   // ─── Neo Winter S ──────────────────────────────────────
   {
@@ -1030,40 +905,6 @@ export const TIRES: TireData[] = [
   },
 
   // ─── Neo Icedrive ──────────────────────────────────────
-  {
-    slug:     "neo-icedrive",
-    name:     "Neo Icedrive",
-    segment:  "Premium Winter",
-    position: "Drive" as TirePosition,
-    subtitle: "Dedicated ice and winter drive tire with deep sipe density and 3PMS certification.",
-    bullets: [
-      "Drive axle tire purpose-built for ice and severe winter conditions",
-      "Ultra-high sipe density maximises biting edges for superior grip on ice and compacted snow",
-      "Special ice-formulated compound remains pliable at extreme low temperatures for consistent traction",
-      "3PMS designation for severe snow service",
-      "Reinforced shoulder design resists irregular wear common in stop-and-go winter operations",
-    ],
-    features: [
-      { title:"", body:"", image:"" },
-      { title:"", body:"", image:"" },
-      { title:"", body:"", image:"" },
-    ],
-    specRows: [
-      { size:"11R22.5",    ply:"18", rimW:"8.25", secW:"11.1", odIn:"42",   odMm:"1068", td32:"22", tdMm:"28",   mlSlbs:"6945", mlSpsi:"123", mlSkg:"3150", mlSkpa:"850", mlDlbs:"6393", mlDpsi:"123", mlDkg:"2900", mlDkpa:"850", liss:"148/145J", smartway:false, ms:true, "3PMSF":true },
-      { size:"245/70R19.5",ply:"16", rimW:"7.5",  secW:"9.8",  odIn:"33.7", odMm:"856",  td32:"20", tdMm:"25",   mlSlbs:"4938", mlSpsi:"120", mlSkg:"2240", mlSkpa:"830", mlDlbs:"4674", mlDpsi:"120", mlDkg:"2120", mlDkpa:"830", liss:"136/134J", smartway:false, ms:true, "3PMSF":true },
-      { size:"225/80R17.5",ply:"14", rimW:"6.75", secW:"9.1",  odIn:"31.9", odMm:"809",  td32:"16", tdMm:"19.5", mlSlbs:"3417", mlSpsi:"110", mlSkg:"1550", mlSkpa:"760", mlDlbs:"3307", mlDpsi:"110", mlDkg:"1500", mlDkpa:"760", liss:"123/122L", smartway:false, ms:true, "3PMSF":true },
-    ],
-    tireImage:    placeholderPhoto,
-    heroBg:       heroBgImg,
-    bgTruck:      bgTruckImg,
-    cutawayImage: cutawayImg,
-    downloads: {
-      catalog:      "/Aeolus-TBR-catalog.pdf",
-      productSheet: "/template.pdf",
-      warranty:     "/Aeolus-TBR-Warranty.pdf",
-      tirePhoto:    placeholderPhoto,
-    },
-  },
 
   // ─── Neo Urban G ───────────────────────────────────────
   {
@@ -1103,39 +944,6 @@ export const TIRES: TireData[] = [
   },
 
   // ─── Neo Urban D ───────────────────────────────────────
-  {
-    slug:     "neo-urban-d",
-    name:     "Neo Urban D",
-    segment:  "Premium Urban",
-    position: "Drive" as TirePosition,
-    subtitle: "Urban drive tire with deep tread, 3PMS rating and superior traction for city fleets.",
-    bullets: [
-      "Drive axle tire designed for urban transit, distribution and city bus applications",
-      "Deep tread with wide zig-zag grooves delivers high mileage and effective stone ejection",
-      "3D sipe technology enhances traction in wet and light winter conditions",
-      "3PMS designation for year-round urban operation",
-      "Specially designed sidewall protects against curbing damage, extending casing life",
-    ],
-    features: [
-      { title:"", body:"", image:"" },
-      { title:"", body:"", image:"" },
-      { title:"", body:"", image:"" },
-    ],
-    specRows: [
-      { size:"11R22.5",   ply:"16", rimW:"8.25", secW:"10.9", odIn:"41.7", odMm:"1060", td32:"21", tdMm:"26",   mlSlbs:"6614", mlSpsi:"120", mlSkg:"3000", mlSkpa:"830", mlDlbs:"6008", mlDpsi:"120", mlDkg:"2725", mlDkpa:"830", liss:"146/143J", smartway:false, ms:true, "3PMSF":true },
-      { size:"275/70R22.5",ply:"18", rimW:"8.25", secW:"11.2", odIn:"38.2", odMm:"971",  td32:"21", tdMm:"25.8", mlSlbs:"6945", mlSpsi:"131", mlSkg:"3150", mlSkpa:"900", mlDlbs:"6393", mlDpsi:"131", mlDkg:"2900", mlDkpa:"900", liss:"148/145J", smartway:false, ms:true, "3PMSF":true },
-    ],
-    tireImage:    placeholderPhoto,
-    heroBg:       heroBgImg,
-    bgTruck:      bgTruckImg,
-    cutawayImage: cutawayImg,
-    downloads: {
-      catalog:      "/Aeolus-TBR-catalog.pdf",
-      productSheet: "/template.pdf",
-      warranty:     "/Aeolus-TBR-Warranty.pdf",
-      tirePhoto:    placeholderPhoto,
-    },
-  },
 
   // ─── ASL06 ─────────────────────────────────────────────
   {
@@ -1174,33 +982,6 @@ export const TIRES: TireData[] = [
   },
 
   // ─── ASL01 ─────────────────────────────────────────────
-  {
-    slug:     "asl01",
-    name:     "ASL01",
-    segment:  "",
-    position: "Steer" as TirePosition,
-    subtitle: "",
-    bullets: [
-    ],
-    features: [
-      { title:"", body:"", image:"" },
-      { title:"", body:"", image:"" },
-      { title:"", body:"", image:"" },
-    ],
-    specRows: [
-        { size:"295/60R22.5", ply:"18", rimW:"9", secW:"11.5", odIn:"37.5", odMm:"952", td32:"16", tdMm:"20", mlSlbs:"7385", mlSpsi:"131", mlSkg:"3350", mlSkpa:"900", mlDlbs:"6779", mlDpsi:"131", mlDkg:"3075", mlDkpa:"900", liss:"150/147K", smartway:false, ms:true, "3PMSF":false },
-    ],
-    tireImage:    placeholderPhoto,
-    heroBg:       heroBgImg,
-    bgTruck:      bgTruckImg,
-    cutawayImage: cutawayImg,
-    downloads: {
-      catalog:      "/Aeolus-TBR-catalog.pdf",
-      productSheet: "/template.pdf",
-      warranty:     "/Aeolus-TBR-Warranty.pdf",
-      tirePhoto:    placeholderPhoto,
-    },
-  },
 
   // ─── ADL58 ─────────────────────────────────────────────
   {
@@ -1271,39 +1052,6 @@ export const TIRES: TireData[] = [
   },
 
   // ─── ATR65 ─────────────────────────────────────────────
-  {
-    slug:     "atr65",
-    name:     "ATR65",
-    segment:  "Standard Regional",
-    position: "Trailer" as TirePosition,
-    subtitle: "Wide-base trailer tire with 3PMS rating, designed for regional and super-regional fleets.",
-    bullets: [
-      "All-position trailer tire for regional and super-regional applications",
-      "Wide-base single sizes reduce axle weight and improve fuel efficiency",
-      "3PMS designation ensures performance in severe winter conditions",
-      "M+S rated for year-round traction on mixed road surfaces",
-      "Deep tread depth extends service life and improves cost-per-kilometre",
-    ],
-    features: [
-      { title:"", body:"", image:"" },
-      { title:"", body:"", image:"" },
-      { title:"", body:"", image:"" },
-    ],
-    specRows: [
-      { size:"385/55R19.5", ply:"18", rimW:"12.25", secW:"15.1", odIn:"36.4", odMm:"925",  td32:"15", tdMm:"19", mlSlbs:"8818", mlSpsi:"131", mlSkg:"4000", mlSkpa:"900", mlDlbs:"", mlDpsi:"", mlDkg:"", mlDkpa:"", liss:"156J",  smartway:false, ms:true, "3PMSF":true },
-      { size:"385/65R22.5", ply:"20", rimW:"11.75", secW:"15.1", odIn:"42",   odMm:"1068", td32:"17", tdMm:"21", mlSlbs:"9921", mlSpsi:"131", mlSkg:"4500", mlSkpa:"900", mlDlbs:"", mlDpsi:"", mlDkg:"", mlDkpa:"", liss:"160K", smartway:false, ms:true, "3PMSF":true },
-    ],
-    tireImage:    placeholderPhoto,
-    heroBg:       heroBgImg,
-    bgTruck:      bgTruckImg,
-    cutawayImage: cutawayImg,
-    downloads: {
-      catalog:      "/Aeolus-TBR-catalog.pdf",
-      productSheet: "/template.pdf",
-      warranty:     "/Aeolus-TBR-Warranty.pdf",
-      tirePhoto:    placeholderPhoto,
-    },
-  },
 
   // ─── ASR30 ─────────────────────────────────────────────
   {
@@ -1413,39 +1161,6 @@ export const TIRES: TireData[] = [
   },
 
   // ─── ASR65 ─────────────────────────────────────────────
-  {
-    slug:     "asr65",
-    name:     "ASR65",
-    segment:  "Standard Regional",
-    position: "Steer" as TirePosition,
-    subtitle: "Regional steer tire with high mileage, M+S traction and durable, retreadable casing.",
-    bullets: [
-      "Steer axle tire for regional mixed-service routes",
-      "Wide tread with optimised groove geometry provides even wear and extended mileage",
-      "M+S rated for reliable traction in wet and light winter conditions",
-      "Groove bottom stone ejectors prevent stone retention, protecting casing retreadability",
-      "Available in metric and traditional sizes for fleet flexibility",
-    ],
-    features: [
-      { title:"", body:"", image:"" },
-      { title:"", body:"", image:"" },
-      { title:"", body:"", image:"" },
-    ],
-    specRows: [
-      { size:"10R22.5",    ply:"16", rimW:"7.5",  secW:"9.9",  odIn:"40.1", odMm:"1019", td32:"15", tdMm:"18", mlSlbs:"6173", mlSpsi:"131", mlSkg:"2800", mlSkpa:"900", mlDlbs:"5842", mlDpsi:"131", mlDkg:"2650", mlDkpa:"900", liss:"144/142M", smartway:false, ms:true, "3PMSF":false },
-      { size:"275/70R22.5",ply:"18", rimW:"8.25", secW:"10.9", odIn:"37.9", odMm:"964",  td32:"15", tdMm:"19", mlSlbs:"6945", mlSpsi:"131", mlSkg:"3150", mlSkpa:"900", mlDlbs:"6393", mlDpsi:"131", mlDkg:"2900", mlDkpa:"900", liss:"148/145M", smartway:false, ms:true, "3PMSF":false },
-    ],
-    tireImage:    placeholderPhoto,
-    heroBg:       heroBgImg,
-    bgTruck:      bgTruckImg,
-    cutawayImage: cutawayImg,
-    downloads: {
-      catalog:      "/Aeolus-TBR-catalog.pdf",
-      productSheet: "/template.pdf",
-      warranty:     "/Aeolus-TBR-Warranty.pdf",
-      tirePhoto:    placeholderPhoto,
-    },
-  },
 
   // ─── ADR24 ─────────────────────────────────────────────
   {
@@ -1697,39 +1412,6 @@ export const TIRES: TireData[] = [
   },
 
   // ─── ASL67 ─────────────────────────────────────────────
-  {
-    slug:     "asl67",
-    name:     "ASL67",
-    segment:  "Standard Long Haul",
-    position: "Steer" as TirePosition,
-    subtitle: "Steer tire for long haul with deep tread, excellent traction, SmartWay verified.",
-    bullets: [
-      "Steer tire designed for long haul application",
-      "Excellent road holding characteristics",
-      "18/32” tread depth for improved traction and adherence",
-      "Smartway verified",
-    ],
-    features: [
-      { title:"", body:"", image:"" },
-      { title:"", body:"", image:"" },
-      { title:"", body:"", image:"" },
-    ],
-    specRows: [
-        { size:"11R22.5", ply:"16", rimW:"8.25", secW:"11.1", odIn:"41.4", odMm:"1052", td32:"15", tdMm:"19", mlSlbs:"6614", mlSpsi:"120", mlSkg:"3000", mlSkpa:"830", mlDlbs:"6008", mlDpsi:"120", mlDkg:"2725", mlDkpa:"830", liss:"146/143M", smartway:true, ms:true, "3PMSF":false },
-        { size:"11R24.5", ply:"16", rimW:"8.25", secW:"11.3", odIn:"43.1", odMm:"1094", td32:"15", tdMm:"19", mlSlbs:"7165", mlSpsi:"120", mlSkg:"3250", mlSkpa:"830", mlDlbs:"6614", mlDpsi:"120", mlDkg:"3000", mlDkpa:"830", liss:"149/146M", smartway:true, ms:false, "3PMSF":false },
-        { size:"295/75R22.5", ply:"14", rimW:"8.25", secW:"11.3", odIn:"39.9", odMm:"1014", td32:"15", tdMm:"19", mlSlbs:"6173", mlSpsi:"110", mlSkg:"2800", mlSkpa:"760", mlDlbs:"5677", mlDpsi:"110", mlDkg:"2575", mlDkpa:"760", liss:"144/141M", smartway:true, ms:false, "3PMSF":false },
-    ],
-    tireImage:    placeholderPhoto,
-    heroBg:       heroBgImg,
-    bgTruck:      bgTruckImg,
-    cutawayImage: cutawayImg,
-    downloads: {
-      catalog:      "/Aeolus-TBR-catalog.pdf",
-      productSheet: "/template.pdf",
-      warranty:     "/Aeolus-TBR-Warranty.pdf",
-      tirePhoto:    placeholderPhoto,
-    },
-  },
 
   // ─── ADC52 ─────────────────────────────────────────────
   {
@@ -1888,41 +1570,6 @@ export const TIRES: TireData[] = [
   },
 
   // ─── AGC28 ─────────────────────────────────────────────
-  {
-    slug:     "agc28",
-    name:     "AGC28",
-    segment:  "Standard On/Off",
-    position: "Trailer" as TirePosition,
-    subtitle: "All-position tire for mixed roads, wide grooves, low heat, high load capacity.",
-    bullets: [
-      "All position product for mixed road use",
-      "Wide groves for good adherence in slippery conditions",
-      "Low heat generation and excellent load capacity",
-    ],
-    features: [
-      { title:"", body:"", image:"" },
-      { title:"", body:"", image:"" },
-      { title:"", body:"", image:"" },
-    ],
-    specRows: [
-        { size:"255/70R22.5", ply:"16", rimW:"7.5", secW:"10.1", odIn:"36.9", odMm:"937", td32:"18", tdMm:"22", mlSlbs:"5512", mlSpsi:"120", mlSkg:"2500", mlSkpa:"830", mlDlbs:"5071", mlDpsi:"120", mlDkg:"2300", mlDkpa:"830", liss:"140/137M", smartway:false, ms:true, "3PMSF":true },
-        { size:"275/70R22.5", ply:"18", rimW:"8.25", secW:"10.8", odIn:"38.2", odMm:"970", td32:"18", tdMm:"22", mlSlbs:"6945", mlSpsi:"131", mlSkg:"3150", mlSkpa:"900", mlDlbs:"6393", mlDpsi:"131", mlDkg:"2900", mlDkpa:"900", liss:"148/145M", smartway:false, ms:true, "3PMSF":true },
-        { size:"385/55R22.5", ply:"20", rimW:"12.25", secW:"15.11811023622047", odIn:"39.56692913385827", odMm:"1005", td32:"17", tdMm:"21", mlSlbs:"9370", mlSpsi:"131", mlSkg:"4250", mlSkpa:"900", mlDlbs:"", mlDpsi:"", mlDkg:"", mlDkpa:"", liss:"158L", smartway:false, ms:true, "3PMSF":false },
-        { size:"385/65R22.5", ply:"20", rimW:"11.75", secW:"15.2", odIn:"42.1", odMm:"1070", td32:"17", tdMm:"21", mlSlbs:"11023", mlSpsi:"131", mlSkg:"5000", mlSkpa:"900", mlDlbs:"", mlDpsi:"", mlDkg:"", mlDkpa:"", liss:"164K", smartway:false, ms:true, "3PMSF":true },
-        { size:"425/65R22.5", ply:"20", rimW:"12.25", secW:"16.6", odIn:"44.1", odMm:"1121", td32:"17", tdMm:"21", mlSlbs:"11354", mlSpsi:"120", mlSkg:"5150", mlSkpa:"830", mlDlbs:"", mlDpsi:"", mlDkg:"", mlDkpa:"", liss:"165K", smartway:false, ms:true, "3PMSF":true },
-        { size:"445/65R22.5", ply:"20", rimW:"13", secW:"17.5", odIn:"45.2", odMm:"1148", td32:"17", tdMm:"21", mlSlbs:"12787", mlSpsi:"131", mlSkg:"5800", mlSkpa:"900", mlDlbs:"", mlDpsi:"", mlDkg:"", mlDkpa:"", liss:"169K", smartway:false, ms:true, "3PMSF":true },
-    ],
-    tireImage:    placeholderPhoto,
-    heroBg:       heroBgImg,
-    bgTruck:      bgTruckImg,
-    cutawayImage: cutawayImg,
-    downloads: {
-      catalog:      "/Aeolus-TBR-catalog.pdf",
-      productSheet: "/template.pdf",
-      warranty:     "/Aeolus-TBR-Warranty.pdf",
-      tirePhoto:    placeholderPhoto,
-    },
-  },
 
   // ─── AGM10 ─────────────────────────────────────────────
   {

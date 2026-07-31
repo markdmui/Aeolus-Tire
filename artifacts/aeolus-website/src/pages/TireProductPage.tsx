@@ -84,12 +84,42 @@ export default function TireProductPage() {
       <Navbar />
       <div style={{ position: "relative" }}>
         <HeroSection tire={tire} onOpen={setActiveImg} />
-        <div style={{ position: "relative", zIndex: 1, marginTop: "-20px" }}>
-          <FeatureSection tire={tire} onOpen={setActiveImg} />
-        </div>
-        <div style={{ position: "relative", marginTop: "-110px" }}>
-          <SpecsSection tire={tire} />
-        </div>
+
+        {tire.slug === "neo-fuel-x3" ? (
+          /* ── X3 only: bg-long-haul spans features + specs ── */
+          <div style={{ position: "relative" }}>
+            {/* Full-bleed bg image anchored behind both sections */}
+            <div style={{
+              position: "absolute",
+              inset: 0,
+              backgroundImage: `url(${tire.bgTruck})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center 40%",
+              backgroundRepeat: "no-repeat",
+            }} />
+            {/* Dark overlay so content stays readable */}
+            <div style={{
+              position: "absolute",
+              inset: 0,
+              background: "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.72) 55%, rgba(0,0,0,0.88) 100%)",
+            }} />
+            <div style={{ position: "relative", zIndex: 1, marginTop: "-20px" }}>
+              <FeatureSection tire={tire} onOpen={setActiveImg} layeredBg />
+            </div>
+            <div style={{ position: "relative", zIndex: 1, marginTop: "-110px" }}>
+              <SpecsSection tire={tire} layeredBg />
+            </div>
+          </div>
+        ) : (
+          <>
+            <div style={{ position: "relative", zIndex: 1, marginTop: "-20px" }}>
+              <FeatureSection tire={tire} onOpen={setActiveImg} />
+            </div>
+            <div style={{ position: "relative", marginTop: "-110px" }}>
+              <SpecsSection tire={tire} />
+            </div>
+          </>
+        )}
       </div>
       <TireTechExplorer imageSrc={tire.cutawayImage} />
       <Footer />
@@ -339,11 +369,11 @@ function HeroSection({ tire, onOpen }: { tire: TireData; onOpen: (src: string) =
 }
 
 // ─── Features ─────────────────────────────────────────────────────────────────
-function FeatureSection({ tire, onOpen }: { tire: TireData; onOpen: (src: string) => void }) {
+function FeatureSection({ tire, onOpen, layeredBg }: { tire: TireData; onOpen: (src: string) => void; layeredBg?: boolean }) {
   return (
     <section
       className="md:pt-[100px]"
-      style={{ background: FEATURE_SECTION_BG }}
+      style={{ background: layeredBg ? "transparent" : FEATURE_SECTION_BG }}
     >
       <div
         className="container grid grid-cols-1 md:grid-cols-3"
@@ -438,7 +468,7 @@ function FeatureSection({ tire, onOpen }: { tire: TireData; onOpen: (src: string
 }
 
 // ─── Specs (truck bg + download buttons + spec table) ────────────────────────
-function SpecsSection({ tire }: { tire: TireData }) {
+function SpecsSection({ tire, layeredBg }: { tire: TireData; layeredBg?: boolean }) {
   const showSmartway = tire.specRows.some((r) => r.smartway);
   const showMs       = tire.specRows.some((r) => r.ms);
   const showPmsf     = tire.specRows.some((r) => r["3PMSF"]);
@@ -497,11 +527,11 @@ function SpecsSection({ tire }: { tire: TireData }) {
 
   return (
     <section style={{ backgroundColor: "transparent", paddingTop: "0" }}>
-      {/* Truck background */}
+      {/* Truck background — skipped on X3 since parent wrapper provides the image */}
       <div
         style={{
           position: "relative",
-          backgroundImage: `url(${tire.bgTruck})`,
+          backgroundImage: layeredBg ? "none" : `url(${tire.bgTruck})`,
           backgroundSize: "cover",
           backgroundPosition: TRUCK_BG_POSITION,
           backgroundRepeat: "no-repeat",

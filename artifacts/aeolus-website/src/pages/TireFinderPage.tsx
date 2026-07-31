@@ -479,8 +479,9 @@ export default function TireFinderPage() {
   const total   = FINDER_TIRES.length;
 
   return (
-    <div className="tf-root">
+    <>
       <Navbar />
+      <div className="tf-root">
 
       {/* Page head */}
       <div className="tf-pagehead">
@@ -626,7 +627,8 @@ export default function TireFinderPage() {
         <SpecModal tire={modalTire} onClose={() => setModalTire(null)} />
       )}
 
+      </div>
       <Footer />
-    </div>
+    </>
   );
 }

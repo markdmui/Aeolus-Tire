@@ -93,7 +93,7 @@ export default function TireTechExplorer({
   const [activeId, setActiveId] = useState<number | null>(points[0]?.id ?? null);
 
   return (
-    <section className="w-full bg-black py-6 sm:py-10 lg:py-14" style={{ paddingTop: "calc(3.5rem + 40px)" }}>
+    <section className="w-full py-6 sm:py-10 lg:py-14" style={{ paddingTop: "calc(3.5rem + 40px)", backgroundColor: "transparent" }}>
       <div style={{ maxWidth: "1600px", margin: "0 auto", padding: "0 calc(4vw + 20px)" }}>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
 

@@ -92,7 +92,7 @@ export default function TireProductPage() {
             inset: 0,
             backgroundImage: `url(${tire.bgTruck})`,
             backgroundSize: "75% auto",
-            backgroundPosition: "center calc(40% + 300px)",
+            backgroundPosition: "right calc(40% + 300px)",
             backgroundRepeat: "no-repeat",
           }} />
           {tire.slug === "demo-x2" ? (

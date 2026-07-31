@@ -104,7 +104,7 @@ export default function TireProductPage() {
               <FeatureSection tire={tire} onOpen={setActiveImg} layeredBg />
             </div>
           )}
-          <div style={{ position: "relative", zIndex: 1, marginTop: "-110px" }}>
+          <div className="specs-section-wrapper" style={{ position: "relative", zIndex: 1, marginTop: "-110px" }}>
             <SpecsSection tire={tire} layeredBg />
           </div>
         </div>

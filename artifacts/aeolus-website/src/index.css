@@ -685,4 +685,7 @@ html {
   .tire-bg-truck-layered {
     background-position: right calc(40% + 720px) !important; /* +420px vs desktop */
   }
+  .specs-section-wrapper {
+    margin-top: -190px !important; /* -110px base + 80px pull-up on mobile */
+  }
 }

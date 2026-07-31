@@ -95,10 +95,12 @@ export default function TireProductPage() {
             backgroundPosition: "center calc(40% + 300px)",
             backgroundRepeat: "no-repeat",
           }} />
-          <div style={{ position: "relative", zIndex: 1, marginTop: "-20px" }}>
-            <FeatureSection tire={tire} onOpen={setActiveImg} layeredBg />
-          </div>
-          <div style={{ position: "relative", zIndex: 1, marginTop: "-110px" }}>
+          {tire.slug !== "demo-x2" && (
+            <div style={{ position: "relative", zIndex: 1, marginTop: "-20px" }}>
+              <FeatureSection tire={tire} onOpen={setActiveImg} layeredBg />
+            </div>
+          )}
+          <div style={{ position: "relative", zIndex: 1, marginTop: tire.slug === "demo-x2" ? "-20px" : "-110px" }}>
             <SpecsSection tire={tire} layeredBg />
           </div>
         </div>

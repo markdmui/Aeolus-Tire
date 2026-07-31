@@ -48,30 +48,42 @@ export interface TireData {
 
 export const TIRES: TireData[] = [
 
-  // ─── Neo Fuel X3 (template / shortcut alias) ───────────
+  // ─── Neo Fuel X3 (demo / template page with mock data) ───────────
   {
     slug:     "neo-fuel-x3",
-    name:     "Neo Fuel S",
+    name:     "Neo Fuel X3",
     segment:  "Premium Long Haul",
-    position: "Steer" as TirePosition,
-    subtitle: "Fuel-efficient steer tire with strong casing, uniform wearand excellent handling.",
+    position: "Drive" as TirePosition,
+    subtitle: "Engineered for long-distance journeys ensuring high-speed stability, fuel efficiency, and endurance mile after mile.",
     bullets: [
-      "Steer tire designed for long haul and super regional applications",
-      "Four groove tread design provides excellent water evacuation, providing improved grip and adherence in wet conditions",
-      "Innovative sipe design combined with low heat generation compound improves cooling, extending tread and casing life",
-      "Grove bottom S design stone ejectors prevent stone retention, improving casing retreadability",
+      "4 longitudinal grooves on the tread providing excellent guiding performance.",
+      "Optimized ground pressure distribution to ensure product life.",
+      "SATT construction for better endurance, effectively securing tire life.",
+      "Low rolling resistance formula in tread to maximize fuel efficiency.",
     ],
     features: [
-      { title:"", body:"", image:"" },
-      { title:"", body:"", image:"" },
-      { title:"", body:"", image:"" },
+      {
+        title: "OPTIMIZED Z-SHAPED GROOVE DESIGN",
+        body: "Z-shaped straight grooves with optimized geometry and higher pattern saturation ensure even wear and higher mileage, delivering long-lasting tread life and consistent performance on long-haul routes.",
+        image: "/assets/Template-f1_1782411546517.jpg",
+      },
+      {
+        title: "CLOSED SHOULDER STRUCTURE",
+        body: "A reinforced closed shoulder design enhances heat dissipation and traction while maintaining even wear performance—improving handling stability and extending tire durability.",
+        image: "/assets/Template-f2_1782411546517.jpg",
+      },
+      {
+        title: "ADVANCED 3D SIPE TECHNOLOGY",
+        body: "New 3D sipe solutions in the central and shoulder tread blocks enable better block movement, enhancing snow grip and traction while providing regular wear, lower rolling resistance, reduced noise, and improved control in both dry and wet conditions.",
+        image: "/assets/Template-f3_1782411546518.jpg",
+      },
     ],
     specRows: [
-      { size:"295/60R22.5", ply:"18", rimW:"9", secW:"11.4", odIn:"36.1", odMm:"916",  td32:"15", tdMm:"18.3", mlSlbs:"7385", mlSpsi:"131", mlSkg:"3350", mlSkpa:"900", mlDlbs:"6779", mlDpsi:"131", mlDkg:"3075", mlDkpa:"900", liss:"150/147K", smartway:false, ms:true, "3PMSF":true },
-      { size:"315/70R22.5", ply:"18", rimW:"9", secW:"12.4", odIn:"40.2", odMm:"1020", td32:"15", tdMm:"18.3", mlSlbs:"8818", mlSpsi:"131", mlSkg:"4000", mlSkpa:"900", mlDlbs:"7385", mlDpsi:"131", mlDkg:"3350", mlDkpa:"900", liss:"156/150L", smartway:false, ms:true, "3PMSF":true },
-      { size:"315/80R22.5", ply:"18", rimW:"9", secW:"12.3", odIn:"42.5", odMm:"1081", td32:"15", tdMm:"18.3", mlSlbs:"9370", mlSpsi:"131", mlSkg:"4250", mlSkpa:"900", mlDlbs:"7385", mlDpsi:"131", mlDkg:"3350", mlDkpa:"900", liss:"158/150L", smartway:false, ms:true, "3PMSF":true },
+      { size:"295/75R22.5", ply:"16", rimW:"9.00", secW:"11.7", odIn:"39.9", odMm:"1014", td32:"15", tdMm:"18.9", mlSlbs:"6600", mlSpsi:"120", mlSkg:"3000", mlSkpa:"830", mlDlbs:"5995", mlDpsi:"120", mlDkg:"2725", mlDkpa:"830", liss:"146/143M", smartway:false, ms:true, "3PMSF":false },
+      { size:"11R22.5",     ply:"16", rimW:"8.25", secW:"11.1", odIn:"41.4", odMm:"1051", td32:"15", tdMm:"18.9", mlSlbs:"6614", mlSpsi:"120", mlSkg:"3000", mlSkpa:"830", mlDlbs:"6008", mlDpsi:"120", mlDkg:"2725", mlDkpa:"830", liss:"146/143M", smartway:true,  ms:true, "3PMSF":false },
+      { size:"11R24.5",     ply:"16", rimW:"8.25", secW:"11.4", odIn:"43.0", odMm:"1093", td32:"15", tdMm:"18.9", mlSlbs:"7165", mlSpsi:"120", mlSkg:"3250", mlSkpa:"830", mlDlbs:"6614", mlDpsi:"120", mlDkg:"3000", mlDkpa:"830", liss:"149/146M", smartway:true,  ms:true, "3PMSF":false },
     ],
-    tireImage:    "/tires/Tire-Photos/Neo-Fuel-S.png",
+    tireImage:    "/assets/Template_1782411546518.png",
     heroBg:       heroBgImg,
     bgTruck:      bgTruckImg,
     cutawayImage: cutawayImg,
@@ -79,7 +91,7 @@ export const TIRES: TireData[] = [
       catalog:      "/Aeolus-TBR-catalog.pdf",
       productSheet: "/template.pdf",
       warranty:     "/Aeolus-TBR-Warranty.pdf",
-      tirePhoto:    "/tires/Tire-Photos/Neo-Fuel-S.png",
+      tirePhoto:    "/assets/Template_1782411546518.png",
     },
   },
 

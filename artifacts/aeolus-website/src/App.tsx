@@ -1,5 +1,5 @@
 import { Switch, Route, Router as WouterRouter, useLocation } from "wouter";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import LandingPage from "@/pages/LandingPage";
 import TirePage from "@/pages/TirePage";
@@ -14,10 +14,41 @@ function ScrollToTop() {
   return null;
 }
 
+// Dev shortcut: Ctrl+X then 3 → /tires/neo-fuel-x3
+function KeyboardShortcuts() {
+  const [, navigate] = useLocation();
+  const ctrlXArmed = useRef(false);
+  const armTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      // Arm on Ctrl+X (ignore when typing in inputs)
+      if (e.ctrlKey && e.key.toLowerCase() === "x" && !(e.target instanceof HTMLInputElement) && !(e.target instanceof HTMLTextAreaElement)) {
+        e.preventDefault();
+        ctrlXArmed.current = true;
+        if (armTimer.current) clearTimeout(armTimer.current);
+        armTimer.current = setTimeout(() => { ctrlXArmed.current = false; }, 1500);
+        return;
+      }
+      // Fire on 3 if armed
+      if (ctrlXArmed.current && e.key === "3") {
+        ctrlXArmed.current = false;
+        if (armTimer.current) clearTimeout(armTimer.current);
+        navigate("/tires/neo-fuel-x3");
+      }
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [navigate]);
+
+  return null;
+}
+
 function Router() {
   return (
     <>
       <ScrollToTop />
+      <KeyboardShortcuts />
       <Switch>
         <Route path="/" component={LandingPage} />
         <Route path="/tires" component={TirePage} />

@@ -94,14 +94,8 @@ export default function TireProductPage() {
               inset: 0,
               backgroundImage: `url(${tire.bgTruck})`,
               backgroundSize: "cover",
-              backgroundPosition: "center 40%",
+              backgroundPosition: "center calc(40% + 300px)",
               backgroundRepeat: "no-repeat",
-            }} />
-            {/* Dark overlay so content stays readable */}
-            <div style={{
-              position: "absolute",
-              inset: 0,
-              background: "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.72) 55%, rgba(0,0,0,0.88) 100%)",
             }} />
             <div style={{ position: "relative", zIndex: 1, marginTop: "-20px" }}>
               <FeatureSection tire={tire} onOpen={setActiveImg} layeredBg />

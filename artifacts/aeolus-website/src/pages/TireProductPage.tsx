@@ -87,7 +87,7 @@ export default function TireProductPage() {
 
         {/* bg-long-haul spans features + specs on all tire pages */}
         <div style={{ position: "relative" }}>
-          <div style={{
+          <div className="tire-bg-truck-layered" style={{
             position: "absolute",
             inset: 0,
             backgroundImage: `url(${tire.bgTruck})`,

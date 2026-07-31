@@ -679,3 +679,10 @@ html {
 .history-card:hover p {
   opacity: 1;
 }
+
+/* ─── TIRE PRODUCT PAGE — layered bg truck ───────────────────── */
+@media (max-width: 767px) {
+  .tire-bg-truck-layered {
+    background-position: right calc(40% + 620px) !important; /* +320px vs desktop */
+  }
+}

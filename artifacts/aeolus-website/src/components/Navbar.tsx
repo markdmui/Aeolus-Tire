@@ -29,7 +29,7 @@ const TIRE_DROPDOWN = {
         { label: "Neo Allroads T2",       href: "/tires/neo-allroads-t2" },
         { label: "Neo Allroads T3",       href: "/tires/neo-allroads-t3" },
         { label: "Sailor ASR79",          href: "/tires/asr79" },
-        { label: "Sailor ASR79II",        href: "/tires/asr79" },
+        { label: "Sailor ASR79ii",        href: "/tires/asr79ii" },
         { label: "Sailor ADR78/ADR78 ii", href: "/tires/adr78" },
       ],
     },

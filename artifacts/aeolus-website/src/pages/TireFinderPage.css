@@ -285,17 +285,17 @@
 .tf-card:hover { border-color: #000; }
 .tf-card .tf-swatch {
   background: var(--tf-paper-grey);
-  height: 130px;
+  height: 160px;
   position: relative;
   overflow: hidden;
 }
 .tf-card .tf-swatch img {
   position: absolute;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
-  height: 500%;
-  width: auto;
+  transform: translateX(-50%);
+  width: 160%;
+  height: auto;
   display: block;
 }
 .tf-card .tf-card-body { padding: 12px 14px 14px; }

@@ -14,7 +14,7 @@ function ScrollToTop() {
   return null;
 }
 
-// Dev shortcut: Ctrl+X then 1 → /tires/neo-fuel-x3
+// Dev shortcuts: Ctrl+X then 1 → /tires/demo-x1, Ctrl+X then 2 → /tires/demo-x2
 function KeyboardShortcuts() {
   const [, navigate] = useLocation();
   const ctrlXArmed = useRef(false);
@@ -30,11 +30,10 @@ function KeyboardShortcuts() {
         armTimer.current = setTimeout(() => { ctrlXArmed.current = false; }, 1500);
         return;
       }
-      // Fire on 3 if armed
-      if (ctrlXArmed.current && e.key === "1") {
+      if (ctrlXArmed.current && (e.key === "1" || e.key === "2")) {
         ctrlXArmed.current = false;
         if (armTimer.current) clearTimeout(armTimer.current);
-        navigate("/tires/demo-x1");
+        navigate(e.key === "1" ? "/tires/demo-x1" : "/tires/demo-x2");
       }
     }
     window.addEventListener("keydown", onKeyDown);

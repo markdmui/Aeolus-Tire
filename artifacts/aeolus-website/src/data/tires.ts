@@ -95,6 +95,41 @@ export const TIRES: TireData[] = [
     },
   },
 
+  // ─── Demo X2 (template for tires without feature images) ───────────
+  {
+    slug:     "demo-x2",
+    name:     "DEMO X2",
+    segment:  "Premium Long Haul",
+    position: "Steer" as TirePosition,
+    subtitle: "Fuel-efficient steer tire with strong casing, uniform wear and excellent handling.",
+    bullets: [
+      "Steer tire designed for long haul and super regional applications.",
+      "Four groove tread design provides excellent water evacuation, providing improved grip and adherence in wet conditions.",
+      "Innovative sipe design combined with low heat generation compound improves cooling, extending tread and casing life.",
+      "Groove bottom S design stone ejectors prevent stone retention, improving casing retreadability.",
+    ],
+    features: [
+      { title: "OPTIMIZED TREAD GEOMETRY", body: "Precisely engineered tread blocks and groove angles deliver even contact pressure distribution across the full footprint, maximizing mileage and maintaining consistent handling throughout the tire's service life.", image: "" },
+      { title: "REINFORCED SHOULDER DESIGN", body: "A closed-shoulder construction reduces heat build-up at the tire's edges, improving wear consistency and extending casing life for multiple retreads.", image: "" },
+      { title: "LOW ROLLING RESISTANCE COMPOUND", body: "Advanced silica-enhanced tread compound lowers hysteresis losses, reducing fuel consumption and CO₂ emissions without compromising wet traction or tread life.", image: "" },
+    ],
+    specRows: [
+      { size:"295/60R22.5", ply:"18", rimW:"9", secW:"11.4", odIn:"36.1", odMm:"916",  td32:"15", tdMm:"18.3", mlSlbs:"7385", mlSpsi:"131", mlSkg:"3350", mlSkpa:"900", mlDlbs:"6779", mlDpsi:"131", mlDkg:"3075", mlDkpa:"900", liss:"150/147K", smartway:false, ms:true,  "3PMSF":true  },
+      { size:"315/70R22.5", ply:"18", rimW:"9", secW:"12.4", odIn:"40.2", odMm:"1020", td32:"15", tdMm:"18.3", mlSlbs:"8818", mlSpsi:"131", mlSkg:"4000", mlSkpa:"900", mlDlbs:"7385", mlDpsi:"131", mlDkg:"3350", mlDkpa:"900", liss:"156/150L", smartway:false, ms:true,  "3PMSF":true  },
+      { size:"315/80R22.5", ply:"18", rimW:"9", secW:"12.3", odIn:"42.5", odMm:"1081", td32:"15", tdMm:"18.3", mlSlbs:"9370", mlSpsi:"131", mlSkg:"4250", mlSkpa:"900", mlDlbs:"7385", mlDpsi:"131", mlDkg:"3350", mlDkpa:"900", liss:"158/150L", smartway:true,  ms:true,  "3PMSF":true  },
+    ],
+    tireImage:    "/assets/Template_1782411546518.png",
+    heroBg:       heroBgImg,
+    bgTruck:      bgTruckImg,
+    cutawayImage: cutawayImg,
+    downloads: {
+      catalog:      "/Aeolus-TBR-catalog.pdf",
+      productSheet: "/template.pdf",
+      warranty:     "/Aeolus-TBR-Warranty.pdf",
+      tirePhoto:    "/assets/Template_1782411546518.png",
+    },
+  },
+
   // ─── Neo Fuel S ────────────────────────────────────────
   {
     slug:     "neo-fuel-s",

@@ -86,30 +86,35 @@ export default function TireProductPage() {
         <HeroSection tire={tire} onOpen={setActiveImg} />
 
         {/* bg-long-haul spans features + specs on all tire pages */}
-        <div style={{ position: "relative" }}>
-          <div className={`tire-bg-truck-layered${tire.slug === "demo-x2" ? " tire-bg-truck-layered--x2" : ""}`} style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage: `url(${tire.bgTruck})`,
-            backgroundSize: "126.75% auto",
-            backgroundPosition: "right calc(40% + 300px)",
-            backgroundRepeat: "no-repeat",
-          }} />
-          {tire.slug === "demo-x2" ? (
-            <div style={{ position: "relative", zIndex: 1, marginTop: "-20px" }}>
-              <TireTechExplorer imageSrc={tire.cutawayImage} />
+        {(() => {
+          const hasFeatureImages = tire.features.some(f => f.image);
+          return (
+            <div style={{ position: "relative" }}>
+              <div className={`tire-bg-truck-layered${!hasFeatureImages ? " tire-bg-truck-layered--x2" : ""}`} style={{
+                position: "absolute",
+                inset: 0,
+                backgroundImage: `url(${tire.bgTruck})`,
+                backgroundSize: "126.75% auto",
+                backgroundPosition: "right calc(40% + 300px)",
+                backgroundRepeat: "no-repeat",
+              }} />
+              {hasFeatureImages ? (
+                <div style={{ position: "relative", zIndex: 1, marginTop: "-20px" }}>
+                  <FeatureSection tire={tire} onOpen={setActiveImg} layeredBg />
+                </div>
+              ) : (
+                <div style={{ position: "relative", zIndex: 1, marginTop: "-20px" }}>
+                  <TireTechExplorer imageSrc={tire.cutawayImage} />
+                </div>
+              )}
+              <div className="specs-section-wrapper" style={{ position: "relative", zIndex: 1, marginTop: "-110px" }}>
+                <SpecsSection tire={tire} layeredBg />
+              </div>
             </div>
-          ) : (
-            <div style={{ position: "relative", zIndex: 1, marginTop: "-20px" }}>
-              <FeatureSection tire={tire} onOpen={setActiveImg} layeredBg />
-            </div>
-          )}
-          <div className="specs-section-wrapper" style={{ position: "relative", zIndex: 1, marginTop: "-110px" }}>
-            <SpecsSection tire={tire} layeredBg />
-          </div>
-        </div>
+          );
+        })()}
       </div>
-      {tire.slug !== "demo-x2" && <TireTechExplorer imageSrc={tire.cutawayImage} />}
+      {tire.features.some(f => f.image) && <TireTechExplorer imageSrc={tire.cutawayImage} />}
       <Footer />
       <AnimatePresence>
         {activeImg && (

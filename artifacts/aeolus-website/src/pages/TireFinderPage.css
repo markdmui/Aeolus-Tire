@@ -331,6 +331,83 @@
 .tf-cs-option.tf-selected { font-weight: 700; background: var(--tf-accent); color: #000; }
 .tf-cs-trigger:focus-visible { outline: 2px solid var(--tf-accent-deep); outline-offset: 2px; }
 
+/* ── Combined Width/Ratio/Rim size picker ──
+   One fixed width shared by the trigger and panel so the control occupies
+   the same footprint whether it's open or closed. The panel anchors to its
+   right edge (not left) so it stays flush with the page's right margin,
+   matching the search bar above. */
+.tf-size-combo { position: relative; --tf-size-combo-w: 360px; }
+.tf-size-combo-trigger {
+  width: var(--tf-size-combo-w);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-family: var(--tf-font);
+  font-size: 13px;
+  padding: 7px 10px;
+  border: 1px solid var(--tf-hairline);
+  color: var(--tf-ink);
+  background: var(--tf-paper);
+  cursor: pointer;
+}
+.tf-size-combo-trigger:focus,
+.tf-size-combo-trigger.tf-open { outline: none; border-color: var(--tf-accent); }
+.tf-size-combo-trigger.tf-has-value { background: var(--tf-accent); border-color: var(--tf-accent); color: #000; }
+.tf-size-combo-trigger.tf-has-value .tf-cs-caret { color: #000; }
+.tf-size-combo-trigger:focus-visible { outline: 2px solid var(--tf-accent-deep); outline-offset: 2px; }
+.tf-size-combo-trigger span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.tf-size-combo-panel {
+  position: absolute;
+  top: calc(100% + 2px);
+  right: 0;
+  width: var(--tf-size-combo-w);
+  background: var(--tf-paper);
+  border: 1px solid var(--tf-hairline);
+  box-shadow: 0 6px 16px rgba(0,0,0,.1);
+  z-index: 200;
+  font-family: var(--tf-font);
+}
+.tf-size-combo-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+.tf-size-combo-col:not(:last-child) { border-right: 1px solid var(--tf-hairline); }
+.tf-size-combo-collabel {
+  padding: 8px 10px 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--tf-label-grey);
+}
+.tf-size-combo-list { max-height: 220px; overflow-y: auto; }
+.tf-size-combo-list::-webkit-scrollbar { width: 1px; }
+.tf-size-combo-list::-webkit-scrollbar-thumb { background: rgba(0,0,0,.15); }
+.tf-size-combo-opt { padding: 6px 10px; font-size: 12px; cursor: pointer; color: var(--tf-ink); white-space: nowrap; }
+.tf-size-combo-opt:hover { background: var(--tf-paper-grey, #f4f4f2); }
+.tf-size-combo-opt.tf-selected { font-weight: 700; background: var(--tf-accent); color: #000; }
+.tf-size-combo-opt:focus-visible { outline: 2px solid var(--tf-accent-deep); outline-offset: -2px; }
+
+.tf-size-combo-footer {
+  border-top: 1px solid var(--tf-hairline);
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.tf-size-combo-count { font-size: 12px; color: var(--tf-muted); }
+.tf-size-combo-actions { display: flex; align-items: center; gap: 10px; }
+.tf-size-combo-actions button {
+  font-family: var(--tf-font);
+  font-size: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--tf-ink);
+}
+.tf-size-combo-reset { color: #755d00; }
+.tf-size-combo-divider { width: 1px; height: 12px; background: var(--tf-hairline); }
+
 /* ── Results ── */
 .tf-main { flex: 1; min-width: 0; }
 .tf-results-count-row {

@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef, useMemo, useId } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import { Link } from "wouter";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -6,6 +7,10 @@ import { TIRES, TireData } from "../data/tires";
 import "./TireFinderPage.css";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+// One-line rollback switch: flip to false to bring back the three separate
+// Width/Ratio/Rim dropdowns if the combined size picker doesn't land well.
+const USE_COMBINED_SIZE_PICKER = true;
 
 // ── Adapter ─────────────────────────────────────────────────────────────────
 
@@ -373,6 +378,112 @@ function SizeSelect({
               {opt || placeholder}
             </div>
           ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function SizeComboColumn({
+  label, options, value, onToggle,
+}: {
+  label: string; options: string[]; value: string; onToggle: (v: string) => void;
+}) {
+  return (
+    <div className="tf-size-combo-col">
+      <div className="tf-size-combo-collabel">{label}</div>
+      <div className="tf-size-combo-list" role="listbox" aria-label={label}>
+        {options.map(v => (
+          <div
+            key={v}
+            role="option"
+            tabIndex={0}
+            aria-selected={v === value}
+            className={`tf-size-combo-opt${v === value ? " tf-selected" : ""}`}
+            onClick={() => onToggle(v)}
+            onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onToggle(v); } }}
+          >
+            {v}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function SizeComboPicker({
+  adjFs, availWidths, availRatios, availRims, setFs, resetSize,
+}: {
+  adjFs: FilterState;
+  availWidths: string[]; availRatios: string[]; availRims: string[];
+  setFs: Dispatch<SetStateAction<FilterState>>;
+  resetSize: () => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    function onDown(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") { setOpen(false); triggerRef.current?.focus(); }
+    }
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  const matchCount = ALL_SIZE_COMBOS.filter(c =>
+    (!adjFs.sizeWidth || c.width === adjFs.sizeWidth) &&
+    (!adjFs.sizeRatio || c.ratio === adjFs.sizeRatio) &&
+    (!adjFs.sizeRim   || c.rim   === adjFs.sizeRim)
+  ).length;
+
+  const parts = [adjFs.sizeWidth, adjFs.sizeRatio, adjFs.sizeRim].filter(Boolean);
+  const label = parts.length ? parts.join(" / ") : "Tire size";
+  const hasVal = parts.length > 0;
+
+  function toggle(dim: "sizeWidth" | "sizeRatio" | "sizeRim", v: string) {
+    setFs(p => ({ ...p, [dim]: p[dim] === v ? "" : v }));
+  }
+
+  return (
+    <div className="tf-size-combo" ref={ref}>
+      <button
+        ref={triggerRef}
+        type="button"
+        className={`tf-size-combo-trigger${open ? " tf-open" : ""}${hasVal ? " tf-has-value" : ""}`}
+        onClick={() => setOpen(o => !o)}
+        aria-expanded={open}
+        aria-haspopup="true"
+        aria-label={`Tire size${hasVal ? `: ${label}` : ""}`}
+      >
+        <span>{label}</span>
+        <svg className="tf-cs-caret" viewBox="0 0 9 9" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+          <polyline points="1,3 4.5,6.5 8,3" />
+        </svg>
+      </button>
+      {open && (
+        <div className="tf-size-combo-panel">
+          <div className="tf-size-combo-cols">
+            <SizeComboColumn label="Width" options={availWidths} value={adjFs.sizeWidth} onToggle={v => toggle("sizeWidth", v)} />
+            <SizeComboColumn label="Ratio" options={availRatios} value={adjFs.sizeRatio} onToggle={v => toggle("sizeRatio", v)} />
+            <SizeComboColumn label="Rim"   options={availRims}   value={adjFs.sizeRim}   onToggle={v => toggle("sizeRim", v)} />
+          </div>
+          <div className="tf-size-combo-footer">
+            <span className="tf-size-combo-count">{matchCount} {matchCount === 1 ? "size" : "sizes"}</span>
+            <div className="tf-size-combo-actions">
+              <button type="button" className="tf-size-combo-reset" onClick={resetSize}>Reset</button>
+              <span className="tf-size-combo-divider" aria-hidden="true" />
+              <button type="button" onClick={() => setOpen(false)}>Done</button>
+            </div>
+          </div>
         </div>
       )}
     </div>
@@ -751,26 +862,39 @@ export default function TireFinderPage() {
           <div className="tf-results-count-row">
             <span aria-live="polite">Showing <b>{results.length}</b> of {total} tires</span>
             <div className="tf-size-inline-row">
-              <span className="tf-size-inline-label" id="tf-size-label">SIZE</span>
-              <button type="button" className="tf-size-inline-reset" onClick={resetSize}>Reset</button>
-              <SizeSelect
-                placeholder="Width"
-                options={availWidths}
-                value={adjFs.sizeWidth}
-                onChange={v => setFs(p => ({ ...p, sizeWidth: v }))}
-              />
-              <SizeSelect
-                placeholder="Ratio"
-                options={availRatios}
-                value={adjFs.sizeRatio}
-                onChange={v => setFs(p => ({ ...p, sizeRatio: v }))}
-              />
-              <SizeSelect
-                placeholder="Rim"
-                options={availRims}
-                value={adjFs.sizeRim}
-                onChange={v => setFs(p => ({ ...p, sizeRim: v }))}
-              />
+              {USE_COMBINED_SIZE_PICKER ? (
+                <SizeComboPicker
+                  adjFs={adjFs}
+                  availWidths={availWidths}
+                  availRatios={availRatios}
+                  availRims={availRims}
+                  setFs={setFs}
+                  resetSize={resetSize}
+                />
+              ) : (
+                <>
+                  <span className="tf-size-inline-label" id="tf-size-label">SIZE</span>
+                  <button type="button" className="tf-size-inline-reset" onClick={resetSize}>Reset</button>
+                  <SizeSelect
+                    placeholder="Width"
+                    options={availWidths}
+                    value={adjFs.sizeWidth}
+                    onChange={v => setFs(p => ({ ...p, sizeWidth: v }))}
+                  />
+                  <SizeSelect
+                    placeholder="Ratio"
+                    options={availRatios}
+                    value={adjFs.sizeRatio}
+                    onChange={v => setFs(p => ({ ...p, sizeRatio: v }))}
+                  />
+                  <SizeSelect
+                    placeholder="Rim"
+                    options={availRims}
+                    value={adjFs.sizeRim}
+                    onChange={v => setFs(p => ({ ...p, sizeRim: v }))}
+                  />
+                </>
+              )}
             </div>
           </div>
 

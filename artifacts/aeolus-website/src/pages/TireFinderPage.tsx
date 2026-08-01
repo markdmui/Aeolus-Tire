@@ -96,6 +96,13 @@ const FEATURE_TAGS = Array.from(
   new Set(FINDER_TIRES.flatMap(t => t.tags).filter(tag => !EXCLUDE_TAGS.has(tag)))
 ).sort();
 
+// Display-only shorthand for filter buttons whose full tag text wraps to two
+// lines. The underlying tag string — used for matching, and everywhere else
+// it appears — stays unabbreviated.
+const TAG_DISPLAY_OVERRIDES: Record<string, string> = {
+  "Low Rolling Resistance": "Low Roll. Resist.",
+};
+
 // ── Size cascade helpers ─────────────────────────────────────────────────────
 
 interface SizeCombo { width: string; ratio: string; rim: string; }
@@ -246,7 +253,7 @@ function FacetOption({
         onChange={() => onToggle(value)}
       />
       {!hideBox && <span className="tf-box" aria-hidden="true" />}
-      <span className="tf-tag-text">{value}</span>
+      <span className="tf-tag-text">{TAG_DISPLAY_OVERRIDES[value] ?? value}</span>
     </label>
   );
 }
@@ -593,29 +600,41 @@ function SpecModal({ tire, onClose }: { tire: FinderTire; onClose: () => void })
 
         {/* Body */}
         <div className="tf-modal-body">
-          {badges.length > 0 && (
-            <div className="tf-modal-section">
-              <h3>Coverage &amp; Certifications</h3>
-              <div className="tf-badges">
-                {badges.map(b => <span key={b} className="tf-badge">{b}</span>)}
-              </div>
-            </div>
-          )}
-
           {tire.bullets.length > 0 && (
-            <div className="tf-modal-section">
-              <h3>Key Features</h3>
-              <ul className="tf-bullets">
-                {tire.bullets.map((b, i) => <li key={i}>{b}</li>)}
-              </ul>
-            </div>
-          )}
+            <div className="tf-modal-section tf-modal-features-row">
+              <div className="tf-modal-features-col">
+                <h3>Key Features</h3>
+                <ul className="tf-bullets">
+                  {tire.bullets.map((b, i) => <li key={i}>{b}</li>)}
+                </ul>
 
-          {tire.tags.length > 0 && (
-            <div className="tf-modal-section">
-              <h3>Tags</h3>
-              <div className="tf-tagchips">
-                {tire.tags.map(tag => <span key={tag} className="tf-tagchip">{tag}</span>)}
+                {(tire.tags.length > 0 || badges.length > 0) && (
+                  <div className="tf-modal-tags-certs-row">
+                    {tire.tags.length > 0 && (
+                      <div>
+                        <h3>Tags</h3>
+                        <div className="tf-tagchips">
+                          {tire.tags.map(tag => <span key={tag} className="tf-tagchip">{tag}</span>)}
+                        </div>
+                      </div>
+                    )}
+                    {badges.length > 0 && (
+                      <div>
+                        <h3>Certifications</h3>
+                        <div className="tf-badges">
+                          {badges.map(b => <span key={b} className="tf-badge">{b}</span>)}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+              <div className="tf-modal-image-col">
+                <img
+                  src={`${BASE}${tire.tireImage}`}
+                  alt={tire.name}
+                  onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+                />
               </div>
             </div>
           )}

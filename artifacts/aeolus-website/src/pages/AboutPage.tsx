@@ -52,24 +52,6 @@ function BodyText({ children, style }: { children: React.ReactNode; style?: Reac
   );
 }
 
-function ImgPlaceholder({ caption, style }: { caption?: string; style?: React.CSSProperties }) {
-  return (
-    <div>
-      <div
-        style={{
-          backgroundColor: "transparent", /* #1a1a1b — restore to bring back placeholder color */
-          width: "100%",
-          minHeight: "320px",
-          ...style,
-        }}
-      />
-      {caption && (
-        <p style={{ fontSize: "0.8rem", color: "#666", marginTop: "0.6rem", lineHeight: 1.45 }}>{caption}</p>
-      )}
-    </div>
-  );
-}
-
 /* ─── HERO ─────────────────────────────────────────────────── */
 function Hero() {
   const stats = [
@@ -348,8 +330,15 @@ function OurTechnology() {
   return (
     <section className="py-20" style={{ backgroundColor: "#111112", borderTop: "1px solid var(--border-color)" }}>
       <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16" style={{ alignItems: "start" }}>
-          <motion.div {...fade(0)}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16" style={{ alignItems: "stretch" }}>
+          <motion.div {...fade(0)} style={{ overflow: "hidden" }}>
+            <img
+              src="/about-3.jpg"
+              alt="Aeolus tire close-up"
+              style={{ width: "100%", height: "100%", minHeight: "320px", objectFit: "cover", display: "block" }}
+            />
+          </motion.div>
+          <motion.div {...fade(0.1)}>
             <Kicker>Our Technology</Kicker>
             <SectionHeading style={{ color: "#fff" }}>Built for demanding commercial applications.</SectionHeading>
             <BodyText>
@@ -365,9 +354,6 @@ function OurTechnology() {
               Aeolus also continues to advance sustainable manufacturing practices, supporting the development of
               high-performance tire products with greater responsibility toward the environment.
             </BodyText>
-          </motion.div>
-          <motion.div {...fade(0.1)}>
-            <ImgPlaceholder />
           </motion.div>
         </div>
       </div>
@@ -387,24 +373,33 @@ function CanadianNetwork() {
   return (
     <section className="py-20" style={{ backgroundColor: "var(--bg-dark)", borderTop: "1px solid var(--border-color)" }}>
       <div className="container">
-        <motion.div {...fade(0)}>
-          <Kicker>Our Canadian Network</Kicker>
-          <SectionHeading style={{ color: "#fff" }}>Global capability. Canadian coverage.</SectionHeading>
-          <BodyText style={{ maxWidth: "68ch" }}>
-            Aeolus Canada connects global tire manufacturing capability with a growing Canadian distribution and dealer
-            support network.
-          </BodyText>
-          <BodyText style={{ maxWidth: "68ch" }}>
-            With warehouse operations in Montreal, Toronto, and Edmonton, Aeolus Canada is working to improve product
-            accessibility, delivery efficiency, and customer support across key Canadian markets. Combined with sales
-            coverage in Ontario, Quebec, British Columbia, and Alberta, our network helps us better support commercial
-            tire dealers and the fleet, construction, mining, and industrial customers they serve.
-          </BodyText>
-          <BodyText style={{ maxWidth: "68ch", marginBottom: "2.5rem" }}>
-            As our presence in Canada continues to grow, Aeolus Canada remains focused on expanding national coverage,
-            strengthening dealer support, and building long-term relationships across the Canadian commercial tire market.
-          </BodyText>
-        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 mb-10" style={{ alignItems: "center" }}>
+          <motion.div {...fade(0)}>
+            <Kicker>Our Canadian Network</Kicker>
+            <SectionHeading style={{ color: "#fff" }}>Global capability. Canadian coverage.</SectionHeading>
+            <BodyText>
+              Aeolus Canada connects global tire manufacturing capability with a growing Canadian distribution and dealer
+              support network.
+            </BodyText>
+            <BodyText>
+              With warehouse operations in Montreal, Toronto, and Edmonton, Aeolus Canada is working to improve product
+              accessibility, delivery efficiency, and customer support across key Canadian markets. Combined with sales
+              coverage in Ontario, Quebec, British Columbia, and Alberta, our network helps us better support commercial
+              tire dealers and the fleet, construction, mining, and industrial customers they serve.
+            </BodyText>
+            <BodyText style={{ marginBottom: 0 }}>
+              As our presence in Canada continues to grow, Aeolus Canada remains focused on expanding national coverage,
+              strengthening dealer support, and building long-term relationships across the Canadian commercial tire market.
+            </BodyText>
+          </motion.div>
+          <motion.div {...fade(0.1)} style={{ overflow: "hidden" }}>
+            <img
+              src="/about-4.jpg"
+              alt="Aeolus Canada distribution network"
+              style={{ width: "100%", height: "auto", display: "block" }}
+            />
+          </motion.div>
+        </div>
 
         {/* Warehouse cells */}
         <motion.div

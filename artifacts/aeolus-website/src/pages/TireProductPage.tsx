@@ -94,7 +94,7 @@ export default function TireProductPage() {
                 position: "absolute",
                 inset: 0,
                 backgroundImage: `url(${tire.bgTruck})`,
-                backgroundSize: "126.75% auto",
+                backgroundSize: "95% auto",
                 backgroundPosition: "right calc(40% + 300px)",
                 backgroundRepeat: "no-repeat",
               }} />

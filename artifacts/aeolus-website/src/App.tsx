@@ -1,5 +1,5 @@
 import { Switch, Route, Router as WouterRouter, useLocation } from "wouter";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import LandingPage from "@/pages/LandingPage";
 import TirePage from "@/pages/TirePage";
@@ -15,27 +15,16 @@ function ScrollToTop() {
   return null;
 }
 
-// Dev shortcuts: Ctrl+Shift+X then 1 → /tires/demo-x1, Ctrl+Shift+X then 2 → /tires/demo-x2
+// Dev shortcuts: Ctrl+Shift+F11 → /tires/demo-x1, Ctrl+Shift+F12 → /tires/demo-x2
 function KeyboardShortcuts() {
   const [, navigate] = useLocation();
-  const ctrlXArmed = useRef(false);
-  const armTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
-      // Arm on Ctrl+X (ignore when typing in inputs)
-      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "x" && !(e.target instanceof HTMLInputElement) && !(e.target instanceof HTMLTextAreaElement)) {
-        e.preventDefault();
-        ctrlXArmed.current = true;
-        if (armTimer.current) clearTimeout(armTimer.current);
-        armTimer.current = setTimeout(() => { ctrlXArmed.current = false; }, 1500);
-        return;
-      }
-      if (ctrlXArmed.current && (e.key === "1" || e.key === "2")) {
-        ctrlXArmed.current = false;
-        if (armTimer.current) clearTimeout(armTimer.current);
-        navigate(e.key === "1" ? "/tires/demo-x1" : "/tires/demo-x2");
-      }
+      if (!e.ctrlKey || !e.shiftKey || (e.key !== "F11" && e.key !== "F12")) return;
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+      e.preventDefault();
+      navigate(e.key === "F11" ? "/tires/demo-x1" : "/tires/demo-x2");
     }
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);

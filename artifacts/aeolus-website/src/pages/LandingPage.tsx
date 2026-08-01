@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { usePageMeta } from "../lib/seo";
 
 const HERO_IMAGES = [
   "/hero-bg.png",
@@ -22,6 +23,12 @@ const MOBILE_EXCLUDED = ["/hero-bg-6.jpg"];
 const VP = { once: true, margin: "-80px" };
 
 export default function LandingPage() {
+  usePageMeta({
+    title: "Aeolus Truck Tires — Premium TBR Radial Tires for Global Fleets",
+    description:
+      "Aeolus premium truck bus radial (TBR) tires. Engineered for durability, retreadability, and low cost-per-mile. Trusted by fleet managers and dealers worldwide.",
+  });
+
   return (
     <div
       className="antialiased text-white"

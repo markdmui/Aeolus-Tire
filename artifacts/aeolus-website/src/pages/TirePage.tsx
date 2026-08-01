@@ -4,6 +4,7 @@ import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { CATALOG_TIRES, TireData } from "../data/tires";
+import { usePageMeta } from "../lib/seo";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 
@@ -38,6 +39,12 @@ function matchesFilter(tire: TireEntry, filter: Filter | null): boolean {
 const GROUPS: { tires: TireEntry[] }[] = [{ tires: CATALOG_TIRES }];
 
 export default function TirePage() {
+  usePageMeta({
+    title: "Truck Tire Lineup — TBR & OTR Tire Catalog",
+    description:
+      "Browse the full Aeolus truck tire lineup — premium and standard TBR radial tires for long haul, regional, on/off road, winter, and urban fleets.",
+  });
+
   const [activeFilter, setActiveFilter] = useState<Filter | null>(null);
 
   const isFiltered = activeFilter !== null;

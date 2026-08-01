@@ -4,6 +4,7 @@ import { Link } from "wouter";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { TIRES, TireData } from "../data/tires";
+import { usePageMeta } from "../lib/seo";
 import "./TireFinderPage.css";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -713,6 +714,12 @@ function SpecModal({ tire, onClose }: { tire: FinderTire; onClose: () => void })
 // ── Main page ────────────────────────────────────────────────────────────────
 
 export default function TireFinderPage() {
+  usePageMeta({
+    title: "Tire Finder",
+    description:
+      "Find the right Aeolus truck tire by size, position, and application. Search the full TBR and OTR lineup by width, ratio, and rim.",
+  });
+
   const [fs, setFs] = useState<FilterState>(() =>
     filtersFromSearch(typeof window === "undefined" ? "" : window.location.search));
   const [modalTire, setModalTire] = useState<FinderTire | null>(null);

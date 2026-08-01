@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import TireTechExplorer from "../components/TireTechExplorer";
 import { getTireBySlug, TireData } from "../data/tires";
+import { usePageMeta, useJsonLd, SITE_URL } from "../lib/seo";
 import NotFound from "./not-found";
 
 // ─── Position SVG map ────────────────────────────────────────────────────────
@@ -73,6 +74,33 @@ export default function TireProductPage() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [activeImg, close]);
+
+  const metaDescription = tire
+    ? `${tire.name}${tire.subtitle ? ` — ${tire.subtitle.replace(/\.+$/, "")}.` : "."} ${tire.position ? `${tire.position} position tire. ` : ""}View specs, sizes, and downloads.`
+    : "This tire could not be found.";
+
+  usePageMeta({
+    title: tire ? tire.name : "Tire Not Found",
+    description: metaDescription,
+    image: tire?.tireImage,
+    type: "product",
+    noindex: !tire,
+  });
+
+  useJsonLd(
+    "tire-product-jsonld",
+    tire
+      ? {
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: tire.name,
+          description: tire.subtitle || metaDescription,
+          image: `${SITE_URL}${tire.tireImage}`,
+          brand: { "@type": "Brand", name: "Aeolus" },
+          category: tire.segment || tire.position || undefined,
+        }
+      : null,
+  );
 
   if (!tire) return <NotFound />;
 

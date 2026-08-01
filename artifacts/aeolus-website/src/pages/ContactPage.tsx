@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ArrowSquareRight } from "@phosphor-icons/react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { usePageMeta } from "../lib/seo";
 
 const CONTACT_BGS = ["/contact-bg-1.jpg", "/contact-bg-2.jpg", "/contact-bg-3.jpg"];
 
@@ -394,6 +395,12 @@ function SendMessage() {
 
 /* ─── PAGE ──────────────────────────────────────────────────── */
 export default function ContactPage() {
+  usePageMeta({
+    title: "Contact Us",
+    description:
+      "Get in touch with Aeolus Canada for sales, dealer inquiries, warranty support, or press. Sales coverage across Ontario, Quebec, British Columbia, and Alberta.",
+  });
+
   return (
     <div
       className="antialiased text-white"

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { usePageMeta } from "../lib/seo";
 
 const VP = { once: true, margin: "-80px" };
 
@@ -177,7 +178,7 @@ function WhyAeolusCanada() {
           >
             <img
               src="/about-1.jpg"
-              alt="Aeolus tire close-up"
+              alt="Aeolus tire tread and sidewall detail"
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top left", display: "block" }}
             />
           </motion.div>
@@ -334,7 +335,7 @@ function OurTechnology() {
           <motion.div {...fade(0)} style={{ overflow: "hidden" }}>
             <img
               src="/about-3.jpg"
-              alt="Aeolus tire close-up"
+              alt="Close-up of an Aeolus truck tire wheel assembly"
               style={{ width: "100%", height: "100%", minHeight: "320px", objectFit: "cover", display: "block" }}
             />
           </motion.div>
@@ -569,6 +570,12 @@ function WhyChoose() {
 
 /* ─── PAGE ───────────────────────────────────────────────────── */
 export default function AboutPage() {
+  usePageMeta({
+    title: "About Aeolus Canada",
+    description:
+      "Aeolus Tire (Canada) Inc. brings six decades of global tire manufacturing expertise to the Canadian commercial market, with warehouse operations in Montreal, Toronto, and Edmonton.",
+  });
+
   return (
     <div
       className="antialiased text-white"

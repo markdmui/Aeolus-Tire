@@ -291,7 +291,12 @@ function SizeSelect({
   useEffect(() => {
     if (!open) return;
     function onDown(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+      const target = e.target as Element;
+      if (!ref.current || ref.current.contains(target)) return;
+      // A sibling Width/Ratio/Rim select manages its own open state — clicking
+      // it shouldn't force this one closed. Only a true click-off does that.
+      if (target.closest?.(".tf-cs")) return;
+      setOpen(false);
     }
     document.addEventListener("mousedown", onDown);
     return () => document.removeEventListener("mousedown", onDown);
@@ -303,7 +308,6 @@ function SizeSelect({
 
   function commit(v: string) {
     onChange(v);
-    setOpen(false);
     triggerRef.current?.focus();
   }
 
@@ -661,16 +665,14 @@ export default function TireFinderPage() {
           </label>
           <input
             id="searchInput"
-            type="search"
+            type="text"
             placeholder="Search by name, size or feature…"
             autoComplete="off"
             value={fs.q}
             onChange={e => setFs(p => ({ ...p, q: e.target.value }))}
           />
-          {fs.q && (
-            <button type="button" className="tf-clearbtn" aria-label="Clear search"
-                    onClick={() => setFs(p => ({ ...p, q: "" }))}>×</button>
-          )}
+          <button type="button" className="tf-clearbtn" aria-label="Clear all filters"
+                  onClick={resetAll}>Clear</button>
         </div>
       </div>
 
@@ -699,7 +701,7 @@ export default function TireFinderPage() {
           <fieldset className="tf-facet">
             <div className="tf-facet-head">
               <legend className="tf-label">Series</legend>
-              <button type="button" onClick={resetAll}>Reset all</button>
+              <button type="button" onClick={resetAll}>Reset</button>
             </div>
             <div className="tf-facet-2col">
               {SERIES_OPTS.map(v => (

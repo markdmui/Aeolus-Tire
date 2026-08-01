@@ -1,3 +1,10 @@
+# Codegen writes LF unconditionally (mockupPreviewPlugin.ts, Orval). Pin these to
+# eol=lf so core.autocrlf=true doesn't check them out as CRLF and leave them
+# permanently "modified" with an empty diff every time codegen runs.
+artifacts/mockup-sandbox/src/.generated/** eol=lf
+lib/api-client-react/src/generated/** eol=lf
+lib/api-zod/src/generated/** eol=lf
+
 attached_assets/Tire-Photos_1782572467030.zip filter=lfs diff=lfs merge=lfs -text
 attached_assets/Tire-Photos_1782572467031.zip filter=lfs diff=lfs merge=lfs -text
 assets/Tire-Photos_1782572467030.zip filter=lfs diff=lfs merge=lfs -text

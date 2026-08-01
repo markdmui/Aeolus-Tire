@@ -12,6 +12,9 @@
   --tf-surface-hover: #fffceb;
   /* Sticky sidebar offset — keep in step with the Navbar height. */
   --tf-nav-h: 72px;
+  /* Site-wide <meta color-scheme content="dark"> would otherwise render this
+     page's native scrollbars dark on top of its white panels. */
+  color-scheme: light;
   background: var(--tf-paper);
   font-family: var(--tf-font);
   color: var(--tf-ink);
@@ -60,6 +63,7 @@
 }
 .tf-searchrow input[type="text"] {
   flex: 1;
+  min-width: 0;
   border: none;
   outline: none;
   background: transparent;
@@ -72,16 +76,20 @@
 .tf-clearbtn {
   background: none;
   border: none;
+  border-left: 1px solid var(--tf-hairline);
   cursor: pointer;
-  padding: 0 14px;
-  color: var(--tf-label-grey);
-  font-size: 18px;
-  line-height: 1;
+  padding: 0 20px;
+  color: var(--tf-ink);
+  font-size: 11px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: .66px;
   font-family: var(--tf-font);
   display: flex;
   align-items: center;
+  white-space: nowrap;
 }
-.tf-clearbtn:hover { color: var(--tf-ink); }
+.tf-clearbtn:hover { color: var(--tf-accent-deep); }
 
 /* ── Layout ── */
 .tf-layout {

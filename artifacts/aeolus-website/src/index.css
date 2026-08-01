@@ -684,6 +684,7 @@ html {
 @media (max-width: 767px) {
   .tire-bg-truck-layered {
     background-position: right calc(40% + 720px) !important; /* +420px vs desktop */
+    background-size: 126.75% auto !important; /* restore original size on mobile; desktop/tablet now smaller at 95% */
   }
   .specs-section-wrapper {
     margin-top: -190px !important; /* -110px base + 80px pull-up on mobile */

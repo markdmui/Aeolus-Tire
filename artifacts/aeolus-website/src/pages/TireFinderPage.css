@@ -358,6 +358,8 @@
 .tf-size-combo-trigger.tf-has-value .tf-cs-caret { color: #000; }
 .tf-size-combo-trigger:focus-visible { outline: 2px solid var(--tf-accent-deep); outline-offset: 2px; }
 .tf-size-combo-trigger span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tf-size-combo-label-empty { color: var(--tf-muted); }
+.tf-size-combo-trigger.tf-has-value .tf-size-combo-label-empty { color: rgba(0,0,0,.4); }
 
 .tf-size-combo-panel {
   position: absolute;

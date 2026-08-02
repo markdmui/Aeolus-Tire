@@ -447,15 +447,23 @@ function SizeComboPicker({
     };
   }, [open]);
 
+  // Lock body scroll while the panel is open, same as the spec modal.
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
   const matchCount = ALL_SIZE_COMBOS.filter(c =>
     (!adjFs.sizeWidth || c.width === adjFs.sizeWidth) &&
     (!adjFs.sizeRatio || c.ratio === adjFs.sizeRatio) &&
     (!adjFs.sizeRim   || c.rim   === adjFs.sizeRim)
   ).length;
 
-  const parts = [adjFs.sizeWidth, adjFs.sizeRatio, adjFs.sizeRim].filter(Boolean);
-  const label = parts.length ? parts.join(" / ") : "Tire size";
-  const hasVal = parts.length > 0;
+  const slots = [adjFs.sizeWidth, adjFs.sizeRatio, adjFs.sizeRim];
+  const hasVal = slots.some(Boolean);
+  const ariaLabel = hasVal
+    ? `Tire size: Width ${adjFs.sizeWidth || "unset"}, Ratio ${adjFs.sizeRatio || "unset"}, Rim ${adjFs.sizeRim || "unset"}`
+    : "Tire size";
 
   function toggle(dim: "sizeWidth" | "sizeRatio" | "sizeRim", v: string) {
     setFs(p => ({ ...p, [dim]: p[dim] === v ? "" : v }));
@@ -470,9 +478,18 @@ function SizeComboPicker({
         onClick={() => setOpen(o => !o)}
         aria-expanded={open}
         aria-haspopup="true"
-        aria-label={`Tire size${hasVal ? `: ${label}` : ""}`}
+        aria-label={ariaLabel}
       >
-        <span>{label}</span>
+        <span>
+          {hasVal ? (
+            slots.map((v, i) => (
+              <span key={i}>
+                {i > 0 && " / "}
+                {v || <span className="tf-size-combo-label-empty" aria-hidden="true">—</span>}
+              </span>
+            ))
+          ) : "Tire size"}
+        </span>
         <svg className="tf-cs-caret" viewBox="0 0 9 9" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
           <polyline points="1,3 4.5,6.5 8,3" />
         </svg>

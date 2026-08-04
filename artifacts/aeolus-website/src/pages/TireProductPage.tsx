@@ -672,11 +672,11 @@ function SpecsSection({ tire, layeredBg }: { tire: TireData; layeredBg?: boolean
                   <td style={tdStyle} onMouseEnter={() => setHoveredCol(null)}>{row.size}</td>
                   <td style={tdStyle} onMouseEnter={() => setHoveredCol(null)}>{row.ply}</td>
                   <td style={tdStyle} {...col(2)}>{row.rimW}</td>
-                  <td style={tdStyle} {...col(3)}>{row.secW}</td>
-                  <td style={tdStyle} {...col(4)}>{row.odIn}</td>
+                  <td style={tdStyle} {...col(3)}>{row.secW !== "" ? parseFloat(row.secW).toFixed(1) : row.secW}</td>
+                  <td style={tdStyle} {...col(4)}>{row.odIn !== "" ? parseFloat(row.odIn).toFixed(1) : row.odIn}</td>
                   <td style={tdStyle} {...col(5)}>{row.odMm}</td>
                   <td style={tdStyle} {...col(6)}>{row.tdMm}</td>
-                  <td style={tdStyle} {...col(7)}>{row.td32}</td>
+                  <td style={tdStyle} {...col(7)}>{row.td32 !== "" ? parseFloat(row.td32).toFixed(1) : row.td32}</td>
                   <td style={tdStyle} {...col(8)}>{row.mlSlbs}</td>
                   <td style={tdStyle} {...col(9)}>{row.mlSpsi}</td>
                   <td style={tdStyle} {...col(10)}>{row.mlSkg}</td>

@@ -3,7 +3,7 @@
 //
 // Source: Aeolus-Wireframe-06.xlsx, sheet "3. Content Wireframe" (the content bible).
 // Regenerate: pnpm --filter @workspace/scripts run generate:tires
-// Last generated: 2026-07-31
+// Last generated: 2026-08-04
 //
 // Hand-maintained companions: tire-types.ts, demo-tires.ts.
 // ─────────────────────────────────────────────────────────────────────────────
@@ -147,7 +147,7 @@ export const BIBLE_TIRES: TireData[] = [
       },
     ],
     specRows: [
-      { size:"295/75R22.5", ply:"16", rimW:"9", secW:"297", odIn:"40.4", odMm:"1025", tdMm:"21", td32:"26", mlSlbs:"6600", mlSpsi:"120", mlSkg:"3000", mlSkpa:"830", mlDlbs:"5995", mlDpsi:"120", mlDkg:"2725", mlDkpa:"830", liss:"146/143M", smartway:false, ms:true, "3PMSF":false },
+      { size:"295/75R22.5", ply:"16", rimW:"9", secW:"11.7", odIn:"40.4", odMm:"1025", tdMm:"21", td32:"26", mlSlbs:"6600", mlSpsi:"120", mlSkg:"3000", mlSkpa:"830", mlDlbs:"5995", mlDpsi:"120", mlDkg:"2725", mlDkpa:"830", liss:"146/143M", smartway:false, ms:true, "3PMSF":false },
       { size:"11R22.5", ply:"16", rimW:"8.25", secW:"11", odIn:"41.9", odMm:"1063", tdMm:"21", td32:"25.8", mlSlbs:"6614", mlSpsi:"120", mlSkg:"3000", mlSkpa:"830", mlDlbs:"6008", mlDpsi:"120", mlDkg:"2725", mlDkpa:"830", liss:"146/143L", smartway:true, ms:true, "3PMSF":false },
       { size:"11R24.5", ply:"16", rimW:"8.25", secW:"11.5", odIn:"43.5", odMm:"1105", tdMm:"21", td32:"25.8", mlSlbs:"7165", mlSpsi:"120", mlSkg:"3250", mlSkpa:"830", mlDlbs:"6614", mlDpsi:"120", mlDkg:"3000", mlDkpa:"830", liss:"149/146L", smartway:true, ms:true, "3PMSF":false },
     ],
@@ -327,7 +327,7 @@ export const BIBLE_TIRES: TireData[] = [
       },
     ],
     specRows: [
-      { size:"295/75R22.5", ply:"16", rimW:"9", secW:"296", odIn:"39.9", odMm:"1014", tdMm:"15", td32:"18.9", mlSlbs:"6600", mlSpsi:"120", mlSkg:"3000", mlSkpa:"830", mlDlbs:"5995", mlDpsi:"120", mlDkg:"2725", mlDkpa:"830", liss:"146/143M", smartway:false, ms:true, "3PMSF":false },
+      { size:"295/75R22.5", ply:"16", rimW:"9", secW:"11.7", odIn:"39.9", odMm:"1014", tdMm:"15", td32:"18.9", mlSlbs:"6600", mlSpsi:"120", mlSkg:"3000", mlSkpa:"830", mlDlbs:"5995", mlDpsi:"120", mlDkg:"2725", mlDkpa:"830", liss:"146/143M", smartway:false, ms:true, "3PMSF":false },
       { size:"11R22.5", ply:"16", rimW:"8.25", secW:"11.1", odIn:"41.4", odMm:"1051", tdMm:"15", td32:"18.9", mlSlbs:"6614", mlSpsi:"120", mlSkg:"3000", mlSkpa:"830", mlDlbs:"6008", mlDpsi:"120", mlDkg:"2725", mlDkpa:"830", liss:"146/143M", smartway:true, ms:true, "3PMSF":false },
       { size:"11R24.5", ply:"16", rimW:"8.25", secW:"11.4", odIn:"43", odMm:"1093", tdMm:"15", td32:"18.9", mlSlbs:"7165", mlSpsi:"120", mlSkg:"3250", mlSkpa:"830", mlDlbs:"6614", mlDpsi:"120", mlDkg:"3000", mlDkpa:"830", liss:"149/146M", smartway:true, ms:true, "3PMSF":false },
     ],
@@ -383,7 +383,7 @@ export const BIBLE_TIRES: TireData[] = [
       },
     ],
     specRows: [
-      { size:"295/80R22.5", ply:"18", rimW:"9", secW:"309", odIn:"41.7", odMm:"1059", tdMm:"17", td32:"20.8", mlSlbs:"8250", mlSpsi:"131", mlSkg:"3750", mlSkpa:"900", mlDlbs:"7150", mlDpsi:"131", mlDkg:"3250", mlDkpa:"900", liss:"154/149M", smartway:false, ms:true, "3PMSF":true },
+      { size:"295/80R22.5", ply:"18", rimW:"9", secW:"11.7", odIn:"41.7", odMm:"1059", tdMm:"17", td32:"20.8", mlSlbs:"8250", mlSpsi:"131", mlSkg:"3750", mlSkpa:"900", mlDlbs:"7150", mlDpsi:"131", mlDkg:"3250", mlDkpa:"900", liss:"154/149M", smartway:false, ms:true, "3PMSF":true },
       { size:"11R24.5", ply:"16", rimW:"8.25", secW:"11.5", odIn:"43.3", odMm:"1100", tdMm:"18", td32:"22", mlSlbs:"7165", mlSpsi:"120", mlSkg:"3250", mlSkpa:"830", mlDlbs:"6614", mlDpsi:"120", mlDkg:"3000", mlDkpa:"830", liss:"149/146L", smartway:false, ms:true, "3PMSF":false },
       { size:"11R22.5", ply:"16", rimW:"8.25", secW:"10.9", odIn:"41.5", odMm:"1053", tdMm:"16", td32:"20.2", mlSlbs:"6945", mlSpsi:"120", mlSkg:"3150", mlSkpa:"830", mlDlbs:"6393", mlDpsi:"120", mlDkg:"2900", mlDkpa:"830", liss:"148/145M", smartway:false, ms:true, "3PMSF":true },
       { size:"215/75R17.5", ply:"16", rimW:"6", secW:"8.5", odIn:"30.1", odMm:"764", tdMm:"13", td32:"16.4", mlSlbs:"3748", mlSpsi:"102", mlSkg:"1700", mlSkpa:"700", mlDlbs:"3527", mlDpsi:"102", mlDkg:"1600", mlDkpa:"700", liss:"126/124M", smartway:false, ms:true, "3PMSF":true },

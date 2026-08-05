@@ -104,6 +104,13 @@ const TAG_DISPLAY_OVERRIDES: Record<string, string> = {
   "Low Rolling Resistance": "Low Roll. Resist.",
 };
 
+// Tread depth (32nds) drops a trailing ".0" for whole numbers but keeps one
+// decimal place otherwise (23.4, 18.7).
+function formatTd32(v: string): string {
+  const n = parseFloat(v);
+  return Number.isInteger(n) ? String(n) : n.toFixed(1);
+}
+
 // ── Size cascade helpers ─────────────────────────────────────────────────────
 
 interface SizeCombo { width: string; ratio: string; rim: string; }
@@ -624,13 +631,17 @@ function SpecModal({ tire, onClose }: { tire: FinderTire; onClose: () => void })
 
         {/* Body */}
         <div className="tf-modal-body">
-          {tire.bullets.length > 0 && (
+          {(tire.bullets.length > 0 || tire.tags.length > 0 || badges.length > 0 || tire.tireImage) && (
             <div className="tf-modal-section tf-modal-features-row">
               <div className="tf-modal-features-col">
-                <h3>Key Features</h3>
-                <ul className="tf-bullets">
-                  {tire.bullets.map((b, i) => <li key={i}>{b}</li>)}
-                </ul>
+                {tire.bullets.length > 0 && (
+                  <>
+                    <h3>Key Features</h3>
+                    <ul className="tf-bullets">
+                      {tire.bullets.map((b, i) => <li key={i}>{b}</li>)}
+                    </ul>
+                  </>
+                )}
 
                 {(tire.tags.length > 0 || badges.length > 0) && (
                   <div className="tf-modal-tags-certs-row">
@@ -704,7 +715,7 @@ function SpecModal({ tire, onClose }: { tire: FinderTire; onClose: () => void })
                         <td>{s.diam ? parseFloat(s.diam).toFixed(1) : D}</td>
                         <td>{s.odMm || D}</td>
                         <td>{s.tdMm || D}</td>
-                        <td>{s.td32 ? parseFloat(s.td32).toFixed(1) : D}</td>
+                        <td>{s.td32 ? formatTd32(s.td32) : D}</td>
                         <td>{s.loadSlbs || D}</td>
                         <td>{s.loadSpsi || D}</td>
                         <td>{s.loadSkg  || D}</td>

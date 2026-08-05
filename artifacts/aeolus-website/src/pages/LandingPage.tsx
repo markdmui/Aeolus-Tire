@@ -339,8 +339,8 @@ function ProductGrid() {
       description: tire.subtitle,
       specs: [
         { label: "Position", value: tire.position },
-        { label: "Feature", value: tire.tags[0] ?? "" },
-        { label: "Feature", value: tire.tags[1] ?? "" },
+        { label: "Feature", value: tire.tags?.[0] ?? "" },
+        { label: "Feature", value: tire.tags?.[1] ?? "" },
       ].filter((s) => s.value),
     };
   });

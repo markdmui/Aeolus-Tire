@@ -9,6 +9,13 @@ import { getTireBySlug, TireData } from "../data/tires";
 import { usePageMeta, useJsonLd, SITE_URL } from "../lib/seo";
 import NotFound from "./not-found";
 
+// Tread depth (32nds) drops a trailing ".0" for whole numbers but keeps one
+// decimal place otherwise (23.4, 18.7).
+function formatTd32(v: string): string {
+  const n = parseFloat(v);
+  return Number.isInteger(n) ? String(n) : n.toFixed(1);
+}
+
 // ─── Position SVG map ────────────────────────────────────────────────────────
 const POS_SVG: Record<string, string> = {
   "Drive":        "/pos-drive-tire.svg",
@@ -676,7 +683,7 @@ function SpecsSection({ tire, layeredBg }: { tire: TireData; layeredBg?: boolean
                   <td style={tdStyle} {...col(4)}>{row.odIn !== "" ? parseFloat(row.odIn).toFixed(1) : row.odIn}</td>
                   <td style={tdStyle} {...col(5)}>{row.odMm}</td>
                   <td style={tdStyle} {...col(6)}>{row.tdMm}</td>
-                  <td style={tdStyle} {...col(7)}>{row.td32 !== "" ? parseFloat(row.td32).toFixed(1) : row.td32}</td>
+                  <td style={tdStyle} {...col(7)}>{row.td32 !== "" ? formatTd32(row.td32) : row.td32}</td>
                   <td style={tdStyle} {...col(8)}>{row.mlSlbs}</td>
                   <td style={tdStyle} {...col(9)}>{row.mlSpsi}</td>
                   <td style={tdStyle} {...col(10)}>{row.mlSkg}</td>

@@ -596,7 +596,7 @@
 .tf-bullets { margin: 0; padding-left: 18px; list-style: disc; }
 .tf-bullets li { margin-bottom: 6px; font-size: 13px; }
 .tf-tagchips { display: flex; flex-wrap: wrap; gap: 6px; }
-.tf-tagchip { font-size: 11px; padding: 5px 10px; border: 1px solid var(--tf-hairline); color: var(--tf-muted); }
+.tf-tagchip { font-size: 11px; padding: 5px 10px; border: 1px solid var(--tf-hairline); color: var(--tf-ink); }
 
 .tf-modal-features-row { display: flex; gap: 32px; align-items: flex-start; }
 .tf-modal-features-col { flex: 1; min-width: 0; display: flex; flex-direction: column; }

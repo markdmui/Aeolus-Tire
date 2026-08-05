@@ -1,9 +1,11 @@
 import { CaretCircleRight, ArrowSquareRight } from "@phosphor-icons/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { Link } from "wouter";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { usePageMeta } from "../lib/seo";
+import { getTireBySlug } from "../data/tires";
 
 const HERO_IMAGES = [
   "/hero-bg.png",
@@ -242,6 +244,8 @@ function FeaturePillars() {
 }
 
 interface ProductCardProps {
+  slug: string;
+  image?: string;
   badge: string;
   name: string;
   description: string;
@@ -249,7 +253,7 @@ interface ProductCardProps {
   delay?: number;
 }
 
-function ProductCard({ badge, name, description, specs, delay = 0 }: ProductCardProps) {
+function ProductCard({ slug, image, badge, name, description, specs, delay = 0 }: ProductCardProps) {
   return (
     <motion.div
       className="product-card flex flex-col"
@@ -258,83 +262,88 @@ function ProductCard({ badge, name, description, specs, delay = 0 }: ProductCard
       viewport={VP}
       transition={{ duration: 0.25, delay, ease: "easeOut" }}
     >
-      <div
-        className="w-full aspect-[4/3]"
-        style={{ backgroundColor: "#1a1a1b" }}
-      />
-      <div className="p-6 md:p-8 flex flex-col flex-1">
+      <Link
+        href={`/tires/${slug}`}
+        style={{ display: "flex", flexDirection: "column", height: "100%", textDecoration: "none", color: "inherit" }}
+      >
         <div
-          style={{ color: "var(--accent-yellow)", fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.5rem" }}
+          className="w-full aspect-[4/3]"
+          style={{ backgroundColor: "#1a1a1b", position: "relative", overflow: "hidden" }}
         >
-          {badge}
-        </div>
-        <h3
-          className="uppercase mb-2"
-          style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.4rem", fontWeight: 600, letterSpacing: "0.02em" }}
-        >
-          {name}
-        </h3>
-        <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", marginTop: "0.25rem" }}>
-          {description}
-        </p>
-        <ul className="mt-6" style={{ borderTop: "1px solid var(--border-color)" }}>
-          {specs.map((s) => (
-            <li
-              key={s.label}
-              className="flex justify-between items-center py-2 md:py-3 uppercase"
+          {image && (
+            <img
+              src={image}
+              alt={name}
+              loading="lazy"
+              decoding="async"
+              className="product-card-img"
               style={{
-                borderBottom: "1px solid var(--border-color)",
-                fontSize: "0.8rem",
-                color: "var(--text-muted)",
-                letterSpacing: "0.05em",
+                width: "100%",
+                height: "auto",
+                display: "block",
+                transform: "scale(1.6201) translateY(calc(2.5% - 70px)) translateX(12.5%)",
+                transformOrigin: "top center",
               }}
-            >
-              <span>{s.label}</span>
-              <span className="font-semibold text-white">{s.value}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+            />
+          )}
+        </div>
+        <div className="p-6 md:p-8 flex flex-col flex-1">
+          <div
+            style={{ color: "var(--accent-yellow)", fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.5rem" }}
+          >
+            {badge}
+          </div>
+          <h3
+            className="uppercase mb-2"
+            style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.4rem", fontWeight: 600, letterSpacing: "0.02em" }}
+          >
+            {name}
+          </h3>
+          <p style={{ color: "var(--text-muted)", fontSize: "0.82rem", marginTop: "0.25rem" }}>
+            {description}
+          </p>
+          <ul className="mt-4" style={{ borderTop: "1px solid var(--border-color)" }}>
+            {specs.map((s) => (
+              <li
+                key={s.label}
+                className="flex justify-between items-center py-1.5 md:py-2 uppercase"
+                style={{
+                  borderBottom: "1px solid var(--border-color)",
+                  fontSize: "0.72rem",
+                  color: "var(--text-muted)",
+                  letterSpacing: "0.05em",
+                }}
+              >
+                <span>{s.label}</span>
+                <span className="font-semibold text-white">{s.value}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Link>
     </motion.div>
   );
 }
 
+const FEATURED_SLUGS = ["neo-fuel-d3", "neo-construct-g", "adw82"];
+
 function ProductGrid() {
-  const products: Omit<ProductCardProps, "delay">[] = [
-    {
-      badge: "BEST SELLER",
-      name: "NEO FUEL D3",
-      description: "Long-haul efficiency with dependable traction.",
+  const products: Omit<ProductCardProps, "delay">[] = FEATURED_SLUGS.map((slug) => {
+    const tire = getTireBySlug(slug);
+    if (!tire) throw new Error(`ProductGrid: featured tire slug "${slug}" not found in catalog`);
+    return {
+      slug,
+      image: tire.tireImage,
+      badge: `${tire.seriesLabel} ${tire.categoryLabel}`.trim(),
+      name: tire.name,
+      description: tire.subtitle,
       specs: [
-        { label: "Pattern", value: "3D Sipe & Block" },
-        { label: "Tread Profile", value: "Wide" },
-        { label: "Compound", value: "Low RRC" },
-        { label: "Application", value: "Long Haul" },
-      ],
-    },
-    {
-      badge: "BEST SELLER",
-      name: "NEO FUEL D3",
-      description: "Long-haul efficiency with dependable traction.",
-      specs: [
-        { label: "Pattern", value: "3D Sipe & Block" },
-        { label: "Tread Profile", value: "Wide" },
-        { label: "Compound", value: "Low RRC" },
-        { label: "Application", value: "Long Haul" },
-      ],
-    },
-    {
-      badge: "BEST SELLER",
-      name: "NEO FUEL D3",
-      description: "Long-haul efficiency with dependable traction.",
-      specs: [
-        { label: "Pattern", value: "3D Sipe & Block" },
-        { label: "Tread Profile", value: "Wide" },
-        { label: "Compound", value: "Low RRC" },
-        { label: "Application", value: "Long Haul" },
-      ],
-    },
-  ];
+        { label: "Position", value: tire.position },
+        { label: "Feature", value: tire.tags[0] ?? "" },
+        { label: "Feature", value: tire.tags[1] ?? "" },
+      ].filter((s) => s.value),
+    };
+  });
 
   return (
     <section className="py-16 md:py-20" style={{ borderTop: "1px solid var(--border-color)" }}>

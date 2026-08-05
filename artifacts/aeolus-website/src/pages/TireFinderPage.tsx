@@ -220,18 +220,24 @@ function filteredTires(fs: FilterState): FinderTire[] {
       if (!ok) return false;
     }
     if (fs.q) {
-      const q = fs.q.toLowerCase();
-      const qToks = q.replace(/\s/g, "").split(/[\/r]/i).filter(Boolean);
-      const nameMatch  = item.name.toLowerCase().includes(q);
-      const subMatch   = item.subtitle.toLowerCase().includes(q);
-      const tagMatch   = item.tags.some(t => t.toLowerCase().includes(q));
-      const segMatch   = item.finderSegment.toLowerCase().includes(q);
-      const posMatch   = item.pos.toLowerCase().includes(q);
-      const sizeMatch  = qToks.length > 0 && item.sizes.some(s => {
-        const sToks = sizeTokens(s.size);
-        return qToks.every(qt => sToks.includes(qt));
-      });
-      if (!nameMatch && !subMatch && !tagMatch && !segMatch && !posMatch && !sizeMatch) return false;
+      // Comma-separated terms are OR'd together — "c52, l58" merges two
+      // separate lookups into one result set. A query with no comma is a
+      // single-term array, so plain single-word search is unaffected.
+      const terms = fs.q.split(",").map(t => t.trim().toLowerCase()).filter(Boolean);
+      const matchesTerm = (q: string) => {
+        const qToks = q.replace(/\s/g, "").split(/[\/r]/i).filter(Boolean);
+        const nameMatch  = item.name.toLowerCase().includes(q);
+        const subMatch   = item.subtitle.toLowerCase().includes(q);
+        const tagMatch   = item.tags.some(t => t.toLowerCase().includes(q));
+        const segMatch   = item.finderSegment.toLowerCase().includes(q);
+        const posMatch   = item.pos.toLowerCase().includes(q);
+        const sizeMatch  = qToks.length > 0 && item.sizes.some(s => {
+          const sToks = sizeTokens(s.size);
+          return qToks.every(qt => sToks.includes(qt));
+        });
+        return nameMatch || subMatch || tagMatch || segMatch || posMatch || sizeMatch;
+      };
+      if (terms.length > 0 && !terms.some(matchesTerm)) return false;
     }
     return true;
   }).sort((a, b) => a.name.localeCompare(b.name));

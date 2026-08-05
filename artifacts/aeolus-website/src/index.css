@@ -470,6 +470,14 @@ html {
   background-color: #161618;
 }
 
+.product-card-img {
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+.product-card:hover .product-card-img {
+  opacity: 1;
+}
+
 @media (max-width: 1023px) {
   .hero-subtitle {
     line-height: 1.1;

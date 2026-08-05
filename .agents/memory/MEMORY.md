@@ -6,3 +6,4 @@
 - [Tire Finder Nav & Dropdown CSS Lessons](tire-finder-nav-css-lessons.md) — scope nav selectors with `>li>a`; dropdown anchors to `.site-nav-right` not `<li>`; spec table header structure for popup.
 - [Tire Finder — migrated to React](tire-finder-migration-plan.md) — DONE: TireFinderPage.tsx at /tire-finder reads from tires.ts; tire-finder.html kept as archive only.
 - [Layered Background Images](layered-bg-pattern.md) — full-bleed image bleeds behind the next section; transparent bg + negative marginTop on the following section creates editorial depth.
+- [SEO Review](seo-review.md) — Claude's SEO foundation is solid; two urgent gaps: prerendering (social bots can't see JS-injected OG tags) and missing opengraph.jpg (default OG image 404s).

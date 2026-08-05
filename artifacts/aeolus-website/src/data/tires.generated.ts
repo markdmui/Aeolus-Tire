@@ -3,7 +3,7 @@
 //
 // Source: Aeolus-Wireframe-06.xlsx, sheet "3. Content Wireframe" (the content bible).
 // Regenerate: pnpm --filter @workspace/scripts run generate:tires
-// Last generated: 2026-08-04
+// Last generated: 2026-08-05
 //
 // Hand-maintained companions: tire-types.ts, demo-tires.ts.
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1031,14 +1031,19 @@ export const BIBLE_TIRES: TireData[] = [
   {
     slug:     "asl01",
     name:     "ASL01",
-    segment:  "",
-    position: "" as TirePosition,
-    navGroup: "",
-    seriesLabel:   "",
-    categoryLabel: "",
-    subtitle: "",
+    segment:  "Standard Long Haul",
+    position: "Steer" as TirePosition,
+    navGroup: "STANDARD SERIES LONG HAUL",
+    seriesLabel:   "STANDARD",
+    categoryLabel: "LONG HAUL",
+    subtitle: "Steer position tire for Long Haul applications",
     tags: [],
-    bullets: [],
+    bullets: [
+      "High permeability adhesion steel cord reduces belt oxidation, improving retreadability",
+      "Dual layer compound provides increased mileage while reducing operating temperatures",
+      "Innovative groove design reduces stone retention, increasing casing life and improving retreadability",
+      "18 ply casing for increased loads in demanding applications",
+    ],
     features: [],
     specRows: [
       { size:"295/60R22.5", ply:"18", rimW:"9", secW:"11.5", odIn:"37.5", odMm:"952", tdMm:"16", td32:"20", mlSlbs:"7385", mlSpsi:"131", mlSkg:"3350", mlSkpa:"900", mlDlbs:"6779", mlDpsi:"131", mlDkg:"3075", mlDkpa:"900", liss:"150/147K", smartway:false, ms:true, "3PMSF":false },
@@ -1451,10 +1456,9 @@ export const BIBLE_TIRES: TireData[] = [
     navGroup: "STANDARD SERIES LONG HAUL",
     seriesLabel:   "STANDARD",
     categoryLabel: "LONG HAUL",
-    subtitle: "Steer tire for long haul with deep tread, excellent traction, SmartWay verified.",
-    tags: ["Deep Tread", "Traction", "SmartWay", "M+S"],
+    subtitle: "Steer tire designed for Long Haul applications",
+    tags: [],
     bullets: [
-      "Steer tire designed for long haul application",
       "Excellent road holding characteristics",
       "18/32” tread depth for improved traction and adherence",
       "Smartway verified",
@@ -1595,16 +1599,16 @@ export const BIBLE_TIRES: TireData[] = [
     slug:     "agc28",
     name:     "AGC28",
     segment:  "Standard On/Off",
-    position: "Trailer" as TirePosition,
+    position: "All Position" as TirePosition,
     navGroup: "STANDARD SERIES ON/OFF ROAD",
     seriesLabel:   "STANDARD",
     categoryLabel: "ON/OFF",
-    subtitle: "All-position tire for mixed roads, wide grooves, low heat, high load capacity.",
-    tags: ["Mixed Road", "Wide Grooves", "High Load", "M+S", "3PMSF"],
+    subtitle: "Wide base tire for steer axles in mixed service applications",
+    tags: [],
     bullets: [
-      "All position product for mixed road use",
-      "Wide groves for good adherence in slippery conditions",
+      "Wide grooves for good adherence in slippery conditions",
       "Low heat generation and excellent load capacity",
+      "Cut and chip resistant compound reduces punctures",
     ],
     features: [],
     specRows: [

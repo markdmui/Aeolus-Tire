@@ -53,6 +53,12 @@ NAV_GROUP = {
     "Standard Winter":     "STANDARD SERIES WINTER",
 }
 
+# Canonical TirePosition values (must match tire-types.ts). The workbook's
+# casing sometimes drifts ("All position" vs "All Position") — match
+# case-insensitively so the site's POS_SVG icon lookup doesn't silently fail.
+POSITIONS = ["Drive", "Steer", "Trailer", "All Position", "OTR", "Bus", "Steer/Trailer"]
+POSITION_LOOKUP = {p.lower(): p for p in POSITIONS}
+
 # Order the dropdown columns render in.
 NAV_ORDER = [
     "NEO SERIES LONG HAUL", "NEO/SAILOR SERIES REGIONAL", "NEO SERIES ON/OFF ROAD",
@@ -244,6 +250,11 @@ def main():
         elif cat.startswith("Standard"):
             series, category_label = "STANDARD", cat[len("Standard "):].upper()
 
+        pos = POSITION_LOOKUP.get(t["pos"].strip().lower(), t["pos"])
+        if t["pos"] and pos not in POSITIONS:
+            warnings.append(f"{name}: position {t['pos']!r} doesn't match a known "
+                            f"position — its icon will be missing on the site")
+
         photo, ok = photo_for(name)
         if not ok:
             warnings.append(f"{name}: no tire photo — falling back to the shared placeholder")
@@ -304,7 +315,7 @@ def main():
                         f"{lo}–{hi} {unit} range — check the workbook")
 
         out.append({
-            "slug": slug, "name": name, "segment": cat, "position": t["pos"],
+            "slug": slug, "name": name, "segment": cat, "position": pos,
             "navGroup": nav, "seriesLabel": series, "categoryLabel": category_label,
             "subtitle": subtitle, "tags": tags, "bullets": bullets,
             "features": feats, "specRows": t["sizes"],

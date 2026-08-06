@@ -541,6 +541,10 @@ function TireCard({ tire, onClick }: { tire: FinderTire; onClick: () => void }) 
         <img
           src={`${BASE}${tire.tireImage}`}
           alt={tire.name}
+          loading="lazy"
+          decoding="async"
+          width={1800}
+          height={2400}
           onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
         />
       </div>
@@ -668,6 +672,9 @@ function SpecModal({ tire, onClose }: { tire: FinderTire; onClose: () => void })
                 <img
                   src={`${BASE}${tire.tireImage}`}
                   alt={tire.name}
+                  decoding="async"
+                  width={1800}
+                  height={2400}
                   onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                 />
               </div>

@@ -21,6 +21,11 @@ try:
 except ImportError:
     sys.exit("openpyxl is required:  python -m pip install openpyxl")
 
+try:
+    from PIL import Image
+except ImportError:
+    sys.exit("Pillow is required:  python -m pip install Pillow")
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WORKBOOK = os.path.join(ROOT, "Aeolus-Wireframe-06.xlsx")
 SHEET = "3. Content Wireframe"
@@ -67,10 +72,12 @@ NAV_ORDER = [
     "STANDARD SERIES ON/OFF ROAD", "STANDARD SERIES WINTER",
 ]
 
-# Photo filenames that don't follow "name with spaces → hyphens".
+# Photo filename stems that don't follow "name with spaces → hyphens".
 PHOTO_OVERRIDES = {
-    "Neo Construct G": "Aeolus-Neo-Construct-G.png",
+    "Neo Construct G": "Aeolus-Neo-Construct-G",
 }
+
+WEBP_QUALITY = 90
 
 # ── Typo repair ──────────────────────────────────────────────────────────────
 # The workbook is missing a space before "and" in 47 places ("uniform wearand
@@ -108,14 +115,30 @@ def slugify(name):
     return re.sub(r"-+", "-", s).strip("-")
 
 
+def resolve_photo(stem, folder):
+    """Find `stem`'s image in `folder`, converting a raw PNG drop to WebP the
+    first time it's seen so Mark's drop-a-PNG workflow needs no changes but
+    served files stay small. Idempotent: re-running finds the .webp and skips
+    conversion. Returns the /public-relative URL, or None if nothing matches.
+    """
+    webp_path = os.path.join(folder, stem + ".webp")
+    if os.path.exists(webp_path):
+        return "/tires/" + os.path.basename(folder) + "/" + stem + ".webp"
+
+    png_path = os.path.join(folder, stem + ".png")
+    if os.path.exists(png_path):
+        im = Image.open(png_path)
+        im.save(webp_path, "WEBP", quality=WEBP_QUALITY, method=6)
+        os.remove(png_path)
+        return "/tires/" + os.path.basename(folder) + "/" + stem + ".webp"
+
+    return None
+
+
 def photo_for(name):
-    if name in PHOTO_OVERRIDES:
-        fn = PHOTO_OVERRIDES[name]
-    else:
-        fn = name.strip().replace(" ", "-") + ".png"
-    if os.path.exists(os.path.join(PHOTO_DIR, fn)):
-        return "/tires/Tire-Photos/" + fn, True
-    return None, False
+    stem = PHOTO_OVERRIDES.get(name, name.strip().replace(" ", "-"))
+    url = resolve_photo(stem, PHOTO_DIR)
+    return (url, True) if url else (None, False)
 
 
 def feature_image(token):
@@ -262,9 +285,9 @@ def main():
 
         alt_photo = None
         if t["alt"]:
-            fn = t["alt"].strip() + ".png"
-            if os.path.exists(os.path.join(PHOTO_DIR, fn)):
-                alt_photo = "/tires/Tire-Photos/" + fn
+            alt_stem = t["alt"].strip()
+            alt_photo = resolve_photo(alt_stem, PHOTO_DIR)
+            if alt_photo:
                 # The wireframe pairs some alts with a photo from a different
                 # model; surface that rather than silently shipping it.
                 stem = name.replace(" ", "-").replace("Neo-", "").lower()
@@ -272,7 +295,7 @@ def main():
                     warnings.append(
                         f"{name}: alt photo is {t['alt']!r} — check this is the right model")
             else:
-                warnings.append(f"{name}: alt photo {fn!r} not found")
+                warnings.append(f"{name}: alt photo {alt_stem + '.png'!r} not found")
 
         feats = []
         for i, f in enumerate(t["features"]):

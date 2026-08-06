@@ -200,6 +200,8 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
               src={`${BASE}${tire.tireImage}`}
               alt={tire.name}
               loading="lazy"
+              width={1800}
+              height={2400}
               style={{
                 width: "100%",
                 height: "auto",

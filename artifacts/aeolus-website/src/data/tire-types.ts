@@ -80,8 +80,8 @@ export interface TireData {
 export const SHARED_ASSETS = {
   heroBg: "/assets/tire-hero-bg-1_1782515680443.jpg",
   bgTruck: "/assets/bg-long-haul_1782519244050.jpg",
-  cutaway: "/assets/3d-cutaway-V2_1783092089703.png",
-  placeholderPhoto: "/assets/Template_1782411546518.png",
+  cutaway: "/assets/3d-cutaway-V2_1783092089703.webp",
+  placeholderPhoto: "/assets/Template_1782411546518.webp",
   catalog: "/Aeolus-TBR-catalog.pdf",
   productSheet: "/template.pdf",
   warranty: "/Aeolus-TBR-Warranty.pdf",

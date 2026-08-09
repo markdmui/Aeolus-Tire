@@ -303,9 +303,11 @@ function ProductCard({ slug, image, badge, name, description, specs, delay = 0 }
             {description}
           </p>
           <ul className="mt-4" style={{ borderTop: "1px solid var(--border-color)" }}>
-            {specs.map((s) => (
+            {/* Two rows share the label "Feature" by design, so the label
+                alone is not a unique key — pair it with the index. */}
+            {specs.map((s, i) => (
               <li
-                key={s.label}
+                key={`${s.label}-${i}`}
                 className="flex justify-between items-center py-1.5 md:py-2 uppercase"
                 style={{
                   borderBottom: "1px solid var(--border-color)",

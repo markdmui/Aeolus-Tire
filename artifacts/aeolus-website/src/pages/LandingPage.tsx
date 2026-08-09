@@ -274,6 +274,8 @@ function ProductCard({ slug, image, badge, name, description, specs, delay = 0 }
             <img
               src={image}
               alt={name}
+              width={1800}
+              height={2400}
               loading="lazy"
               decoding="async"
               className="product-card-img"

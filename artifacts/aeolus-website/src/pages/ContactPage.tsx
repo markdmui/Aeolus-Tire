@@ -193,19 +193,7 @@ const SELF_SERVE = [
 
 function BeforeYouReachOut() {
   return (
-    // paddingInline mirrors .hero-section's 4vw so this block's content box
-    // lines up with the hero copy above it (.container adds its own 4vw+20px
-    // on top, same as it does inside the hero).
-    <section
-      className="py-20"
-      style={{
-        backgroundColor: "transparent",
-        position: "relative",
-        zIndex: 2,
-        marginTop: "-220px",
-        paddingInline: "4vw",
-      }}
-    >
+    <section className="py-20" style={{ backgroundColor: "transparent", position: "relative", zIndex: 2, marginTop: "-220px" }}>
       <div className="container">
         <motion.div {...fade(0)} className="mb-10">
           <Kicker>Before You Reach Out</Kicker>

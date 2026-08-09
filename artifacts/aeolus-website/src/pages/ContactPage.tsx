@@ -196,6 +196,11 @@ function BeforeYouReachOut() {
     // paddingInline mirrors .hero-section's 4vw so this block's content box
     // lines up with the hero copy above it (.container adds its own 4vw+20px
     // on top, same as it does inside the hero).
+    //
+    // DELIBERATE, and a deliberate exception: everywhere else on the site body
+    // sections sit at the .container baseline while only heroes get the extra
+    // 4vw. Mark asked for these cards to align to the hero specifically. Please
+    // don't "fix" this back to match the other sections.
     <section
       className="py-20"
       style={{

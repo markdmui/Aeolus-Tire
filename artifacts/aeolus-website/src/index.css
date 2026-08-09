@@ -471,7 +471,7 @@ html {
 }
 
 .product-card-img {
-  opacity: 0.7;
+  opacity: 0.92;
   /* transform is deliberately NOT transitioned — the 7px lift is meant to
      snap as a hover indicator, not animate. */
   transition: opacity 0.3s ease;

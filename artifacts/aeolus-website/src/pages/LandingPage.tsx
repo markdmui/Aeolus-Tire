@@ -281,7 +281,11 @@ function ProductCard({ slug, image, badge, name, description, specs, delay = 0 }
                 width: "100%",
                 height: "auto",
                 display: "block",
-                transform: "scale(1.6201) translateY(calc(2.5% - 70px)) translateX(12.5%)",
+                // --tire-lift is the hover offset, set by .product-card:hover in
+                // index.css. It sits before scale() so it reads as real pixels
+                // rather than being multiplied by the 1.62 crop zoom; the rest
+                // of the transform is the crop and must stay untouched.
+                transform: "translateY(var(--tire-lift, 0px)) scale(1.6201) translateY(calc(2.5% - 70px)) translateX(12.5%)",
                 transformOrigin: "top center",
               }}
             />

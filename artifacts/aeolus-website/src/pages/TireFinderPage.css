@@ -382,7 +382,7 @@
   text-transform: uppercase;
   color: var(--tf-label-grey);
 }
-.tf-size-combo-list { max-height: 220px; overflow-y: auto; }
+.tf-size-combo-list { max-height: 220px; overflow-y: auto; overscroll-behavior: contain; }
 .tf-size-combo-list::-webkit-scrollbar { width: 1px; }
 .tf-size-combo-list::-webkit-scrollbar-track { background: var(--tf-paper-grey, #f4f4f2); }
 .tf-size-combo-list::-webkit-scrollbar-thumb { background: rgba(0,0,0,.4); }
@@ -577,6 +577,33 @@
   padding: 2px 6px;
 }
 .tf-modal-close:hover { color: var(--tf-ink); }
+
+/* Step through the result list without leaving the modal (also ← / →). */
+.tf-modal-head-toprow { display: flex; align-items: center; gap: 10px; }
+.tf-modal-nav { display: flex; align-items: center; gap: 2px; }
+.tf-modal-nav-count {
+  font-family: var(--tf-font);
+  font-size: 11px;
+  letter-spacing: .04em;
+  color: var(--tf-label-grey);
+  white-space: nowrap;
+  min-width: 62px;
+  text-align: center;
+}
+.tf-modal-step {
+  font-family: var(--tf-font);
+  background: none;
+  border: 1px solid var(--tf-hairline);
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1;
+  color: var(--tf-ink);
+  padding: 3px 9px 5px;
+  transition: border-color .3s ease, color .3s ease;
+}
+.tf-modal-step:hover:not(:disabled) { border-color: var(--tf-accent); color: var(--tf-accent-deep); }
+.tf-modal-step:disabled { color: var(--tf-hairline); cursor: default; }
+.tf-modal-step:focus-visible { outline: 2px solid var(--tf-accent-deep); outline-offset: 2px; }
 .tf-modal-body { padding: 28px 40px 40px; }
 .tf-modal-section { margin-bottom: 22px; }
 .tf-modal-section h3 {

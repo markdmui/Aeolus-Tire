@@ -347,6 +347,8 @@ function SizeSelect({
     }
     if (e.key === "Escape") {
       e.preventDefault();
+      // Closing this select shouldn't also trip the page-level clear-all.
+      e.stopPropagation();
       setOpen(false);
       triggerRef.current?.focus();
     } else if (e.key === "ArrowDown") {
@@ -443,6 +445,7 @@ function SizeComboPicker({
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!open) return;
@@ -450,7 +453,13 @@ function SizeComboPicker({
       if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
     }
     function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") { setOpen(false); triggerRef.current?.focus(); }
+      if (e.key === "Escape") {
+        // Swallow it — this listener is on document, so stopping here keeps the
+        // page-level handler on window from also clearing every filter.
+        e.stopPropagation();
+        setOpen(false);
+        triggerRef.current?.focus();
+      }
     }
     document.addEventListener("mousedown", onDown);
     document.addEventListener("keydown", onKey);
@@ -460,10 +469,29 @@ function SizeComboPicker({
     };
   }, [open]);
 
-  // Lock body scroll while the panel is open, same as the spec modal.
+  // No body scroll lock here: the panel is absolutely positioned inside the
+  // combo, so it stays anchored while the page scrolls. Locking would hide the
+  // scrollbar and shift the whole layout right as the dropdown opens.
+
+  // Instead, trap the wheel inside the panel. A hovered column scrolls as
+  // normal until it bottoms out; everything else (headers, footer, gutters, a
+  // column too short to scroll) swallows the event so the page stays put.
+  // Listener is manual + non-passive because React's onWheel is passive and
+  // could not preventDefault.
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    const panel = panelRef.current;
+    if (!panel) return;
+    function onWheel(e: WheelEvent) {
+      const list = (e.target as HTMLElement).closest?.(".tf-size-combo-list") as HTMLElement | null;
+      if (list) {
+        const max = list.scrollHeight - list.clientHeight;
+        const canScroll = e.deltaY < 0 ? list.scrollTop > 0 : list.scrollTop < max - 1;
+        if (canScroll) return;
+      }
+      e.preventDefault();
+    }
+    panel.addEventListener("wheel", onWheel, { passive: false });
+    return () => panel.removeEventListener("wheel", onWheel);
   }, [open]);
 
   const matchCount = ALL_SIZE_COMBOS.filter(c =>
@@ -508,7 +536,7 @@ function SizeComboPicker({
         </svg>
       </button>
       {open && (
-        <div className="tf-size-combo-panel">
+        <div className="tf-size-combo-panel" ref={panelRef}>
           <div className="tf-size-combo-cols">
             <SizeComboColumn label="Width" options={availWidths} value={adjFs.sizeWidth} onToggle={v => toggle("sizeWidth", v)} />
             <SizeComboColumn label="Ratio" options={availRatios} value={adjFs.sizeRatio} onToggle={v => toggle("sizeRatio", v)} />
@@ -565,7 +593,12 @@ function TireCard({ tire, onClick }: { tire: FinderTire; onClick: () => void }) 
   );
 }
 
-function SpecModal({ tire, onClose }: { tire: FinderTire; onClose: () => void }) {
+function SpecModal({ tire, onClose, position, onStep }: {
+  tire: FinderTire;
+  onClose: () => void;
+  position: { index: number; total: number };
+  onStep: (delta: -1 | 1) => void;
+}) {
   const badges: string[] = [];
   if (tire.sizes.some(s => s.ms))       badges.push("M+S Rated");
   if (tire.sizes.some(s => s.pmsf))     badges.push("3PMSF Severe Snow");
@@ -578,6 +611,7 @@ function SpecModal({ tire, onClose }: { tire: FinderTire; onClose: () => void })
 
   const modalRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
   const titleId = useId();
 
   // Move focus in on open, hand it back to whatever opened the modal on close.
@@ -586,6 +620,15 @@ function SpecModal({ tire, onClose }: { tire: FinderTire; onClose: () => void })
     closeRef.current?.focus();
     return () => opener?.focus?.();
   }, []);
+
+  // Arrow-stepping swaps the tire without remounting, so the overlay keeps its
+  // scroll offset — reset it or the next tire opens mid-spec-table.
+  useEffect(() => {
+    if (overlayRef.current) overlayRef.current.scrollTop = 0;
+  }, [tire.slug]);
+
+  const atFirst = position.index <= 0;
+  const atLast  = position.index >= position.total - 1;
 
   // Keep Tab inside the dialog.
   function onKeyDown(e: React.KeyboardEvent) {
@@ -609,7 +652,7 @@ function SpecModal({ tire, onClose }: { tire: FinderTire; onClose: () => void })
   }
 
   return (
-    <div className="tf-modal-overlay tf-open" onClick={onOverlayClick}>
+    <div className="tf-modal-overlay tf-open" ref={overlayRef} onClick={onOverlayClick}>
       <div
         className="tf-modal"
         ref={modalRef}
@@ -626,7 +669,30 @@ function SpecModal({ tire, onClose }: { tire: FinderTire; onClose: () => void })
             <div className="tf-modal-subtitle">{tire.subtitle}</div>
           </div>
           <div className="tf-modal-head-actions">
-            <button ref={closeRef} className="tf-modal-close" onClick={onClose} aria-label="Close">×</button>
+            <div className="tf-modal-head-toprow">
+              <div className="tf-modal-nav">
+                <button
+                  type="button"
+                  className="tf-modal-step"
+                  onClick={() => onStep(-1)}
+                  disabled={atFirst}
+                  aria-label="Previous tire in results (Left arrow)"
+                  title="Previous tire (←)"
+                >‹</button>
+                <span className="tf-modal-nav-count">
+                  {position.index + 1} of {position.total}
+                </span>
+                <button
+                  type="button"
+                  className="tf-modal-step"
+                  onClick={() => onStep(1)}
+                  disabled={atLast}
+                  aria-label="Next tire in results (Right arrow)"
+                  title="Next tire (→)"
+                >›</button>
+              </div>
+              <button ref={closeRef} className="tf-modal-close" onClick={onClose} aria-label="Close">×</button>
+            </div>
             <Link href={`/tires/${tire.slug}`} className="tf-modal-product-btn">
               View Product Page
             </Link>
@@ -765,6 +831,7 @@ export default function TireFinderPage() {
     filtersFromSearch(typeof window === "undefined" ? "" : window.location.search));
   const [modalTire, setModalTire] = useState<FinderTire | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const searchRef = useRef<HTMLInputElement>(null);
 
   // Mirror filters into the query string so the view is shareable.
   useEffect(() => {
@@ -780,12 +847,7 @@ export default function TireFinderPage() {
     return () => { document.body.style.overflow = ""; };
   }, [modalTire]);
 
-  // Escape key closes modal
-  useEffect(() => {
-    function onKey(e: KeyboardEvent) { if (e.key === "Escape") setModalTire(null); }
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  // (Escape handling lives below, once resetAll and activeCount are declared.)
 
   const toggleSet = useCallback((key: keyof FilterState, val: string) => {
     setFs(prev => {
@@ -821,6 +883,58 @@ export default function TireFinderPage() {
     fs.segment.size + fs.pos.size + fs.series.size + fs.cert.size + fs.tags.size +
     (fs.sizeWidth ? 1 : 0) + (fs.sizeRatio ? 1 : 0) + (fs.sizeRim ? 1 : 0);
 
+  // The search box isn't in activeCount (it's not a filter chip) but Clear/Esc
+  // wipe it too, so it counts toward "is there anything to clear".
+  const hasActiveFilters = activeCount > 0 || fs.q !== "";
+
+  // Escape unwinds one layer at a time: an open spec modal closes first, and an
+  // open size dropdown swallows the key itself (SizeComboPicker / SizeSelect
+  // call stopPropagation), so Escape never yanks the filters out from under a
+  // dismissal. Only when nothing transient is open does it clear everything.
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key !== "Escape") return;
+      if (modalTire) { setModalTire(null); return; }
+      if (!hasActiveFilters) return;
+      resetAll();
+      searchRef.current?.focus();
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [modalTire, hasActiveFilters, resetAll]);
+
+  // Where the open tire sits in the current result list, and how to move within
+  // it. Clamped at both ends rather than wrapping — running off the last tire
+  // back to the first reads as a glitch.
+  const modalIndex = modalTire
+    ? results.findIndex(r => r.slug === modalTire.slug)
+    : -1;
+
+  const stepModal = useCallback((delta: -1 | 1) => {
+    setModalTire(cur => {
+      if (!cur) return cur;
+      const i = results.findIndex(r => r.slug === cur.slug);
+      const next = i + delta;
+      return i === -1 || next < 0 || next >= results.length ? cur : results[next];
+    });
+  }, [results]);
+
+  // With the modal open, Left/Right step through the results behind it so you
+  // can compare tires without closing and reopening each card.
+  useEffect(() => {
+    if (!modalTire) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      const t = e.target as HTMLElement | null;
+      // Don't hijack caret movement inside a field.
+      if (t && (/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName) || t.isContentEditable)) return;
+      e.preventDefault();
+      stepModal(e.key === "ArrowRight" ? 1 : -1);
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [modalTire, stepModal]);
+
   return (
     <>
       <Navbar />
@@ -842,6 +956,7 @@ export default function TireFinderPage() {
             Search tires by name, size or feature
           </label>
           <input
+            ref={searchRef}
             id="searchInput"
             type="text"
             placeholder="Search by name, size or feature…"
@@ -850,7 +965,7 @@ export default function TireFinderPage() {
             onChange={e => setFs(p => ({ ...p, q: e.target.value }))}
           />
           <button type="button" className="tf-clearbtn" aria-label="Clear all filters"
-                  onClick={resetAll}>Clear</button>
+                  title="Clear all filters (Esc)" onClick={resetAll}>Clear</button>
         </div>
       </div>
 
@@ -980,7 +1095,12 @@ export default function TireFinderPage() {
 
       {/* Modal */}
       {modalTire && (
-        <SpecModal tire={modalTire} onClose={() => setModalTire(null)} />
+        <SpecModal
+          tire={modalTire}
+          onClose={() => setModalTire(null)}
+          position={{ index: modalIndex, total: results.length }}
+          onStep={stepModal}
+        />
       )}
 
       </div>

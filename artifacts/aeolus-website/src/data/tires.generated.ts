@@ -3,7 +3,7 @@
 //
 // Source: Aeolus-Wireframe-06.xlsx, sheet "3. Content Wireframe" (the content bible).
 // Regenerate: pnpm --filter @workspace/scripts run generate:tires
-// Last generated: 2026-08-06
+// Last generated: 2026-08-11
 //
 // Hand-maintained companions: tire-types.ts, demo-tires.ts.
 // ─────────────────────────────────────────────────────────────────────────────
@@ -42,7 +42,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/Neo-Fuel-S.webp",
+      tirePhoto:    "/tires/Tire-Photos/Neo-Fuel-S.png",
     },
   },
   {
@@ -72,7 +72,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/Neo-Fuel-D.webp",
+      tirePhoto:    "/tires/Tire-Photos/Neo-Fuel-D.png",
     },
   },
   {
@@ -105,7 +105,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/Neo-Fuel-D2.webp",
+      tirePhoto:    "/tires/Tire-Photos/Neo-Fuel-D2.png",
     },
   },
   {
@@ -159,7 +159,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/Neo-Fuel-D3.webp",
+      tirePhoto:    "/tires/Tire-Photos/Neo-Fuel-D3.png",
     },
   },
   {
@@ -205,7 +205,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/Neo-Fuel-T+.webp",
+      tirePhoto:    "/tires/Tire-Photos/Neo-Fuel-T+.png",
     },
   },
   {
@@ -237,7 +237,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/Neo-Fuel-T2.webp",
+      tirePhoto:    "/tires/Tire-Photos/Neo-Fuel-T2.png",
     },
   },
   {
@@ -290,7 +290,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/Neo-Fuel-T3.webp",
+      tirePhoto:    "/tires/Tire-Photos/Neo-Fuel-T3.png",
     },
   },
   {
@@ -339,7 +339,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/Neo-Fuel-G3.webp",
+      tirePhoto:    "/tires/Tire-Photos/Neo-Fuel-G3.png",
     },
   },
   {
@@ -408,7 +408,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/Neo-Allroads-S.webp",
+      tirePhoto:    "/tires/Tire-Photos/Neo-Allroads-S.png",
     },
   },
   {
@@ -457,7 +457,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/Neo-Allroads-S+.webp",
+      tirePhoto:    "/tires/Tire-Photos/Neo-Allroads-S+.png",
     },
   },
   {
@@ -512,7 +512,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/Neo-Allroads-D.webp",
+      tirePhoto:    "/tires/Tire-Photos/Neo-Allroads-D.png",
     },
   },
   {
@@ -562,7 +562,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/Neo-Allroads-D+.webp",
+      tirePhoto:    "/tires/Tire-Photos/Neo-Allroads-D+.png",
     },
   },
   {
@@ -609,7 +609,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/Neo-Allroads-D3.webp",
+      tirePhoto:    "/tires/Tire-Photos/Neo-Allroads-D3.png",
     },
   },
   {
@@ -665,7 +665,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/Neo-Allroads-T2.webp",
+      tirePhoto:    "/tires/Tire-Photos/Neo-Allroads-T2.png",
     },
   },
   {
@@ -704,7 +704,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/ASR79.webp",
+      tirePhoto:    "/tires/Tire-Photos/ASR79.png",
     },
   },
   {
@@ -738,7 +738,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/ADR78.webp",
+      tirePhoto:    "/tires/Tire-Photos/ADR78.png",
     },
   },
   {
@@ -794,7 +794,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/Neo-Construct-D.webp",
+      tirePhoto:    "/tires/Tire-Photos/Neo-Construct-D.png",
     },
   },
   {
@@ -850,7 +850,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/Aeolus-Neo-Construct-G.webp",
+      tirePhoto:    "/tires/Tire-Photos/Aeolus-Neo-Construct-G.png",
     },
   },
   {
@@ -888,7 +888,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/Neo-Winter-S.webp",
+      tirePhoto:    "/tires/Tire-Photos/Neo-Winter-S.png",
     },
   },
   {
@@ -943,7 +943,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/Neo-Allseason-D.webp",
+      tirePhoto:    "/tires/Tire-Photos/Neo-Allseason-D.png",
     },
   },
   {
@@ -998,7 +998,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/Neo-Urban-G.webp",
+      tirePhoto:    "/tires/Tire-Photos/Neo-Urban-G.png",
     },
   },
   {
@@ -1029,7 +1029,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/ASL06.webp",
+      tirePhoto:    "/tires/Tire-Photos/ASL06.png",
     },
   },
   {
@@ -1060,7 +1060,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/ASL01.webp",
+      tirePhoto:    "/tires/Tire-Photos/ASL01.png",
     },
   },
   {
@@ -1092,7 +1092,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/ADL58.webp",
+      tirePhoto:    "/tires/Tire-Photos/ADL58.png",
     },
   },
   {
@@ -1123,7 +1123,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/ATL08.webp",
+      tirePhoto:    "/tires/Tire-Photos/ATL08.png",
     },
   },
   {
@@ -1157,7 +1157,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/ASR30.webp",
+      tirePhoto:    "/tires/Tire-Photos/ASR30.png",
     },
   },
   {
@@ -1189,7 +1189,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/ASR35.webp",
+      tirePhoto:    "/tires/Tire-Photos/ASR35.png",
     },
   },
   {
@@ -1221,7 +1221,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/ASR69.webp",
+      tirePhoto:    "/tires/Tire-Photos/ASR69.png",
     },
   },
   {
@@ -1251,7 +1251,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/ADR24.webp",
+      tirePhoto:    "/tires/Tire-Photos/ADR24.png",
     },
   },
   {
@@ -1287,7 +1287,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/ADR26.webp",
+      tirePhoto:    "/tires/Tire-Photos/ADR26.png",
     },
   },
   {
@@ -1320,7 +1320,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/ADR35.webp",
+      tirePhoto:    "/tires/Tire-Photos/ADR35.png",
     },
   },
   {
@@ -1353,7 +1353,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/ADR55.webp",
+      tirePhoto:    "/tires/Tire-Photos/ADR55.png",
     },
   },
   {
@@ -1385,7 +1385,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/ADR69.webp",
+      tirePhoto:    "/tires/Tire-Photos/ADR69.png",
     },
   },
   {
@@ -1416,7 +1416,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/ADR57.webp",
+      tirePhoto:    "/tires/Tire-Photos/ADR57.png",
     },
   },
   {
@@ -1449,7 +1449,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/AGR26.webp",
+      tirePhoto:    "/tires/Tire-Photos/AGR26.png",
     },
   },
   {
@@ -1481,7 +1481,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/ASL67.webp",
+      tirePhoto:    "/tires/Tire-Photos/ASL67.png",
     },
   },
   {
@@ -1515,7 +1515,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/ADC52.webp",
+      tirePhoto:    "/tires/Tire-Photos/ADC52.png",
     },
   },
   {
@@ -1555,7 +1555,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/ADC53.webp",
+      tirePhoto:    "/tires/Tire-Photos/ADC53.png",
     },
   },
   {
@@ -1596,7 +1596,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/AGC08.webp",
+      tirePhoto:    "/tires/Tire-Photos/AGC08.png",
     },
   },
   {
@@ -1631,7 +1631,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/AGC28.webp",
+      tirePhoto:    "/tires/Tire-Photos/AGC28.png",
     },
   },
   {
@@ -1666,7 +1666,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/AGM10.webp",
+      tirePhoto:    "/tires/Tire-Photos/AGM10.png",
     },
   },
   {
@@ -1698,7 +1698,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/AGM84.webp",
+      tirePhoto:    "/tires/Tire-Photos/AGM84.png",
     },
   },
   {
@@ -1731,7 +1731,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/ADW80.webp",
+      tirePhoto:    "/tires/Tire-Photos/ADW80.png",
     },
   },
   {
@@ -1763,7 +1763,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/ADW81.webp",
+      tirePhoto:    "/tires/Tire-Photos/ADW81.png",
     },
   },
   {
@@ -1795,7 +1795,7 @@ export const BIBLE_TIRES: TireData[] = [
       catalog:      SHARED_ASSETS.catalog,
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
-      tirePhoto:    "/tires/Tire-Photos/ADW82.webp",
+      tirePhoto:    "/tires/Tire-Photos/ADW82.png",
     },
   },
 ];

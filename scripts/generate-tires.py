@@ -118,27 +118,46 @@ def slugify(name):
 def resolve_photo(stem, folder):
     """Find `stem`'s image in `folder`, converting a raw PNG drop to WebP the
     first time it's seen so Mark's drop-a-PNG workflow needs no changes but
-    served files stay small. Idempotent: re-running finds the .webp and skips
-    conversion. Returns the /public-relative URL, or None if nothing matches.
+    cards/thumbnails stay fast. The original PNG is kept alongside the WebP
+    (not deleted) so the "Tire Photo" download button can still serve a
+    full-resolution file — see resolve_photo_download(). Idempotent:
+    re-running finds the .webp and skips conversion. Returns the
+    /public-relative URL, or None if nothing matches.
     """
+    webp_path = os.path.join(folder, stem + ".webp")
+    png_path = os.path.join(folder, stem + ".png")
+
+    if not os.path.exists(webp_path) and os.path.exists(png_path):
+        im = Image.open(png_path)
+        im.save(webp_path, "WEBP", quality=WEBP_QUALITY, method=6)
+
+    if os.path.exists(webp_path):
+        return "/tires/" + os.path.basename(folder) + "/" + stem + ".webp"
+    if os.path.exists(png_path):
+        return "/tires/" + os.path.basename(folder) + "/" + stem + ".png"
+    return None
+
+
+def resolve_photo_download(stem, folder):
+    """URL for the "Tire Photo" download button: the original high-res PNG
+    when one exists, so dealers get a print-quality file for marketing use.
+    Falls back to the WebP (better than a dead link) if no PNG was ever
+    supplied for this tire.
+    """
+    png_path = os.path.join(folder, stem + ".png")
+    if os.path.exists(png_path):
+        return "/tires/" + os.path.basename(folder) + "/" + stem + ".png"
     webp_path = os.path.join(folder, stem + ".webp")
     if os.path.exists(webp_path):
         return "/tires/" + os.path.basename(folder) + "/" + stem + ".webp"
-
-    png_path = os.path.join(folder, stem + ".png")
-    if os.path.exists(png_path):
-        im = Image.open(png_path)
-        im.save(webp_path, "WEBP", quality=WEBP_QUALITY, method=6)
-        os.remove(png_path)
-        return "/tires/" + os.path.basename(folder) + "/" + stem + ".webp"
-
     return None
 
 
 def photo_for(name):
     stem = PHOTO_OVERRIDES.get(name, name.strip().replace(" ", "-"))
     url = resolve_photo(stem, PHOTO_DIR)
-    return (url, True) if url else (None, False)
+    download_url = resolve_photo_download(stem, PHOTO_DIR) if url else None
+    return (url, download_url, True) if url else (None, None, False)
 
 
 def feature_image(token):
@@ -278,10 +297,11 @@ def main():
             warnings.append(f"{name}: position {t['pos']!r} doesn't match a known "
                             f"position — its icon will be missing on the site")
 
-        photo, ok = photo_for(name)
+        photo, photo_download, ok = photo_for(name)
         if not ok:
             warnings.append(f"{name}: no tire photo — falling back to the shared placeholder")
             photo = None
+            photo_download = None
 
         alt_photo = None
         if t["alt"]:
@@ -343,6 +363,7 @@ def main():
             "subtitle": subtitle, "tags": tags, "bullets": bullets,
             "features": feats, "specRows": t["sizes"],
             "tireImage": photo, "altImage": alt_photo,
+            "tirePhotoDownload": photo_download,
         })
 
     # Near-duplicate tags become two separate filter facets for one concept.
@@ -434,6 +455,7 @@ def main():
             lines.append("    specRows: [],")
 
         img = ts(t["tireImage"]) if t["tireImage"] else "SHARED_ASSETS.placeholderPhoto"
+        download_img = ts(t["tirePhotoDownload"]) if t["tirePhotoDownload"] else img
         lines.append(f"    tireImage:    {img},")
         if t["altImage"]:
             lines.append(f'    altImage:     {ts(t["altImage"])},')
@@ -444,7 +466,7 @@ def main():
         lines.append("      catalog:      SHARED_ASSETS.catalog,")
         lines.append("      productSheet: SHARED_ASSETS.productSheet,")
         lines.append("      warranty:     SHARED_ASSETS.warranty,")
-        lines.append(f"      tirePhoto:    {img},")
+        lines.append(f"      tirePhoto:    {download_img},")
         lines.append("    },")
         lines.append("  },")
 

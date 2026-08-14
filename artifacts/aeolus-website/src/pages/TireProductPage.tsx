@@ -498,7 +498,15 @@ function FeatureSection({ tire, onOpen, layeredBg }: { tire: TireData; onOpen: (
 }
 
 // ─── Specs (truck bg + download buttons + spec table) ────────────────────────
+// Per-tire spec-table tightening. Neo Allroads S carries 16 size rows against a
+// catalog median of 3, so its table runs long enough to push the page furniture
+// off-screen; trimming 2px off each row's top and bottom padding claws back 4px
+// per row without touching any other tire. Keyed by slug so adding a tire here
+// is a one-line change — see .spec-row--compact in index.css.
+const COMPACT_SPEC_ROWS = new Set(["neo-allroads-s"]);
+
 function SpecsSection({ tire, layeredBg }: { tire: TireData; layeredBg?: boolean }) {
+  const compactRows = COMPACT_SPEC_ROWS.has(tire.slug);
   const showSmartway = tire.specRows.some((r) => r.smartway);
   const showMs       = tire.specRows.some((r) => r.ms);
   const showPmsf     = tire.specRows.some((r) => r["3PMSF"]);
@@ -670,7 +678,7 @@ function SpecsSection({ tire, layeredBg }: { tire: TireData; layeredBg?: boolean
               {tire.specRows.map((row, i) => (
                 <tr
                   key={`${row.size}-${row.ply}-${i}`}
-                  className="spec-row"
+                  className={`spec-row${compactRows ? " spec-row--compact" : ""}`}
                   style={{
                     borderBottom: i < tire.specRows.length - 1 ? "1px solid var(--border-color)" : "none",
                     transition: "background-color 0.15s ease",

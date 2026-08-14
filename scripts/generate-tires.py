@@ -33,6 +33,7 @@ SITE = os.path.join(ROOT, "artifacts", "aeolus-website")
 OUT = os.path.join(SITE, "src", "data", "tires.generated.ts")
 PHOTO_DIR = os.path.join(SITE, "public", "tires", "Tire-Photos")
 FEATURE_DIR = os.path.join(SITE, "public", "tires", "Feature-Images")
+BG_DIR = os.path.join(SITE, "public", "assets")
 
 # ── Column map for the repeating spec block ──────────────────────────────────
 COLS = {
@@ -115,6 +116,36 @@ def slugify(name):
     return re.sub(r"-+", "-", s).strip("-")
 
 
+_listings = {}
+case_log = []
+
+
+def real_name(folder, filename):
+    """Case-correct `filename` against `folder`'s actual directory listing,
+    returning the real on-disk name, or None if nothing matches.
+
+    os.path.exists() is case-insensitive on Windows, so a wireframe token that
+    differs from the file only in case ("Neo-Allroads-DPlus-f1.jpg" against the
+    on-disk "...-Dplus-f1.jpg") validates here and then 404s everywhere it
+    matters — Vite's dev server and Replit's Linux host both serve statics
+    case-sensitively. Always emit the name the filesystem actually has.
+    """
+    if folder not in _listings:
+        try:
+            _listings[folder] = os.listdir(folder)
+        except FileNotFoundError:
+            _listings[folder] = []
+    entries = _listings[folder]
+    if filename in entries:
+        return filename
+    lower = filename.lower()
+    for e in entries:
+        if e.lower() == lower:
+            case_log.append((os.path.basename(folder), filename, e))
+            return e
+    return None
+
+
 def resolve_photo(stem, folder):
     """Find `stem`'s image in `folder`, converting a raw PNG drop to WebP the
     first time it's seen so Mark's drop-a-PNG workflow needs no changes but
@@ -124,17 +155,19 @@ def resolve_photo(stem, folder):
     re-running finds the .webp and skips conversion. Returns the
     /public-relative URL, or None if nothing matches.
     """
-    webp_path = os.path.join(folder, stem + ".webp")
-    png_path = os.path.join(folder, stem + ".png")
+    webp = real_name(folder, stem + ".webp")
+    png = real_name(folder, stem + ".png")
 
-    if not os.path.exists(webp_path) and os.path.exists(png_path):
-        im = Image.open(png_path)
-        im.save(webp_path, "WEBP", quality=WEBP_QUALITY, method=6)
+    if not webp and png:
+        im = Image.open(os.path.join(folder, png))
+        webp = os.path.splitext(png)[0] + ".webp"
+        im.save(os.path.join(folder, webp), "WEBP", quality=WEBP_QUALITY, method=6)
+        _listings[folder].append(webp)
 
-    if os.path.exists(webp_path):
-        return "/tires/" + os.path.basename(folder) + "/" + stem + ".webp"
-    if os.path.exists(png_path):
-        return "/tires/" + os.path.basename(folder) + "/" + stem + ".png"
+    if webp:
+        return "/tires/" + os.path.basename(folder) + "/" + webp
+    if png:
+        return "/tires/" + os.path.basename(folder) + "/" + png
     return None
 
 
@@ -144,12 +177,12 @@ def resolve_photo_download(stem, folder):
     Falls back to the WebP (better than a dead link) if no PNG was ever
     supplied for this tire.
     """
-    png_path = os.path.join(folder, stem + ".png")
-    if os.path.exists(png_path):
-        return "/tires/" + os.path.basename(folder) + "/" + stem + ".png"
-    webp_path = os.path.join(folder, stem + ".webp")
-    if os.path.exists(webp_path):
-        return "/tires/" + os.path.basename(folder) + "/" + stem + ".webp"
+    png = real_name(folder, stem + ".png")
+    if png:
+        return "/tires/" + os.path.basename(folder) + "/" + png
+    webp = real_name(folder, stem + ".webp")
+    if webp:
+        return "/tires/" + os.path.basename(folder) + "/" + webp
     return None
 
 
@@ -160,14 +193,35 @@ def photo_for(name):
     return (url, download_url, True) if url else (None, None, False)
 
 
+def bg_truck(token):
+    """Resolve the wireframe's `bgtruck` slug to the segment background photo
+    shown behind the features/specs band on that tire's page.
+
+    The slug names the tire's catalog segment (`bg-long-haul-premium`,
+    `bg-reg`, ...) and is authored per-tire in sheet 3 — it is NOT derived from
+    the `category` cell, which is unrelated display text. Returns ("", False)
+    for an unresolvable slug so the caller can warn and fall back to the shared
+    default rather than emitting a dead image URL.
+    """
+    if not token:
+        return "", False
+    token = token.strip()
+    for ext in (".jpg", ".jpeg", ".png", ".webp"):
+        hit = real_name(BG_DIR, token + ext)
+        if hit:
+            return "/assets/" + hit, True
+    return "", False
+
+
 def feature_image(token):
     """Wireframe writes bare tokens like 'Neo-Fuel-D3-f1'; resolve to a real file."""
     if not token:
         return "", True
     token = token.strip()
     for ext in (".jpg", ".jpeg", ".png"):
-        if os.path.exists(os.path.join(FEATURE_DIR, token + ext)):
-            return "/tires/Feature-Images/" + token + ext, True
+        hit = real_name(FEATURE_DIR, token + ext)
+        if hit:
+            return "/tires/Feature-Images/" + hit, True
     return "", False
 
 
@@ -205,7 +259,8 @@ def parse():
         if label == "tire name" and name:
             cur = {
                 "name": name, "row": r, "category": "", "subtitle": "", "tags": "",
-                "pos": "", "alt": "", "bullets": [], "features": [], "sizes": [],
+                "pos": "", "alt": "", "bgtruck": "",
+                "bullets": [], "features": [], "sizes": [],
             }
             tires.append(cur)
             mode = None
@@ -231,6 +286,7 @@ def parse():
             simple = {
                 "category": ("category", 4), "subtitle": ("subtitle", 4),
                 "pos": ("pos", 4), "tags": ("tags", 3), "alt": ("alt", 3),
+                "bgtruck": ("bgtruck", 3),
             }
             if label in simple:
                 key, col = simple[label]
@@ -317,6 +373,14 @@ def main():
             else:
                 warnings.append(f"{name}: alt photo {alt_stem + '.png'!r} not found")
 
+        bg, bg_ok = bg_truck(t["bgtruck"])
+        if not t["bgtruck"]:
+            warnings.append(f"{name}: no bgtruck slug in the wireframe — page background "
+                            f"falls back to the shared default")
+        elif not bg_ok:
+            warnings.append(f"{name}: bgtruck slug {t['bgtruck']!r} has no image in "
+                            f"public/assets — page background falls back to the shared default")
+
         feats = []
         for i, f in enumerate(t["features"]):
             img, found = feature_image(f["image"])
@@ -363,7 +427,7 @@ def main():
             "subtitle": subtitle, "tags": tags, "bullets": bullets,
             "features": feats, "specRows": t["sizes"],
             "tireImage": photo, "altImage": alt_photo,
-            "tirePhotoDownload": photo_download,
+            "tirePhotoDownload": photo_download, "bgTruck": bg,
         })
 
     # Near-duplicate tags become two separate filter facets for one concept.
@@ -460,7 +524,8 @@ def main():
         if t["altImage"]:
             lines.append(f'    altImage:     {ts(t["altImage"])},')
         lines.append("    heroBg:       SHARED_ASSETS.heroBg,")
-        lines.append("    bgTruck:      SHARED_ASSETS.bgTruck,")
+        bg = ts(t["bgTruck"]) if t["bgTruck"] else "SHARED_ASSETS.bgTruck"
+        lines.append(f"    bgTruck:      {bg},")
         lines.append("    cutawayImage: SHARED_ASSETS.cutaway,")
         lines.append("    downloads: {")
         lines.append("      catalog:      SHARED_ASSETS.catalog,")
@@ -513,6 +578,14 @@ def main():
         print(f"\nRepaired {total} missing-space-before-'and' typos from the workbook:")
         for tire, field, n in typo_log:
             print(f"  {tire:<20} {field}  x{n}")
+
+    if case_log:
+        seen = sorted(set(case_log))
+        print(f"\nCase-corrected {len(seen)} asset filename(s) against the real "
+              f"directory listing — the workbook token differs from the file only "
+              f"in case, which 404s on any case-sensitive host:")
+        for folder, asked, actual in seen:
+            print(f"  {folder}/  {asked}  ->  {actual}")
 
     if warnings:
         print(f"\n{len(warnings)} warning(s):")

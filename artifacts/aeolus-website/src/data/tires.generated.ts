@@ -3,7 +3,7 @@
 //
 // Source: Aeolus-Wireframe-06.xlsx, sheet "3. Content Wireframe" (the content bible).
 // Regenerate: pnpm --filter @workspace/scripts run generate:tires
-// Last generated: 2026-08-11
+// Last generated: 2026-08-14
 //
 // Hand-maintained companions: tire-types.ts, demo-tires.ts.
 // ─────────────────────────────────────────────────────────────────────────────
@@ -36,7 +36,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/Neo-Fuel-S.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-long-haul-premium.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -66,7 +66,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/Neo-Fuel-D.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-long-haul-premium.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -99,7 +99,7 @@ export const BIBLE_TIRES: TireData[] = [
     tireImage:    "/tires/Tire-Photos/Neo-Fuel-D2.webp",
     altImage:     "/tires/Tire-Photos/Fuel-D2-W.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-long-haul-premium.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -153,7 +153,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/Neo-Fuel-D3.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-long-haul-premium.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -181,17 +181,17 @@ export const BIBLE_TIRES: TireData[] = [
       {
         title: "New Tread Block Pitch Sequence",
         body:  "The completely redesigned tread block pitch sequence improves overall performance by delivering higher mileage, lower rolling resistance, excellent even wear, reduced noise and enhanced tear resistance for long service life in demanding operations.",
-        image: "/tires/Feature-Images/Neo-Fuel-TPlus-f1.jpg",
+        image: "/tires/Feature-Images/Neo-Fuel-Tplus-f1.jpg",
       },
       {
         title: "Five Wide Circumference Ribs",
         body:  "The five wide longitudinal ribs provide strong tear strength and structural stability, contributing to better tear resistance and improved durability under heavy-duty usage.",
-        image: "/tires/Feature-Images/Neo-Fuel-TPlus-f2.jpg",
+        image: "/tires/Feature-Images/Neo-Fuel-Tplus-f2.jpg",
       },
       {
         title: "Zigzag Side Grooves & Straight Center Grooves",
         body:  "The combination of wide zig-zag grooves on the shoulders and straight grooves in the center ensures effective stone ejection and excellent water evacuation, enhancing protection and improving safety on wet or debris-filled roads.",
-        image: "/tires/Feature-Images/Neo-Fuel-TPlus-f3.jpg",
+        image: "/tires/Feature-Images/Neo-Fuel-Tplus-f3.jpg",
       },
     ],
     specRows: [
@@ -199,7 +199,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/Neo-Fuel-T+.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-long-haul-premium.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -231,7 +231,7 @@ export const BIBLE_TIRES: TireData[] = [
     tireImage:    "/tires/Tire-Photos/Neo-Fuel-T2.webp",
     altImage:     "/tires/Tire-Photos/Neo-Allroads-T2-HL.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-long-haul-premium.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -284,7 +284,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/Neo-Fuel-T3.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-long-haul-premium.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -333,7 +333,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/Neo-Fuel-G3.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-long-haul-premium.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -402,7 +402,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/Neo-Allroads-S.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-reg-premium.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -432,12 +432,12 @@ export const BIBLE_TIRES: TireData[] = [
       {
         title: "Zig-Zag Grooves & Shoulder Contour Design",
         body:  "Zig-zag grooves with robust longitudinal ribs and an optimized shoulder tread contour ensure balanced footprint pressure, providing shorter braking distance, excellent water expulsion, precise steering control and extended mileage with even wear.",
-        image: "/tires/Feature-Images/Neo-Allroads-SPlus-f1.jpg",
+        image: "/tires/Feature-Images/Neo-Allroads-Splus-f1.jpg",
       },
       {
         title: "Full-Depth 3D Sipes",
         body:  "Advanced full-depth 3D sipes improve traction and handling in both dry and wet conditions, while lowering rolling resistance and reducing road noise for a smoother, quieter ride.",
-        image: "/tires/Feature-Images/Neo-Allroads-SPlus-f2.jpg",
+        image: "/tires/Feature-Images/Neo-Allroads-Splus-f2.jpg",
       },
       {
         title: "Dual-Layer Tread Compound",
@@ -451,7 +451,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/Neo-Allroads-S+.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-reg-premium.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -506,7 +506,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/Neo-Allroads-D.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-reg-premium.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -536,17 +536,17 @@ export const BIBLE_TIRES: TireData[] = [
       {
         title: "Full-Depth 3D Sipes",
         body:  "Advanced 3D sipes run through the full tread depth, creating an interlocking effect that improves traction and ensures even wear throughout the tire’s service life.",
-        image: "/tires/Feature-Images/Neo-Allroads-DPlus-f1.jpg",
+        image: "/tires/Feature-Images/Neo-Allroads-Dplus-f1.jpg",
       },
       {
         title: "Optimized Transversal & Directional Groove Design",
         body:  "Transversal grooves with optimized geometry and a newly engineered directional tread pattern deliver higher mileage, lower rolling resistance and better traction. The unique pitch sequence also enhances stone rejection, keeping the tread clean and efficient on varied surfaces.",
-        image: "/tires/Feature-Images/Neo-Allroads-DPlus-f2.jpg",
+        image: "/tires/Feature-Images/Neo-Allroads-Dplus-f2.jpg",
       },
       {
         title: "Reinforced Block Rib",
         body:  "Strong reinforcement ribs between tread blocks increase structural strength and driving stability, enhancing durability, safety and even wear for longer tire life.",
-        image: "/tires/Feature-Images/Neo-Allroads-DPlus-f3.jpg",
+        image: "/tires/Feature-Images/Neo-Allroads-Dplus-f3.jpg",
       },
     ],
     specRows: [
@@ -556,7 +556,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/Neo-Allroads-D+.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-reg-premium.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -603,7 +603,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/Neo-Allroads-D3.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-reg-premium.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -659,7 +659,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/Neo-Allroads-T2.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-reg-premium.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -698,7 +698,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/ASR79.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-reg-premium.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -732,7 +732,7 @@ export const BIBLE_TIRES: TireData[] = [
     tireImage:    "/tires/Tire-Photos/ADR78.webp",
     altImage:     "/tires/Tire-Photos/ADR78ii.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-reg-premium.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -763,12 +763,12 @@ export const BIBLE_TIRES: TireData[] = [
       {
         title: "Non-Directional Tread Design",
         body:  "A newly developed tread block pitch sequence with wider zig-zag grooves delivers longer mileage, even wear and strong traction. It also enhances water evacuation, stone rejection and handling stability without compromising grip.",
-        image: "/tires/Feature-Images/Neo-Construct-G-f1.jpg",
+        image: "/tires/Feature-Images/Neo-Construct-D-f1.jpg",
       },
       {
         title: "Optimized Footprint & Shoulder",
         body:  "Balanced footprint and reinforced shoulder structure enhance wear resistance, promote even wear and improve driving stability under heavy loads.",
-        image: "/tires/Feature-Images/Neo-Construct-G-f2.jpg",
+        image: "/tires/Feature-Images/Neo-Construct-D-f2.jpg",
       },
       {
         title: "On/Off-Road Compound",
@@ -788,7 +788,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/Neo-Construct-D.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-off-road-premium.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -844,7 +844,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/Aeolus-Neo-Construct-G.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-off-road-premium.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -882,7 +882,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/Neo-Winter-S.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-winter-premium.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -937,7 +937,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/Neo-Allseason-D.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-winter-premium.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -992,7 +992,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/Neo-Urban-G.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-urban-premium.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -1023,7 +1023,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/ASL06.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-long-haul.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -1054,7 +1054,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/ASL01.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-long-haul.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -1086,7 +1086,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/ADL58.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-long-haul.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -1117,7 +1117,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/ATL08.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-long-haul.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -1151,7 +1151,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/ASR30.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-reg.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -1183,7 +1183,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/ASR35.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-reg.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -1215,7 +1215,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/ASR69.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-reg.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -1245,7 +1245,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/ADR24.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-reg.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -1281,7 +1281,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/ADR26.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-reg.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -1314,7 +1314,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/ADR35.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-reg.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -1347,7 +1347,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/ADR55.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-reg.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -1379,7 +1379,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/ADR69.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-reg.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -1410,7 +1410,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/ADR57.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-reg.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -1443,7 +1443,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/AGR26.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-reg.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -1475,7 +1475,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/ASL67.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-long-haul.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -1509,7 +1509,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/ADC52.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-off-road.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -1549,7 +1549,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/ADC53.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-off-road.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -1590,7 +1590,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/AGC08.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-off-road.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -1625,7 +1625,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/AGC28.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-off-road.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -1660,7 +1660,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/AGM10.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-off-road.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -1692,7 +1692,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/AGM84.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-off-road.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -1725,7 +1725,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/ADW80.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-winter.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -1757,7 +1757,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/ADW81.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-winter.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,
@@ -1789,7 +1789,7 @@ export const BIBLE_TIRES: TireData[] = [
     ],
     tireImage:    "/tires/Tire-Photos/ADW82.webp",
     heroBg:       SHARED_ASSETS.heroBg,
-    bgTruck:      SHARED_ASSETS.bgTruck,
+    bgTruck:      "/assets/bg-winter.jpg",
     cutawayImage: SHARED_ASSETS.cutaway,
     downloads: {
       catalog:      SHARED_ASSETS.catalog,

@@ -376,6 +376,15 @@ html {
   color: var(--accent-yellow) !important;
 }
 
+/* Opt-in tightening for tires with an unusually long size chart (see
+   COMPACT_SPEC_ROWS in TireProductPage.tsx). Flat 6px vertical padding against
+   the default 0.85rem (13.6px), so rows land ~32px instead of ~47px and a
+   16-row chart fits one screen. !important because tdStyle sets padding inline. */
+.spec-row--compact td {
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+}
+
 
 /* Tire hero spacing — desktop defaults */
 .tire-hero-text {

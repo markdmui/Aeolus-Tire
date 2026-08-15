@@ -1,6 +1,6 @@
 // Single source of truth for the tire catalog.
 //
-//   tires.generated.ts  — the tires in sheet 3 of Aeolus-Wireframe-06.xlsx.
+//   tires.generated.ts  — the tires in sheet 3 of Aeolus-Wireframe.xlsx.
 //                         AUTO-GENERATED; regenerate with
 //                         `pnpm --filter @workspace/scripts run generate:tires`.
 //   demo-tires.ts       — template pages, not real products.

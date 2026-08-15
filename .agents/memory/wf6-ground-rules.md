@@ -5,7 +5,7 @@ description: Authoritative rules for the Aeolus WF6 wireframe, tire catalog, and
 
 ## Source of truth
 
-**Only sheet "3. Content Wireframe" in `Aeolus-Wireframe-06.xlsx` is authoritative.**
+**Only sheet "3. Content Wireframe" in `Aeolus-Wireframe.xlsx` is authoritative.**
 - Sheet 1 "Support" = personal/dev notes. Contradicts sheet 3 in places. Ignore for product decisions.
 - Sheet 2 "Master Tire Specs" = marketing team notes. Also contradicts sheet 3. Ignore for product decisions.
 
@@ -24,7 +24,7 @@ description: Authoritative rules for the Aeolus WF6 wireframe, tire catalog, and
 ## Canonical data flow
 
 ```
-Aeolus-Wireframe-06.xlsx (sheet 3)
+Aeolus-Wireframe.xlsx (sheet 3)
   → scripts/generate-tires.py
     → src/data/tires.generated.ts  (read-only)
       → src/data/tires.ts          (re-exports; add hand-maintained companions here)

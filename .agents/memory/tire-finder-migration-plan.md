@@ -22,7 +22,7 @@ Edit one file; both surfaces update automatically.
 
 ## Tags field
 
-`tags?: string[]` added to TireData interface. Populated for all 43 wireframe-06 tires.
+`tags?: string[]` added to TireData interface. Populated for all 43 wireframe tires.
 Extra tires (not in wireframe) have no tags — they appear in the grid but aren't filterable by feature.
 When a new tire is added to tires.ts, add a `tags:` line before `downloads:` to make it filterable.
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """
 Generate artifacts/aeolus-website/src/data/tires.generated.ts from the
-"3. Content Wireframe" sheet of Aeolus-Wireframe-06.xlsx.
+"3. Content Wireframe" sheet of Aeolus-Wireframe.xlsx.
 
 Sheet 3 is the content bible: every tire in it must appear on the site, and
 nothing on the site should contradict it. Sheets 1 and 2 are internal notes
@@ -27,7 +27,7 @@ except ImportError:
     sys.exit("Pillow is required:  python -m pip install Pillow")
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-WORKBOOK = os.path.join(ROOT, "Aeolus-Wireframe-06.xlsx")
+WORKBOOK = os.path.join(ROOT, "Aeolus-Wireframe.xlsx")
 SHEET = "3. Content Wireframe"
 SITE = os.path.join(ROOT, "artifacts", "aeolus-website")
 OUT = os.path.join(SITE, "src", "data", "tires.generated.ts")
@@ -453,7 +453,7 @@ def main():
         "// ─────────────────────────────────────────────────────────────────────────────",
         "// AUTO-GENERATED — DO NOT EDIT BY HAND.",
         "//",
-        f'// Source: Aeolus-Wireframe-06.xlsx, sheet "{SHEET}" (the content bible).',
+        f'// Source: Aeolus-Wireframe.xlsx, sheet "{SHEET}" (the content bible).',
         f"// Regenerate: pnpm --filter @workspace/scripts run generate:tires",
         f"// Last generated: {date.today().isoformat()}",
         "//",

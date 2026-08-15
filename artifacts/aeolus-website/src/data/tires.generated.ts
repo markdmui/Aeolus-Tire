@@ -1,7 +1,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // AUTO-GENERATED — DO NOT EDIT BY HAND.
 //
-// Source: Aeolus-Wireframe-06.xlsx, sheet "3. Content Wireframe" (the content bible).
+// Source: Aeolus-Wireframe.xlsx, sheet "3. Content Wireframe" (the content bible).
 // Regenerate: pnpm --filter @workspace/scripts run generate:tires
 // Last generated: 2026-08-15
 //

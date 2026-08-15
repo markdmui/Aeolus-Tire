@@ -192,12 +192,18 @@ function LayeredBgSection({ tire, onOpen }: { tire: TireData; onOpen: (src: stri
         backgroundPosition: bgTop === null ? "right calc(40% + 300px)" : `right ${bgTop}px`,
         backgroundRepeat: "no-repeat",
       }} />
+      {/* zIndex 2 keeps this above the specs wrapper below. The specs section is
+          pulled up by a negative margin, so its download-button container's large
+          top padding lands on top of this section's last items (the 06/07 tech
+          bullets) and swallows their clicks — badly on mobile, where the pull-up
+          is -190px. The padding is empty, so winning the hit test here costs
+          nothing visually: this section's background is transparent. */}
       {hasFeatureImages ? (
-        <div style={{ position: "relative", zIndex: 1, marginTop: "-20px" }}>
+        <div style={{ position: "relative", zIndex: 2, marginTop: "-20px" }}>
           <FeatureSection tire={tire} onOpen={onOpen} layeredBg />
         </div>
       ) : (
-        <div style={{ position: "relative", zIndex: 1, marginTop: "-20px" }}>
+        <div style={{ position: "relative", zIndex: 2, marginTop: "-20px" }}>
           <TireTechExplorer imageSrc={tire.cutawayImage} />
         </div>
       )}

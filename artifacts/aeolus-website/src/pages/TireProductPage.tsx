@@ -142,7 +142,12 @@ export default function TireProductPage() {
                   <TireTechExplorer imageSrc={tire.cutawayImage} />
                 </div>
               )}
-              <div className="specs-section-wrapper" style={{ position: "relative", zIndex: 1, marginTop: "-110px" }}>
+              {/* Measured from whichever section precedes the specs. Feature cards
+                  keep the original -110px. On card-less pages that section is the
+                  cutaway, whose bottom padding is now 0 — anything deeper than
+                  -54px there drags this section's empty top padding over the
+                  cutaway's tech list and swallows clicks on its last items. */}
+              <div className="specs-section-wrapper" style={{ position: "relative", zIndex: 1, marginTop: hasFeatureImages ? "-110px" : "-54px" }}>
                 <SpecsSection tire={tire} layeredBg />
               </div>
             </div>
@@ -498,15 +503,18 @@ function FeatureSection({ tire, onOpen, layeredBg }: { tire: TireData; onOpen: (
 }
 
 // ─── Specs (truck bg + download buttons + spec table) ────────────────────────
-// Per-tire spec-table tightening. Neo Allroads S carries 16 size rows against a
-// catalog median of 3, so its table runs long enough to push the page furniture
-// off-screen; trimming 2px off each row's top and bottom padding claws back 4px
-// per row without touching any other tire. Keyed by slug so adding a tire here
-// is a one-line change — see .spec-row--compact in index.css.
-const COMPACT_SPEC_ROWS = new Set(["neo-allroads-s"]);
+// Per-tire spec-table tightening. Neo Allroads S carries 16 size rows and AGC08
+// more still, against a catalog median of 3, so their tables run long enough to
+// push the page furniture off-screen; trimming the row padding claws back height
+// without touching any other tire. Keyed by slug → vertical padding, so adding a
+// tire here is a one-line change — see .spec-row--compact in index.css.
+const COMPACT_SPEC_ROWS: Record<string, string> = {
+  "neo-allroads-s": "6px",
+  "agc08":          "5px",
+};
 
 function SpecsSection({ tire, layeredBg }: { tire: TireData; layeredBg?: boolean }) {
-  const compactRows = COMPACT_SPEC_ROWS.has(tire.slug);
+  const compactPad = COMPACT_SPEC_ROWS[tire.slug];
   const showSmartway = tire.specRows.some((r) => r.smartway);
   const showMs       = tire.specRows.some((r) => r.ms);
   const showPmsf     = tire.specRows.some((r) => r["3PMSF"]);
@@ -678,10 +686,11 @@ function SpecsSection({ tire, layeredBg }: { tire: TireData; layeredBg?: boolean
               {tire.specRows.map((row, i) => (
                 <tr
                   key={`${row.size}-${row.ply}-${i}`}
-                  className={`spec-row${compactRows ? " spec-row--compact" : ""}`}
+                  className={`spec-row${compactPad ? " spec-row--compact" : ""}`}
                   style={{
                     borderBottom: i < tire.specRows.length - 1 ? "1px solid var(--border-color)" : "none",
                     transition: "background-color 0.15s ease",
+                    ...(compactPad ? { "--spec-row-pad": compactPad } as React.CSSProperties : null),
                   }}
                 >
                   <td style={tdStyle} onMouseEnter={() => setHoveredCol(null)}>{row.size}</td>

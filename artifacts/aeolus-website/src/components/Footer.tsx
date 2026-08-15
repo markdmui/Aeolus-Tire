@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer
       className="py-16"
-      style={{ backgroundColor: "var(--bg-dark)" }}
+      style={{ backgroundColor: "var(--bg-dark)", paddingTop: "110px" }}
     >
       <div className="container">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">

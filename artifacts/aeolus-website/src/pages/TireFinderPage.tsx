@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import { TIRES, TireData } from "../data/tires";
 import { usePageMeta } from "../lib/seo";
 import { thumbUrl, prefetchThumbs } from "../lib/images";
+import TireThumb from "../components/TireThumb";
 import "./TireFinderPage.css";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -569,35 +570,14 @@ function TireCard({ tire, onClick, index }: { tire: FinderTire; onClick: () => v
   const n       = tire.sizes.length;
   const eager   = index < EAGER_CARD_COUNT;
 
-  // Cards use the generated thumbnails (see lib/images); the full-resolution
-  // originals stay on the product pages, the spec modal and the lightbox.
-  const fullSrc  = `${BASE}${tire.tireImage}`;
-  const thumbSrc = thumbUrl(tire.tireImage);
-
-  // Fall back to the original if a thumbnail is missing or a request is
-  // dropped, and only hide the image once both have failed. A single dropped
-  // request used to hide the swatch permanently, with no second attempt.
-  const onImgError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    const img = e.currentTarget;
-    if (img.dataset.fallback) { img.style.display = "none"; return; }
-    img.dataset.fallback = "1";
-    img.src = fullSrc;
-  };
-
   return (
     <button type="button" className="tf-card" onClick={onClick}
             aria-label={`${tire.name} — view size and spec chart`}>
       <div className="tf-swatch">
-        <img
-          src={thumbSrc}
-          alt={tire.name}
-          loading={eager ? "eager" : "lazy"}
-          fetchPriority={eager ? "high" : "auto"}
-          decoding="async"
-          width={1800}
-          height={2400}
-          onError={onImgError}
-        />
+        {/* Cards use the generated thumbnails (see lib/images); the
+            full-resolution originals stay on the product pages, the spec modal
+            and the lightbox. */}
+        <TireThumb tireImage={tire.tireImage} alt={tire.name} eager={eager} />
       </div>
       <div className="tf-card-body">
         <div className="tf-seg-line">{tire.finderSegment} · {tire.pos}</div>
@@ -866,8 +846,13 @@ export default function TireFinderPage() {
 
   // Warm the rest of the thumbnails in the background once the page is idle, so
   // a lazy card is already cached by the time you scroll to it. Cards keep
-  // loading="lazy", so this never competes with first paint.
-  useEffect(() => prefetchThumbs(FINDER_TIRES.map(t => thumbUrl(t.tireImage))), []);
+  // loading="lazy", so this never competes with first paint. Skips the eager
+  // cards — those are already in flight, and re-requesting them only doubled
+  // the opening burst.
+  useEffect(
+    () => prefetchThumbs(FINDER_TIRES.slice(EAGER_CARD_COUNT).map(t => thumbUrl(t.tireImage))),
+    [],
+  );
 
   // Lock body scroll when modal is open
   useEffect(() => {

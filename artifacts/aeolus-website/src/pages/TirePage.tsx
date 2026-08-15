@@ -5,7 +5,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { CATALOG_TIRES, TireData } from "../data/tires";
 import { usePageMeta } from "../lib/seo";
-import { thumbUrl, fullImageUrl, prefetchThumbs } from "../lib/images";
+import { thumbUrl, prefetchThumbs } from "../lib/images";
+import TireThumb from "../components/TireThumb";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 
@@ -53,8 +54,13 @@ export default function TirePage() {
   const [activeFilter, setActiveFilter] = useState<Filter | null>(null);
 
   // Warm the rest of the thumbnails once the page is idle, so cards further
-  // down are already cached by the time they scroll into view.
-  useEffect(() => prefetchThumbs(CATALOG_TIRES.map(t => thumbUrl(t.tireImage))), []);
+  // down are already cached by the time they scroll into view. Skips the eager
+  // cards — those are already in flight, and re-requesting them only doubled
+  // the opening burst.
+  useEffect(
+    () => prefetchThumbs(CATALOG_TIRES.slice(EAGER_CARD_COUNT).map(t => thumbUrl(t.tireImage))),
+    [],
+  );
 
   const isFiltered = activeFilter !== null;
 
@@ -181,15 +187,6 @@ function TireCard({ tire, delay, index }: { tire: TireEntry; delay: number; inde
   const [hovered, setHovered] = useState(false);
   const eager = index < EAGER_CARD_COUNT;
 
-  // Fall back to the full-resolution original if a thumbnail is missing or its
-  // request is dropped, so a card is never left blank.
-  const onImgError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    const img = e.currentTarget;
-    if (img.dataset.fallback) return;
-    img.dataset.fallback = "1";
-    img.src = fullImageUrl(tire.tireImage);
-  };
-
   return (
     <motion.div
       layout
@@ -215,14 +212,11 @@ function TireCard({ tire, delay, index }: { tire: TireEntry; delay: number; inde
               marginBottom: "4px",
             }}
           >
-            <img
-              src={thumbUrl(tire.tireImage)}
+            <TireThumb
+              tireImage={tire.tireImage}
               alt={tire.name}
-              loading={eager ? "eager" : "lazy"}
-              fetchPriority={eager ? "high" : "auto"}
-              onError={onImgError}
-              width={1800}
-              height={2400}
+              eager={eager}
+              className="lineup-card-img"
               style={{
                 width: "100%",
                 height: "auto",
@@ -230,8 +224,6 @@ function TireCard({ tire, delay, index }: { tire: TireEntry; delay: number; inde
                 transform: "scale(1.906) translateY(2.5%) translateX(12.5%)",
                 transformOrigin: "top center",
               }}
-              className="lineup-card-img"
-              decoding="async"
             />
           </div>
 

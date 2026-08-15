@@ -230,9 +230,25 @@ function HeroSection({ tire, onOpen }: { tire: TireData; onOpen: (src: string) =
   const [tireHovered, setTireHovered] = useState(false);
   const [tireMouse, setTireMouse] = useState({ x: 0, y: 0 });
 
-  const words = tire.name.toUpperCase().split(" ");
-  const lastName = words.pop()!;
-  const firstName = words.join(" ");
+  // Hero title is two-tone: white, then the trailing part in accent yellow.
+  //
+  // Multi-word Neo names ("NEO FUEL S") put the last word in yellow. Single-word
+  // product codes ("ADW82", "AGM10", "ASR79") split letters from the trailing
+  // two-digit number instead — without this they have no last *word*, so the
+  // whole code came out yellow. firstName keeps its trailing space in the
+  // multi-word case so the rendered spacing is unchanged.
+  const upperName = tire.name.toUpperCase();
+  const codeMatch = /^([A-Z]+)(\d{2})$/.exec(upperName);
+  let firstName: string;
+  let lastName: string;
+  if (codeMatch) {
+    firstName = codeMatch[1];
+    lastName = codeMatch[2];
+  } else {
+    const words = upperName.split(" ");
+    lastName = words.pop()!;
+    firstName = words.length ? `${words.join(" ")} ` : "";
+  }
 
   return (
     <section
@@ -287,7 +303,7 @@ function HeroSection({ tire, onOpen }: { tire: TireData; onOpen: (src: string) =
               letterSpacing: "-0.02em",
             }}
           >
-            <span style={{ color: "#fff" }}>{firstName} </span>
+            <span style={{ color: "#fff" }}>{firstName}</span>
             <span style={{ color: "var(--accent-yellow)" }}>{lastName}</span>
           </motion.h1>
 

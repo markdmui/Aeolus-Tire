@@ -9,6 +9,11 @@ import "./TireFinderPage.css";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 
+// Card grid uses the 720px thumbnails; everything else keeps the originals.
+// Regenerate with: pnpm --filter @workspace/scripts run generate:thumbs
+const thumbUrl = (tireImage: string) =>
+  `${BASE}${tireImage.replace("/Tire-Photos/", "/Tire-Photos/thumbs/")}`;
+
 // One-line rollback switch: flip to false to bring back the three separate
 // Width/Ratio/Rim dropdowns if the combined size picker doesn't land well.
 const USE_COMBINED_SIZE_PICKER = true;
@@ -556,24 +561,47 @@ function SizeComboPicker({
   );
 }
 
-function TireCard({ tire, onClick }: { tire: FinderTire; onClick: () => void }) {
+// Cards this far into the grid are on screen at first paint on a typical
+// desktop (4 columns x 3 rows). They skip lazy-loading and get fetch priority
+// so the first screenful is never blank while the rest stream in.
+const EAGER_CARD_COUNT = 12;
+
+function TireCard({ tire, onClick, index }: { tire: FinderTire; onClick: () => void; index: number }) {
   const hasMS   = tire.sizes.some(s => s.ms);
   const hasPMSF = tire.sizes.some(s => s.pmsf);
   const hasSW   = tire.sizes.some(s => s.smartway);
   const n       = tire.sizes.length;
+  const eager   = index < EAGER_CARD_COUNT;
+
+  // Cards use the 720px thumbnails (pnpm --filter @workspace/scripts run
+  // generate:thumbs); the full-resolution originals stay on the product pages,
+  // the spec modal and the lightbox.
+  const fullSrc  = `${BASE}${tire.tireImage}`;
+  const thumbSrc = thumbUrl(tire.tireImage);
+
+  // Fall back to the original if a thumbnail is missing or a request is
+  // dropped, and only hide the image once both have failed. A single dropped
+  // request used to hide the swatch permanently, with no second attempt.
+  const onImgError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget;
+    if (img.dataset.fallback) { img.style.display = "none"; return; }
+    img.dataset.fallback = "1";
+    img.src = fullSrc;
+  };
 
   return (
     <button type="button" className="tf-card" onClick={onClick}
             aria-label={`${tire.name} — view size and spec chart`}>
       <div className="tf-swatch">
         <img
-          src={`${BASE}${tire.tireImage}`}
+          src={thumbSrc}
           alt={tire.name}
-          loading="lazy"
+          loading={eager ? "eager" : "lazy"}
+          fetchPriority={eager ? "high" : "auto"}
           decoding="async"
           width={1800}
           height={2400}
-          onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+          onError={onImgError}
         />
       </div>
       <div className="tf-card-body">
@@ -841,6 +869,42 @@ export default function TireFinderPage() {
     }
   }, [fs]);
 
+  // Warm the rest of the thumbnails in the background once the page is idle.
+  // Cards still declare loading="lazy", so this never competes with first
+  // paint — it just means a card is normally already cached by the time you
+  // scroll to it, instead of starting its download at that moment. The whole
+  // set is ~3 MB, fetched a few at a time. Skipped when the browser reports
+  // data-saver or a 2G-class connection, where lazy-loading is the point.
+  useEffect(() => {
+    const conn = (navigator as Navigator & {
+      connection?: { saveData?: boolean; effectiveType?: string };
+    }).connection;
+    if (conn?.saveData || /(^|-)2g$/.test(conn?.effectiveType ?? "")) return;
+
+    const urls = FINDER_TIRES.map(t => thumbUrl(t.tireImage));
+    let cursor = 0;
+    let cancelled = false;
+
+    const fetchNext = () => {
+      if (cancelled || cursor >= urls.length) return;
+      const img = new Image();
+      img.onload = img.onerror = fetchNext;
+      img.src = urls[cursor++];
+    };
+    const start = () => { for (let i = 0; i < 4; i++) fetchNext(); };
+
+    // Safari only shipped requestIdleCallback recently; fall back to a timer.
+    const hasIdle = typeof window.requestIdleCallback === "function";
+    const handle = hasIdle
+      ? window.requestIdleCallback(start, { timeout: 2000 })
+      : window.setTimeout(start, 500);
+    return () => {
+      cancelled = true;
+      if (hasIdle) window.cancelIdleCallback(handle);
+      else clearTimeout(handle);
+    };
+  }, []);
+
   // Lock body scroll when modal is open
   useEffect(() => {
     document.body.style.overflow = modalTire ? "hidden" : "";
@@ -1084,8 +1148,8 @@ export default function TireFinderPage() {
             {results.length === 0 ? (
               <div className="tf-empty-state">No tires match these filters — try clearing some.</div>
             ) : (
-              results.map(tire => (
-                <TireCard key={tire.slug} tire={tire} onClick={() => setModalTire(tire)} />
+              results.map((tire, i) => (
+                <TireCard key={tire.slug} tire={tire} index={i} onClick={() => setModalTire(tire)} />
               ))
             )}
           </div>

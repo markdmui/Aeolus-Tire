@@ -5,14 +5,10 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { TIRES, TireData } from "../data/tires";
 import { usePageMeta } from "../lib/seo";
+import { thumbUrl, prefetchThumbs } from "../lib/images";
 import "./TireFinderPage.css";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
-
-// Card grid uses the 720px thumbnails; everything else keeps the originals.
-// Regenerate with: pnpm --filter @workspace/scripts run generate:thumbs
-const thumbUrl = (tireImage: string) =>
-  `${BASE}${tireImage.replace("/Tire-Photos/", "/Tire-Photos/thumbs/")}`;
 
 // One-line rollback switch: flip to false to bring back the three separate
 // Width/Ratio/Rim dropdowns if the combined size picker doesn't land well.
@@ -573,9 +569,8 @@ function TireCard({ tire, onClick, index }: { tire: FinderTire; onClick: () => v
   const n       = tire.sizes.length;
   const eager   = index < EAGER_CARD_COUNT;
 
-  // Cards use the 720px thumbnails (pnpm --filter @workspace/scripts run
-  // generate:thumbs); the full-resolution originals stay on the product pages,
-  // the spec modal and the lightbox.
+  // Cards use the generated thumbnails (see lib/images); the full-resolution
+  // originals stay on the product pages, the spec modal and the lightbox.
   const fullSrc  = `${BASE}${tire.tireImage}`;
   const thumbSrc = thumbUrl(tire.tireImage);
 
@@ -869,41 +864,10 @@ export default function TireFinderPage() {
     }
   }, [fs]);
 
-  // Warm the rest of the thumbnails in the background once the page is idle.
-  // Cards still declare loading="lazy", so this never competes with first
-  // paint — it just means a card is normally already cached by the time you
-  // scroll to it, instead of starting its download at that moment. The whole
-  // set is ~3 MB, fetched a few at a time. Skipped when the browser reports
-  // data-saver or a 2G-class connection, where lazy-loading is the point.
-  useEffect(() => {
-    const conn = (navigator as Navigator & {
-      connection?: { saveData?: boolean; effectiveType?: string };
-    }).connection;
-    if (conn?.saveData || /(^|-)2g$/.test(conn?.effectiveType ?? "")) return;
-
-    const urls = FINDER_TIRES.map(t => thumbUrl(t.tireImage));
-    let cursor = 0;
-    let cancelled = false;
-
-    const fetchNext = () => {
-      if (cancelled || cursor >= urls.length) return;
-      const img = new Image();
-      img.onload = img.onerror = fetchNext;
-      img.src = urls[cursor++];
-    };
-    const start = () => { for (let i = 0; i < 4; i++) fetchNext(); };
-
-    // Safari only shipped requestIdleCallback recently; fall back to a timer.
-    const hasIdle = typeof window.requestIdleCallback === "function";
-    const handle = hasIdle
-      ? window.requestIdleCallback(start, { timeout: 2000 })
-      : window.setTimeout(start, 500);
-    return () => {
-      cancelled = true;
-      if (hasIdle) window.cancelIdleCallback(handle);
-      else clearTimeout(handle);
-    };
-  }, []);
+  // Warm the rest of the thumbnails in the background once the page is idle, so
+  // a lazy card is already cached by the time you scroll to it. Cards keep
+  // loading="lazy", so this never competes with first paint.
+  useEffect(() => prefetchThumbs(FINDER_TIRES.map(t => thumbUrl(t.tireImage))), []);
 
   // Lock body scroll when modal is open
   useEffect(() => {

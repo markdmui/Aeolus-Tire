@@ -1,10 +1,11 @@
 ﻿import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { CATALOG_TIRES, TireData } from "../data/tires";
 import { usePageMeta } from "../lib/seo";
+import { thumbUrl, fullImageUrl, prefetchThumbs } from "../lib/images";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 
@@ -38,6 +39,10 @@ function matchesFilter(tire: TireEntry, filter: Filter | null): boolean {
 // The tire grid is the catalog, in wireframe order — see src/data/tires.ts.
 const GROUPS: { tires: TireEntry[] }[] = [{ tires: CATALOG_TIRES }];
 
+// The lineup grid is denser than the finder's, so more cards are on screen at
+// first paint. These skip lazy-loading and get fetch priority.
+const EAGER_CARD_COUNT = 18;
+
 export default function TirePage() {
   usePageMeta({
     title: "Truck Tire Lineup — TBR & OTR Tire Catalog",
@@ -46,6 +51,10 @@ export default function TirePage() {
   });
 
   const [activeFilter, setActiveFilter] = useState<Filter | null>(null);
+
+  // Warm the rest of the thumbnails once the page is idle, so cards further
+  // down are already cached by the time they scroll into view.
+  useEffect(() => prefetchThumbs(CATALOG_TIRES.map(t => thumbUrl(t.tireImage))), []);
 
   const isFiltered = activeFilter !== null;
 
@@ -160,16 +169,26 @@ function GroupSection({ group, activeFilter }: { group: { tires: TireEntry[] }; 
     >
       <AnimatePresence mode="popLayout">
         {visible.map((tire, ti) => (
-          <TireCard key={tire.slug} tire={tire} delay={ti * 0.02} />
+          <TireCard key={tire.slug} tire={tire} delay={ti * 0.02} index={ti} />
         ))}
       </AnimatePresence>
     </motion.div>
   );
 }
 
-function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
+function TireCard({ tire, delay, index }: { tire: TireEntry; delay: number; index: number }) {
   const [prefix, suffix] = splitName(tire.name);
   const [hovered, setHovered] = useState(false);
+  const eager = index < EAGER_CARD_COUNT;
+
+  // Fall back to the full-resolution original if a thumbnail is missing or its
+  // request is dropped, so a card is never left blank.
+  const onImgError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget;
+    if (img.dataset.fallback) return;
+    img.dataset.fallback = "1";
+    img.src = fullImageUrl(tire.tireImage);
+  };
 
   return (
     <motion.div
@@ -197,9 +216,11 @@ function TireCard({ tire, delay }: { tire: TireEntry; delay: number }) {
             }}
           >
             <img
-              src={`${BASE}${tire.tireImage}`}
+              src={thumbUrl(tire.tireImage)}
               alt={tire.name}
-              loading="lazy"
+              loading={eager ? "eager" : "lazy"}
+              fetchPriority={eager ? "high" : "auto"}
+              onError={onImgError}
               width={1800}
               height={2400}
               style={{

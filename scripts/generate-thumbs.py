@@ -6,9 +6,17 @@ photos (1800x2400, ~410 KB each) meant ~20 MB per page load, which is why
 thumbnails showed up blank on a first visit -- nothing was failing, the images
 simply had not arrived yet.
 
-Cards render the image at most ~273 CSS px wide, so 720px covers a 2x retina
-display with room to spare. Product pages, the finder's spec modal and the
-lightbox keep using the full-resolution originals; only the card grid uses these.
+Used by both card grids: the Tire Finder and the /tires lineup.
+
+Width is set by the widest card render on either grid. The lineup's cards are
+the larger of the two, and -- counter-intuitively -- they peak on *narrow*
+desktops, not wide ones: just under the 1024px breakpoint the grid drops to 4
+columns and each card gets wider, drawing the image at ~430 CSS px (its
+scale(1.906) transform is why the drawn size exceeds the card box). 900px
+covers that at a 2x device pixel ratio.
+
+Product pages, the finder's spec modal and the lightbox keep using the
+full-resolution originals; only the card grids use these.
 
   Regenerate: pnpm --filter @workspace/scripts run generate:thumbs
   Add --force to rebuild thumbnails that are already up to date.
@@ -23,7 +31,7 @@ from pathlib import Path
 
 from PIL import Image
 
-THUMB_WIDTH = 720
+THUMB_WIDTH = 900
 WEBP_QUALITY = 80
 
 ROOT = Path(__file__).resolve().parent.parent

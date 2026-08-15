@@ -20,6 +20,30 @@ const NAV_LABEL_OVERRIDES: Record<string, string> = {
 
 const navLabel = (slug: string, name: string) => NAV_LABEL_OVERRIDES[slug] ?? name;
 
+// One dropdown row. `currentSlug` comes from the /tires/:slug route so the tire
+// whose page is open is highlighted — see .dropdown-tire-link.is-current.
+function TireLink({
+  tire,
+  currentSlug,
+  onClick,
+}: {
+  tire: { slug: string; name: string };
+  currentSlug?: string;
+  onClick?: () => void;
+}) {
+  const isCurrent = tire.slug === currentSlug;
+  return (
+    <Link
+      href={`/tires/${tire.slug}`}
+      className={isCurrent ? "dropdown-tire-link is-current" : "dropdown-tire-link"}
+      aria-current={isCurrent ? "page" : undefined}
+      onClick={onClick}
+    >
+      {navLabel(tire.slug, tire.name)}
+    </Link>
+  );
+}
+
 function CategoryHeader({ text }: { text: string }) {
   const parts = text.split(/(NEO SERIES|NEO)/);
   return (
@@ -40,6 +64,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [tiresOpen, setTiresOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [, tireParams] = useRoute("/tires/:slug");
 
   const openTires = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -135,9 +160,7 @@ export default function Navbar() {
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.2, delay: (si * 4 + ti) * 0.015, ease: "easeOut" }}
                         >
-                          <Link href={`/tires/${tire.slug}`} className="dropdown-tire-link">
-                            {navLabel(tire.slug, tire.name)}
-                          </Link>
+                          <TireLink tire={tire} currentSlug={tireParams?.slug} />
                         </motion.div>
                       ))}
                     </div>
@@ -161,9 +184,7 @@ export default function Navbar() {
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.2, delay: (si * 4 + ti) * 0.015 + 0.05, ease: "easeOut" }}
                         >
-                          <Link href={`/tires/${tire.slug}`} className="dropdown-tire-link">
-                            {navLabel(tire.slug, tire.name)}
-                          </Link>
+                          <TireLink tire={tire} currentSlug={tireParams?.slug} />
                         </motion.div>
                       ))}
                     </div>
@@ -229,6 +250,7 @@ function NavLinks({ onTiresEnter }: { onTiresEnter: () => void }) {
 }
 
 function MobileNavLinks({ onClose }: { onClose: () => void }) {
+  const [, tireParams] = useRoute("/tires/:slug");
   const [tiresOpen, setTiresOpen] = useState(false);
 
   const rowStyle: React.CSSProperties = { borderBottom: "1px solid #222" };
@@ -280,14 +302,12 @@ function MobileNavLinks({ onClose }: { onClose: () => void }) {
                     <CategoryHeader text={section.category} />
                   </div>
                   {section.tires.map((tire) => (
-                    <Link
+                    <TireLink
                       key={tire.slug}
-                      href={`/tires/${tire.slug}`}
-                      className="dropdown-tire-link"
+                      tire={tire}
+                      currentSlug={tireParams?.slug}
                       onClick={onClose}
-                    >
-                      {navLabel(tire.slug, tire.name)}
-                    </Link>
+                    />
                   ))}
                 </div>
               ))}
@@ -301,14 +321,12 @@ function MobileNavLinks({ onClose }: { onClose: () => void }) {
                     <CategoryHeader text={section.category} />
                   </div>
                   {section.tires.map((tire) => (
-                    <Link
+                    <TireLink
                       key={tire.slug}
-                      href={`/tires/${tire.slug}`}
-                      className="dropdown-tire-link"
+                      tire={tire}
+                      currentSlug={tireParams?.slug}
                       onClick={onClose}
-                    >
-                      {navLabel(tire.slug, tire.name)}
-                    </Link>
+                    />
                   ))}
                 </div>
               ))}

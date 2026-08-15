@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useLayoutEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useParams } from "wouter";
 import { Notebook, FilePdf, ShieldCheck, Image } from "@phosphor-icons/react";
@@ -121,38 +121,7 @@ export default function TireProductPage() {
         <HeroSection tire={tire} onOpen={setActiveImg} />
 
         {/* bg-long-haul spans features + specs on all tire pages */}
-        {(() => {
-          const hasFeatureImages = tire.features.some(f => f.image);
-          return (
-            <div style={{ position: "relative" }}>
-              <div className={`tire-bg-truck-layered${!hasFeatureImages ? " tire-bg-truck-layered--x2" : ""}`} style={{
-                position: "absolute",
-                inset: 0,
-                backgroundImage: `url(${tire.bgTruck})`,
-                backgroundSize: "95% auto",
-                backgroundPosition: "right calc(40% + 300px)",
-                backgroundRepeat: "no-repeat",
-              }} />
-              {hasFeatureImages ? (
-                <div style={{ position: "relative", zIndex: 1, marginTop: "-20px" }}>
-                  <FeatureSection tire={tire} onOpen={setActiveImg} layeredBg />
-                </div>
-              ) : (
-                <div style={{ position: "relative", zIndex: 1, marginTop: "-20px" }}>
-                  <TireTechExplorer imageSrc={tire.cutawayImage} />
-                </div>
-              )}
-              {/* Measured from whichever section precedes the specs. Feature cards
-                  keep the original -110px. On card-less pages that section is the
-                  cutaway, whose bottom padding is now 0 — anything deeper than
-                  -54px there drags this section's empty top padding over the
-                  cutaway's tech list and swallows clicks on its last items. */}
-              <div className="specs-section-wrapper" style={{ position: "relative", zIndex: 1, marginTop: hasFeatureImages ? "-110px" : "-54px" }}>
-                <SpecsSection tire={tire} layeredBg />
-              </div>
-            </div>
-          );
-        })()}
+        <LayeredBgSection tire={tire} onOpen={setActiveImg} />
       </div>
       {tire.features.some(f => f.image) && <TireTechExplorer imageSrc={tire.cutawayImage} />}
       <Footer />
@@ -167,6 +136,83 @@ export default function TireProductPage() {
           />
         )}
       </AnimatePresence>
+    </div>
+  );
+}
+
+// ─── Features/cutaway + specs, sharing one truck photo ───────────────────────
+// The photo is anchored to the top of the spec chart. It used to be placed with
+// a percentage, which resolves against this wrapper's height — so a long size
+// chart (AGC08, 13 rows) pushed the truck further down the page than a short one
+// (ADC52, 3 rows). The offset is measured at layout time rather than hard-coded
+// because the section above the chart isn't a fixed height: the cutaway explorer
+// and the feature-card grid differ, and the card grid varies with card count.
+//
+// Gap = distance from the chart's top edge to the photo's top edge. Change these
+// to move the photo on every tire page at once.
+//
+// Reference placement was /tires/asl01 (desktop -299, mobile 352); desktop was
+// then dropped a further 290px to -9. Mobile deliberately still sits at the
+// original asl01 value.
+const TRUCK_BG_GAP_DESKTOP = -9;
+const TRUCK_BG_GAP_MOBILE  = 352;
+const TRUCK_BG_MOBILE_MQ   = "(max-width: 767px)";
+
+function LayeredBgSection({ tire, onOpen }: { tire: TireData; onOpen: (src: string) => void }) {
+  const hasFeatureImages = tire.features.some(f => f.image);
+  const boxRef = useRef<HTMLDivElement>(null);
+  const specsRef = useRef<HTMLDivElement>(null);
+  const [bgTop, setBgTop] = useState<number | null>(null);
+
+  useLayoutEffect(() => {
+    const measure = () => {
+      const box = boxRef.current, specs = specsRef.current;
+      if (!box || !specs) return;
+      const gap = window.matchMedia(TRUCK_BG_MOBILE_MQ).matches
+        ? TRUCK_BG_GAP_MOBILE
+        : TRUCK_BG_GAP_DESKTOP;
+      setBgTop(specs.getBoundingClientRect().top - box.getBoundingClientRect().top + gap);
+    };
+    measure();
+    // Re-measure when the chart grows/shrinks or the section above reflows.
+    const ro = new ResizeObserver(measure);
+    if (boxRef.current) ro.observe(boxRef.current);
+    if (specsRef.current) ro.observe(specsRef.current);
+    window.addEventListener("resize", measure);
+    return () => { ro.disconnect(); window.removeEventListener("resize", measure); };
+  }, [tire.slug]);
+
+  return (
+    <div ref={boxRef} style={{ position: "relative" }}>
+      <div className="tire-bg-truck-layered" style={{
+        position: "absolute",
+        inset: 0,
+        backgroundImage: `url(${tire.bgTruck})`,
+        backgroundSize: "95% auto",
+        backgroundPosition: bgTop === null ? "right calc(40% + 300px)" : `right ${bgTop}px`,
+        backgroundRepeat: "no-repeat",
+      }} />
+      {hasFeatureImages ? (
+        <div style={{ position: "relative", zIndex: 1, marginTop: "-20px" }}>
+          <FeatureSection tire={tire} onOpen={onOpen} layeredBg />
+        </div>
+      ) : (
+        <div style={{ position: "relative", zIndex: 1, marginTop: "-20px" }}>
+          <TireTechExplorer imageSrc={tire.cutawayImage} />
+        </div>
+      )}
+      {/* Measured from whichever section precedes the specs. Feature cards
+          keep the original -110px. On card-less pages that section is the
+          cutaway, whose bottom padding is now 0 — anything deeper than
+          -54px there drags this section's empty top padding over the
+          cutaway's tech list and swallows clicks on its last items. */}
+      <div
+        ref={specsRef}
+        className="specs-section-wrapper"
+        style={{ position: "relative", zIndex: 1, marginTop: hasFeatureImages ? "-110px" : "-54px" }}
+      >
+        <SpecsSection tire={tire} layeredBg />
+      </div>
     </div>
   );
 }

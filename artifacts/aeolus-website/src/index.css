@@ -232,6 +232,13 @@ html {
   transition: color 0.12s ease, background-color 0.12s ease;
 }
 
+/* "You are here" marker for the tire whose page is open. Must stay ABOVE the
+   :hover rule — same specificity, so source order decides, and hover wins. */
+.dropdown-tire-link.is-current {
+  color: var(--accent-yellow);
+  background-color: #262626;
+}
+
 .dropdown-tire-link:hover {
   color: #000000 !important;
   background-color: #FFD700;
@@ -705,7 +712,10 @@ html {
 /* ─── TIRE PRODUCT PAGE — layered bg truck ───────────────────── */
 @media (max-width: 767px) {
   .tire-bg-truck-layered {
-    background-position: right calc(40% + 720px) !important; /* +420px vs desktop */
+    /* Vertical position is set inline by LayeredBgSection (TireProductPage) —
+       it anchors the photo to the spec chart. Don't reintroduce a
+       background-position override here; !important would win and the chart
+       anchoring would silently stop working. */
     background-size: 126.75% auto !important; /* restore original size on mobile; desktop/tablet now smaller at 95% */
   }
   .specs-section-wrapper {
@@ -713,8 +723,5 @@ html {
   }
   .download-btn-group {
     padding-top: calc(3rem + 170px) !important; /* base 130px + 40px push-down on mobile */
-  }
-  .tire-bg-truck-layered--x2 {
-    background-position: right calc(40% + 500px) !important; /* 720px - 220px for demo-x2 */
   }
 }

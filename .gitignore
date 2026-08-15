@@ -41,6 +41,9 @@ testem.log
 .DS_Store
 Thumbs.db
 
+# Excel lock files — created next to the wireframe while it's open in Excel
+~$*
+
 .cursor/rules/nx-rules.mdc
 .github/instructions/nx.instructions.md
 

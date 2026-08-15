@@ -3,7 +3,7 @@
 //
 // Source: Aeolus-Wireframe-06.xlsx, sheet "3. Content Wireframe" (the content bible).
 // Regenerate: pnpm --filter @workspace/scripts run generate:tires
-// Last generated: 2026-08-14
+// Last generated: 2026-08-15
 //
 // Hand-maintained companions: tire-types.ts, demo-tires.ts.
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1567,7 +1567,7 @@ export const BIBLE_TIRES: TireData[] = [
     seriesLabel:   "STANDARD",
     categoryLabel: "ON/OFF",
     subtitle: "All-position tire for on/off-road use, designed for poor road conditions.",
-    tags: ["Poor Road", "Durable", "M+S"],
+    tags: ["Off Road", "Durable", "M+S"],
     bullets: [
       "All position tire best suited to steer and trailer applications in ON/ Off applications",
       "Chip and cut compound provides added protection in poor road conditions, reducing down time",
@@ -1643,7 +1643,7 @@ export const BIBLE_TIRES: TireData[] = [
     seriesLabel:   "STANDARD",
     categoryLabel: "OFF ROAD",
     subtitle: "All-position tire for on/off-road use, open tread, excellent traction on poor surfaces.",
-    tags: ["Poor Road", "Traction", "ML"],
+    tags: ["Off Road", "Traction"],
     bullets: [
       "All position tire for Off road applications",
       "Designed for poor road conditions",
@@ -1678,7 +1678,7 @@ export const BIBLE_TIRES: TireData[] = [
     seriesLabel:   "STANDARD",
     categoryLabel: "OFF ROAD",
     subtitle: "Drive tire for off-road use, wide tread, puncture-resistant, high traction, long-lasting.",
-    tags: ["Wide Tread", "Puncture Resistant", "Traction", "ML"],
+    tags: ["Wide Tread", "Puncture Resistant", "Traction", "Off Road"],
     bullets: [
       "Drive and trailer tire for use in Off road applications",
       "Wide tread provides improved wear, improving tread life",

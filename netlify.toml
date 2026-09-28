@@ -1,0 +1,23 @@
+# Netlify build settings for the Aeolus website.
+# Only the static site is deployed; the API server and database are unused.
+
+[build]
+  command = "pnpm --filter @workspace/aeolus-website run build"
+  publish = "artifacts/aeolus-website/dist/public"
+
+[build.environment]
+  NODE_VERSION = "24"
+
+# Keep search engines off the *.netlify.app preview links.
+# REMOVE this block when the client's real domain goes live.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+# Single-page app: send every unknown path to index.html so direct links
+# like /tires/neo-fuel-t3 work. Real files (images, JS) are served first.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

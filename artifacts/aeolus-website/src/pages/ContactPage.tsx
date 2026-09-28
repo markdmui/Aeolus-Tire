@@ -351,7 +351,36 @@ const labelStyle: React.CSSProperties = {
   display: "block",
 };
 
+type SendStatus = "idle" | "sending" | "sent" | "error";
+
+// Netlify Forms: POST the fields URL-encoded to "/" with a form-name that
+// matches the hidden blueprint form in index.html.
+async function submitToNetlify(form: HTMLFormElement) {
+  const body = new URLSearchParams(
+    Array.from(new FormData(form), ([k, v]) => [k, String(v)]),
+  ).toString();
+  const res = await fetch("/", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body,
+  });
+  if (!res.ok) throw new Error(`Form submit failed: ${res.status}`);
+}
+
 function SendMessage() {
+  const [status, setStatus] = useState<SendStatus>("idle");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("sending");
+    try {
+      await submitToNetlify(e.currentTarget);
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
     <section className="py-20" style={{ borderTop: "1px solid var(--border-color)", backgroundColor: "#000" }}>
       <div className="container">
@@ -368,25 +397,44 @@ function SendMessage() {
             Fill out the form below and we'll get back to you within one business day. For faster service, use the department contacts above.
           </p>
 
-          <form onSubmit={e => e.preventDefault()}>
+          {status === "sent" ? (
+            <div role="status" style={{ border: "1px solid var(--border-color)", padding: "1.5rem", backgroundColor: "#000" }}>
+              <div style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--accent-yellow)", marginBottom: "0.5rem" }}>
+                Message sent
+              </div>
+              <p style={{ fontSize: "0.9375rem", color: "#fff", lineHeight: 1.6 }}>
+                Thanks. We'll get back to you within one business day.
+              </p>
+            </div>
+          ) : (
+          <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" onSubmit={handleSubmit}>
+            <input type="hidden" name="form-name" value="contact" />
+            {/* Honeypot: hidden from people, filled in by spam bots */}
+            <p hidden><label>Leave this empty <input name="bot-field" tabIndex={-1} autoComplete="off" /></label></p>
             <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: "1rem", marginBottom: "1rem" }}>
-              <div><label style={labelStyle}>Name</label><input type="text" className={inputClass} style={inputStyle} /></div>
-              <div><label style={labelStyle}>Company</label><input type="text" className={inputClass} style={inputStyle} /></div>
+              <div><label style={labelStyle}>Name</label><input type="text" name="name" required className={inputClass} style={inputStyle} /></div>
+              <div><label style={labelStyle}>Company</label><input type="text" name="company" className={inputClass} style={inputStyle} /></div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: "1rem", marginBottom: "1rem" }}>
-              <div><label style={labelStyle}>Email</label><input type="email" className={inputClass} style={inputStyle} /></div>
-              <div><label style={labelStyle}>Phone</label><input type="tel" className={inputClass} style={inputStyle} /></div>
+              <div><label style={labelStyle}>Email</label><input type="email" name="email" required className={inputClass} style={inputStyle} /></div>
+              <div><label style={labelStyle}>Phone</label><input type="tel" name="phone" className={inputClass} style={inputStyle} /></div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: "1rem", marginBottom: "1rem" }}>
-              <div><label style={labelStyle}>I'm getting in touch about</label><input type="text" className={inputClass} style={inputStyle} /></div>
-              <div><label style={labelStyle}>Region</label><input type="text" className={inputClass} style={inputStyle} /></div>
+              <div><label style={labelStyle}>I'm getting in touch about</label><input type="text" name="topic" className={inputClass} style={inputStyle} /></div>
+              <div><label style={labelStyle}>Region</label><input type="text" name="region" className={inputClass} style={inputStyle} /></div>
             </div>
             <div style={{ marginBottom: "1.5rem" }}>
               <label style={labelStyle}>Message</label>
-              <textarea rows={5} className={inputClass} style={{ ...inputStyle, resize: "vertical" as const }} />
+              <textarea name="message" required rows={5} className={inputClass} style={{ ...inputStyle, resize: "vertical" as const }} />
             </div>
+            {status === "error" && (
+              <p role="alert" style={{ fontSize: "0.875rem", color: "#ff8a80", marginBottom: "1rem", lineHeight: 1.5 }}>
+                Something went wrong and your message wasn't sent. Please try again, or email one of the departments above.
+              </p>
+            )}
             <button
               type="submit"
+              disabled={status === "sending"}
               className="contact-submit-btn"
               style={{
                 backgroundColor: "var(--accent-yellow)",
@@ -397,13 +445,15 @@ function SendMessage() {
                 fontWeight: 700,
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
-                cursor: "pointer",
+                cursor: status === "sending" ? "wait" : "pointer",
+                opacity: status === "sending" ? 0.6 : 1,
                 fontFamily: "inherit",
               }}
             >
-              SEND MESSAGE →
+              {status === "sending" ? "SENDING…" : "SEND MESSAGE →"}
             </button>
           </form>
+          )}
         </motion.div>
       </div>
     </section>

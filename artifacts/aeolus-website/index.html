@@ -33,6 +33,19 @@
   <body>
     <div id="yellow-bar" style="position:sticky;top:0;height:4px;background-color:#FFD700;z-index:9999;width:100%;"></div>
     <div id="root"></div>
+    <!-- Blueprint for Netlify Forms: Netlify reads this static copy at deploy
+         time, since the real form is drawn by React. Field names must match
+         the form in ContactPage.tsx. -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="text" name="company" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="topic" />
+      <input type="text" name="region" />
+      <textarea name="message"></textarea>
+      <input type="text" name="bot-field" />
+    </form>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

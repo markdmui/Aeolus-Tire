@@ -3,14 +3,14 @@
 //
 // Source: Aeolus-Wireframe.xlsx, sheet "3. Content Wireframe" (the content bible).
 // Regenerate: pnpm --filter @workspace/scripts run generate:tires
-// Last generated: 2026-08-22
+// Last generated: 2026-09-29
 //
 // Hand-maintained companions: tire-types.ts, demo-tires.ts.
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { TireData, TirePosition, SHARED_ASSETS } from "./tire-types";
 
-/** 45 tires, in wireframe order. */
+/** 49 tires, in wireframe order. */
 export const BIBLE_TIRES: TireData[] = [
   {
     slug:     "neo-fuel-s",
@@ -1760,6 +1760,173 @@ export const BIBLE_TIRES: TireData[] = [
       productSheet: SHARED_ASSETS.productSheet,
       warranty:     SHARED_ASSETS.warranty,
       tirePhoto:    "/tires/Tire-Photos/ADW82.png",
+    },
+  },
+  {
+    slug:     "neo-allroads-t3",
+    name:     "Neo Allroads T3",
+    segment:  "Premium Regional",
+    position: "Trailer" as TirePosition,
+    navGroup: "NEO/SAILOR SERIES REGIONAL",
+    seriesLabel:   "PREMIUM",
+    categoryLabel: "REGIONAL",
+    subtitle: "Regional truck tire with optimized tread, fuel-efficient, durable, stone-resistant, long-lasting performance. Engineered to perform well on winding, hilly roads, coupled with its high adaptability to regional routes, guarantees excellent mileage as well as minimum fuel consumption.",
+    tags: ["Fuel Efficient", "Stone Resistant", "Long Life", "M+S"],
+    bullets: [
+      "Optimized shoulder design: even wear and better turning ability",
+      "Improved tread groove: stone rejection and good resistance for groove cracking",
+      "Higher land/sea ratio for tread: longer mileage, extend tire service life a lot",
+      "Dual layer tread compound: fuel efficiency and lower heat generation to reduce the tire failure",
+      "SATT: Innovative structure spiral advanced technology for truck: Better durability, integrity and retreadability",
+    ],
+    features: [
+      {
+        title: "Optimized Shoulder Design",
+        body:  "Enhanced shoulder profile provides even wear and superior cornering stability, ensuring consistent performance and longer tread life.",
+        image: "",
+      },
+      {
+        title: "Improved Tread Groove Structure",
+        body:  "Redesigned tread grooves improve stone ejection and resistance to cracking, reducing damage and maintaining tread integrity over time.",
+        image: "",
+      },
+      {
+        title: "Dual-Layer Tread Compound",
+        body:  "Engineered with a dual-layer tread compound for better fuel efficiency, optimized heat dissipation, and reduced risk of tire failure during long operations.",
+        image: "",
+      },
+      {
+        title: "SATT — Spiral Advanced Truck Technology",
+        body:  "Built with SATT structural reinforcement, providing higher casing durability, integrity, and retreadability for dependable long-term use.",
+        image: "",
+      },
+    ],
+    specRows: [
+      { size:"11R22.5", ply:"16", rimW:"8.25", secW:"10.9", odIn:"41.3", odMm:"1050", tdMm:"15", td32:"19", mlSlbs:"6614", mlSpsi:"120", mlSkg:"3000", mlSkpa:"830", mlDlbs:"6008", mlDpsi:"120", mlDkg:"2725", mlDkpa:"830", liss:"148/145L", smartway:false, ms:true, "3PMSF":false },
+    ],
+    tireImage:    SHARED_ASSETS.placeholderPhoto,
+    heroBg:       SHARED_ASSETS.heroBg,
+    bgTruck:      "/assets/bg-reg-premium.jpg",
+    cutawayImage: SHARED_ASSETS.cutaway,
+    downloads: {
+      catalog:      SHARED_ASSETS.catalog,
+      productSheet: SHARED_ASSETS.productSheet,
+      warranty:     SHARED_ASSETS.warranty,
+      tirePhoto:    SHARED_ASSETS.placeholderPhoto,
+    },
+  },
+  {
+    slug:     "neo-fuel-s-plus",
+    name:     "Neo Fuel S+",
+    segment:  "Premium Long Haul",
+    position: "Steer" as TirePosition,
+    navGroup: "NEO SERIES LONG HAUL",
+    seriesLabel:   "PREMIUM",
+    categoryLabel: "LONG HAUL",
+    subtitle: "Long Haul tire with improved fuel efficiency.",
+    tags: [],
+    bullets: [
+      "Four groove design with inter-connected tread blocks for better and water evacuation, increasing safety",
+      "Shoulder designed to reduce irregular wear",
+      "Low rolling resistance compound reduces fuel consumption, lowering cost",
+    ],
+    features: [],
+    specRows: [
+      { size:"315/60R22.5", ply:"20", rimW:"9.75", secW:"12.2", odIn:"37.2", odMm:"944", tdMm:"14", td32:"17.6", mlSlbs:"8267", mlSpsi:"131", mlSkg:"3750", mlSkpa:"900", mlDlbs:"6945", mlDpsi:"131", mlDkg:"3150", mlDkpa:"900", liss:"154/148L", smartway:false, ms:true, "3PMSF":false },
+    ],
+    tireImage:    SHARED_ASSETS.placeholderPhoto,
+    heroBg:       SHARED_ASSETS.heroBg,
+    bgTruck:      "/assets/bg-long-haul-premium.jpg",
+    cutawayImage: SHARED_ASSETS.cutaway,
+    downloads: {
+      catalog:      SHARED_ASSETS.catalog,
+      productSheet: SHARED_ASSETS.productSheet,
+      warranty:     SHARED_ASSETS.warranty,
+      tirePhoto:    SHARED_ASSETS.placeholderPhoto,
+    },
+  },
+  {
+    slug:     "neo-icedrive",
+    name:     "Neo Icedrive",
+    segment:  "Premium Winter",
+    position: "Drive" as TirePosition,
+    navGroup: "NEO SERIES WINTER",
+    seriesLabel:   "PREMIUM",
+    categoryLabel: "WINTER",
+    subtitle: "The NEO ICEDRIVE is designed for light truck drive wheel with good grip and handling safety, especially suitable for ice and snow roads of whole winter season.",
+    tags: ["Light Truck", "Grip", "Mileage", "M+S", "3PMSF"],
+    bullets: [
+      "3D sipe tread pattern with zig-zag and straight grooves delivers excellent grip on ice and snow",
+      "Open shoulder design with specially shaped shoulder reinforcement",
+      "Maximizes shoulder rigidity and reduces uneven wear",
+      "New ice/snow compound with double-layer tread structure",
+      "Balances long mileage with strong ice and snow braking performance",
+    ],
+    features: [
+      {
+        title: "Advanced 3D Sipes & Groove Design",
+        body:  "3D matrix steel sipes and a 3D sipe tread pattern with zigzag and straight grooves ensure exceptional traction on ice and snow, with excellent drainage and stability across winter and transitional seasons.",
+        image: "",
+      },
+      {
+        title: "Reinforced Open Shoulder",
+        body:  "Specially shaped open shoulders with reinforced blocks enhance ice and snow discharge, improve rigidity, and minimize uneven wear for longer tread life.",
+        image: "",
+      },
+      {
+        title: "Dual-Layer Compound",
+        body:  "A new winter compound with a dual-layer tread balances high mileage and strong braking on icy roads, delivering safety and durability in severe winter conditions.",
+        image: "",
+      },
+      {
+        title: "Seasonal Indicator",
+        body:  "Equipped with winter and summer wear indicators to guide optimal performance across changing temperatures, from icy roads to warmer climates.",
+        image: "",
+      },
+    ],
+    specRows: [
+      { size:"11R22.5", ply:"18", rimW:"8.25", secW:"11.1", odIn:"42", odMm:"1068", tdMm:"22", td32:"28", mlSlbs:"6945", mlSpsi:"123", mlSkg:"3150", mlSkpa:"850", mlDlbs:"6393", mlDpsi:"123", mlDkg:"2900", mlDkpa:"850", liss:"148/145J", smartway:false, ms:true, "3PMSF":true },
+      { size:"245/70R19.5", ply:"16", rimW:"7.5", secW:"9.8", odIn:"33.7", odMm:"856", tdMm:"20", td32:"25", mlSlbs:"4938", mlSpsi:"120", mlSkg:"2240", mlSkpa:"830", mlDlbs:"4674", mlDpsi:"120", mlDkg:"2120", mlDkpa:"830", liss:"136/134J", smartway:false, ms:true, "3PMSF":true },
+    ],
+    tireImage:    SHARED_ASSETS.placeholderPhoto,
+    heroBg:       SHARED_ASSETS.heroBg,
+    bgTruck:      "/assets/bg-winter-premium.jpg",
+    cutawayImage: SHARED_ASSETS.cutaway,
+    downloads: {
+      catalog:      SHARED_ASSETS.catalog,
+      productSheet: SHARED_ASSETS.productSheet,
+      warranty:     SHARED_ASSETS.warranty,
+      tirePhoto:    SHARED_ASSETS.placeholderPhoto,
+    },
+  },
+  {
+    slug:     "neo-winter-d",
+    name:     "Neo Winter D",
+    segment:  "Regional",
+    position: "Drive" as TirePosition,
+    navGroup: "",
+    seriesLabel:   "",
+    categoryLabel: "",
+    subtitle: "Winter Traction",
+    tags: [],
+    bullets: [
+      "Multiple sipes and open shoulder design offers increased traction in winter conditions, improving safety",
+      "Inter-locking 3D sipes provide extended mileage, reducing operating costs",
+      "Wide tread combined with deeper grooves are combined with a special tread formula to provide excellent performance in all conditions",
+    ],
+    features: [],
+    specRows: [
+      { size:"245/70R19.5", ply:"18", rimW:"7.5", secW:"9.9", odIn:"33.7", odMm:"857", tdMm:"17", td32:"21", mlSlbs:"6173", mlSpsi:"131", mlSkg:"2800", mlSkpa:"900", mlDlbs:"5842", mlDpsi:"131", mlDkg:"2650", mlDkpa:"900", liss:"144/142J", smartway:false, ms:true, "3PMSF":true },
+    ],
+    tireImage:    SHARED_ASSETS.placeholderPhoto,
+    heroBg:       SHARED_ASSETS.heroBg,
+    bgTruck:      SHARED_ASSETS.bgTruck,
+    cutawayImage: SHARED_ASSETS.cutaway,
+    downloads: {
+      catalog:      SHARED_ASSETS.catalog,
+      productSheet: SHARED_ASSETS.productSheet,
+      warranty:     SHARED_ASSETS.warranty,
+      tirePhoto:    SHARED_ASSETS.placeholderPhoto,
     },
   },
 ];
